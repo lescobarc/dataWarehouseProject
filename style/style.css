@@ -17,7 +17,7 @@ button {
 }
 
 i {
-  color: #15181b;
+  color: gray;
 }
 
 nav {
@@ -134,7 +134,7 @@ nav ul li {
 }
 
 #table span {
-  color: #949494;
+  color: gray;
 }
 
 #table .channel span {
@@ -143,11 +143,6 @@ nav ul li {
   border-radius: 4px;
   margin: 3%;
   padding: 2%;
-}
-
-#table .points {
-  color: #949494;
-  margin-left: 20%;
 }
 
 #table #interes {
@@ -162,8 +157,8 @@ nav ul li {
   height: 11px;
   width: 103px;
   margin-left: 20px;
-  border: 1px solid #dddddd;
-  background-color: #dddddd;
+  border: 1px solid #DDDDDD;
+  background-color: #DDDDDD;
   border-radius: 5px;
 }
 
@@ -199,6 +194,10 @@ nav ul li {
   width: 20%;
 }
 
+#table #actions .iconPoints {
+  padding-left: 40%;
+}
+
 #tablePagination {
   width: 1310px;
   padding: 0 30px;
@@ -208,11 +207,11 @@ nav ul li {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  color: #949494;
+  color: gray;
 }
 
 #tablePagination i {
-  color: #949494;
+  color: gray;
 }
 
 #tablePagination span {
@@ -255,11 +254,11 @@ nav ul li {
 #contactFilter table select {
   width: 190px;
   height: 35.5px;
-  border: 1px solid #C6CACC;
+  border: 1px solid #DDDDDD;
 }
 
 #predictiveSearch {
-  color: #949494;
+  color: #DDDDDD;
 }
 
 #predictiveSearch p {
@@ -298,5 +297,26 @@ nav ul li {
       -ms-grid-row-align: center;
       align-self: center;
   margin-left: 5%;
+}
+
+.arrowHover #actions .fa-trash, .arrowHover #actions .fa-pencil-alt {
+  display: none;
+}
+
+.arrowHover tr:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.arrowHover tr:hover #actions .iconPoints {
+  display: none;
+}
+
+.arrowHover tr:hover #actions .fa-trash, .arrowHover tr:hover #actions .fa-pencil-alt {
+  display: inline;
+  padding-left: 25%;
+}
+
+.arrowSelect {
+  background-color: rgba(0, 0, 255, 0.151);
 }
 /*# sourceMappingURL=style.css.map */

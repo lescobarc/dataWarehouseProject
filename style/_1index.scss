@@ -100,7 +100,7 @@ nav{
         }
     }
     span{
-        color:$bgGray;
+        color: gray;
     }
     .channel{
         
@@ -112,10 +112,7 @@ nav{
             padding: 2%;
         }
     }
-    .points{
-        color: $bgGray;
-        margin-left: 20%;
-    }
+    
     #interes{
         
         width: 186px;
@@ -126,8 +123,8 @@ nav{
             height: 11px;
             width: 103px;
             margin-left: 20px;
-            border: 1px solid #dddddd;
-            background-color: #dddddd;
+            border: 1px solid $bgGray;
+            background-color: $bgGray;
             border-radius: 5px;
         }
         //MOdificar Width
@@ -161,6 +158,12 @@ nav{
         }
 
     }
+    #actions{
+        .iconPoints{
+            padding-left: 40%;
+        }
+    }
+    
    
     
 }
@@ -170,9 +173,9 @@ nav{
     padding: 0 30px;
     display: flex;
     justify-content: space-between;
-    color: $bgGray;
+    color: gray;
     i{
-        color: $bgGray;
+        color: gray;
     }
     span{
         margin-left: 10px;
