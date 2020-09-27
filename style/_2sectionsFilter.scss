@@ -1,8 +1,17 @@
-#contactFilter{
+.dropDown{
     border: 1px solid #CCCCCC;
     border-radius: 2px;
     width: 503px;
-    height: 375px;
+    position: absolute;
+    left: 30px;
+    top: 180px;
+    z-index: 10;
+    background-color: white;
+    box-shadow: 1px 2px 2px  rgba(128, 128, 128, 0.37);
+}
+
+#contactFilter{
+   
  table{
     margin: auto;
     input{
@@ -15,6 +24,12 @@
         height: 35.5px;
         border: 1px solid #C6CACC;
     }
-    
  }
 }
+#predictiveSearch{
+    color: $bgGray;
+    p{
+        padding-left: 20px;
+    }
+    
+} 

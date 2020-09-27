@@ -170,4 +170,19 @@ nav{
     padding: 0 30px;
     display: flex;
     justify-content: space-between;
+    color: $bgGray;
+    i{
+        color: $bgGray;
+    }
+    span{
+        margin-left: 10px;
+    }
+    div:nth-child(2){
+        p{
+        width: 200px;
+            display: flex;
+            justify-content: space-between; 
+        }
+        
+    }
 }

@@ -51,7 +51,62 @@
             </div>
         </section>
 
-   
+        <!-- 2. FILTRO DESPLEGABLE -->
+        <section id="contactFilter" class="hidden dropDown">
+            <table>
+                <tr>
+                    <td><p>Nombre del Contacto</p></td>
+                    <td> <input type="text" name="" id="filterContactName" placeholder="Introduce el nombre del contacto"></td>
+                </tr>
+    
+                <tr>
+                    <td><p>Cargo</p></td>
+                    <td><input type="text" name="" id="filterContactPosition" placeholder="Introduce el cargo del contacto"></td>
+                </tr>
+                <tr>
+                    <td><p>País/Región</p></td>
+                    <td> <select name="filterContactCountry" id="filterContactCountry">
+                            <option label="Todos"></option>
+                            <option value=""></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Compañía</p></td>
+                    <td> <select name="filterContactCompany" id="filterContactCompany">
+                            <option label="Todas"></option>
+                            <option value=""></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Canal Favorito</p></td>
+                    <td> <select name="filterContactChannel" id="filterContactChannel">
+                            <option label="Cualquiera"></option>
+                            <option value=""></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Interés</p></td>
+                    <td> <select name="filterContactInterest" id="filterContactInterest">
+                            <option label="Cualquiera"></option>
+                            <option value=""></option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 3. Predictive Search -->
+        <section id="predictiveSearch" class="hidden dropDown"><p>País - <b>Argentina</b></p></section>
+
+
+
+
+
+
+
         <!--<section id="contacts" class="hidden"> </section>
             <section id="companies" class="hidden"> </section> 
             <section id="users" class="hidden"> </section>
@@ -110,8 +165,8 @@
                 </table>
             </div>
             <div id="tablePagination"> 
-               <div><p>Filas por página <span> 10 </span></p></div> 
-               <div><p>1-10 de 30 filas<span> 10 </span></p> </div> 
+               <div><p>Filas por página <span> 10 </span><i class="fas fa-angle-down"></i></p></div> 
+               <div><p>1-10 de 30 filas<i class="fas fa-angle-left"></i><i class="fas fa-angle-right"></i></p> </div> 
             </div>
         </section>
 
