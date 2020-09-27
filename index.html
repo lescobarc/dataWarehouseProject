@@ -13,97 +13,122 @@
     <!-- Font Awesome Brand Icons. -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
- </head>
+</head>
 
 
 
-    <header>
-        <nav>
-            <img src="style/img/logo.png" alt="logo">
-            <ul>
-                <li>Contactos</li>
-                <li>Compañías</li>
-                <li>Usuarios</li>
-                <li>Región/Ciudad</li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <img src="style/img/logo.png" alt="logo">
+        <ul>
+            <li>Contactos</li>
+            <li>Compañías</li>
+            <li>Usuarios</li>
+            <li>Región/Ciudad</li>
+        </ul>
+    </nav>
+</header>
 
-    <body>
-        <section id="contacts">
-            <h1>Contactos</h1>
-            <div id="contactsContainer">
-                <div id="contactsSearch">
-                    <input type="text" name="contact" id="contactsInput">
-                    <button id="iconSearch"><i class="fas fa-search fa-2x"></i></button>
-                </div>
+<body>
+    <section id="contacts">
+        <h1>Contactos</h1>
+        <div id="contactsContainer">
+            <div id="contactsSearch">
+                <input type="text" name="contact" id="contactsInput">
+                <button id="iconSearch"><i class="fas fa-search fa-2x"></i></button>
+            </div>
 
-                <div id="contactsButtons">
-                    <button id="iconDownload"><i class="fas fa-upload fa-2x"></i></button>
-                    <select name="exportContacts" id="exportContacts">
+            <div id="contactsButtons">
+                <button id="iconDownload"><i class="fas fa-upload fa-2x"></i></button>
+                <!-- <select name="exportContacts" >
                         <option label="Exportar Contactos"> </option>
                         <option value="selectContacts"> Exportar seleccionados </option>
                         <option value="allFilterContacts"> Todos los filtrados </option>
-                    </select>
-                    <button id="iconAdd">Agregar Contacto</button>
-                </div>
+                    </select> -->
+               <div id="exportButton" > <button id="exportContacts" > Exportar Contactos <i class="fas fa-caret-down"></i> </button></div>
+                <button id="iconAdd">Agregar Contacto</button>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 2. Drop down filter -->
-        <section id="contactFilter" class="hidden dropDown">
-            <table>
-                <tr>
-                    <td><p>Nombre del Contacto</p></td>
-                    <td> <input type="text" name="" id="filterContactName" placeholder="Introduce el nombre del contacto"></td>
-                </tr>
-    
-                <tr>
-                    <td><p>Cargo</p></td>
-                    <td><input type="text" name="" id="filterContactPosition" placeholder="Introduce el cargo del contacto"></td>
-                </tr>
-                <tr>
-                    <td><p>País/Región</p></td>
-                    <td> <select name="filterContactCountry" id="filterContactCountry">
-                            <option label="Todos"></option>
-                            <option value=""></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><p>Compañía</p></td>
-                    <td> <select name="filterContactCompany" id="filterContactCompany">
-                            <option label="Todas"></option>
-                            <option value=""></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><p>Canal Favorito</p></td>
-                    <td> <select name="filterContactChannel" id="filterContactChannel">
-                            <option label="Cualquiera"></option>
-                            <option value=""></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><p>Interés</p></td>
-                    <td> <select name="filterContactInterest" id="filterContactInterest">
-                            <option label="Cualquiera"></option>
-                            <option value=""></option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-        </section>
+    <!-- 2. Drop down filter -->
+    <section id="contactFilter" class="hidden dropDown">
+        <table>
+            <tr>
+                <td>
+                    <p>Nombre del Contacto</p>
+                </td>
+                <td> <input type="text" name="" id="filterContactName" placeholder="Introduce el nombre del contacto">
+                </td>
+            </tr>
 
-        <!-- 3. Predictive Search -->
-        <section id="predictiveSearch" class="hidden dropDown"><p>País - <b>Argentina</b></p></section>
+            <tr>
+                <td>
+                    <p>Cargo</p>
+                </td>
+                <td><input type="text" name="" id="filterContactPosition" placeholder="Introduce el cargo del contacto">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>País/Región</p>
+                </td>
+                <td> <select name="filterContactCountry" id="filterContactCountry">
+                        <option label="Todos"></option>
+                        <option value=""></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Compañía</p>
+                </td>
+                <td> <select name="filterContactCompany" id="filterContactCompany">
+                        <option label="Todas"></option>
+                        <option value=""></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Canal Favorito</p>
+                </td>
+                <td> <select name="filterContactChannel" id="filterContactChannel">
+                        <option label="Cualquiera"></option>
+                        <option value=""></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Interés</p>
+                </td>
+                <td> <select name="filterContactInterest" id="filterContactInterest">
+                        <option label="Cualquiera"></option>
+                        <option value=""></option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </section>
 
-       <!--  4. Filter applied -->
-       <section id="filterApplied" class="hidden dropDown"><div><p>Argentina</p><i class="fas fa-times"></i></div></section>
+    <!-- 3. Predictive Search -->
+    <section id="predictiveSearch" class="hidden dropDown">
+        <p>País - <b>Argentina</b></p>
+    </section>
 
-      
+    <!--  4. Filter applied -->
+    <section id="filterApplied" class="hidden dropDown">
+        <div>
+            <p>Argentina</p><i class="fas fa-times"></i>
+        </div>
+    </section>
+
+    <!-- 7. Export Contacts  -->
+    <section id="exportContactsOptions" class=" hidden dropDown">
+        <p>Exportar seleccionados </p>
+        <p>Todos los filtrados</p>
+    </section>
 
 
 
@@ -111,70 +136,94 @@
 
 
 
-        <!--<section id="contacts" class="hidden"> </section>
+    <!--<section id="contacts" class="hidden"> </section>
             <section id="companies" class="hidden"> </section> 
             <section id="users" class="hidden"> </section>
             <section id="region" class="hidden"> </section>
             <section id="login" class="hidden"> </section> -->
-        
-   
-        <section id="contactsTable">
-            <div id="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
-                            <th>Contacto <i class="fas fa-arrows-alt-v"></i> </th>
-                            <th>País/Región <i class="fas fa-arrows-alt-v"></i></th>
-                            <th>Compañía <i class="fas fa-arrows-alt-v"></i></th>
-                            <th>Cargo <i class="fas fa-arrows-alt-v"></i></th>
-                            <th>Canal preferido <i class="fas fa-arrows-alt-v"></i></th>
-                            <th>Interés <i class="fas fa-arrows-alt-v"></i></th>
-                            <th>Acciones <i class="fas fa-arrows-alt-v"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody class="arrowHover">
-                        <tr class="arrowContact arrowSelect" >
-                            <th><input type="checkbox" name="contactSelect" class="contactSelect"></th>
-                            <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
-                            <td>Argentina <br> <span>Latam</span></td>
-                            <td>Ecom Experts</td>
-                            <td>UX Designer</td>
-                            <td class="channel"><span>Whatsapp</span></td>
-                            <td id="interes"><div>100%</div><div class="progressBar"><div class="progressBar100"></div></div></td>
-                            <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i class="fas fa-pencil-alt "></i></td>
-                          
-                        </tr>
-                        <tr>
-                            <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
-                            <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
-                            <td>Argentina <br> <span>Latam</span></td>
-                            <td>Ecom Experts</td>
-                            <td>UX Designer</td>
-                            <td class="channel"><span>Whatsapp</span></td>
-                            <td id="interes"><div>75%</div><div class="progressBar"><div class="progressBar75"></div></div></td>
-                            <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i class="fas fa-pencil-alt "></i></td>                        </tr>
-                        <tr>
-                            <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
-                            <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
-                            <td>Argentina <br> <span>Latam</span></td>
-                            <td>Ecom Experts</td>
-                            <td>UX Designer</td>
-                            <td class="channel"><span>Whatsapp</span><span>Email</span></td>
-                            <td id="interes"><div>50%</div><div class="progressBar"><div class="progressBar50"></div></div></td>
-                            <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i class="fas fa-pencil-alt "></i></td>                        </tr>
-                    </tbody>
-                </table>
+
+
+    <section id="contactsTable">
+        <div id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                        <th>Contacto <i class="fas fa-arrows-alt-v"></i> </th>
+                        <th>País/Región <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Compañía <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Cargo <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Canal preferido <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Interés <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Acciones <i class="fas fa-arrows-alt-v"></i></th>
+                    </tr>
+                </thead>
+                <tbody class="arrowHover">
+                    <tr class="arrowContact arrowSelect">
+                        <th><input type="checkbox" name="contactSelect" class="contactSelect"></th>
+                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                        <td>Argentina <br> <span>Latam</span></td>
+                        <td>Ecom Experts</td>
+                        <td>UX Designer</td>
+                        <td class="channel"><span>Whatsapp</span></td>
+                        <td id="interes">
+                            <div>100%</div>
+                            <div class="progressBar">
+                                <div class="progressBar100"></div>
+                            </div>
+                        </td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
+                                class="fas fa-pencil-alt "></i></td>
+
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                        <td>Argentina <br> <span>Latam</span></td>
+                        <td>Ecom Experts</td>
+                        <td>UX Designer</td>
+                        <td class="channel"><span>Whatsapp</span></td>
+                        <td id="interes">
+                            <div>75%</div>
+                            <div class="progressBar">
+                                <div class="progressBar75"></div>
+                            </div>
+                        </td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
+                                class="fas fa-pencil-alt "></i></td>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                        <td>Argentina <br> <span>Latam</span></td>
+                        <td>Ecom Experts</td>
+                        <td>UX Designer</td>
+                        <td class="channel"><span>Whatsapp</span><span>Email</span></td>
+                        <td id="interes">
+                            <div>50%</div>
+                            <div class="progressBar">
+                                <div class="progressBar50"></div>
+                            </div>
+                        </td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
+                                class="fas fa-pencil-alt "></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tablePagination">
+            <div>
+                <p>Filas por página <span> 10 </span><i class="fas fa-angle-down"></i></p>
             </div>
-            <div id="tablePagination"> 
-               <div><p>Filas por página <span> 10 </span><i class="fas fa-angle-down"></i></p></div> 
-               <div><p>1-10 de 30 filas<i class="fas fa-angle-left"></i><i class="fas fa-angle-right"></i></p> </div> 
+            <div>
+                <p>1-10 de 30 filas<i class="fas fa-angle-left"></i><i class="fas fa-angle-right"></i></p>
             </div>
-        </section>
+        </div>
+    </section>
 
 
     <script src="index.js"></script>
-    </body>
+</body>
 
 
 
