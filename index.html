@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Warehouse</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <!-- Font Awesome-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Brand Icons. -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+<!--         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ --></head>
+
+
+
+    <header>
+        <nav>
+            <img src="style/img/logo.png" alt="logo">
+            <ul>
+                <li>Contactos</li>
+                <li>Compañías</li>
+                <li>Usuarios</li>
+                <li>Región/Ciudad</li>
+            </ul>
+        </nav>
+    </header>
+
+    <body>
+        <section id="contacts">
+            <h1>Contactos</h1>
+            <div id="contactsContainer">
+                <div id="contactsSearch">
+                    <input type="text" name="contact" id="contactsInput">
+                    <button id="iconSearch"><i class="fas fa-search fa-2x"></i></button>
+                </div>
+
+                <div id="contactsButtons">
+                    <button id="iconDownload"><i class="fas fa-upload fa-2x"></i></button>
+                    <select name="exportContacts" id="exportContacts">
+                        <option label="Exportar Contactos"> </option>
+                        <option value="selectContacts"> Exportar seleccionados </option>
+                        <option value="allFilterContacts"> Todos los filtrados </option>
+                    </select>
+                    <button id="iconAdd">Agregar Contacto</button>
+                </div>
+            </div>
+        </section>
+
+   
+        <!--<section id="contacts" class="hidden"> </section>
+            <section id="companies" class="hidden"> </section> 
+            <section id="users" class="hidden"> </section>
+            <section id="region" class="hidden"> </section>
+            <section id="login" class="hidden"> </section> -->
+        
+   
+        <section id="contactsTable">
+            <div id="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                            <th>Contacto <i class="fas fa-arrows-alt-v"></i> </th>
+                            <th>País/Región <i class="fas fa-arrows-alt-v"></i></th>
+                            <th>Compañía <i class="fas fa-arrows-alt-v"></i></th>
+                            <th>Cargo <i class="fas fa-arrows-alt-v"></i></th>
+                            <th>Canal preferido <i class="fas fa-arrows-alt-v"></i></th>
+                            <th>Interés <i class="fas fa-arrows-alt-v"></i></th>
+                            <th>Acciones <i class="fas fa-arrows-alt-v"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                            <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                            <td>Argentina <br> <span>Latam</span></td>
+                            <td>Ecom Experts</td>
+                            <td>UX Designer</td>
+                            <td class="channel"><span>Whatsapp</span></td>
+                            <td id="interes"><div>100%</div><div class="progressBar"><div class="progressBar100"></div></div></td>
+                            <td><i class="fas fa-ellipsis-h points"></i></td>
+                          
+                        </tr>
+                        <tr>
+                            <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                            <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                            <td>Argentina <br> <span>Latam</span></td>
+                            <td>Ecom Experts</td>
+                            <td>UX Designer</td>
+                            <td class="channel"><span>Whatsapp</span></td>
+                            <td id="interes"><div>75%</div><div class="progressBar"><div class="progressBar75"></div></div></td>
+                            <td><i class="fas fa-ellipsis-h points"></i></td>
+                        </tr>
+                        <tr>
+                            <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                            <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                            <td>Argentina <br> <span>Latam</span></td>
+                            <td>Ecom Experts</td>
+                            <td>UX Designer</td>
+                            <td class="channel"><span>Whatsapp</span><span>Email</span></td>
+                            <td id="interes"><div>50%</div><div class="progressBar"><div class="progressBar50"></div></div></td>
+                            <td><i class="fas fa-ellipsis-h points"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="tablePagination"> 
+               <div><p>Filas por página <span> 10 </span></p></div> 
+               <div><p>1-10 de 30 filas<span> 10 </span></p> </div> 
+            </div>
+        </section>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,173 @@
+
+nav{
+   height: 64px;
+   width: 1366px;
+    background-color: $bgPrimary;
+    color: white;
+    display: flex !important;
+    justify-content: space-between;
+
+  
+    ul{
+        display: flex;
+        li{
+            font-size: 16pt;
+            padding: 15px;
+            list-style: none;
+        }
+    }
+}
+
+#contacts{
+    height: 191.5px;
+    width: 1306px;
+    padding: 0 30px;
+   /*  h1{
+
+    } */
+   
+    #contactsContainer{
+        display: flex;
+        justify-content: space-between;
+        height: 41px;
+        
+        #contactsInput{
+            width: 502px;
+            height: 41px;
+            padding: 0;
+            border: 1px solid #CCCCCC;
+            border-radius: 3.5px;
+            position: relative;
+            bottom: 10%;
+        }
+        #contactsButtons{
+            display: flex;
+            
+            #iconDownload{
+                border: 1px solid rgba(0,0,0,0.25);
+                border-radius: 3.5px;
+                margin-right: 9px;
+            }
+            #exportContacts{
+                width: 172px;
+                height: 41px;
+                color: $bgPrimary;
+                background-color: #FFF;
+                border: 1px solid rgba(0,0,0,0.25);
+                border-radius: 1.5px;  
+                margin-right: 9px;
+                
+                
+                }
+            #iconAdd{
+                width: 172px;
+                background-color: $bgPrimary;
+                color: #FFF;
+                border: 1px solid rgba(0,0,0,0.25);
+                border-radius: 1.5px;
+            } 
+
+           
+        }
+       
+    }
+}
+
+#table{
+    width: 1310px;
+    height: 624px;
+    border: 1px solid rgba(0,0,0,0.10);
+    margin: 27px;
+    thead{
+       th{
+           border-bottom: 1px solid rgba(0,0,0,0.10);
+           input{
+               width: 54px;
+           }
+       }
+
+    
+    }
+    th, td{
+        text-align: left;
+        width: 10%;
+        padding: 1%;
+        &:nth-child(1){
+            width: 5%;
+        }
+        input{
+            width: 54px;
+        }
+    }
+    span{
+        color:$bgGray;
+    }
+    .channel{
+        
+        span{
+            color: #0683F9;
+            background-color: rgba(221, 223, 250, 0.9);
+            border-radius: 4px;
+            margin: 3%;
+            padding: 2%;
+        }
+    }
+    .points{
+        color: $bgGray;
+        margin-left: 20%;
+    }
+    #interes{
+        
+        width: 186px;
+        display: flex;
+        padding-top: 20px; 
+
+        .progressBar{
+            height: 11px;
+            width: 103px;
+            margin-left: 20px;
+            border: 1px solid gray;
+            background-color: gray;
+            border-radius: 5px;
+        }
+        //MOdificar Width
+        .progressBar100{
+            border:  1px solid red;
+            background-color: red;
+            height: 8px;
+            border-radius: 5px;
+             width: 100px;
+        }
+        .progressBar75{
+            border:  1px solid orange;
+            border-radius: 5px;
+            background-color: orange;
+            height: 8px;
+            width: 75%;
+        }
+        .progressBar50{
+            border:  1px solid yellow;
+            border-radius: 5px;
+            background-color: yellow;
+            height: 8px;
+            width: 50%;
+        }
+        .progressBar25{
+            border:  1px solid blue;
+            border-radius: 5px;
+            background-color: blue;
+            height: 8px;
+            width: 20%;
+        }
+
+    }
+   
+    
+}
+
+#tablePagination{
+    width: 1310px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+}

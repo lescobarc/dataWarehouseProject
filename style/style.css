@@ -1,0 +1,231 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background-color: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 1.5px;
+  margin-left: 9px;
+  width: 41px;
+  height: 41px;
+}
+
+i {
+  color: #15181b;
+}
+
+nav {
+  height: 64px;
+  width: 1366px;
+  background-color: #15181b;
+  color: white;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+nav ul li {
+  font-size: 16pt;
+  padding: 15px;
+  list-style: none;
+}
+
+#contacts {
+  height: 191.5px;
+  width: 1306px;
+  padding: 0 30px;
+  /*  h1{
+
+    } */
+}
+
+#contacts #contactsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 41px;
+}
+
+#contacts #contactsContainer #contactsInput {
+  width: 502px;
+  height: 41px;
+  padding: 0;
+  border: 1px solid #CCCCCC;
+  border-radius: 3.5px;
+  position: relative;
+  bottom: 10%;
+}
+
+#contacts #contactsContainer #contactsButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#contacts #contactsContainer #contactsButtons #iconDownload {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 3.5px;
+  margin-right: 9px;
+}
+
+#contacts #contactsContainer #contactsButtons #exportContacts {
+  width: 172px;
+  height: 41px;
+  color: #15181b;
+  background-color: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 1.5px;
+  margin-right: 9px;
+}
+
+#contacts #contactsContainer #contactsButtons #iconAdd {
+  width: 172px;
+  background-color: #15181b;
+  color: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 1.5px;
+}
+
+#table {
+  width: 1310px;
+  height: 624px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 27px;
+}
+
+#table thead th {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#table thead th input {
+  width: 54px;
+}
+
+#table th, #table td {
+  text-align: left;
+  width: 10%;
+  padding: 1%;
+}
+
+#table th:nth-child(1), #table td:nth-child(1) {
+  width: 5%;
+}
+
+#table th input, #table td input {
+  width: 54px;
+}
+
+#table span {
+  color: #949494;
+}
+
+#table .channel span {
+  color: #0683F9;
+  background-color: rgba(221, 223, 250, 0.9);
+  border-radius: 4px;
+  margin: 3%;
+  padding: 2%;
+}
+
+#table .points {
+  color: #949494;
+  margin-left: 20%;
+}
+
+#table #interes {
+  width: 186px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 20px;
+}
+
+#table #interes .progressBar {
+  height: 11px;
+  width: 103px;
+  margin-left: 20px;
+  border: 1px solid gray;
+  background-color: gray;
+  border-radius: 5px;
+}
+
+#table #interes .progressBar100 {
+  border: 1px solid red;
+  background-color: red;
+  height: 8px;
+  border-radius: 5px;
+  width: 100px;
+}
+
+#table #interes .progressBar75 {
+  border: 1px solid orange;
+  border-radius: 5px;
+  background-color: orange;
+  height: 8px;
+  width: 75%;
+}
+
+#table #interes .progressBar50 {
+  border: 1px solid yellow;
+  border-radius: 5px;
+  background-color: yellow;
+  height: 8px;
+  width: 50%;
+}
+
+#table #interes .progressBar25 {
+  border: 1px solid blue;
+  border-radius: 5px;
+  background-color: blue;
+  height: 8px;
+  width: 20%;
+}
+
+#tablePagination {
+  width: 1310px;
+  padding: 0 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#contactFilter {
+  border: 1px solid #CCCCCC;
+  border-radius: 2px;
+  width: 503px;
+  height: 375px;
+}
+
+#contactFilter table {
+  margin: auto;
+}
+
+#contactFilter table input {
+  width: 312px;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+#contactFilter table select {
+  width: 190px;
+  height: 35.5px;
+  border: 1px solid #C6CACC;
+}
+/*# sourceMappingURL=style.css.map */
