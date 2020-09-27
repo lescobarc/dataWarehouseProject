@@ -33,3 +33,27 @@
     }
     
 } 
+#filterApplied{
+    border: none;
+    box-shadow: none;
+    
+    div{
+        display: flex;
+        background-color: #DDDDDD;
+        width: max-content;
+        line-height: 0;
+        padding: 0 1%;
+        border-radius: 4px ;
+        height: 24px ;
+        font-weight: 13px;
+        p{
+            align-self: center;
+        }
+        i{
+        align-self: center;
+        margin-left: 5%;
+        }
+    }
+       
+}
+    
