@@ -1,5 +1,6 @@
 $bgPrimary: #15181b;
 $bgGray: #DDDDDD;
+$bgBlue:  #1D72C2;
 
 body{
     margin: 0;
@@ -17,9 +18,15 @@ button{
     margin-left: 9px;
     width: 41px;
     height: 41px;
+    cursor: pointer;
 }
 i{
     color: gray ;
+    cursor: pointer;
+}
+.buttonLarge{
+    width: 130px;
+    border: 1px solid $bgBlue;
 }
 
 

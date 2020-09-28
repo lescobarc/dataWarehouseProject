@@ -14,7 +14,14 @@ nav{
             font-size: 16pt;
             padding: 15px;
             list-style: none;
+            line-height: 0;
+            &:hover{
+                border-bottom: 2px solid white;
+                cursor: pointer;
+            }
+            
         }
+   
     }
 }
 
@@ -39,6 +46,11 @@ nav{
             border-radius: 3.5px;
             position: relative;
             bottom: 10%;
+        }
+        #iconFilter{
+            z-index: 10;
+            position: relative;
+            left: -30px;
         }
         #contactsButtons{
             display: flex;
@@ -131,6 +143,7 @@ nav{
         .progressBar100{
             border:  1px solid red;
             background-color: red;
+            margin-left: -6px;
             height: 8px;
             border-radius: 5px;
              width: 100px;
@@ -179,6 +192,7 @@ nav{
     }
     span{
         margin-left: 10px;
+       
     }
     div:nth-child(2){
         p{
@@ -189,3 +203,4 @@ nav{
         
     }
 }
+

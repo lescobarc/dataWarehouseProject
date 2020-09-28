@@ -35,6 +35,7 @@
         <div id="contactsContainer">
             <div id="contactsSearch">
                 <input type="text" name="contact" id="contactsInput">
+                <span id="iconFilter"><i class="fas fa-angle-down"></i></span>
                 <button id="iconSearch"><i class="fas fa-search fa-2x"></i></button>
             </div>
 
@@ -45,14 +46,15 @@
                         <option value="selectContacts"> Exportar seleccionados </option>
                         <option value="allFilterContacts"> Todos los filtrados </option>
                     </select> -->
-               <div id="exportButton" > <button id="exportContacts" > Exportar Contactos <i class="fas fa-caret-down"></i> </button></div>
+                <div id="exportButton"> <button id="exportContacts"> Exportar Contactos <i
+                            class="fas fa-caret-down"></i> </button></div>
                 <button id="iconAdd">Agregar Contacto</button>
             </div>
         </div>
     </section>
 
     <!-- 2. Drop down filter -->
-    <section id="contactFilter" class="hidden dropDown">
+    <section id="contactsFilter" class="hidden dropDown">
         <table>
             <tr>
                 <td>
@@ -130,7 +132,22 @@
         <p>Todos los filtrados</p>
     </section>
 
+    <!-- 8. Import Contacts  -->
 
+    <section id="importContacts">
+        <div class="container">
+            <img src="style/img/cloud.png" alt="Import Contacts">
+            <p>Selecciona el archivo de tu ordenador para importar tus contactos.</p>
+            <div>
+                <button class='buttonLarge cancelButton'> Cancelar </button>
+                <button class='buttonLarge actionButton'> Importar </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Export Contacts  -->
+
+ 
 
 
 
