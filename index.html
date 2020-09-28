@@ -126,7 +126,7 @@
         </div>
     </section>
 
-    <!-- 7. Export Contacts  -->
+newC    <!-- 7. Export Contacts Button  -->
     <section id="exportContactsOptions" class=" hidden dropDown">
         <p>Exportar seleccionados </p>
         <p>Todos los filtrados</p>
@@ -134,7 +134,7 @@
 
     <!-- 8. Import Contacts  -->
 
-    <section id="importContacts hidden">
+    <section id="importContactsSection sectionExtend hidden">
         <div class="container hidden">
             <img src="style/img/cloud.png" alt="Import Contacts">
             <p>Selecciona el archivo de tu ordenador para importar tus contactos.</p>
@@ -146,8 +146,8 @@
     </section>
 
     <!-- 9. Export Contacts  -->
-    <section id="exportContacts">
-        <div class="container">
+    <section id="exportContactsSection hidden">
+        <div class="container hidden">
             <img src="style/img/deleteContact.png" alt="Export Contacts">
             <p>¿Seguro que deseas eliminar los contactos seleccionados?</p>
             <div>
@@ -156,7 +156,108 @@
             </div>
         </div>
     </section>
- 
+
+    <!-- 10. New Contact  -->
+    <section id="contact">
+        <div class="container">
+            <h1>Nuevo Contacto</h1>
+            
+                <div id="principalInfoContact">
+                    <img src="style/img/addPhoto.png" alt="Photo">
+                    <div>
+                        <label for="Nombre"> Nombre<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="Nombre">Apellido<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="Nombre">Cargo<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="Nombre">Email<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="Nombre">Compañia<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+
+                </div>
+                <div id="secondInfoContact">
+                    <div>
+                        <label for="region"> Región </label>
+                        <select name="contactRegion" id="">
+                            <option label="Seleccionar región"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="country"> País </label>
+                        <select name="contactCountry" id="">
+                            <option label="Seleccionar país"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="city"> Ciudad </label>
+                        <select name="contactCity" id="">
+                            <option label="Seleccionar ciudad"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="addres"> Dirección </label>
+                        <input type="text" placeholder="Ingresa una dirección">
+                    </div>
+                    <div >
+                        <label for="interest">Interés</label>
+                        <div id="divInterestContact">
+                        <span>*******</span>
+                        <select name="interest" id="selectInterestContact">
+                            <option value="0">0%</option>
+                            <option value="25">25%</option>
+                            <option value="50">50%</option>
+                            <option value="75">75%</option>
+                            <option value="100">100%</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="contactChannel">Canal de contacto</label>
+                        <select name="contactChannel" id="">
+                            <option label="Seleccionar canal"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="userAccount">Cuenta de usuario</label>
+                        <input type="text" placeholder="@ejemplo">
+                    </div>
+                    <div>
+                        <label for="preferences">Preferencias</label>
+                        <select name="contactChannel" id="">
+                            <option label="Sin preferencia"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div id="buttonAddChannel">
+                        <button class="buttonLarge"><i class="fas fa-plus"></i> Agregar Canal</button>
+                    </div>
+                </div>
+                <div id="buttonsContact">
+                    <button> Cancelar</button>
+                    <button>Guardar Contacto</button>
+                    
+                </div>
+
+        </div>
+            
+
+    </section>
+
 
 
 
