@@ -10,7 +10,7 @@ body {
 button {
   background-color: #FFF;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  border-radius: 1.5px;
+  border-radius: 2px;
   margin-left: 9px;
   width: 41px;
   height: 41px;
@@ -350,7 +350,7 @@ nav ul li:hover {
   margin-left: 6%;
 }
 
-#importContacts {
+#importContacts, #exportContacts {
   position: fixed;
   padding: 0;
   margin: 0;
@@ -361,8 +361,9 @@ nav ul li:hover {
   background: rgba(0, 0, 0, 0.897);
 }
 
-#importContacts .container {
+#importContacts .container, #exportContacts .container {
   background: white;
+  border-radius: 4px;
   width: 339px;
   height: 303px;
   position: relative;
@@ -383,18 +384,24 @@ nav ul li:hover {
   font-size: 14pt;
 }
 
-#importContacts .container img {
+#importContacts .container img, #exportContacts .container img {
   width: 105px;
-  height: 100px;
+  height: 105px;
   margin-left: 35%;
 }
 
-#importContacts .container .cancelButton {
+#importContacts .container .cancelButton, #exportContacts .container .cancelButton {
   color: #1D72C2;
 }
 
-#importContacts .container .actionButton {
+#importContacts .container .actionButton, #exportContacts .container .actionButton {
   background: #1D72C2;
   color: white;
+}
+
+#importContacts .container .deleteButton, #exportContacts .container .deleteButton {
+  background: #e72323;
+  color: white;
+  border: none;
 }
 /*# sourceMappingURL=style.css.map */

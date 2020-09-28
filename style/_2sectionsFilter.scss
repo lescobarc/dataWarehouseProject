@@ -89,7 +89,7 @@
     } 
 }
 
-#importContacts{
+#importContacts, #exportContacts{
     position:fixed;
     padding:0;
     margin:0;
@@ -100,6 +100,7 @@
     background: rgba(0, 0, 0, 0.897);
     .container{
        background: white;
+       border-radius: 4px;
        width: 339px;
        height: 303px;
        position: relative;
@@ -114,7 +115,7 @@
         font-size: 14pt;
         img{
             width: 105px;
-            height: 100px;
+            height: 105px;
             margin-left: 35%;
 
         };
@@ -124,6 +125,11 @@
         .actionButton{
             background: $bgBlue;
             color: white;
+        }
+        .deleteButton{
+            background: rgb(231, 35, 35);
+            color: white;
+            border: none;
         }
 
  }
