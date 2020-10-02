@@ -92,7 +92,7 @@
 #importContactsSection, #exportContactsSection{
     @include sectionExtend;
     .container{
-       background: white;
+       background: $bgWhite;
        border-radius: 4px;
        width: 339px;
        height: 303px;
@@ -110,15 +110,7 @@
             width: 105px;
             height: 105px;
             margin-left: 35%;
-
         };
-        .cancelButton{
-            color: $bgBlue;
-        }
-        .actionButton{
-            background: $bgBlue;
-            color: white;
-        }
         .deleteButton{
             background: rgb(231, 35, 35);
             color: white;
@@ -135,7 +127,7 @@
         width:1215px;
         height: 577px;
         border-radius: 4px;
-        background: linear-gradient(to bottom, $bgBlue 25%,white 25%,white 100%);        
+        background: linear-gradient(to bottom, $bgPrimary 25%,white 25%,white 100%);        
         top: 10%;
         margin: auto;
         

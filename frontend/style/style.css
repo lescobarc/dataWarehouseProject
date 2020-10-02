@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .hidden {
@@ -8,7 +9,6 @@ body {
 }
 
 button {
-  background-color: #FFF;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 2px;
   margin-left: 9px;
@@ -19,7 +19,47 @@ button {
 
 .buttonLarge {
   width: 130px;
+  border: 1px solid #8EC7FC;
+}
+
+.buttonPrimary {
+  background-color: #1D72C2;
+  color: #FFFFFF;
+}
+
+.buttonSecondary {
+  background-color: #FFFFFF;
+  color: #8EC7FC;
   border: 1px solid #1D72C2;
+}
+
+.buttonTerciary {
+  border: none;
+  background-color: #FFFFFF;
+  color: #8EC7FC;
+}
+
+.buttonDisabled {
+  background-color: gray;
+  color: #FFFFFF;
+}
+
+.inputText {
+  border: 1px solid #CCCCCC;
+}
+
+.inputDisabled {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid #C6CACC;
+}
+
+.inputSelect {
+  background: #FFFFFF;
+  border: 1px solid #C6CACC;
+}
+
+.inputRequired {
+  border: 1px solid #F03738;
 }
 
 i {
@@ -28,13 +68,13 @@ i {
 }
 
 strong {
-  color: red;
+  color: #DE0028;
 }
 
 nav {
   height: 64px;
   width: 1366px;
-  background-color: #15181b;
+  background-color: #1D72C2;
   color: white;
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -53,12 +93,13 @@ nav ul {
 nav ul li {
   font-size: 16pt;
   padding: 15px;
+  padding-bottom: 31px;
   list-style: none;
   line-height: 0;
 }
 
 nav ul li:hover {
-  border-bottom: 2px solid white;
+  border-bottom: 4px solid white;
   cursor: pointer;
 }
 
@@ -85,7 +126,6 @@ nav ul li:hover {
   width: 502px;
   height: 41px;
   padding: 0;
-  border: 1px solid #CCCCCC;
   border-radius: 3.5px;
   position: relative;
   bottom: 10%;
@@ -95,6 +135,10 @@ nav ul li:hover {
   z-index: 10;
   position: relative;
   left: -30px;
+}
+
+#contacts #contactsContainer #iconSearch {
+  margin-top: 4px;
 }
 
 #contacts #contactsContainer #contactsButtons {
@@ -112,19 +156,11 @@ nav ul li:hover {
 #contacts #contactsContainer #contactsButtons #exportContacts {
   width: 172px;
   height: 41px;
-  color: #15181b;
-  background-color: #FFF;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  border-radius: 1.5px;
   margin-right: 9px;
 }
 
 #contacts #contactsContainer #contactsButtons #iconAdd {
   width: 172px;
-  background-color: #15181b;
-  color: #FFF;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  border-radius: 1.5px;
 }
 
 #table {
@@ -144,7 +180,7 @@ nav ul li:hover {
 
 #table th, #table td {
   text-align: left;
-  width: 10%;
+  width: 13%;
   padding: 1%;
 }
 
@@ -180,40 +216,41 @@ nav ul li:hover {
   height: 11px;
   width: 103px;
   margin-left: 20px;
-  border: 1px solid #DDDDDD;
-  background-color: #DDDDDD;
+  border: 1px solid #E8E8E8;
+  background-color: #E8E8E8;
   border-radius: 5px;
 }
 
 #table #interes .progressBar100 {
-  border: 1px solid red;
-  background-color: red;
+  border: 1px solid #DE0028;
+  background-color: #DE0028;
   margin-left: -6px;
   height: 8px;
   border-radius: 5px;
-  width: 100px;
+  width: 100%;
+  padding-left: 4%;
 }
 
 #table #interes .progressBar75 {
-  border: 1px solid orange;
+  border: 1px solid #FF6F00;
   border-radius: 5px;
-  background-color: orange;
+  background-color: #FF6F00;
   height: 8px;
   width: 75%;
 }
 
 #table #interes .progressBar50 {
-  border: 1px solid yellow;
+  border: 1px solid #FFC700;
   border-radius: 5px;
-  background-color: yellow;
+  background-color: #FFC700;
   height: 8px;
   width: 50%;
 }
 
 #table #interes .progressBar25 {
-  border: 1px solid blue;
+  border: 1px solid #1CC1F5;
   border-radius: 5px;
-  background-color: blue;
+  background-color: #1CC1F5;
   height: 8px;
   width: 20%;
 }
@@ -278,11 +315,11 @@ nav ul li:hover {
 #contactsFilter table select {
   width: 190px;
   height: 35.5px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #E8E8E8;
 }
 
 #predictiveSearch {
-  color: #DDDDDD;
+  color: #E8E8E8;
 }
 
 #predictiveSearch p {
@@ -299,7 +336,7 @@ nav ul li:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #DDDDDD;
+  background-color: #E8E8E8;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -366,7 +403,7 @@ nav ul li:hover {
 }
 
 #importContactsSection .container, #exportContactsSection .container {
-  background: white;
+  background: #FFFFFF;
   border-radius: 4px;
   width: 339px;
   height: 303px;
@@ -392,15 +429,6 @@ nav ul li:hover {
   width: 105px;
   height: 105px;
   margin-left: 35%;
-}
-
-#importContactsSection .container .cancelButton, #exportContactsSection .container .cancelButton {
-  color: #1D72C2;
-}
-
-#importContactsSection .container .actionButton, #exportContactsSection .container .actionButton {
-  background: #1D72C2;
-  color: white;
 }
 
 #importContactsSection .container .deleteButton, #exportContactsSection .container .deleteButton {
