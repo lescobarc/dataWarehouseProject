@@ -1,0 +1,19 @@
+#loginUser{
+    @include sectionExtend;
+     .container{
+        background: linear-gradient(to bottom, $bgPrimary 35%,white 35%,white 100%);      
+        border-radius: 4px;
+        width: 320px;
+        height: 303px;
+        position: relative;
+        top: 25%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        padding: 2%;
+        color: $bgWhite;
+        font-size: 14pt;
+    } 
+}

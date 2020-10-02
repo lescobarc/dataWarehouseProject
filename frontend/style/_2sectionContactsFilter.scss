@@ -1,10 +1,10 @@
 .dropDown{
     border: 1px solid #CCCCCC;
     border-radius: 2px;
-    width: 503px;
+    width: 501px;
     position: absolute;
     left: 30px;
-    top: 180px;
+    top: 190px;
     z-index: 10;
     background-color: white;
     box-shadow: 1px 2px 2px  rgba(128, 128, 128, 0.37);
@@ -84,12 +84,16 @@
     width: 171px;
     left: 975px;
     display: block;
+    
+    
     p{
-        margin-left: 6%;
+        margin-left: 3%;
+        color: $bgPrimary;
+        font-size: 11pt;
     } 
 }
 
-#importContactsSection, #exportContactsSection{
+#importContactsSection, #deleteContactsSection{
     @include sectionExtend;
     .container{
        background: $bgWhite;
@@ -120,15 +124,16 @@
  }
 }
 
-#contact{
-    @include sectionExtend;
-  
+#newContactSection{
+    
+  @include sectionExtend;
     .container{
+        
         width:1215px;
         height: 577px;
         border-radius: 4px;
         background: linear-gradient(to bottom, $bgPrimary 25%,white 25%,white 100%);        
-        top: 10%;
+        top: 20%;
         margin: auto;
         
         h1{

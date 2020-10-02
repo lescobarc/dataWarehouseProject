@@ -53,7 +53,7 @@ button{
 }
 .buttonSecondary{
     background-color: $bgWhite;
-    color: $bgBlue;
+    color: $bgPrimary;
     border: 1px solid $bgPrimary;
 }
 .buttonTerciary{
@@ -87,6 +87,12 @@ i{
 strong{
     color: $bgRed;
 }
+a:-webkit-any-link {
+    color: $bgWhite;
+    text-decoration: none;
+}
+
+
 
 
 

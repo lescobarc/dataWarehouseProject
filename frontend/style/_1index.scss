@@ -58,7 +58,7 @@ nav{
         #contactsButtons{
             display: flex;
             
-            #iconDownload{
+            #iconImport{
                 border: 1px solid rgba(0,0,0,0.25);
                 border-radius: 3.5px;
                 margin-right: 9px;
@@ -132,7 +132,7 @@ nav{
             background-color: $bgGray;
             border-radius: 5px;
         }
-        //MOdificar Width
+        //Modificar Width
         .progressBar100{
             border:  1px solid $bgRed;
             background-color: $bgRed;

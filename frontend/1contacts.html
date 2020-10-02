@@ -23,10 +23,10 @@
     <nav>
         <img src="style/img/logo.png" alt="logo">
         <ul>
-            <li>Contactos</li>
-            <li>Compañías</li>
-            <li>Usuarios</li>
-            <li>Región/Ciudad</li>
+            <li><a href="1contacts.html">Contactos</a></li>
+            <li><a href="2companies.html">Compañías</a></li>
+            <li><a href="3users.html">Usuarios</a></li>
+            <li><a href="4city.html">Región/Ciudad</a></li>
         </ul>
     </nav>
 </header>
@@ -42,7 +42,7 @@
             </div>
 
             <div id="contactsButtons">
-                <button id="iconDownload"><i class="fas fa-upload fa-2x"></i></button>
+                <button id="iconImport"><i class="fas fa-upload fa-2x"></i></button>
                 <!-- <select name="exportContacts" >
                         <option label="Exportar Contactos"> </option>
                         <option value="selectContacts"> Exportar seleccionados </option>
@@ -136,32 +136,32 @@
 
     <!-- 8. Import Contacts  -->
 
-    <section id="importContactsSection hidden">
-        <div class="container hidden">
+    <section id="importContactsSection" class="hidden">
+        <div id="importContactsContainer" class="container" >
             <img src="style/img/cloud.png" alt="Import Contacts">
             <p>Selecciona el archivo de tu ordenador para importar tus contactos.</p>
             <div>
-                <button class='buttonLarge buttonPrimary'> Cancelar </button>
+                <button class='buttonLarge buttonPrimary' id="cancelButtonImport"> Cancelar </button>
                 <button class='buttonLarge buttonSecondary'> Importar </button>
             </div>
         </div>
     </section>
 
     <!-- 9. Delete Contacts  -->
-    <section id="exportContactsSection hidden">
-        <div class="container hidden">
-            <img src="style/img/deleteContact.png" alt="Export Contacts">
+    <section id="deleteContactsSection" class="hidden">
+        <div class="container">
+            <img src="style/img/deleteContact.png" alt="Delete Contacts">
             <p>¿Seguro que deseas eliminar los contactos seleccionados?</p>
             <div>
-                <button class='buttonLarge cancelSecondary'> Cancelar </button>
+                <button class='buttonLarge cancelSecondary' id="cancelButtonDelete"> Cancelar </button>
                 <button class='buttonLarge deleteButton'> Eliminar </button>
             </div>
         </div>
     </section>
 
     <!-- 10. New Contact  -->
-    <section id="contact hidden">
-        <div class="container hidden">
+    <section id="newContactSection" class="hidden">
+        <div class="container">
             <h1>Nuevo Contacto</h1>
             
                 <div id="principalInfoContact">
@@ -250,7 +250,7 @@
                     </div>
                 </div>
                 <div id="buttonsContact">
-                    <button> Cancelar</button>
+                    <button id="cancelButtonNewContact"> Cancelar</button>
                     <button class="buttonDisabled">Guardar Contacto</button>
                     
                 </div>
@@ -289,7 +289,7 @@
                 </thead>
                 <tbody class="arrowHover">
                     <tr class="arrowContact arrowSelect">
-                        <th><input type="checkbox" name="contactSelect" class="contactSelect"></th>
+                        <th><input type="checkbox" name="contactSelect" ></th>
                         <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
                         <td>Argentina <br> <span>Latam</span></td>
                         <td>Ecom Experts</td>
@@ -301,12 +301,12 @@
                                 <div class="progressBar100"></div>
                             </div>
                         </td>
-                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash " id="iconTrashDelete1"></i><i
                                 class="fas fa-pencil-alt "></i></td>
 
                     </tr>
                     <tr>
-                        <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                        <th><input type="checkbox" name="contactSelect" ></th>
                         <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
                         <td>Argentina <br> <span>Latam</span></td>
                         <td>Ecom Experts</td>
@@ -322,7 +322,7 @@
                                 class="fas fa-pencil-alt "></i></td>
                     </tr>
                     <tr>
-                        <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                        <th><input type="checkbox" name="contactSelect" ></th>
                         <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
                         <td>Argentina <br> <span>Latam</span></td>
                         <td>Ecom Experts</td>
@@ -337,8 +337,8 @@
                         <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
                                 class="fas fa-pencil-alt "></i></td>
                     </tr>
-                    <tr class="arrowContact arrowSelect">
-                        <th><input type="checkbox" name="contactSelect" class="contactSelect"></th>
+                    <tr class="arrowContact">
+                        <th><input type="checkbox" name="contactSelect" ></th>
                         <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
                         <td>Argentina <br> <span>Latam</span></td>
                         <td>Ecom Experts</td>

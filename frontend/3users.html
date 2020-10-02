@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Warehouse</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <!-- Font Awesome-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Brand Icons. -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+
+
+<header>
+    <nav>
+        <img src="style/img/logo.png" alt="logo">
+        <ul>
+            <li><a href="1contacts.html">Contactos</a></li>
+            <li><a href="2companies.html">Compañías</a></li>
+            <li><a href="3users.html">Usuarios</a></li>
+            <li><a href="4city.html">Región/Ciudad</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <section id="contacts">
+        <h1>Usuarios</h1>
+        <div id="contactsContainer">
+            <div id="contactsSearch">
+                <input type="text" name="contact" id="contactsInput" class="inputText">
+                <span id="iconFilter"><i class="fas fa-angle-down"></i></span>
+                <button id="iconSearch"><i class="fas fa-search fa-2x"></i></button>
+            </div>
+
+            <div id="contactsButtons">
+                <button id="iconDownload"><i class="fas fa-upload fa-2x"></i></button>
+                <!-- <select name="exportContacts" >
+                        <option label="Exportar Contactos"> </option>
+                        <option value="selectContacts"> Exportar seleccionados </option>
+                        <option value="allFilterContacts"> Todos los filtrados </option>
+                    </select> -->
+                <div id="exportButton"> <button id="exportContacts" class="buttonSecondary"> Exportar Contactos <i
+                            class="fas fa-caret-down"></i> </button></div>
+                <button id="iconAdd" class="buttonPrimary">Agregar Contacto</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login User -->
+
+    <section id="loginUser">
+        <div class="container">
+            <h1>Bienvenido</h1>
+            <input type="text" placeholder="Usuario">
+            <input type="text" placeholder="Contraseña">
+            <div>
+                <button class='buttonLarge buttonPrimary'> Ingresar </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Drop down filter -->
+    <section id="contactsFilter" class="hidden dropDown">
+        <table>
+            <tr>
+                <td>
+                    <p>Nombre del Contacto</p>
+                </td>
+                <td> <input type="text" name="" id="filterContactName" placeholder="Introduce el nombre del contacto">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Cargo</p>
+                </td>
+                <td><input type="text" name="" id="filterContactPosition" placeholder="Introduce el cargo del contacto">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>País/Región</p>
+                </td>
+                <td> <select name="filterContactCountry" id="filterContactCountry">
+                        <option label="Todos"></option>
+                        <option value=""></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Compañía</p>
+                </td>
+                <td> <select name="filterContactCompany" id="filterContactCompany">
+                        <option label="Todas"></option>
+                        <option value=""></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Canal Favorito</p>
+                </td>
+                <td> <select name="filterContactChannel" id="filterContactChannel">
+                        <option label="Cualquiera"></option>
+                        <option value=""></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Interés</p>
+                </td>
+                <td> <select name="filterContactInterest" id="filterContactInterest">
+                        <option label="Cualquiera"></option>
+                        <option value=""></option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- 3. Predictive Search -->
+    <section id="predictiveSearch" class="hidden dropDown">
+        <p>País - <b>Argentina</b></p>
+    </section>
+
+    <!--  4. Filter applied -->
+    <section id="filterApplied" class="hidden dropDown">
+        <div>
+            <p>Argentina</p><i class="fas fa-times"></i>
+        </div>
+    </section>
+
+    <!-- 7. Export Contacts Button  -->
+    <section id="exportContactsOptions" class=" hidden dropDown">
+        <p>Exportar seleccionados </p>
+        <p>Todos los filtrados</p>
+    </section>
+
+    <!-- 8. Import Contacts  -->
+
+    <section id="importContactsSection hidden">
+        <div class="container hidden">
+            <img src="style/img/cloud.png" alt="Import Contacts">
+            <p>Selecciona el archivo de tu ordenador para importar tus contactos.</p>
+            <div>
+                <button class='buttonLarge buttonPrimary'> Cancelar </button>
+                <button class='buttonLarge buttonSecondary'> Importar </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Delete Contacts  -->
+    <section id="exportContactsSection hidden">
+        <div class="container hidden">
+            <img src="style/img/deleteContact.png" alt="Export Contacts">
+            <p>¿Seguro que deseas eliminar los contactos seleccionados?</p>
+            <div>
+                <button class='buttonLarge cancelSecondary'> Cancelar </button>
+                <button class='buttonLarge deleteButton'> Eliminar </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. New Contact  -->
+    <section id="contact hidden">
+        <div class="container hidden">
+            <h1>Nuevo Contacto</h1>
+            
+                <div id="principalInfoContact">
+                    <img src="style/img/addPhoto.png" alt="Photo">
+                    <div>
+                        <label for="Nombre"> Nombre<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="Nombre">Apellido<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="Nombre">Cargo<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="Nombre">Email<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="Nombre">Compañia<strong>*</strong></label>
+                        <input type="text">
+                    </div>
+
+                </div>
+                <div id="secondInfoContact">
+                    <div>
+                        <label for="region"> Región </label>
+                        <select name="contactRegion" id="">
+                            <option label="Seleccionar región"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="country"> País </label>
+                        <select name="contactCountry" id="" class="inputDisabled">
+                            <option label="Seleccionar país"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="city"> Ciudad </label>
+                        <select name="contactCity" id="" class="inputDisabled">
+                            <option label="Seleccionar ciudad"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="addres"> Dirección </label>
+                        <input type="text" placeholder="Ingresa una dirección" class="inputDisabled">
+                    </div>
+                    <div >
+                        <label for="interest">Interés</label>
+                        <div id="divInterestContact">
+                        <span>*******</span>
+                        <select name="interest" id="selectInterestContact">
+                            <option value="0">0%</option>
+                            <option value="25">25%</option>
+                            <option value="50">50%</option>
+                            <option value="75">75%</option>
+                            <option value="100">100%</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="contactChannel">Canal de contacto</label>
+                        <select name="contactChannel" id="">
+                            <option label="Seleccionar canal"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="userAccount">Cuenta de usuario</label>
+                        <input type="text" placeholder="@ejemplo" class="inputDisabled">
+                    </div>
+                    <div>
+                        <label for="preferences">Preferencias</label>
+                        <select name="contactChannel" id="" class="inputDisabled">
+                            <option label="Sin preferencia"></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div id="buttonAddChannel">
+                        <button class="buttonLarge"><i class="fas fa-plus"></i> Agregar Canal</button>
+                    </div>
+                </div>
+                <div id="buttonsContact">
+                    <button> Cancelar</button>
+                    <button class="buttonDisabled">Guardar Contacto</button>
+                    
+                </div>
+
+        </div>
+            
+
+    </section>
+
+
+
+
+
+
+    <!--<section id="contacts" class="hidden"> </section>
+            <section id="companies" class="hidden"> </section> 
+            <section id="users" class="hidden"> </section>
+            <section id="region" class="hidden"> </section>
+            <section id="login" class="hidden"> </section> -->
+
+
+    <section id="contactsTable">
+        <div id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                        <th>Contacto <i class="fas fa-arrows-alt-v"></i> </th>
+                        <th>País/Región <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Compañía <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Cargo <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Canal preferido <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Interés <i class="fas fa-arrows-alt-v"></i></th>
+                        <th>Acciones <i class="fas fa-arrows-alt-v"></i></th>
+                    </tr>
+                </thead>
+                <tbody class="arrowHover">
+                    <tr class="arrowContact arrowSelect">
+                        <th><input type="checkbox" name="contactSelect" class="contactSelect"></th>
+                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                        <td>Argentina <br> <span>Latam</span></td>
+                        <td>Ecom Experts</td>
+                        <td>UX Designer</td>
+                        <td class="channel"><span>Whatsapp</span></td>
+                        <td id="interes">
+                            <div>100%</div>
+                            <div class="progressBar">
+                                <div class="progressBar100"></div>
+                            </div>
+                        </td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
+                                class="fas fa-pencil-alt "></i></td>
+
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                        <td>Argentina <br> <span>Latam</span></td>
+                        <td>Ecom Experts</td>
+                        <td>UX Designer</td>
+                        <td class="channel"><span>Whatsapp</span></td>
+                        <td id="interes">
+                            <div>75%</div>
+                            <div class="progressBar">
+                                <div class="progressBar75"></div>
+                            </div>
+                        </td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
+                                class="fas fa-pencil-alt "></i></td>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                        <td>Argentina <br> <span>Latam</span></td>
+                        <td>Ecom Experts</td>
+                        <td>UX Designer</td>
+                        <td class="channel"><span>Whatsapp</span><span>Email</span></td>
+                        <td id="interes">
+                            <div>50%</div>
+                            <div class="progressBar">
+                                <div class="progressBar50"></div>
+                            </div>
+                        </td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
+                                class="fas fa-pencil-alt "></i></td>
+                    </tr>
+                    <tr class="arrowContact arrowSelect">
+                        <th><input type="checkbox" name="contactSelect" class="contactSelect"></th>
+                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                        <td>Argentina <br> <span>Latam</span></td>
+                        <td>Ecom Experts</td>
+                        <td>UX Designer</td>
+                        <td class="channel"><span>Whatsapp</span></td>
+                        <td id="interes">
+                            <div>25%</div>
+                            <div class="progressBar">
+                                <div class="progressBar25"></div>
+                            </div>
+                        </td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
+                                class="fas fa-pencil-alt "></i></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tablePagination">
+            <div>
+                <p>Filas por página <span> 10 </span><i class="fas fa-angle-down"></i></p>
+            </div>
+            <div>
+                <p>1-10 de 30 filas<i class="fas fa-angle-left"></i><i class="fas fa-angle-right"></i></p>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="index.js"></script>
+</body>
+
+
+
+
+
+
+</html>
