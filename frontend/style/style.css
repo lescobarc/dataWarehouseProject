@@ -76,6 +76,10 @@ a:-webkit-any-link {
   text-decoration: none;
 }
 
+span {
+  color: gray;
+}
+
 nav {
   height: 64px;
   width: 1366px;
@@ -195,10 +199,6 @@ nav ul li:hover {
 
 #table th input, #table td input {
   width: 54px;
-}
-
-#table span {
-  color: gray;
 }
 
 #table .channel span {
@@ -379,7 +379,7 @@ nav ul li:hover {
 
 .arrowHover tr:hover #actions .fa-trash, .arrowHover tr:hover #actions .fa-pencil-alt {
   display: inline;
-  padding-left: 25%;
+  padding-left: 28%;
 }
 
 .arrowSelect {
@@ -547,15 +547,48 @@ nav ul li:hover {
   margin: 0 2%;
 }
 
+#companiesSection, #citySection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#companiesSection div, #citySection div {
+  margin: 20px 30px 50px;
+}
+
+#companiesSection div h1, #citySection div h1 {
+  float: left;
+}
+
+#companiesSection div button, #citySection div button {
+  float: right;
+  margin-top: 15px;
+}
+
+#companiesSection table, #citySection table {
+  width: 1237px;
+  margin: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#companiesSection table .iconPoints, #citySection table .iconPoints {
+  padding-left: 45%;
+}
+
 #createUser {
   margin: 40px;
 }
 
 #createUser .container {
-  border: 2px #1D72C2 solid;
+  border: 1px solid #1D72C2;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(23%, #1D72C2), color-stop(23%, white), to(white));
   background: linear-gradient(to bottom, #1D72C2 23%, white 23%, white 100%);
-  border-radius: 4px;
+  border-radius: 2px;
   width: 350px;
   height: 380px;
   margin: auto;

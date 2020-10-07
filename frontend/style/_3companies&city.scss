@@ -1,0 +1,24 @@
+#companiesSection, #citySection{
+    display: flex;
+    flex-direction: column;
+    div{
+        
+        h1{
+            float: left;
+        }
+        button{
+            float: right;
+            margin-top: 15px;
+        }
+        margin: 20px 30px 50px;
+        
+    }
+    table{
+        width: 1237px;
+        margin: auto;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        .iconPoints{
+            padding-left: 45%;
+        }
+    }
+}
