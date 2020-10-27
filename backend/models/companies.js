@@ -1,6 +1,6 @@
 const mongoose = require("../config");
 
-const company = mongoose.model('company', {
+const Company = mongoose.model('company', {
     name: String,
     address: String,
     email: String,
@@ -10,7 +10,7 @@ const company = mongoose.model('company', {
     city: String
 });
 
-const company1 = new company({
+const company1 = new Company({
     name: 'String',
     address: 'String',
     email: 'String',
@@ -19,5 +19,7 @@ const company1 = new company({
     country: 'String',
     city: 'String'
 });
+/* 
+company1.save().then(()=>{console.log(company1)}); */
 
-company1.save().then(()=>{console.log(company1)});
+module.exports = Company;

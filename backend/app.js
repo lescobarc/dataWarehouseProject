@@ -3,6 +3,7 @@ const JWT = require('jsonwebtoken');
 const app = express();
 app.use(express.json());
 const User = require('./models/users.js')
+const Company = require('./models/companies')
 const signature = 'dwfs'
 
 
@@ -65,7 +66,7 @@ app.post('/loginUser', validateCredentials);
 
 //2.  get users
 
-function indexUser(req,res){
+function indexUsers(req,res){
   User.find({})
       .then(users => {
           if(users.length) return res.status(200).send({users});
@@ -73,7 +74,7 @@ function indexUser(req,res){
       }).catch(error => res.status(500).send({error}));
 }
 
-app.get('/users', validateToken, indexUser);
+app.get('/users', validateToken, indexUsers);
 
 //3. get user info 
 
@@ -130,8 +131,72 @@ function removeUser(req,res){
 app.delete('/deleteUser', findUser, removeUser);
 
 
+//COMPANIES
 
+//1 get companies 
 
+function indexCompanies(req,res){
+  Company.find({})
+      .then(companies => {
+          if(companies.length) return res.status(200).send({companies});
+          return res.status(204).send({message: 'NO CONTENT'});
+      }).catch(error => res.status(500).send({error}));
+}
+
+app.get('/companies', validateToken, indexCompanies);
+
+//2. get company info 
+
+function findCompany(req,res,next){
+  const company = {};
+  company.name = req.params.value;
+  console.log(company)
+  Company.find( company ).then(company => {
+    if(!company.length) return next();
+    req.body.company = company;
+    return next();
+}).catch(error =>{
+    console.log(error)
+    next();
+})
+}
+
+function showCompany(req,res){
+  if(req.body.error) return res.status(500).send({error});
+  if(!req.body.company) return res.status(404).send({message: 'NOT FOUND'});
+  let company = req.body.company;
+  return res.status(200).send({company});
+}
+
+app.get('/companyInfo/:value', findCompany, showCompany) 
+
+//3. post company
+function createCompany(req,res){
+  new Company(req.body).save().then(company => res.status(201).send({company})).catch(error => res.status(500).send({error}));
+}
+
+app.post('/company/', validateToken, createCompany);
+
+//4. Update company
+
+function updateCompany(req,res){
+  if(req.body.error) return res.status(500).send({error});
+  if(!req.body.company) return res.status(404).send({message: 'NOT FOUND'});
+  let company = req.body.company[0];
+  company = Object.assign(company,req.body);
+  company.save().then(company => res.status(200).send({message: 'UPDATED', company})).catch(error => res.status(500).send({error}));
+}
+
+app.put('/company/:value',  findCompany, updateCompany);
+
+//5. Delete company
+function removeCompany(req,res){
+  if(req.body.error) return res.status(500).send({error});
+  if(!req.body.company) return res.status(404).send({message: 'NOT FOUND'});
+  req.body.company[0].remove().then(company => res.status(200).send({message: 'REMOVED', company})).catch(error => res.status(500).send({error}));
+}
+
+app.delete('/company/:value', findCompany, removeCompany);
 
 
 
