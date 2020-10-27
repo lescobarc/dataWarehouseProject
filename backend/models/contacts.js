@@ -18,8 +18,8 @@ const Contact = mongoose.model('Contact', {
 })
 
 const contact1 = new Contact({ 
-    firstname: 'Andres',
-    lastname: 'Perez',
+    firstname: 'Vera',
+    lastname: 'Sk',
     email: 'andrep@hotmail.com',
     company: 'String',
     region: 'Sur América',
@@ -32,5 +32,7 @@ const contact1 = new Contact({
     preferences: 'String',
     channel: 'String'
  });
-
- contact1.save().then(() => console.log('contact1'));
+/* 
+  contact1.save().then(() => console.log('contact1')); */
+ 
+ module.exports = Contact;

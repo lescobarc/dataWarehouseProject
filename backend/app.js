@@ -2,8 +2,9 @@ const express = require('express');
 const JWT = require('jsonwebtoken');
 const app = express();
 app.use(express.json());
-const User = require('./models/users.js')
-const Company = require('./models/companies')
+const User = require('./models/users.js');
+const Company = require('./models/companies');
+const Contact = require('./models/contacts');
 const signature = 'dwfs'
 
 
@@ -198,6 +199,76 @@ function removeCompany(req,res){
 
 app.delete('/company/:value', findCompany, removeCompany);
 
+//CONTACTS
+
+//1 get contacts
+
+function indexContacts(req,res){
+  Contact.find({})
+  .then(contacts => {
+      if(contacts.length) return res.status(200).send({contacts});
+      return res.status(204).send({message: 'NO CONTENT'});
+  }).catch(error => res.status(500).send({error}));
+}
+
+
+app.get('/contacts', validateToken, indexContacts);
+
+ //2. get contact info 
+
+function findContact (req,res,next){
+  const contact = {};
+  contact.firstname = req.params.value;
+  console.log(contact)
+  Contact.find( contact ).then(contact => {
+    if(!contact.length) return next();
+    req.body.contact = contact;
+    return next();
+}).catch(error =>{
+    console.log(error)
+    next();
+})
+}
+
+function showContact(req,res){
+  if(req.body.error) return res.status(500).send({error});
+  if(!req.body.contact) return res.status(404).send({message: 'NOT FOUND'});
+  let contact = req.body.contact;
+  return res.status(200).send({contact});
+}
+
+app.get('/contactInfo/:value', findContact, showContact) 
+
+
+//3. post contact
+function createContact(req,res){
+  new Contact(req.body).save().then(contact => res.status(201).send({contact})).catch(error => res.status(500).send({error}));
+}
+
+app.post('/contact', validateToken, createContact);
+
+
+//4. Update contact
+
+function updateContact(req,res){
+  if(req.body.error) return res.status(500).send({error});
+  if(!req.body.contact) return res.status(404).send({message: 'NOT FOUND'});
+  let contact = req.body.contact[0];
+  contact = Object.assign(contact,req.body);
+  contact.save().then(contact => res.status(200).send({message: 'UPDATED', contact})).catch(error => res.status(500).send({error}));
+}
+
+app.put('/contact/:value',  findContact, updateContact);
+
+
+//5. Delete contact
+function removeContact(req,res){
+  if(req.body.error) return res.status(500).send({error});
+  if(!req.body.contact) return res.status(404).send({message: 'NOT FOUND'});
+  req.body.contact[0].remove().then(contact => res.status(200).send({message: 'REMOVED', contact})).catch(error => res.status(500).send({error}));
+}
+
+app.delete('/contact/:value', findContact, removeContact);
 
 
 
@@ -206,4 +277,5 @@ app.delete('/company/:value', findCompany, removeCompany);
 
 
 
+ 
 
