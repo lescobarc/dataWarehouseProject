@@ -37,3 +37,29 @@ ul, #myUL {
   .active {
     display: block;
   }
+
+
+  #citySection{
+    margin: 10%;
+      button{
+          float: right;
+          
+      }
+      li{
+          margin: 3%;
+      }
+      i{
+          margin: 2%;
+      }
+      .buttonRegion{
+          position: absolute;
+          top: 20%;
+          right: 12.3%
+      }
+      .buttonTerciary{
+        position: absolute;
+        right: 12.3%;
+        border: 1px solid $bgPrimary;
+      }
+    
+  }

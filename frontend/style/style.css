@@ -667,6 +667,34 @@ ul, #myUL {
   display: block;
 }
 
+#citySection {
+  margin: 10%;
+}
+
+#citySection button {
+  float: right;
+}
+
+#citySection li {
+  margin: 3%;
+}
+
+#citySection i {
+  margin: 2%;
+}
+
+#citySection .buttonRegion {
+  position: absolute;
+  top: 20%;
+  right: 12.3%;
+}
+
+#citySection .buttonTerciary {
+  position: absolute;
+  right: 12.3%;
+  border: 1px solid #1D72C2;
+}
+
 #loginUser {
   position: fixed;
   padding: 0;
