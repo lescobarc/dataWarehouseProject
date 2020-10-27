@@ -547,7 +547,7 @@ nav ul li:hover {
   margin: 0 2%;
 }
 
-#companiesSection, #citySection {
+#companiesSection {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -557,26 +557,26 @@ nav ul li:hover {
           flex-direction: column;
 }
 
-#companiesSection div, #citySection div {
+#companiesSection div {
   margin: 20px 30px 50px;
 }
 
-#companiesSection div h1, #citySection div h1 {
+#companiesSection div h1 {
   float: left;
 }
 
-#companiesSection div button, #citySection div button {
+#companiesSection div button {
   float: right;
   margin-top: 15px;
 }
 
-#companiesSection table, #citySection table {
+#companiesSection table {
   width: 1237px;
   margin: auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#companiesSection table .iconPoints, #citySection table .iconPoints {
+#companiesSection table .iconPoints {
   padding-left: 45%;
 }
 
@@ -620,6 +620,51 @@ nav ul li:hover {
 #createUser .container #createButton {
   text-align: center;
   margin: 1%;
+}
+
+/* Remove default bullets */
+ul, #myUL {
+  list-style-type: none;
+}
+
+/* Remove margins and padding from the parent ul */
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the caret/arrow */
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  /* Prevent text selection */
+}
+
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+/* Hide the nested list */
+.nested {
+  display: none;
+}
+
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+.active {
+  display: block;
 }
 
 #loginUser {

@@ -33,17 +33,89 @@
 
 <body>
     <section id="citySection">
+        <table>
+            <ul id="myUL">
+                <li><span class="caret">Sudamérica</span>
+                    <ul class="nested">
+                        <li><span class="caret">Argentina</span>
+                            <ul class="nested">
+                                <li><span>Buenos Aires</span></li>
+                                <li><span>Córdoba</span></li>
+                            </ul>
+                        </li>
+                        <li><span class="caret">Colombia</span>
+                            <ul class="nested">
+                                <li><span>Bogotá</span></li>
+                                <li><span>Cúcuta</span></li>
+                                <li><span>Medellín</span></li>
+                            </ul>
+                        </li>
+                        <li><span class="caret">Chile</span>
+                            <ul class="nested">
+                                <li><span>Atacama</span></li>
+                                <li><span>Santiago</span></li>
+                                <li><span>Valparaíso</span></li>
+                            </ul>
+                        </li>
+                        <li><span class="caret">Uruguay</span>
+                            <ul class="nested">
+                                <li><span>Montevideo</span></li>
+                                <li><span>Maldonado</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><span class="caret">Norteamérica</span>
+                    <ul class="nested">
+                        <li><span class="caret">México</span>
+                            <ul class="nested">
+                                <li><span>Ciudad de México</span></li>
+                                <li><span>Tijuana</span></li>
+                            </ul>
+                        </li>
+                        <li><span class="caret">Estados Unidos</span>
+                            <ul class="nested">
+                                <li><span>Florida</span></li>
+                                <li><span>Texas</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
 
-        
-            
-        <!-- <button> Agregar Región </button>
+
+        </table>
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <button> Agregar Región </button>
         
         <div class="region"> <h1>Sudamérica</h1>  <button >Agregar País</button></div>
         <div class="country"> <h3 class="one">Argentina</h3> <i class="fas fa-pencil-alt two "></i> <i class="fas fa-trash two "></i> <button class="three">Agregar Ciudad</button></div>
         <div class="city"> <p>Buenos Aires</p> <i class="fas fa-pencil-alt "></i> <i class="fas fa-trash "></i> </div>
         <div class="city"> <p>Córdoba</p> <i class="fas fa-pencil-alt "></i> <i class="fas fa-trash "></i> </div> -->
 
-            <!-- <h3>Colombia</h3> <button>Edit</button> <button>Delete</button> <button>Add City</button>
+    <!-- <h3>Colombia</h3> <button>Edit</button> <button>Delete</button> <button>Add City</button>
             <p>Bogotá</p> <button>Edit</button> <button>Delete</button>
             <p>Medellín</p> <button>Edit</button> <button>Delete</button>
 
@@ -53,7 +125,15 @@
             <p>Ciudad de México</p> <button>Edit</button> <button>Delete</button>
             <p>Tijuana</p> <button>Edit</button> <button>Delete</button> -->
 
-            <div> <h1>Región/Ciudad</h1> <button class="buttonPrimary buttonLarge">Agregar Región</button></div>
+
+
+
+    <!-- ----------------------   TABLA BIEN ---------------- -->
+
+    <!--         <section id="citySection">
+            <div>
+                <h1>Región/Ciudad</h1> <button class="buttonPrimary buttonLarge">Agregar Región</button>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -66,36 +146,38 @@
                 </thead>
                 <tbody class="arrowHover">
                     <tr class="arrowContact arrowSelect">
-                        <th><input type="checkbox" name="companySelect" ></th>
+                        <th><input type="checkbox" name="companySelect"></th>
                         <td>Sudamerica <br></td>
                         <td>Argentina<br> <span>Latam</span></td>
                         <td>Buenos Aires</td>
-                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash " id="iconTrashDelete1"></i><i
-                                class="fas fa-pencil-alt "></i></td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
+                                id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
                     </tr>
                     <tr class="arrowContact">
-                        <th><input type="checkbox" name="companySelect" ></th>
+                        <th><input type="checkbox" name="companySelect"></th>
                         <td>Sudamerica <br></td>
                         <td>Argentina<br> <span>Latam</span></td>
                         <td>Córdoba</td>
-                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash " id="iconTrashDelete1"></i><i
-                                class="fas fa-pencil-alt "></i></td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
+                                id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
                     </tr>
                     <tr class="arrowContact">
-                        <th><input type="checkbox" name="companySelect" ></th>
+                        <th><input type="checkbox" name="companySelect"></th>
                         <td>Norteamérica <br></td>
                         <td>México<br> <span>Latam</span></td>
                         <td>Tijuana</td>
-                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash " id="iconTrashDelete1"></i><i
-                                class="fas fa-pencil-alt "></i></td>
+                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
+                                id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
                     </tr>
             </table>
 
-    </section>
+
+        </section> -->
 
 
 
     <script src="js/index.js"></script>
-</body>  
+    <script src="js/cityTree.js"></script>
+</body>
+
 </html>
-        
