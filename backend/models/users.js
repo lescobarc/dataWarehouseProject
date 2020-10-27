@@ -5,21 +5,25 @@ const User = mongoose.model('User', {
     lastname: String,
     email: String,
     username: String,
-    password: String });
+    password: String,
+    isAdmin: Boolean
+ });
 
 const user1 = new User({ 
     name: 'Laura',
     lastname: 'Escobar',
     email: 'lauraescobar@hotmail.com',
     username: 'laurae',
-    password: '1234'
+    password: '1234',
+    isAdmin: 1
  });
  const user2 = new User({ 
     name: 'Luis',
     lastname: 'Sanchez',
     email: 'lsanchez@hotmail.com',
     username: 'luis',
-    password: '1234'
+    password: '1234',
+    isAdmin: 0
 });
 
 /* user1.save().then(() => console.log('user1'));
