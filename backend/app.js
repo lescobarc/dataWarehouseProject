@@ -23,6 +23,17 @@ const validateToken = (req, res, next) => {
   }
 }
 
+async function validateAdmin(req, res, next) {
+  const token = req.headers.authorization.split(' ')[1];
+  const payload = JWT.decode(token);
+  if(payload.isAdmin === true){
+    console.log('Authorized: Admin');
+    next();
+}else{
+    res.status(403).json('Forbidden: No Permission To Access')
+}
+}
+
 //USERS
 
 //1. Login User
@@ -32,8 +43,10 @@ async function validateCredentials(req, res) {
   let password = req.body.password;
   if (username) {
     const registeredUser = await User.findOne({ username }).then((result) => {
+      let isAdmin = result.isAdmin;
+      console.log(isAdmin)
       if (password === result.password) {
-        const token = JWT.sign({ username }, signature, { expiresIn: "120m" });
+        const token = JWT.sign({ username, isAdmin}, signature, { expiresIn: "120m" });
         req.jwtToken = token;
         console.log(JWT.verify(token, signature));
         const { jwtToken } = req;
@@ -52,7 +65,7 @@ app.post('/loginUser', validateCredentials);
 
 //2.  get users
 
-function index(req,res){
+function indexUser(req,res){
   User.find({})
       .then(users => {
           if(users.length) return res.status(200).send({users});
@@ -60,11 +73,11 @@ function index(req,res){
       }).catch(error => res.status(500).send({error}));
 }
 
-app.get('/users', validateToken, index);
+app.get('/users', validateToken, indexUser);
 
 //3. get user info 
 
-function find(req,res,next){
+function findUser(req,res,next){
   const token = req.headers.authorization.split(' ')[1];
   const payload = JWT.decode(token);
   const username =payload.username;
@@ -78,43 +91,43 @@ function find(req,res,next){
 })
 }
 
-function show(req,res){
+function showUser(req,res){
   if(req.body.error) return res.status(500).send({error});
   if(!req.body.user) return res.status(404).send({message: 'NOT FOUND'});
   let user = req.body.user;
   return res.status(200).send({user});
 }
 
-app.get('/userInfo', find, show) 
+app.get('/userInfo', findUser, showUser) 
 
 //4. post user
-function create(req,res){
+function createUser(req,res){
   new User(req.body).save().then(user => res.status(201).send({user})).catch(error => res.status(500).send({error}));
 }
 
-app.post('/newUser', create);
+app.post('/newUser', validateAdmin, createUser);
 
 //5. update user
 
-function update(req,res){
+function updateUser(req,res){
   if(req.body.error) return res.status(500).send({error});
   if(!req.body.user) return res.status(404).send({message: 'NOT FOUND'});
   let user = req.body.user[0];
   user = Object.assign(user,req.body);
-  user.save().then(user => res.status(200).send({ user})).catch(error => res.status(500).send({error}));
+  user.save().then(user => res.status(200).send({message: 'UPDATED', user})).catch(error => res.status(500).send({error}));
 }
 
-app.put('/updateUser', find, update);
+app.put('/updateUser',  findUser, updateUser);
 
 //6. delete user
 
-function remove(req,res){
+function removeUser(req,res){
   if(req.body.error) return res.status(500).send({error});
   if(!req.body.user) return res.status(404).send({message: 'NOT FOUND'});
   req.body.user[0].remove().then(user => res.status(200).send({message: 'REMOVED', user})).catch(error => res.status(500).send({error}));
 }
 
-app.delete('/deleteUser', find, remove);
+app.delete('/deleteUser', findUser, removeUser);
 
 
 
