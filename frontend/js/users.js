@@ -1,4 +1,5 @@
 /* const { TokenExpiredError } = require("jsonwebtoken"); */
+let token = localStorage.token;
 
 let createButton = document.getElementById('createButton');
 let cancelButton = document.getElementById('cancelButton');
@@ -6,13 +7,14 @@ let addButton = document.getElementById('addButton');
 let createUserSection = document.getElementById('createUser');
 let usersSection = document.getElementById('usersSection');
 
-/* //Table User
+//Table User
+let tabla = document.querySelector('#usersTable tbody')
 let name = document.getElementById('nameUser');
 let lastname = document.getElementById('lastnameUser');
 let email = document.getElementById('emailUser');
 let username = document.getElementById('usernameUser');
 let pass = document.getElementById('passUser');
-let repass = document.getElementById('repassUser'); */
+let repass = document.getElementById('repassUser'); 
 
 // Section create user
 addButton.addEventListener('click', () => {
@@ -30,7 +32,7 @@ cancelButton.addEventListener('click', () => {
 
 //4. Post User:  Form Data info create user
 createButton.addEventListener('click', () => {
-    let token = localStorage.token;
+ 
     console.log('llamado al API');
     fetch('http://localhost:3000/user', {
         method: 'POST',
@@ -61,29 +63,30 @@ createButton.addEventListener('click', () => {
 function getUsers(){
     fetch('http://localhost:3000/users', {
         method: 'GET',
-        /* body:`{"name":"${name.value}","lastname":"${lastname.value}","email":"${email.value}","pass":"${pass.value}","repass":"${repass.value}"}`, */
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-    }).then((res) => {
-        console.log(res);
-        if (res.status == 200) {
-            res.json().then((data) => {
-                console.log(data);
-            });
-            /*  location.href = "./users.html"; */
+    }).then(respuesta => respuesta.json()) //Indicamos el formato en que se desea obtener la información
+    .then(res => {
+        console.log(res)
+        
+        for (let i = 0; i < 10; i++) {
+            console.log(res)
+            console.log(res.users[i].name)
+            const row = document.createElement('tr');
+            row.innerHTML += `
+                <td>  <input type="checkbox" </td>
+                <td>${res.users[i].name}</td>
+                <td>${res.users[i].lastname}</td>
+                <td>${res.users[i].email}</td>
+                <td>${res.users[i].username}</td>
+            `;
+            tabla.appendChild(row); 
         }
-        else {
-            res.json().then((data) => {
-                console.log(data);
-                alert('Usuario Creado');
-            });
-        }
-    }).catch(res => { res.json().then(data => alert(data.msg)) });
-
-
-
-
+            
+      
+    }) // Aquí mostramos dicha información
+    .catch(error => console.log('Hubo un error : ' + error.message))
 }
  getUsers();
