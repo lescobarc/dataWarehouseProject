@@ -581,11 +581,11 @@ nav ul li:hover {
   padding-left: 45%;
 }
 
-#createUser {
+#createUser, #updateUserSection {
   margin: 40px;
 }
 
-#createUser .container {
+#createUser .container, #updateUserSection .container {
   border: 1px solid #1D72C2;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(23%, #1D72C2), color-stop(23%, white), to(white));
   background: linear-gradient(to bottom, #1D72C2 23%, white 23%, white 100%);
@@ -608,17 +608,17 @@ nav ul li:hover {
   font-size: 12pt;
 }
 
-#createUser .container h1 {
+#createUser .container h1, #updateUserSection .container h1 {
   color: #FFFFFF;
   text-align: center;
 }
 
-#createUser .container label {
+#createUser .container label, #updateUserSection .container label {
   display: inline-block;
   width: 150px;
 }
 
-#createUser .container .buttonsAction {
+#createUser .container .buttonsAction, #updateUserSection .container .buttonsAction {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -128,6 +128,25 @@ app.post('/user', validateAdmin,  createUser);
 
 //5. update user
 
+function findById(req,res,next){
+  /* const token = req.headers.authorization.split(' ')[1];
+  const payload = JWT.decode(token);
+  const username =payload.username; */
+
+  const identif = {};
+  identif.id = req.params.value;
+  console.log(identif)
+
+  User.find( {identif} ).then(user => {
+    if(!user.length) return next();
+    req.body.user = user;
+    return next();
+}).catch(error =>{
+    console.log(error)
+    next();
+})
+}
+
 function updateUser(req,res){
   if(req.body.error) return res.status(500).send({error});
   if(!req.body.user) return res.status(404).send({message: 'NOT FOUND'});
@@ -136,7 +155,7 @@ function updateUser(req,res){
   user.save().then(user => res.status(200).send({message: 'UPDATED', user})).catch(error => res.status(500).send({error}));
 }
 
-app.put('/user',  findUser, updateUser);
+app.put('/user/:value',  findById, updateUser);
 
 //6. delete user
 

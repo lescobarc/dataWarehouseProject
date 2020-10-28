@@ -6,6 +6,9 @@ let cancelButton = document.getElementById('cancelButton');
 let addButton = document.getElementById('addButton');
 let createUserSection = document.getElementById('createUser');
 let usersSection = document.getElementById('usersSection');
+let updateUserSection = document.getElementById('updateUserSection');
+let cancelButtonUp = document.getElementById('cancelButtonUp');
+let createButtonUp = document.getElementById('createButtonUp')
 
 //Table User
 let tabla = document.querySelector('#usersTable tbody')
@@ -30,9 +33,45 @@ cancelButton.addEventListener('click', () => {
     usersSection.classList.toggle('hidden');
 });
 
+//2. get users
+
+function getUsers() {
+    fetch('http://localhost:3000/users', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            for (let i = 0; i < 10; i++) {
+                console.log(res)
+                console.log(res.users[i].name)
+                const row = document.createElement('tr');
+                row.setAttribute('class', 'arrowContact')
+                row.innerHTML += `
+                <td>  <input type="checkbox" </td>
+                <td>${res.users[i].name}</td>
+                <td>${res.users[i].lastname}</td>
+                <td>${res.users[i].email}</td>
+                <td>${res.users[i].username}</td>
+                <td id="actions">
+                    <i class="fas fa-ellipsis-h iconPoints"></i>
+                    <i class="fas fa-trash" id=${res.users[i]._id} onclick = "deleteUser(this)" ></i>
+                    <i class="fas fa-pencil-alt" id=${res.users[i]._id} onclick = "showUpdateUser(this)"></i>
+                </td>
+            `;
+                tabla.appendChild(row);
+            }
+        })
+        .catch(error => console.log('Hubo un error : ' + error.message))
+}
+getUsers();
+
 //4. Post User:  Form Data info create user
 createButton.addEventListener('click', () => {
- 
+
     console.log('llamado al API');
     fetch('http://localhost:3000/user', {
         method: 'POST',
@@ -58,61 +97,35 @@ createButton.addEventListener('click', () => {
     }).catch(res => { res.json().then(data => alert(data.msg)) });
 });
 
-//2. get users
-
-function getUsers(){
-    fetch('http://localhost:3000/users', {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-            'Authorization': `Bearer ${token}`
-        }
-    }).then(respuesta => respuesta.json()) 
-    .then(res => {
-        console.log(res)
-        for (let i = 0; i < 10; i++) {
-            console.log(res)
-            console.log(res.users[i].name)
-            const row = document.createElement('tr');
-            row.setAttribute('class', 'arrowContact')
-            row.innerHTML += `
-                <td>  <input type="checkbox" </td>
-                <td>${res.users[i].name}</td>
-                <td>${res.users[i].lastname}</td>
-                <td>${res.users[i].email}</td>
-                <td>${res.users[i].username}</td>
-                <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash id=${res.users[i]._id}
-                           "></i><i class="fas fa-pencil-alt" id=${res.users[i]._id}></i></td>
-            `;
-            tabla.appendChild(row); 
-        }  
-    }) 
-    .catch(error => console.log('Hubo un error : ' + error.message))
-}
- getUsers();
-
- //Put user
 
 
+//Put user
 
- fetch('http://localhost:3000/user', {
+ function showUpdateUser () {
+    updateUserSection.classList.toggle('hidden');
+    usersSection.classList.toggle('hidden')
+} 
+
+cancelButtonUp.addEventListener('click', () => {
+    updateUserSection.classList.toggle('hidden');
+    usersSection.classList.toggle('hidden');
+});
+
+
+/* function updateUsers(id) {
+
+
+    fetch( `http://localhost:3000/user/${id}`, {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-})
- .then(respuesta => respuesta.json()) //Indicamos el formato en que se desea obtener la información
- .then(usuarios => {
-     usuarios.forEach(usuario => {
-         const row = document.createElement('tr');
-         row.innerHTML += `
-             <td>${usuario.id}</td>
-             <td>${usuario.name}</td>
-             <td>${usuario.email}</td>
-             <td>${usuario.company.name}</td>
-         `;
-         tabla.appendChild(row);                
-     });
- }) // Aquí mostramos dicha información
- .catch(error => console.log('Hubo un error : ' + error.message))
+    })
+        .then(respuesta => respuesta.json()) //Indicamos el formato en que se desea obtener la información
+        .then(usuarios => {
+           console.log(usuarios)
+        }) // Aquí mostramos dicha información
+        .catch(error => console.log('Hubo un error : ' + error.message))
+
+} */

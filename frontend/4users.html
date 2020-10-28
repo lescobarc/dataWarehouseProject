@@ -34,8 +34,48 @@
 
 <body>
 
-    <!-- create user -->
-    <section id="createUser" class="hidden">
+   
+
+
+    <section id="usersSection" >
+        <div>
+            <h1>Usuarios</h1> <button id="addButton" class="buttonPrimary buttonLarge">Agregar</button>
+        </div>
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" name="companySelect" id="companySelect"></th>
+                    <th>Nombre <i class="fas fa-arrows-alt-v"></i> </th>
+                    <th>Apellido <i class="fas fa-arrows-alt-v"></i></th>
+                    <th>Email <i class="fas fa-arrows-alt-v"></i></th>
+                    <th>Usuario <i class="fas fa-arrows-alt-v"></i></th>
+                </tr>
+            </thead>
+            <tbody class="arrowHover">
+                <tr class="arrowContact arrowSelect">
+                    <th><input type="checkbox" name="companySelect"></th>
+                    <td>Andres <br></td>
+                    <td>Sanchez<br> </td>
+                    <td>andres@email.com</td>
+                    <td>andres</td>
+                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
+                            id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
+                </tr>
+                <tr class="arrowContact ">
+                    <th><input type="checkbox" name="companySelect"></th>
+                    <td>Laura <br></td>
+                    <td>Escobar</td>
+                    <td>lauraesc@email.com</td>
+                    <td>laurae</td>
+
+                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
+                            id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
+                </tr>
+        </table>
+    </section>
+
+     <!-- create user -->
+     <section id="createUser" class="hidden">
         <div class="container">
 
             <h1> Crear Usuario</h1>
@@ -75,43 +115,41 @@
         </div>
     </section>
 
+     <!-- update user -->
+     <section id="updateUserSection" class="hidden">
+        <div class="container">
 
-    <section id="usersSection" >
-        <div>
-            <h1>Usuarios</h1> <button id="addButton" class="buttonPrimary buttonLarge">Agregar</button>
+            <h1> Actualizar Usuario</h1>
+
+            <div>
+                <label for="name"> Nombre:</label>
+                <input type="text" id="nameUser">
+            </div>
+            <div>
+                <label for="lastname"> Apellido:</label>
+                <input type="text" id="lastnameUser">
+            </div>
+            <div>
+                <label for="email"> Email: </label>
+                <input type="text" id="emailUser">
+            </div>
+            <div>
+                <label for="username"> Usuario:</label>
+                <input type="text" id="usernameUser">
+            </div>
+            
+            <div class="buttonsAction" >
+                <div id="createButtonUp">
+                    <button class='buttonLarge buttonPrimary'> Actualizar</button>
+                </div>
+                <div id="cancelButtonUp">
+                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
+                </div>
+            </div>
         </div>
-        <table id="usersTable">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" name="companySelect" id="companySelect"></th>
-                    <th>Nombre <i class="fas fa-arrows-alt-v"></i> </th>
-                    <th>Apellido <i class="fas fa-arrows-alt-v"></i></th>
-                    <th>Email <i class="fas fa-arrows-alt-v"></i></th>
-                    <th>Usuario <i class="fas fa-arrows-alt-v"></i></th>
-                </tr>
-            </thead>
-            <tbody class="arrowHover">
-                <tr class="arrowContact arrowSelect">
-                    <th><input type="checkbox" name="companySelect"></th>
-                    <td>Andres <br></td>
-                    <td>Sanchez<br> </td>
-                    <td>andres@email.com</td>
-                    <td>andres</td>
-                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
-                            id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
-                </tr>
-                <tr class="arrowContact ">
-                    <th><input type="checkbox" name="companySelect"></th>
-                    <td>Laura <br></td>
-                    <td>Escobar</td>
-                    <td>lauraesc@email.com</td>
-                    <td>laurae</td>
-
-                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
-                            id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
-                </tr>
-        </table>
     </section>
+
+
 
 
     <script src="js/index.js"></script>
