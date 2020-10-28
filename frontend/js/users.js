@@ -13,7 +13,7 @@ let pass = document.getElementById('passUser');
 let repass = document.getElementById('repassUser');
 
 // Section create user
-/* let usersSection = document.getElementById('usersSection');
+ let usersSection = document.getElementById('usersSection');
 createButton.addEventListener('click', ()=>{
     createUserSection.classList.toggle('hidden');
     usersSection.classList.toggle('hidden');
@@ -21,11 +21,10 @@ createButton.addEventListener('click', ()=>{
 cancelButton.addEventListener('click', ()=>{
     createUserSection.classList.toggle('hidden');
     usersSection.classList.toggle('hidden');
-}); */
+}); 
 
 //Form Data info create user
 createButton.addEventListener('click',()=>{
-
     console.log('llamado al API');
     fetch('http://localhost:3000/user',{
         method:'POST',
@@ -43,9 +42,8 @@ createButton.addEventListener('click',()=>{
         else{
             res.json().then((data)=>{
                 console.log(data);
-                alert(data.msg);
+                alert('Usuario Creado');
             });
-            
         }
     }).catch(res=>{res.json().then(data=>alert(data.msg))});
 });

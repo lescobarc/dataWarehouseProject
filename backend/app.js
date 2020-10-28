@@ -54,7 +54,8 @@ async function validateCredentials(req, res) {
   let password = req.body.password;
   if (username) {
     const registeredUser = await User.findOne({ username }).then((result) => {
-      let isAdmin = result.isAdmin;
+      if(result){
+         let isAdmin = result.isAdmin;
       console.log(isAdmin)
       if (password === result.password) {
         const token = JWT.sign({ username, isAdmin}, signature, { expiresIn: "120m" });
@@ -63,8 +64,12 @@ async function validateCredentials(req, res) {
         const { jwtToken } = req;
         res.status(200).json({ token: jwtToken });
       } else {
+        res.status(401).json("Invalid Password");
+      }
+      }else{
         res.status(401).json("Invalid Username");
       }
+     
     })
 
   } else {
@@ -116,7 +121,7 @@ function createUser(req,res){
   new User(req.body).save().then(user => res.status(201).send({user})).catch(error => res.status(500).send({error}));
 }
 
-app.post('/user', validateAdmin, createUser);
+app.post('/user',  createUser);
 
 //5. update user
 
