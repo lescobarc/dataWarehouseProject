@@ -7,6 +7,9 @@ const Company = require('./models/companies');
 const Contact = require('./models/contacts');
 const signature = 'dwfs'
 
+//cors: permite solicitar recursos restringidos
+const cors = require('cors');
+app.use(cors({origin : 'http://127.0.0.1:5500'}));
 const helmet = require('helmet');
 app.use(helmet.permittedCrossDomainPolicies({permittedPolicies: "by-content-type"}));
 app.use(function(req, res, next) {
@@ -121,7 +124,7 @@ function createUser(req,res){
   new User(req.body).save().then(user => res.status(201).send({user})).catch(error => res.status(500).send({error}));
 }
 
-app.post('/user',  createUser);
+app.post('/user', validateAdmin,  createUser);
 
 //5. update user
 

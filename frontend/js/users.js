@@ -1,3 +1,4 @@
+/* const { TokenExpiredError } = require("jsonwebtoken"); */
 
 
 let createButton = document.getElementById('createButton');
@@ -25,11 +26,13 @@ cancelButton.addEventListener('click', ()=>{
 
 //Form Data info create user
 createButton.addEventListener('click',()=>{
+    let token = localStorage.token;
     console.log('llamado al API');
     fetch('http://localhost:3000/user',{
         method:'POST',
         body:`{"name":"${name.value}","lastname":"${lastname.value}","email":"${email.value}","pass":"${pass.value}","repass":"${repass.value}"}`,
-        headers:{"Content-Type":"application/json"}
+        headers:{"Content-Type":"application/json",
+        'Authorization': `Bearer ${token}`}
         
     }).then((res)=>{
         console.log(res);
@@ -37,13 +40,14 @@ createButton.addEventListener('click',()=>{
             res.json().then((data)=>{
                 console.log(data);
             });        
-            location.href = "./users.html";
+           /*  location.href = "./users.html"; */
         }
         else{
             res.json().then((data)=>{
                 console.log(data);
                 alert('Usuario Creado');
             });
+            
         }
     }).catch(res=>{res.json().then(data=>alert(data.msg))});
 });
