@@ -107,7 +107,7 @@ function createUser(req,res){
   new User(req.body).save().then(user => res.status(201).send({user})).catch(error => res.status(500).send({error}));
 }
 
-app.post('/newUser', validateAdmin, createUser);
+app.post('/user', validateAdmin, createUser);
 
 //5. update user
 
@@ -119,7 +119,7 @@ function updateUser(req,res){
   user.save().then(user => res.status(200).send({message: 'UPDATED', user})).catch(error => res.status(500).send({error}));
 }
 
-app.put('/updateUser',  findUser, updateUser);
+app.put('/user',  findUser, updateUser);
 
 //6. delete user
 
@@ -129,7 +129,7 @@ function removeUser(req,res){
   req.body.user[0].remove().then(user => res.status(200).send({message: 'REMOVED', user})).catch(error => res.status(500).send({error}));
 }
 
-app.delete('/deleteUser', findUser, removeUser);
+app.delete('/user', findUser, removeUser);
 
 
 //COMPANIES

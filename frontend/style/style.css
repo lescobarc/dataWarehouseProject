@@ -5,7 +5,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 button {
@@ -547,7 +547,7 @@ nav ul li:hover {
   margin: 0 2%;
 }
 
-#companiesSection {
+#companiesSection, #usersSection {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -555,28 +555,29 @@ nav ul li:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding: 2% 3% 5% 3%;
 }
 
-#companiesSection div {
-  margin: 20px 30px 50px;
+#companiesSection div, #usersSection div {
+  width: 1306px;
 }
 
-#companiesSection div h1 {
+#companiesSection div h1, #usersSection div h1 {
   float: left;
 }
 
-#companiesSection div button {
+#companiesSection div button, #usersSection div button {
   float: right;
   margin-top: 15px;
 }
 
-#companiesSection table {
-  width: 1237px;
-  margin: auto;
+#companiesSection table, #usersSection table {
+  width: 1200px;
+  margin: 4% 3%;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#companiesSection table .iconPoints {
+#companiesSection table .iconPoints, #usersSection table .iconPoints {
   padding-left: 45%;
 }
 
@@ -617,9 +618,11 @@ nav ul li:hover {
   width: 150px;
 }
 
-#createUser .container #createButton {
-  text-align: center;
-  margin: 1%;
+#createUser .container .buttonsAction {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 5%;
 }
 
 /* Remove default bullets */

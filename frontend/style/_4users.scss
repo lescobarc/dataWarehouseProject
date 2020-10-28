@@ -24,12 +24,9 @@
             display: inline-block;
             width: 150px;
         }
-        #createButton{
-           text-align: center;
-           margin: 1%;
+        .buttonsAction{
+           display: flex;
+           margin-left: 5%;
         }
-
-        
-      
     } 
 }

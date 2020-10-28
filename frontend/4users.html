@@ -34,43 +34,88 @@
 
 <body>
 
-<!-- create user -->
+    <!-- create user -->
     <section id="createUser">
-    <div class="container">
-    
-        <h1> Crear Usuario</h1>
-    
+        <div class="container">
+
+            <h1> Crear Usuario</h1>
+
+            <div>
+                <label for="Nombre"> Nombre:</label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="Apellido"> Apellido:</label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="Email"> Email: </label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="Perfil"> Usuario:</label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="Contraseña"> Contraseña:</label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="RepetirContraseña"> Repetir Contraseña:</label>
+                <input type="text">
+            </div>
+            <div class="buttonsAction" >
+                <div id="createButton">
+                    <button class='buttonLarge buttonPrimary'> Crear</button>
+                </div>
+                <div id="cancelButton">
+                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="usersSection" class="hidden">
         <div>
-            <label for="Nombre"> Nombre:</label>
-            <input type="text">
+            <h1>Usuarios</h1> <button class="buttonPrimary buttonLarge">Agregar</button>
         </div>
-        <div>
-            <label for="Apellido"> Apellido:</label>
-            <input type="text">
-        </div>
-        <div>
-            <label for="Email"> Email: </label>
-            <input type="text">
-        </div>
-        <div>
-            <label for="Perfil"> Perfil:</label>
-            <input type="text">
-        </div>
-        <div>
-            <label for="Contraseña"> Contraseña:</label>
-            <input type="text">
-        </div>
-        <div>
-            <label for="RepetirContraseña"> Repetir Contraseña:</label>
-            <input type="text">
-        </div>
-        <div id="createButton">
-            <button class='buttonLarge buttonPrimary' > Crear</button>
-        </div>
-    </div>
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" name="companySelect" id="companySelect"></th>
+                    <th>Nombre <i class="fas fa-arrows-alt-v"></i> </th>
+                    <th>Apellido <i class="fas fa-arrows-alt-v"></i></th>
+                    <th>Email <i class="fas fa-arrows-alt-v"></i></th>
+                    <th>Usuario <i class="fas fa-arrows-alt-v"></i></th>
+                </tr>
+            </thead>
+            <tbody class="arrowHover">
+                <tr class="arrowContact arrowSelect">
+                    <th><input type="checkbox" name="companySelect"></th>
+                    <td>Andres <br></td>
+                    <td>Sanchez<br> </td>
+                    <td>andres@email.com</td>
+                    <td>andres</td>
+                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
+                            id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
+                </tr>
+                <tr class="arrowContact ">
+                    <th><input type="checkbox" name="companySelect"></th>
+                    <td>Laura <br></td>
+                    <td>Escobar</td>
+                    <td>lauraesc@email.com</td>
+                    <td>laurae</td>
+
+                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
+                            id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
+                </tr>
+        </table>
     </section>
 
 
     <script src="js/index.js"></script>
+    <script src="js/users.js"></script>
 </body>
+
 </html>
