@@ -2,11 +2,13 @@ let loginButton = document.getElementById('loginButton')
 
 //Form Data info create user
 loginButton.addEventListener('click',()=>{
+    let token = localStorage.token
     console.log('llamado al API');
     fetch('http://localhost:3000/loginUser',{
         method:'POST',
         body:`{"username":"${username.value}","password":"${password.value}"}`,
-        headers:{"Content-Type":"application/json"}
+        headers:{"Content-Type":"application/json",
+        'Authorization':  `Bearer ${token}`}
         
     }).then((res)=>{
         console.log(res);
