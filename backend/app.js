@@ -7,6 +7,15 @@ const Company = require('./models/companies');
 const Contact = require('./models/contacts');
 const signature = 'dwfs'
 
+const helmet = require('helmet');
+app.use(helmet.permittedCrossDomainPolicies({permittedPolicies: "by-content-type"}));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "PUT");
+    next();
+});
+
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
