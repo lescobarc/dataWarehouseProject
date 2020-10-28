@@ -7,6 +7,9 @@ const Company = require('./models/companies');
 const Contact = require('./models/contacts');
 const signature = 'dwfs'
 
+//cors: permite solicitar recursos restringidos
+const cors = require('cors');
+app.use(cors({origin : 'http://127.0.0.1:5500'}));
 const helmet = require('helmet');
 app.use(helmet.permittedCrossDomainPolicies({permittedPolicies: "by-content-type"}));
 app.use(function(req, res, next) {
@@ -54,7 +57,8 @@ async function validateCredentials(req, res) {
   let password = req.body.password;
   if (username) {
     const registeredUser = await User.findOne({ username }).then((result) => {
-      let isAdmin = result.isAdmin;
+      if(result){
+         let isAdmin = result.isAdmin;
       console.log(isAdmin)
       if (password === result.password) {
         const token = JWT.sign({ username, isAdmin}, signature, { expiresIn: "120m" });
@@ -63,8 +67,12 @@ async function validateCredentials(req, res) {
         const { jwtToken } = req;
         res.status(200).json({ token: jwtToken });
       } else {
+        res.status(401).json("Invalid Password");
+      }
+      }else{
         res.status(401).json("Invalid Username");
       }
+     
     })
 
   } else {
@@ -116,7 +124,7 @@ function createUser(req,res){
   new User(req.body).save().then(user => res.status(201).send({user})).catch(error => res.status(500).send({error}));
 }
 
-app.post('/user', validateAdmin, createUser);
+app.post('/user', validateAdmin,  createUser);
 
 //5. update user
 
