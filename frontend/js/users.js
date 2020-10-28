@@ -9,12 +9,12 @@ let usersSection = document.getElementById('usersSection');
 
 //Table User
 let tabla = document.querySelector('#usersTable tbody')
-let name = document.getElementById('nameUser');
+/* let name = document.getElementById('nameUser');
 let lastname = document.getElementById('lastnameUser');
 let email = document.getElementById('emailUser');
 let username = document.getElementById('usernameUser');
 let pass = document.getElementById('passUser');
-let repass = document.getElementById('repassUser'); 
+let repass = document.getElementById('repassUser');  */
 
 // Section create user
 addButton.addEventListener('click', () => {
@@ -67,26 +67,52 @@ function getUsers(){
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-    }).then(respuesta => respuesta.json()) //Indicamos el formato en que se desea obtener la información
+    }).then(respuesta => respuesta.json()) 
     .then(res => {
         console.log(res)
-        
         for (let i = 0; i < 10; i++) {
             console.log(res)
             console.log(res.users[i].name)
             const row = document.createElement('tr');
+            row.setAttribute('class', 'arrowContact')
             row.innerHTML += `
                 <td>  <input type="checkbox" </td>
                 <td>${res.users[i].name}</td>
                 <td>${res.users[i].lastname}</td>
                 <td>${res.users[i].email}</td>
                 <td>${res.users[i].username}</td>
+                <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash id=${res.users[i]._id}
+                           "></i><i class="fas fa-pencil-alt" id=${res.users[i]._id}></i></td>
             `;
             tabla.appendChild(row); 
-        }
-            
-      
-    }) // Aquí mostramos dicha información
+        }  
+    }) 
     .catch(error => console.log('Hubo un error : ' + error.message))
 }
  getUsers();
+
+ //Put user
+
+
+
+ fetch('http://localhost:3000/user', {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+})
+ .then(respuesta => respuesta.json()) //Indicamos el formato en que se desea obtener la información
+ .then(usuarios => {
+     usuarios.forEach(usuario => {
+         const row = document.createElement('tr');
+         row.innerHTML += `
+             <td>${usuario.id}</td>
+             <td>${usuario.name}</td>
+             <td>${usuario.email}</td>
+             <td>${usuario.company.name}</td>
+         `;
+         tabla.appendChild(row);                
+     });
+ }) // Aquí mostramos dicha información
+ .catch(error => console.log('Hubo un error : ' + error.message))
