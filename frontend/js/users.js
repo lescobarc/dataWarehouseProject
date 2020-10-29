@@ -58,7 +58,7 @@ function getUsers() {
                 <td>${res.users[i].username}</td>
                 <td id="actions">
                     <i class="fas fa-ellipsis-h iconPoints"></i>
-                    <i class="fas fa-trash" id=${res.users[i]._id} onclick = "deleteUser(this)" ></i>
+                    <i class="fas fa-trash" id=${res.users[i]._id} onclick = "deleteUser()" ></i>
                     <i class="fas fa-pencil-alt" id=${res.users[i]._id} onclick = "showUpdateUser(this)"></i>
                 </td>
             `;
@@ -101,9 +101,12 @@ createButton.addEventListener('click', () => {
 
 //Put user
 
- function showUpdateUser () {
+ function showUpdateUser (i) {
+   console.log(i)
+    let id = i.id
+    console.log(id)
     updateUserSection.classList.toggle('hidden');
-    usersSection.classList.toggle('hidden')
+    usersSection.classList.toggle('hidden');
 } 
 
 cancelButtonUp.addEventListener('click', () => {
