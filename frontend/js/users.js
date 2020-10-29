@@ -8,16 +8,26 @@ let createUserSection = document.getElementById('createUser');
 let usersSection = document.getElementById('usersSection');
 let updateUserSection = document.getElementById('updateUserSection');
 let cancelButtonUp = document.getElementById('cancelButtonUp');
-let createButtonUp = document.getElementById('createButtonUp')
+let createButtonUp = document.getElementById('createButtonUp');
+let deleteUsersSection = document.getElementById('deleteUsersSection');
+let cancelButtonDeleteUser = document.getElementById('cancelButtonDeleteUser');
+let deleteButtonDeleteUser = document.getElementById('deleteButtonDeleteUser')
 
-//Table User
+//Table Add User
 let tabla = document.querySelector('#usersTable tbody')
-/* let name = document.getElementById('nameUser');
+let name = document.getElementById('nameUser');
 let lastname = document.getElementById('lastnameUser');
 let email = document.getElementById('emailUser');
 let username = document.getElementById('usernameUser');
 let pass = document.getElementById('passUser');
-let repass = document.getElementById('repassUser');  */
+let repass = document.getElementById('repassUser'); 
+
+//Table Update User
+let nameUp = document.getElementById('nameUserUp');
+let lastnameUp = document.getElementById('lastnameUserUp');
+let emailUp = document.getElementById('emailUserUp');
+let usernameUp = document.getElementById('usernameUserUp');
+
 
 // Section create user
 addButton.addEventListener('click', () => {
@@ -58,7 +68,7 @@ function getUsers() {
                 <td>${res.users[i].username}</td>
                 <td id="actions">
                     <i class="fas fa-ellipsis-h iconPoints"></i>
-                    <i class="fas fa-trash" id=${res.users[i]._id} onclick = "deleteUser()" ></i>
+                    <i class="fas fa-trash" id=${res.users[i]._id} onclick = "showDeleteUser(this)" ></i>
                     <i class="fas fa-pencil-alt" id=${res.users[i]._id} onclick = "showUpdateUser(this)"></i>
                 </td>
             `;
@@ -71,7 +81,6 @@ getUsers();
 
 //4. Post User:  Form Data info create user
 createButton.addEventListener('click', () => {
-
     console.log('llamado al API');
     fetch('http://localhost:3000/user', {
         method: 'POST',
@@ -95,11 +104,12 @@ createButton.addEventListener('click', () => {
             });
         }
     }).catch(res => { res.json().then(data => alert(data.msg)) });
+    location.reload()
 });
 
 
 
-//Put user
+// 5. Put user
 
  function showUpdateUser (i) {
    console.log(i)
@@ -107,6 +117,10 @@ createButton.addEventListener('click', () => {
     console.log(id)
     updateUserSection.classList.toggle('hidden');
     usersSection.classList.toggle('hidden');
+    createButtonUp.addEventListener('click', () => {
+        console.log(id)
+           updateUsers(id)
+       }); 
 } 
 
 cancelButtonUp.addEventListener('click', () => {
@@ -115,20 +129,92 @@ cancelButtonUp.addEventListener('click', () => {
 });
 
 
-/* function updateUsers(id) {
 
+function updateUsers(id) {
+    console.log(id)
 
     fetch( `http://localhost:3000/user/${id}`, {
+        
         method: 'PUT',
+        body: `{"name":"${nameUp.value}","lastname":"${lastnameUp.value}","email":"${emailUp.value}","username":"${usernameUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-    })
-        .then(respuesta => respuesta.json()) //Indicamos el formato en que se desea obtener la información
-        .then(usuarios => {
-           console.log(usuarios)
-        }) // Aquí mostramos dicha información
-        .catch(error => console.log('Hubo un error : ' + error.message))
+    }).then((res) => {
+        console.log(res);
+        if (res.status == 200) {
+            res.json().then((data) => {
+                console.log(data);
+                
+            });
+             
+        }
+        else {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Usuario Creado');
+            });
+        }
+    }).catch(res => { res.json().then(data => alert(data.msg)) });
 
-} */
+ updateUserSection.classList.add('hidden');
+ usersSection.classList.remove('hidden');
+ location.reload()
+} 
+
+//6. Delete User
+
+cancelButtonDeleteUser.addEventListener('click', () => {
+    deleteUsersSection.classList.toggle('hidden');
+    usersSection.classList.remove('hidden');
+});
+
+function showDeleteUser (i) {
+    console.log(i)
+     let id = i.id
+     console.log(id)
+     deleteUsersSection.classList.toggle('hidden')
+    
+     deleteButtonDeleteUser.addEventListener('click', () => {
+         console.log(id)
+            deleteUser(id)
+        }); 
+ } 
+
+
+function deleteUser(id){
+
+
+    console.log(id)
+
+    fetch( `http://localhost:3000/user/${id}`, {
+        
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((res) => {
+        console.log(res);
+        if (res.status == 200) {
+            res.json().then((data) => {
+                console.log('eliminado');
+            });
+            /*  location.href = "./users.html"; */
+        }
+        else {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Usuario Creado');
+            });
+        }
+    }).catch(res => { res.json().then(data => alert(data.msg)) });
+    
+    deleteUsersSection.classList.add('hidden');
+    usersSection.classList.remove('hidden');
+    
+    
+    location.reload()
+}
+

@@ -128,44 +128,47 @@ app.post('/user', validateAdmin,  createUser);
 
 //5. update user
 
-function findById(req,res,next){
-  /* const token = req.headers.authorization.split(' ')[1];
-  const payload = JWT.decode(token);
-  const username =payload.username; */
-
+function updateUser(req,res,next){
   const identif = {};
-  identif.id = req.params.value;
+  identif._id = req.params.value ;
+  let id = identif._id;
   console.log(identif)
+  
 
-  User.find( {identif} ).then(user => {
-    if(!user.length) return next();
-    req.body.user = user;
-    return next();
+  User.findOne( identif ).then(res => {
+    console.log(res)
+    let user = req.body;
+    console.log(user.name)
+    res.name =`${user.name}` ;
+    res.lastname = `${user.lastname}`;
+    res.email = `${user.email}`;
+    res.username = `${user.username}`;
+    console.log(res);
+    res.save();
 }).catch(error =>{
     console.log(error)
     next();
 })
 }
 
-function updateUser(req,res){
-  if(req.body.error) return res.status(500).send({error});
-  if(!req.body.user) return res.status(404).send({message: 'NOT FOUND'});
-  let user = req.body.user[0];
-  user = Object.assign(user,req.body);
-  user.save().then(user => res.status(200).send({message: 'UPDATED', user})).catch(error => res.status(500).send({error}));
-}
-
-app.put('/user/:value',  findById, updateUser);
+app.put('/user/:value',  updateUser);
 
 //6. delete user
 
 function removeUser(req,res){
-  if(req.body.error) return res.status(500).send({error});
+  const identif = {};
+  identif._id = req.params.value ;
+  let id = identif._id;
+  console.log(identif)
+  User.deleteOne(identif).then(function (error,resp) {
+    console.log(resp);
+});
+  /* if(req.body.error) return res.status(500).send({error});
   if(!req.body.user) return res.status(404).send({message: 'NOT FOUND'});
-  req.body.user[0].remove().then(user => res.status(200).send({message: 'REMOVED', user})).catch(error => res.status(500).send({error}));
+  req.body.user[0].remove().then(user => res.status(200).send({message: 'REMOVED', user})).catch(error => res.status(500).send({error})); */
 }
 
-app.delete('/user', findUser, removeUser);
+app.delete('/user/:value', removeUser);
 
 
 //COMPANIES

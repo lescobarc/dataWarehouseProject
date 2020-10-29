@@ -93,7 +93,7 @@
     } 
 }
 
-#importContactsSection, #deleteContactsSection{
+#importContactsSection, .deleteSection{
     @include sectionExtend;
     .container{
        background: $bgWhite;
