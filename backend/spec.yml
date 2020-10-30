@@ -1,0 +1,827 @@
+swagger: "2.0"
+info:
+  description: "Documentation of Delilah Restó Project"
+  version: "1.0.0"
+  title: "Delilah Restó"
+  termsOfService: "http://delilahresto.com/terms/"
+  contact:
+    email: "apiteam@delilahresto.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/v1"
+tags:
+- name: "products"
+  description: "Contains restaurant products"
+- name: "orders"
+  description: "Access to restaurant orders"
+- name: "users"
+  description: "Operations about user"
+schemes:
+- "https"
+- "http"
+paths:
+  /user:
+    post:
+      tags:
+      - "users"
+      summary: "Create new user"
+      description: "Add new user"
+      operationId: "addUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "New user object"
+        required: true
+        schema:
+          $ref: "#/definitions/userRegister"
+      responses:
+        "200":
+          description: "Created"
+          schema:
+           $ref: "#/definitions/userRegister"
+        "400":
+          description: "Bad Request: : Missing Arguments"
+        "405":
+          description: "Username Exist/Verify password"
+        "500":
+          description: "Internal Server Error"
+  /user/login:
+    post:
+      tags:
+      - "users"
+      summary: "Login user"
+      description: "Login user to obtain Token"
+      operationId: "loginUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "credentials"
+        description: "Username and password for login"
+        required: true
+        schema:
+          type: "object"
+          properties:
+              userName:
+                type: "string"
+              password:
+                type: "string"
+      responses:
+        "200":
+          description: "Successful operation: Token"
+          schema:
+           $ref: "#/definitions/token"
+        "400":
+          description: "Bad Request: Missing Arguments"
+        "401":
+          description: "Invalid Username / Wrong Password"
+        "500":
+          description: "Internal Server Error"
+  /infoUser:
+    get:
+      tags:
+      - "users"
+      summary: "Consult information of userName"
+      description: "Returns information of userName assigned in the Token"
+      operationId: "getUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "header"
+          name: "authorization"
+          description: "Authentication Token"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+              $ref: "#/definitions/userRegisterInfo"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "404":
+          description: "Not Found"
+      security:
+      - store_auth:
+          - "write:orders"
+  /updateUser:
+    put:
+      tags:
+      - "users"
+      summary: "Update information of userName"
+      description: "Update information of userName assigned in the Token"
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "authorization"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "User Information to update"
+        required: true
+        schema:
+          $ref: "#/definitions/userUpdate"
+      responses:
+        "200":
+          description: "Updated"
+          schema:
+              $ref: "#/definitions/userUpdated"
+        "400":
+          description: "Bad Request: Missing Arguments"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "404":
+          description: "User Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - store_auth:
+            - "write:products"
+  /users:
+    get:
+      tags:
+      - "users"
+      summary: "Consult users list"
+      description: "Returns all registered users / Acces only Administrators"
+      operationId: "getUsers"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "header"
+          name: "authorization"
+          description: "Authentication Token"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/userRegistered"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "403":
+          description: "Forbidden: No Permission To Access "
+        "404":
+          description: "Not Found"
+      security:
+      - store_auth:
+          - "write:users"
+  /products:
+    get:
+      tags:
+      - "products"
+      summary: "Consult all products"
+      description: "Returns all restaurant products"
+      operationId: "getProducts"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: 
+      - in: "header"
+        name: "authorization"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/product"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "404":
+          description: "Not Found"
+  /newProduct:
+    post:
+      tags:
+      - "products"
+      summary: "Create new product"
+      description: "Add new product / Access only administrators"
+      operationId: "addProduct"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "authorization"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "New product object"
+        required: true
+        schema:
+          $ref: "#/definitions/newProduct"
+      responses:
+        "200":
+          description: "Created"
+          schema:
+              $ref: "#/definitions/productId"
+        "400":
+          description: "Bad Request: Missing Arguments"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "403":
+          description: "Forbidden: No Permission To Access"
+        "405":
+          description: "Product Exist"
+        "500":
+          description: "Internal Server Error"
+      security:
+      - store_auth:
+        - "write:products"
+  /products/{productId}:
+    put:
+      tags:
+      - "products"
+      summary: "Update product"
+      description: "Update product of productId assigned in the path /  Access only administrators"
+      operationId: "updateProduct"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "productId"
+        description: "IdProduct to update"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "header"
+        name: "authorization"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Properties of product to update"
+        required: true
+        schema:
+          $ref: "#/definitions/productUpdate"
+      responses:
+        "200":
+          description: "Updated"
+          schema:
+              $ref: "#/definitions/productUpdated"
+        "400":
+          description: "Bad Request: Missing Arguments"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "403":
+          description: "Forbidden: No Permission To Access"
+        "404":
+          description: "Id Product Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - store_auth:
+            - "write:products"
+    delete:
+      tags:
+      - "products"
+      summary: "Delete product"
+      description: "Delete product of productId assigned in the path /  Access only administrators / Product can´t exist in an order "
+      operationId: "deleteProduct"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authorization"
+        in: "header"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      - name: "productId"
+        in: "path"
+        description: "Product Id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Deleted"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "403":
+          description: "Forbidden: No Permission To Access "
+        "404":
+          description: "ProductId Not Found"
+        "409":
+          description: "Product Exists In An order, Not Removed"
+        "500":
+          description: "Internal Server Error"
+      security:
+      - store_auth:
+        - "write:products"
+  /orders:
+   get:
+      tags:
+      - "orders"
+      summary: "Consult all orders"
+      description: "Returns all restaurant orders / Access only administrators"
+      operationId: "getOrders"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "header"
+          name: "authorization"
+          description: "Authentication Token"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/orderCompleted"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "403":
+          description: "Forbidden: No Permission To Access"
+        "404":
+          description: "Not Found"
+      security:
+      - store_auth:
+          - "write:orders"
+  /ordersUser:
+    get:
+      tags:
+      - "orders"
+      summary: "Consult orders of userName"
+      description: "Returns all orders of userName assigned in the Token"
+      operationId: "getOrdersUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "header"
+          name: "authorization"
+          description: "Authentication Token"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/orderCompleted"
+        "204":
+          description: "No Content: User Don´t Have Orders"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "404":
+          description: "Not Found"
+      security:
+      - store_auth:
+          - "write:orders"
+  /newOrder:
+   post:
+      tags:
+      - "orders"
+      summary: "Create new order"
+      description: "Add new order"
+      operationId: "addOrder"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "authorization"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "New order object"
+        required: true
+        schema:
+          $ref: "#/definitions/orderSent"
+      responses:
+        "200":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/orderCompleted"
+        "400":
+          description: "Bad Request: Missing Arguments / Verify paymentMethod (cash, credit)/ ProductId Not Exist / Verify Quantity ProductId / Add ProductId  "
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "403":
+          description: "Forbidden: No Permission To Access"
+        "500":
+          description: "Internal Server Error"
+      security:
+      - store_auth:
+        - "write:orders"
+  /orders/{orderId}:
+    put:
+      tags:
+      - "orders"
+      summary: "Update order status"
+      description: "Update order status of orderId assigned in the path / Access only administrators"
+      operationId: "orderStatusUpdated"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "orderId"
+        description: "Order Id to update"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "header"
+        name: "authorization"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Order status to update"
+        required: true
+        schema:
+          $ref: "#/definitions/orderStatusUpdated"
+      responses:
+        "200":
+          description: "Updated"
+          schema:
+            $ref: "#/definitions/orderUpdated"
+        "400":
+          description: "Bad Request: Missing Arguments / Verify Status (new, confirmed, preparing, delivering, delivered) "
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "403":
+          description: "Forbidden: No Permission To Access"
+        "404":
+          description: "OrderId Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - store_auth:
+            - "write:orders"
+    delete:
+      tags:
+      - "orders"
+      summary: "Delete order"
+      description: "Delete order of orderId assigned in the path / Access only administrators"
+      operationId: "deleteOrder"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authorization"
+        in: "header"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      - name: "orderId"
+        in: "path"
+        description: "Order Id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Deleted"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "403":
+          description: "Forbidden: No Permission To Access"
+        "404":
+          description: "Order Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+      - store_auth:
+        - "write:products"
+securityDefinitions:
+  store_auth:
+    type: "oauth2"
+    authorizationUrl: "localhost/v1/users/login"
+    flow: "implicit"
+    scopes:
+      write:products: "create, modify and delete products"
+      write:orders: "modify orders status"
+      write:users: "list of registered users "
+  
+definitions:
+  orderSent:
+    type: "object"
+    properties:
+      products:
+        type: "array"
+        items:
+          $ref: "#/definitions/itemSelected"
+      paymentMethod:
+        type: "string"
+        description: "Payment method"
+        enum:
+          - "cash"
+          - "credit card"
+  orderCompleted:
+    type: "object"
+    properties:
+      orderId:
+        type: "number"
+      orderStatus:
+        type: "string"
+        enum:
+          - "new"
+          - "confirmed"
+          - "preparing"
+          - "delivering"
+          - "delivered"
+      orderTime:
+        type: "string"
+        example: "12:28:30"
+      orderDescription:
+        type: "string"
+      orderPrice:
+        type: "number"
+      paymentMethod:
+        type: "string"
+        description: "Payment Method"
+        enum:
+          - "cash"
+          - "credit card"
+      userId:
+        type: "number"
+      userName:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      address:
+        type: "string"
+      email:
+        type: "string"
+      phoneNumber:
+        type: "string"
+      products:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            productQuantity:
+              type: "number"
+            productId:
+              type: "number"
+            productName:
+              type: "string"
+            productPrice:
+              type: "number"
+            productPhoto:
+              type: "string"
+  orderUpdated:
+    type: "object"
+    properties:
+      orderId:
+        type: "number"
+      orderStatus:
+        type: "string"
+        enum:
+          - "new"
+          - "confirmed"
+          - "preparing"
+          - "delivering"
+          - "delivered"
+      orderTime:
+        type: "string"
+        example: "13:49:10"
+      orderDescription:
+        type: "string"
+      orderPrice:
+        type: "number"
+      paymentMethod:
+        type: "string"
+        description: "payment method chosen by the user"
+        enum:
+          - "cash"
+          - "credit card"
+      userId:
+        type: "number"
+  itemSelected:
+    type: "object"
+    properties:
+      productId:
+        type: "number"
+      quantity:
+        type: "number"
+  userRegister:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      lastame:
+        type: "string"
+      email:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
+      repass:
+        type: "string"
+      isAdmin:
+        type: "string"
+      
+  userRegistered:
+    type: "object"
+    properties:
+      userId:
+        type: "number"
+      userName:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      address:
+        type: "string"
+      phoneNumber:
+        type: "string"
+      isAdmin:
+        type: "integer"
+        minimum: 0
+        maximum: 1
+  userRegisterInfo:
+    type: "object"
+    properties:
+      userId:
+        type: "number"
+      userName:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      address:
+        type: "string"
+      email:
+        type: "string"
+      phoneNumber:
+        type: "string"
+  userUpdate:
+    type: "object"
+    properties:
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      password:
+        type: "string"
+      email:
+        type: "string"
+      address:
+        type: "string"
+      phoneNumber:
+        type: "string"
+  userUpdated:
+    type: "object"
+    properties:
+      userName:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      address:
+        type: "string"
+      phoneNumber:
+        type: "string"
+  orderStatusUpdated:
+    type: "object"
+    properties:
+      orderStatus:
+        type: "string"
+        description: "Order status"
+        enum:
+          - "new"
+          - "confirmed"
+          - "preparing"
+          - "delivering"
+          - "delivered"
+  product:
+    type: "object"
+    required:
+      - "productName"
+      - "productPhoto"
+      - "productPrice"
+    properties:
+      productId:
+        type: "number"
+      productName:
+        type: "string"
+      productPrice:
+        type: "number"
+        example: "100"
+      productPhoto:
+        type: "string"
+  newProduct:
+    type: "object"
+    required:
+      - "productName"
+      - "productPhoto"
+      - "productPrice"
+    properties:
+      productName:
+        type: "string"
+      productPrice:
+        type: "number"
+        example: "100"
+      productPhoto:
+        type: "string"
+  productUpdate:
+    type: "object"
+    required:
+      - "productName"
+      - "productPhoto"
+      - "productPrice"
+    properties:
+      productName:
+        type: "string"
+      productPrice:
+        type: "number"
+        example: "100"
+      productPhoto:
+        type: "string"
+  productUpdated:
+    type: "object"
+    required:
+      - "productId"
+      - "productName"
+      - "productPhoto"
+      - "productPrice"
+    properties:
+      productId:
+        type: "integer"
+        format: "int64"
+      productName:
+        type: "string"
+      productPrice:
+        type: "number"
+        example: "100"
+      productPhoto:
+        type: "string"
+  productId:
+    type: "object"
+    required:
+      - "productId"
+    properties:
+      productId:
+        type: "integer"
+        format: "int64"
+  userId:
+    type: "object"
+    required:
+      - "userId"
+    properties:
+      userId:
+        type: "integer"
+        format: "int64" 
+  token:
+    type: "object"
+    required:
+      - "token"
+    properties:
+      token:
+        type: "string"
+        example: "eyJhbG5cVCJ9.eyJ1c2VmFuZHXQiOjE2MDM0NzE2MDIsImV4cCI6MTYwMzQ3ODgwMn0.4i1iZQeLJUNf-lpGQQLFKI"
+  
+
+  
