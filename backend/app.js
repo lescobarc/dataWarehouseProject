@@ -55,11 +55,13 @@ async function validateCredentials(req, res) {
   let username = req.body.username;
   console.log(username)
   let password = req.body.password;
+  console.log(password);
   if (username) {
     const registeredUser = await User.findOne({ username }).then((result) => {
       if(result){
          let isAdmin = result.isAdmin;
       console.log(isAdmin)
+      console.log(result.password)
       if (password === result.password) {
         const token = JWT.sign({ username, isAdmin}, signature, { expiresIn: "120m" });
         req.jwtToken = token;
@@ -121,6 +123,7 @@ app.get('/userInfo', findUser, showUser)
 
 //4. post user
 function createUser(req,res){
+  console.log(req.body)
   new User(req.body).save().then(user => res.status(201).send({user})).catch(error => res.status(500).send({error}));
 }
 

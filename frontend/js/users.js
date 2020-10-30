@@ -30,18 +30,6 @@ let usernameUp = document.getElementById('usernameUserUp');
 
 
 // Section create user
-addButton.addEventListener('click', () => {
-    createUserSection.classList.toggle('hidden');
-    usersSection.classList.toggle('hidden');
-});
-createButton.addEventListener('click', () => {
-    createUserSection.classList.toggle('hidden');
-    usersSection.classList.toggle('hidden');
-});
-cancelButton.addEventListener('click', () => {
-    createUserSection.classList.toggle('hidden');
-    usersSection.classList.toggle('hidden');
-});
 
 //2. get users
 
@@ -82,9 +70,10 @@ getUsers();
 //4. Post User:  Form Data info create user
 createButton.addEventListener('click', () => {
     console.log('llamado al API');
+   
     fetch('http://localhost:3000/user', {
         method: 'POST',
-        body: `{"name":"${name.value}","lastname":"${lastname.value}","email":"${email.value}","pass":"${pass.value}","repass":"${repass.value}"}`,
+        body: `{"name":"${name.value}","lastname":"${lastname.value}","email":"${email.value}","username":"${username.value}","password":"${pass.value}","repass":"${repass.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -107,6 +96,19 @@ createButton.addEventListener('click', () => {
     location.reload()
 });
 
+addButton.addEventListener('click', () => {
+    createUserSection.classList.toggle('hidden');
+    usersSection.classList.toggle('hidden');
+});
+createButton.addEventListener('click', () => {
+    createUserSection.classList.toggle('hidden');
+    usersSection.classList.toggle('hidden');
+});
+cancelButton.addEventListener('click', () => {
+    createUserSection.classList.toggle('hidden');
+    usersSection.classList.toggle('hidden');
+});
+
 
 
 // 5. Put user
@@ -122,12 +124,6 @@ createButton.addEventListener('click', () => {
            updateUsers(id)
        }); 
 } 
-
-cancelButtonUp.addEventListener('click', () => {
-    updateUserSection.classList.toggle('hidden');
-    usersSection.classList.toggle('hidden');
-});
-
 
 
 function updateUsers(id) {

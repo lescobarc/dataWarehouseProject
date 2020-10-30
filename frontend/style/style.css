@@ -80,6 +80,10 @@ span {
   color: gray;
 }
 
+/* td{
+    text-align: center;
+  vertical-align: middle; 
+} */
 nav {
   height: 64px;
   width: 1366px;
