@@ -123,38 +123,33 @@ app.get('/userInfo', findUserPayload, showUser)
 
 //4. post user
 function findUserBodyUsername(req, res, next) {
-
-  if (req.body.name, req.body.lastname, req.body.email, req.body.username, req.body.password, req.body.repass) {
-    let username = req.body.username;
-    console.log(username)
-    User.find({ username }).then(user => {
-      console.log(user)
-      if (!user.length) {
-        return next();
-      } else {
-        console.log('Username Exist');
-        res.status(405).send({ message: 'Username Exist' });
-      }
-    })
-
+  if (req.body.name && req.body.lastname && req.body.email && req.body.username && req.body.password && req.body.repass) {
+    if (req.body.password == req.body.repass) {
+      let username = req.body.username;
+      console.log(username)
+      User.find({ username }).then(user => {
+        console.log(user)
+        if (!user.length) {
+          return next();
+        } else {
+          console.log('Username Exist');
+          res.status(405).send({ message: 'Username Exist' });
+        }
+      })
+    } else {
+      console.log('Verify Password');
+      res.status(406).send({ message: 'Verify Password' });
+    }
   } else {
     console.log('Missing Arguments');
     res.status(400).send({ message: 'Missing Arguments' });
   }
-
 }
-
-
-
-
 
 function createUser(req, res) {
-    console.log(req.body)
-    new User(req.body).save().then(user => res.status(201).send({ user })).catch(error => res.status(500).send({ error }));
-
+  console.log(req.body)
+  new User(req.body).save().then(user => res.status(201).send({ user })).catch(error => res.status(500).send({ error }));
 }
-
-
 
 app.post('/user', validateAdmin, findUserBodyUsername, createUser);
 

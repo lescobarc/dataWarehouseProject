@@ -48,7 +48,9 @@ paths:
         "400":
           description: "Bad Request: : Missing Arguments"
         "405":
-          description: "Username Exist/Verify password"
+          description: "Username Exist"
+        "406":
+          description: "Verify password"
         "500":
           description: "Internal Server Error"
   /user/login:

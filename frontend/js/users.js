@@ -45,7 +45,7 @@ function getUsers() {
         .then(res => {
             console.log(res)
             if (res) {
-                for (let i = 0; i < 10; i++) {
+                for (let i = 0; i < 50; i++) {
                     console.log(res)
                     /* console.log(res.users[i].name)  */
                     const row = document.createElement('tr');
@@ -77,46 +77,41 @@ getUsers();
 
 //4. Post User:  Form Data info create user
 createButton.addEventListener('click', () => {
-    try {
-        console.log('llamado al API');
-
-        if (pass.value === repass.value) {
-            fetch('http://localhost:3000/user', {
-                method: 'POST',
-                body: `{"name":"${name.value}","lastname":"${lastname.value}","email":"${email.value}","username":"${username.value}","password":"${pass.value}","repass":"${repass.value}"}`,
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`
-                }
-            }).then((res) => {
-                console.log(res);
-                if (res.status == 200) {
-                    res.json().then((data) => {
-                        console.log(data);
-                    });
-                    /*  location.href = "./users.html"; */
-                }
-                else {
-                    res.json().then((data) => {
-                        console.log(data);
-                        alert('User Created');
-                    });
-                }
-            }).catch(res => { res.json().then(data => alert(data.msg)) });
-            location.reload()
-
-        } else {
-
-            console.log('Verify Password');
-            alert('Verify Password');
-            res.status(400).send({ message: 'Verify Password' });
-
+    console.log('llamado al API');
+    fetch('http://localhost:3000/user', {
+        method: 'POST',
+        body: `{"name":"${name.value}","lastname":"${lastname.value}","email":"${email.value}","username":"${username.value}","password":"${pass.value}","repass":"${repass.value}"}`,
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
         }
-    } catch {
-        res.status(500).send({ message: "Internal Server Error" });
-    }
-
-
+    }).then((res) => {
+        console.log(res);
+        if (res.status == 201) {
+            res.json().then((data) => {
+                console.log(data);
+            });
+            location.reload()
+        }
+        else if (res.status == 400) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Missing Arguments');
+            });
+        }
+        else if (res.status == 405) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Username Exist');
+            });
+        }
+        else if (res.status == 406) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Verify Password');
+            });
+        }
+    })
 
 });
 
