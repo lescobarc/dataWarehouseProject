@@ -9,13 +9,8 @@ loginButton.addEventListener('click',()=>{
     fetch('http://localhost:3000/loginUser',{
         method:'POST',
         body:`{"username":"${username.value}","password":"${password.value}"}`,
-
         headers:{"Content-Type":"application/json",
         'Authorization':  `Bearer ${token}`}
-
-       
-
-        
     }).then((res)=>{
         console.log(res);
         if(res.status==200){
@@ -24,14 +19,17 @@ loginButton.addEventListener('click',()=>{
                 localStorage.setItem("token",data.token);
                 console.log(data);
             });   
-            
             location.href = "./2contacts.html";
-        }
-        else{
-            res.json().then((data)=>{
+        } else if (res.status == 400) {
+            res.json().then((data) => {
                 console.log(data);
-                alert('Usuario No Existe');
+                alert('Missing Arguments');
+            });
+        } else if (res.status == 401) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Verify Username or Password');
             });
         }
-    }).catch(res=>{res.json().then(data=>alert(data.msg))});
+    })
 });

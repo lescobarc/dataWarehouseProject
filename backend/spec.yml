@@ -43,8 +43,6 @@ paths:
       responses:
         "200":
           description: "Created"
-          schema:
-           $ref: "#/definitions/userRegister"
         "400":
           description: "Bad Request: : Missing Arguments"
         "405":
@@ -53,6 +51,44 @@ paths:
           description: "Verify password"
         "500":
           description: "Internal Server Error"
+    put:
+      tags:
+      - "users"
+      summary: "Update information of userName"
+      description: "Update information of userName assigned in the Token"
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "authorization"
+        description: "Authentication Token"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "User Information to update"
+        required: true
+        schema:
+          $ref: "#/definitions/userUpdate"
+      responses:
+        "200":
+          description: "Updated"
+         
+        "400":
+          description: "Missing Arguments"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "404":
+          description: "User Not Found"
+        "500":
+          description: "Internal Server Error"
+      security:
+        - store_auth:
+            - "write:products"
+  
   /user/login:
     post:
       tags:
@@ -116,45 +152,8 @@ paths:
       security:
       - store_auth:
           - "write:orders"
-  /updateUser:
-    put:
-      tags:
-      - "users"
-      summary: "Update information of userName"
-      description: "Update information of userName assigned in the Token"
-      operationId: "updateUser"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "header"
-        name: "authorization"
-        description: "Authentication Token"
-        required: true
-        type: "string"
-      - in: "body"
-        name: "body"
-        description: "User Information to update"
-        required: true
-        schema:
-          $ref: "#/definitions/userUpdate"
-      responses:
-        "200":
-          description: "Updated"
-          schema:
-              $ref: "#/definitions/userUpdated"
-        "400":
-          description: "Bad Request: Missing Arguments"
-        "401":
-          description: "Unauthorized: Wrong Token"
-        "404":
-          description: "User Not Found"
-        "500":
-          description: "Internal Server Error"
-      security:
-        - store_auth:
-            - "write:products"
+
+    
   /users:
     get:
       tags:
@@ -655,8 +654,7 @@ definitions:
         type: "string"
       repass:
         type: "string"
-      isAdmin:
-        type: "string"
+      
       
   userRegistered:
     type: "object"
@@ -699,33 +697,14 @@ definitions:
   userUpdate:
     type: "object"
     properties:
-      firstName:
+      name:
         type: "string"
-      lastName:
-        type: "string"
-      password:
+      lastname:
         type: "string"
       email:
         type: "string"
-      address:
-        type: "string"
-      phoneNumber:
-        type: "string"
-  userUpdated:
-    type: "object"
-    properties:
-      userName:
-        type: "string"
-      firstName:
-        type: "string"
-      lastName:
-        type: "string"
-      email:
-        type: "string"
-      address:
-        type: "string"
-      phoneNumber:
-        type: "string"
+      
+      
   orderStatusUpdated:
     type: "object"
     properties:

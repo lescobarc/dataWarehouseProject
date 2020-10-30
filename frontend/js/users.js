@@ -90,6 +90,7 @@ createButton.addEventListener('click', () => {
         if (res.status == 201) {
             res.json().then((data) => {
                 console.log(data);
+                alert('Created');
             });
             location.reload()
         }
@@ -151,32 +152,43 @@ function updateUsers(id) {
     fetch(`http://localhost:3000/user/${id}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameUp.value}","lastname":"${lastnameUp.value}","email":"${emailUp.value}","username":"${usernameUp.value}"}`,
+        body: `{"name":"${nameUp.value}","lastname":"${lastnameUp.value}","email":"${emailUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
     }).then((res) => {
-        console.log(res);
+        console.log(res)
         if (res.status == 200) {
             res.json().then((data) => {
                 console.log(data);
-
+                alert('Updated');
             });
-
+            location.reload()
         }
-        else {
+        else if (res.status == 400) {
             res.json().then((data) => {
                 console.log(data);
-                alert('Usuario Creado');
+                alert('Missing Arguments');
             });
         }
-    }).catch(res => { res.json().then(data => alert(data.msg)) });
+        else if (res.status == 404) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('User Not Found');
+            });
+        }
+    })
 
     updateUserSection.classList.add('hidden');
     usersSection.classList.remove('hidden');
     location.reload()
 }
+
+ cancelButtonUp.addEventListener('click', () => {
+    updateUserSection.classList.add('hidden');
+    usersSection.classList.remove('hidden');
+}); 
 
 //6. Delete User
 

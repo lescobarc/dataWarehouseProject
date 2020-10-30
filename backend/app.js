@@ -148,7 +148,7 @@ function findUserBodyUsername(req, res, next) {
 
 function createUser(req, res) {
   console.log(req.body)
-  new User(req.body).save().then(user => res.status(201).send({ user })).catch(error => res.status(500).send({ error }));
+  new User(req.body).save().then(user => res.status(201).send({ message: 'Created' })).catch(error => res.status(500).send({ error }));
 }
 
 app.post('/user', validateAdmin, findUserBodyUsername, createUser);
@@ -156,29 +156,38 @@ app.post('/user', validateAdmin, findUserBodyUsername, createUser);
 //5. update user
 
 function updateUser(req, res, next) {
+  console.log(req.body)
+  if (req.body.name && req.body.lastname && req.body.email ) {
+    
+
   const identif = {};
   identif._id = req.params.value;
   let id = identif._id;
   console.log(identif)
 
 
-  User.findOne(identif).then(res => {
-    console.log(res)
+  User.findOne(identif).then(rest => {
+    console.log(rest)
     let user = req.body;
     console.log(user.name)
-    res.name = `${user.name}`;
-    res.lastname = `${user.lastname}`;
-    res.email = `${user.email}`;
-    res.username = `${user.username}`;
-    console.log(res);
-    res.save();
-  }).catch(error => {
-    console.log(error)
-    next();
+    rest.name = `${user.name}`;
+    rest.lastname = `${user.lastname}`;
+    rest.email = `${user.email}`;
+    console.log(rest);
+    rest.save()
+    return res.status(200).send({ message: 'Updated' });
+    
+  }) .catch(error => {
+    return res.status(404).send({ message: 'User Not Found' });
   })
+}else {
+  console.log('Missing Arguments');
+  res.status(400).send({ message: 'Missing Arguments' });
 }
 
-app.put('/user/:value', updateUser);
+}
+
+app.put('/user/:value', validateAdmin, updateUser);
 
 //6. delete user
 
