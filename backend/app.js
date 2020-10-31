@@ -82,7 +82,7 @@ async function validateCredentials(req, res) {
   }
 }
 
-app.post('/loginUser', validateCredentials);
+app.post('/user/login', validateCredentials);
 
 //2.  get users
 
@@ -119,7 +119,7 @@ function showUser(req, res) {
   return res.status(200).send({ user });
 }
 
-app.get('/userInfo', findUserPayload, showUser)
+app.get('/userInfo', validateToken, findUserPayload, showUser)
 
 //4. post user
 function findUserBodyUsername(req, res, next) {
@@ -151,7 +151,7 @@ function createUser(req, res) {
   new User(req.body).save().then(user => res.status(201).send({ message: 'Created' })).catch(error => res.status(500).send({ error }));
 }
 
-app.post('/user', validateAdmin, findUserBodyUsername, createUser);
+app.post('/user', validateToken, validateAdmin, findUserBodyUsername, createUser);
 
 //5. update user
 
@@ -187,7 +187,7 @@ function updateUser(req, res, next) {
 
 }
 
-app.put('/user/:value', validateAdmin, updateUser);
+app.put('/user/:value', validateToken, updateUser);
 
 //6. delete user
 
@@ -196,15 +196,25 @@ function removeUser(req, res) {
   identif._id = req.params.value;
   let id = identif._id;
   console.log(identif)
-  User.deleteOne(identif).then(function (error, resp) {
-    console.log(resp);
-  });
-  /* if(req.body.error) return res.status(500).send({error});
-  if(!req.body.user) return res.status(404).send({message: 'NOT FOUND'});
-  req.body.user[0].remove().then(user => res.status(200).send({message: 'REMOVED', user})).catch(error => res.status(500).send({error})); */
+ /*  User.deleteOne(identif).then(function (error, res) {
+    console.log('Deleted');
+  })
+ return res.status(200).send({message: 'DELETED'}) */
+
+ User.deleteOne(identif).then(function(){ 
+  console.log("Data deleted"); // Success 
+  res.status(200).send({message: 'DELETED'})
+}).catch(function(error){ 
+  console.log(error); // Failure 
+  res.status(401).send({message: 'User Not Found'})
+}); 
+
+
+
 }
 
-app.delete('/user/:value', removeUser);
+
+app.delete('/user/:value', validateToken, removeUser);
 
 
 //COMPANIES

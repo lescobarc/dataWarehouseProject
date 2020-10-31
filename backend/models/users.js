@@ -29,10 +29,9 @@ const user1 = new User({
     isAdmin: "0"
 });
 
- /* user1.save().then(() => console.log('user1'));
+/* user1.save().then(() => console.log('user1'));
 user2.save().then(() => console.log('user2')); 
- User.find({username: 'laurae'}).then((result)=> console.log(result))   */  
-
+User.find({username: 'laurae'}).then((result)=> console.log(result))   */
 module.exports = User;
 
 

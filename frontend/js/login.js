@@ -6,7 +6,7 @@ loginButton.addEventListener('click',()=>{
     let token = localStorage.token
 
     console.log('llamado al API');
-    fetch('http://localhost:3000/loginUser',{
+    fetch('http://localhost:3000/user/login',{
         method:'POST',
         body:`{"username":"${username.value}","password":"${password.value}"}`,
         headers:{"Content-Type":"application/json",

@@ -22,12 +22,77 @@ schemes:
 - "https"
 - "http"
 paths:
+  /user/login:
+    post:
+      tags:
+      - "users"
+      summary: "Login user"
+      description: "Login user to obtain Token"
+      operationId: "loginUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "credentials"
+        description: "Username and password for login"
+        required: true
+        schema:
+          type: "object"
+          properties:
+              username:
+                type: "string"
+              password:
+                type: "string"
+      responses:
+        "200":
+          description: "Successful operation: Token"
+          schema:
+           $ref: "#/definitions/token"
+        "400":
+          description: "Bad Request: Missing Arguments"
+        "401":
+          description: "Invalid Username / Wrong Password"
+        "500":
+          description: "Internal Server Error"
+  /users:
+    get:
+      tags:
+      - "users"
+      summary: "Consult users list"
+      description: "Returns all registered users"
+      operationId: "getUsers"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "header"
+          name: "authorization"
+          description: "Authentication Token"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/userRegistered"
+        "401":
+          description: "Unauthorized: Wrong Token"
+        "404":
+          description: "Not Found"
+      security:
+      - store_auth:
+          - "write:users"
   /user:
     post:
       tags:
       - "users"
       summary: "Create new user"
-      description: "Add new user"
+      description: "Add new user / Acces only Administrators"
       operationId: "addUser"
       consumes:
       - "application/json"
@@ -45,6 +110,8 @@ paths:
           description: "Created"
         "400":
           description: "Bad Request: : Missing Arguments"
+        "403":
+          description: "Forbidden: No Permission To Access"
         "405":
           description: "Username Exist"
         "406":
@@ -54,8 +121,8 @@ paths:
     put:
       tags:
       - "users"
-      summary: "Update information of userName"
-      description: "Update information of userName assigned in the Token"
+      summary: "Update information of user"
+      description: "Update information of userId assigned in the path"
       operationId: "updateUser"
       consumes:
       - "application/json"
@@ -88,47 +155,46 @@ paths:
       security:
         - store_auth:
             - "write:products"
-  
-  /user/login:
-    post:
+    delete:
       tags:
       - "users"
-      summary: "Login user"
-      description: "Login user to obtain Token"
-      operationId: "loginUser"
-      consumes:
-      - "application/json"
+      summary: "Delete user"
+      description: "Delete user of userId assigned in the path / Access only administrators"
+      operationId: "deleteUser"
       produces:
       - "application/json"
       parameters:
-      - in: "body"
-        name: "credentials"
-        description: "Username and password for login"
+      - name: "authorization"
+        in: "header"
+        description: "Authentication Token"
         required: true
-        schema:
-          type: "object"
-          properties:
-              userName:
-                type: "string"
-              password:
-                type: "string"
+        type: "string"
+      - name: "userId"
+        in: "path"
+        description: "User Id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
       responses:
         "200":
-          description: "Successful operation: Token"
-          schema:
-           $ref: "#/definitions/token"
-        "400":
-          description: "Bad Request: Missing Arguments"
+          description: "Deleted"
         "401":
-          description: "Invalid Username / Wrong Password"
+          description: "Unauthorized: Wrong Token"
+        "404":
+          description: "User Not Found"
         "500":
           description: "Internal Server Error"
+      security:
+        - store_auth:
+            - "write:products"
+  
+  
   /infoUser:
     get:
       tags:
       - "users"
-      summary: "Consult information of userName"
-      description: "Returns information of userName assigned in the Token"
+      summary: "Consult information of user logged"
+      description: "Returns information of username assigned in the Token"
       operationId: "getUser"
       consumes:
       - "application/json"
@@ -154,39 +220,7 @@ paths:
           - "write:orders"
 
     
-  /users:
-    get:
-      tags:
-      - "users"
-      summary: "Consult users list"
-      description: "Returns all registered users / Acces only Administrators"
-      operationId: "getUsers"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-        - in: "header"
-          name: "authorization"
-          description: "Authentication Token"
-          required: true
-          type: "string"
-      responses:
-        "200":
-          description: "Successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/userRegistered"
-        "401":
-          description: "Unauthorized: Wrong Token"
-        "403":
-          description: "Forbidden: No Permission To Access "
-        "404":
-          description: "Not Found"
-      security:
-      - store_auth:
-          - "write:users"
+  
   /products:
     get:
       tags:
@@ -659,19 +693,15 @@ definitions:
   userRegistered:
     type: "object"
     properties:
-      userId:
+      _id:
         type: "number"
-      userName:
+      name:
         type: "string"
-      firstName:
-        type: "string"
-      lastName:
+      lastname:
         type: "string"
       email:
         type: "string"
-      address:
-        type: "string"
-      phoneNumber:
+      username:
         type: "string"
       isAdmin:
         type: "integer"
@@ -680,20 +710,23 @@ definitions:
   userRegisterInfo:
     type: "object"
     properties:
-      userId:
+      _id:
         type: "number"
-      userName:
+      name:
         type: "string"
-      firstName:
+      firstname:
         type: "string"
       lastName:
         type: "string"
-      address:
-        type: "string"
       email:
         type: "string"
-      phoneNumber:
+      username:
         type: "string"
+      isAdmin:
+        type: "integer"
+        minimum: 0
+        maximum: 1
+      
   userUpdate:
     type: "object"
     properties:

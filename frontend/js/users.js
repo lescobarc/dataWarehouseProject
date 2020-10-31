@@ -67,7 +67,7 @@ function getUsers() {
             } else {
                 res.json().then((data) => {
                     console.log('Users not found');
-                    alert('Usuarios no encontrados');
+                    alert('Users not found');
                 });
             }
 
@@ -98,6 +98,11 @@ createButton.addEventListener('click', () => {
             res.json().then((data) => {
                 console.log(data);
                 alert('Missing Arguments');
+            });
+        }else if (res.status == 403) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Forbidden: No Permission To Access');
             });
         }
         else if (res.status == 405) {
@@ -182,7 +187,7 @@ function updateUsers(id) {
 
     updateUserSection.classList.add('hidden');
     usersSection.classList.remove('hidden');
-    location.reload()
+    
 }
 
  cancelButtonUp.addEventListener('click', () => {
@@ -211,37 +216,20 @@ function showDeleteUser(i) {
 
 
 function deleteUser(id) {
-
-
     console.log(id)
-
     fetch(`http://localhost:3000/user/${id}`, {
-
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-    }).then((res) => {
-        console.log(res);
-        if (res.status == 200) {
-            res.json().then((data) => {
-                console.log('eliminado');
-            });
-            /*  location.href = "./users.html"; */
-        }
-        else {
-            res.json().then((data) => {
-                console.log(data);
-                alert('Usuario Creado');
-            });
-        }
-    }).catch(res => { res.json().then(data => alert(data.msg)) });
+    })
+
 
     deleteUsersSection.classList.add('hidden');
     usersSection.classList.remove('hidden');
 
-
     location.reload()
+  
 }
 
