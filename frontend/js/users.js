@@ -16,11 +16,12 @@ let deleteButtonDeleteUser = document.getElementById('deleteButtonDeleteUser')
 //Table Add User
 let tabla = document.querySelector('#usersTable tbody')
 let name = document.getElementById('nameUser');
-let lastname = document.getElementById('lastnameUser');
+
 let email = document.getElementById('emailUser');
 let username = document.getElementById('usernameUser');
 let pass = document.getElementById('passUser');
 let repass = document.getElementById('repassUser');
+let isAdmin = document.getElementById('isAdmin');
 
 //Table Update User
 let nameUp = document.getElementById('nameUserUp');
@@ -43,23 +44,24 @@ function getUsers() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
+            console.log('este')
             console.log(res)
+            console.log(user_id)
             if (res) {
                 for (let i = 0; i < 50; i++) {
-                    console.log(res)
-                    /* console.log(res.users[i].name)  */
+                    console.log(res).json()
+                    console.log(res.users[i].name)  
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
                 <td>  <input type="checkbox" </td>
                 <td>${res.users[i].name}</td>
-                <td>${res.users[i].lastname}</td>
                 <td>${res.users[i].email}</td>
                 <td>${res.users[i].username}</td>
                 <td id="actions">
                     <i class="fas fa-ellipsis-h iconPoints"></i>
-                    <i class="fas fa-trash" id=${res.users[i]._id} onclick = "showDeleteUser(this)" ></i>
-                    <i class="fas fa-pencil-alt" id=${res.users[i]._id} onclick = "showUpdateUser(this)"></i>
+                    <i class="fas fa-trash" id=${res.users[i].user_id} onclick = "showDeleteUser(this)" ></i>
+                    <i class="fas fa-pencil-alt" id=${res.users[i].user_id} onclick = "showUpdateUser(this)"></i>
                 </td>
             `;
                     tabla.appendChild(row);
@@ -80,7 +82,7 @@ createButton.addEventListener('click', () => {
     console.log('llamado al API');
     fetch('http://localhost:3000/user', {
         method: 'POST',
-        body: `{"name":"${name.value}","lastname":"${lastname.value}","email":"${email.value}","username":"${username.value}","password":"${pass.value}","repass":"${repass.value}"}`,
+        body: `{"name":"${name.value}","email":"${email.value}","username":"${username.value}","pass":"${pass.value}","repass":"${repass.value}","isAdmin":"${isAdmin.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -157,7 +159,7 @@ function updateUsers(id) {
     fetch(`http://localhost:3000/user/${id}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameUp.value}","lastname":"${lastnameUp.value}","email":"${emailUp.value}"}`,
+        body: `{"name":"${nameUp.value}", "email":"${emailUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`

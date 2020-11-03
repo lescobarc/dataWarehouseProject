@@ -80,10 +80,11 @@ span {
   color: gray;
 }
 
-/* td{
-    text-align: center;
-  vertical-align: middle; 
-} */
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
 nav {
   height: 64px;
   width: 1366px;
@@ -383,7 +384,8 @@ nav ul li:hover {
 
 .arrowHover tr:hover #actions .fa-trash, .arrowHover tr:hover #actions .fa-pencil-alt {
   display: inline;
-  padding-left: 28%;
+  padding-left: 18%;
+  padding-right: 12%;
 }
 
 .arrowSelect {
@@ -582,7 +584,7 @@ nav ul li:hover {
 }
 
 #companiesSection table .iconPoints, #usersSection table .iconPoints {
-  padding-left: 45%;
+  padding-left: 8%;
 }
 
 #createUser, #updateUserSection {
