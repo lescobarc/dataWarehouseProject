@@ -46,22 +46,21 @@ function getUsers() {
         .then(res => {
             console.log('este')
             console.log(res)
-            console.log(user_id)
+            let user = res[0];
             if (res) {
-                for (let i = 0; i < 50; i++) {
-                    console.log(res).json()
-                    console.log(res.users[i].name)  
+                for (let i = 0; i < user.length; i++) {
+                    
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
                 <td>  <input type="checkbox" </td>
-                <td>${res.users[i].name}</td>
-                <td>${res.users[i].email}</td>
-                <td>${res.users[i].username}</td>
+                <td>${user[i].name}</td>
+                <td>${user[i].email}</td>
+                <td>${user[i].username}</td>
                 <td id="actions">
                     <i class="fas fa-ellipsis-h iconPoints"></i>
-                    <i class="fas fa-trash" id=${res.users[i].user_id} onclick = "showDeleteUser(this)" ></i>
-                    <i class="fas fa-pencil-alt" id=${res.users[i].user_id} onclick = "showUpdateUser(this)"></i>
+                    <i class="fas fa-trash" id=${user[i].user_id} onclick = "showDeleteUser(this)" ></i>
+                    <i class="fas fa-pencil-alt" id=${user[i].user_id} onclick = "showUpdateUser(this)"></i>
                 </td>
             `;
                     tabla.appendChild(row);
@@ -101,7 +100,7 @@ createButton.addEventListener('click', () => {
                 console.log(data);
                 alert('Missing Arguments');
             });
-        }else if (res.status == 403) {
+        } else if (res.status == 403) {
             res.json().then((data) => {
                 console.log(data);
                 alert('Forbidden: No Permission To Access');
@@ -189,13 +188,13 @@ function updateUsers(id) {
 
     updateUserSection.classList.add('hidden');
     usersSection.classList.remove('hidden');
-    
+
 }
 
- cancelButtonUp.addEventListener('click', () => {
+cancelButtonUp.addEventListener('click', () => {
     updateUserSection.classList.add('hidden');
     usersSection.classList.remove('hidden');
-}); 
+});
 
 //6. Delete User
 
@@ -232,6 +231,6 @@ function deleteUser(id) {
     usersSection.classList.remove('hidden');
 
     location.reload()
-  
+
 }
 

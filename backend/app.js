@@ -5,7 +5,7 @@ app.use(express.json());
 
 const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
-const { addCompany, existenceCompany } = require('./components/companies');
+const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -92,7 +92,18 @@ app.delete('/user/:value', validateToken,  deleteUser,  (req,res)=>{
 
 //COMPANIES
 
-app.post("/company", validateToken, existenceCompany, addCompany, (req, res) => {
+//1. get companies
+app.get("/companies", validateToken, listCompanies, (req, res) => {
+  try {
+    const { companiesList } = req;
+    res.status(200).json(companiesList);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
+
+//2 post company
+app.post("/company", validateToken, existenceCompany,  addCompany, (req, res) => {
   try {
     const { createdCompanyId } = req;
     res.status(200).json({ companyId: createdCompanyId });
@@ -100,6 +111,27 @@ app.post("/company", validateToken, existenceCompany, addCompany, (req, res) => 
     res.status(500).json("Internal Server Error");
   }
 });
+
+//4. update company
+app.put('/company/:value', validateToken,  putCompany, (req, res) => {
+  try {
+    const { updatedCompany } = req;
+    res.status(200).json(updatedCompany);
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+})
+
+//6. delete company
+app.delete('/company/:value', validateToken,  deleteCompany,  (req,res)=>{
+  try{
+    const { isDeleted } = req;
+    isDeleted && res.status(200).json("Deleted");
+  }catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+}); 
+
 
 
 
