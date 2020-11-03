@@ -1,0 +1,2 @@
+let token = localStorage.token;
+
