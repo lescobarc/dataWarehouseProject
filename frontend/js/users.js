@@ -189,6 +189,8 @@ function updateUsers(id) {
     updateUserSection.classList.add('hidden');
     usersSection.classList.remove('hidden');
 
+    
+
 }
 
 cancelButtonUp.addEventListener('click', () => {

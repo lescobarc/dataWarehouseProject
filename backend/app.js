@@ -6,6 +6,7 @@ app.use(express.json());
 const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
+const { listContacts, existenceContact,  addContact, putContact, deleteContact} = require('./components/contacts');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -112,7 +113,7 @@ app.post("/company", validateToken, existenceCompany,  addCompany, (req, res) =>
   }
 });
 
-//4. update company
+//3. update company
 app.put('/company/:value', validateToken,  putCompany, (req, res) => {
   try {
     const { updatedCompany } = req;
@@ -122,7 +123,7 @@ app.put('/company/:value', validateToken,  putCompany, (req, res) => {
   }
 })
 
-//6. delete company
+//4. delete company
 app.delete('/company/:value', validateToken,  deleteCompany,  (req,res)=>{
   try{
     const { isDeleted } = req;
@@ -132,11 +133,47 @@ app.delete('/company/:value', validateToken,  deleteCompany,  (req,res)=>{
   }
 }); 
 
+//CONTACTS
 
+//1. get contacts
+app.get("/contacts", validateToken, listContacts, (req, res) => {
+  try {
+    const { contactsList } = req;
+    res.status(200).json(contactsList);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
 
+//2 post contact
+app.post("/contact", validateToken, existenceContact,  addContact, (req, res) => {
+  try {
+    const { createdContactId } = req;
+    res.status(200).json({ contactId: createdContactId });
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+});
 
+//3. update contact
+app.put('/contact/:value', validateToken,  putContact, (req, res) => {
+  try {
+    const { updatedContact} = req;
+    res.status(200).json(updatedContact);
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+})
 
-
+//4. delete contact
+app.delete('/contact/:value', validateToken,  deleteContact,  (req,res)=>{
+  try{
+    const { isDeleted } = req;
+    isDeleted && res.status(200).json("Deleted");
+  }catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+}); 
 
 
 
