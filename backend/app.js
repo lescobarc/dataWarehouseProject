@@ -40,10 +40,10 @@ app.post("/user/login", validateCredentials, (req, res) => {
 });
 
 //2. post New user
-app.post("/user", existenceUser, addUser, (req, res) => {
+app.post("/user", validateToken, validateAdmin, existenceUser, addUser, (req, res) => {
   try {
     const { createdUserId } = req;
-    res.status(200).json({ userId: createdUserId });
+    res.status(200).json(`Created userId: ${createdUserId}` );
   } catch (err) {
     res.status(500).json("Internal Server Error");
   }
@@ -73,7 +73,7 @@ app.get("/users", validateToken, validateAdmin, listUsers, (req, res) => {
 app.put('/user/:value', validateToken,  putUser, (req, res) => {
   try {
     const { updatedUser } = req;
-    res.status(200).json(updatedUser);
+    res.status(200).json('Created');
   } catch (err) {
     res.status(500).json("Internal Server Error");
   }

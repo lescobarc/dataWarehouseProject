@@ -30,11 +30,9 @@ let emailUp = document.getElementById('emailUserUp');
 let usernameUp = document.getElementById('usernameUserUp');
 
 
-// Section create user
 
 
-//2. get users
-
+//4. get users
 function getUsers() {
     fetch('http://localhost:3000/users', {
         method: 'GET',
@@ -76,19 +74,21 @@ function getUsers() {
 }
 getUsers();
 
-//4. Post User:  Form Data info create user
+//2. Post User
+
 createButton.addEventListener('click', () => {
     console.log('llamado al API');
     fetch('http://localhost:3000/user', {
         method: 'POST',
-        body: `{"name":"${name.value}","email":"${email.value}","username":"${username.value}","pass":"${pass.value}","repass":"${repass.value}","isAdmin":"${isAdmin.value}"}`,
+        body: `{"name":"${name.value}","email":"${email.value}","username":"${username.value}","pass":"${pass.value}","repass":"${repass.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
+        
     }).then((res) => {
         console.log(res);
-        if (res.status == 201) {
+        if (res.status == 200) {
             res.json().then((data) => {
                 console.log(data);
                 alert('Created');
@@ -96,6 +96,7 @@ createButton.addEventListener('click', () => {
             location.reload()
         }
         else if (res.status == 400) {
+            console.log(res);
             res.json().then((data) => {
                 console.log(data);
                 alert('Missing Arguments');
@@ -115,7 +116,7 @@ createButton.addEventListener('click', () => {
         else if (res.status == 406) {
             res.json().then((data) => {
                 console.log(data);
-                alert('Verify Password');
+                alert('Verify: Password and Corfirmation Password');
             });
         }
     })

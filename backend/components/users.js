@@ -48,19 +48,25 @@ async function findUsername(username) {
 }
 
 async function addUser(req, res, next) {
-  const {name, email, username, pass, repass, isAdmin} = req.body;
-  console.log(req.body)
-  if (name && email && username && pass && repass && isAdmin) {
-    const query = insertQuery("users","name, email, username, pass, repass, isAdmin",
-      [name, email, username, pass, repass, isAdmin]);
-    [user_id] = await sequelize.query(query, { raw: true });
-    console.log(user_id)
-    req.createdUserId = user_id;
-    console.log(user_id)
-    next();
-  } else {
-    res.status(400).json("Bad Request: Missing Arguments");
+  const { name, email, username, pass, repass } = req.body;
+  if (pass === repass) {
+    console.log(req.body)
+    if (name && email && username && pass && repass) {
+      const query = insertQuery("users", "name, email, username, pass, repass",
+        [name, email, username, pass, repass]);
+      [user_id] = await sequelize.query(query, { raw: true });
+      console.log(user_id)
+      req.createdUserId = user_id;
+      console.log(user_id)
+      next();
+    } else {
+      res.status(400).json("Bad Request: Missing Arguments");
+    }
+
+  }else{
+    res.status(406).json("Verify: Password and Corfirmation Password");
   }
+
 }
 
 
@@ -86,39 +92,39 @@ async function listUsers(req, res, next) {
 
 //5. Update user 
 async function putUser(req, res, next) {
-  const {name, email} = req.body;
+  const { name, email } = req.body;
 
   let id = req.params.value;
   console.log(id)
- 
+
   if (id) {
-      const userToUpdate = await findUserById(id);
-      console.log(userToUpdate)
-      if (name !== ""  && email !== "") {
-        const query = updateQuery("users", `name = '${name}', email= '${email}'`, `user_id = '${id}'`);
-        console.log(name)
-        const [userPut] = await sequelize.query(query, { raw: true });
-        console.log(userPut)
-        req.updatedUser = { name, email };
-      } else {
-        res.status(400).json("Bad Request: Missing Arguments");
-      }
-      next();
+    const userToUpdate = await findUserById(id);
+    console.log(userToUpdate)
+    if (name !== "" && email !== "") {
+      const query = updateQuery("users", `name = '${name}', email= '${email}'`, `user_id = '${id}'`);
+      console.log(name)
+      const [userPut] = await sequelize.query(query, { raw: true });
+      console.log(userPut)
+      req.updatedUser = { name, email };
     } else {
-      res.status(404).json("User Not Found");
+      res.status(400).json("Bad Request: Missing Arguments");
     }
-  } 
-
-  async function findUserById(id) {
-    const query = selectQuery("users", "*", `user_id = '${id}'`);
-    const [dbUser] = await sequelize.query(query, { raw: true });
-    const foundUser = dbUser[0];
-    console.log(foundUser)
-    return foundUser;
+    next();
+  } else {
+    res.status(404).json("User Not Found");
   }
+}
+
+async function findUserById(id) {
+  const query = selectQuery("users", "*", `user_id = '${id}'`);
+  const [dbUser] = await sequelize.query(query, { raw: true });
+  const foundUser = dbUser[0];
+  console.log(foundUser)
+  return foundUser;
+}
 
 
-  //6.delete user
+//6.delete user
 async function deleteUser(req, res, next) {
   let id = req.params.value;
   console.log(id)
@@ -136,7 +142,7 @@ async function deleteUser(req, res, next) {
 
 
 
-module.exports = { findUsername, addUser, putUser, validateCredentials, existenceUser,  infoUser, listUsers, deleteUser };
+module.exports = { findUsername, addUser, putUser, validateCredentials, existenceUser, infoUser, listUsers, deleteUser };
 
 
 

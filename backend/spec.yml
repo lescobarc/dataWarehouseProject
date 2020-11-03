@@ -1,23 +1,17 @@
 swagger: "2.0"
 info:
-  description: "Documentation of Delilah Restó Project"
+  description: "Documentation of Datawarehouse Project"
   version: "1.0.0"
-  title: "Delilah Restó"
-  termsOfService: "http://delilahresto.com/terms/"
-  contact:
-    email: "apiteam@delilahresto.com"
-  license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+  title: "Datawarehouse"
 host: "localhost:3000"
-basePath: "/v1"
 tags:
+- name: "users"
+  description: "Operations about user"
 - name: "products"
   description: "Contains restaurant products"
 - name: "orders"
   description: "Access to restaurant orders"
-- name: "users"
-  description: "Operations about user"
+
 schemes:
 - "https"
 - "http"
@@ -99,6 +93,11 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "authorization"
+        in: "header"
+        description: "Authentication Token"
+        required: true
+        type: "string"
       - in: "body"
         name: "body"
         description: "New user object"
@@ -115,9 +114,12 @@ paths:
         "405":
           description: "Username Exist"
         "406":
-          description: "Verify password"
+          description: "Verify: Password and Corfirmation Password"
         "500":
           description: "Internal Server Error"
+      security:
+        - store_auth:
+            - "write:users"
     put:
       tags:
       - "users"
@@ -154,7 +156,7 @@ paths:
           description: "Internal Server Error"
       security:
         - store_auth:
-            - "write:products"
+            - "write:users"
     delete:
       tags:
       - "users"
@@ -186,9 +188,8 @@ paths:
           description: "Internal Server Error"
       security:
         - store_auth:
-            - "write:products"
-  
-  
+            - "write:users"
+
   /infoUser:
     get:
       tags:
@@ -217,7 +218,7 @@ paths:
           description: "Not Found"
       security:
       - store_auth:
-          - "write:orders"
+          - "write:users"
 
     
   
@@ -565,9 +566,9 @@ securityDefinitions:
     authorizationUrl: "localhost/v1/users/login"
     flow: "implicit"
     scopes:
-      write:products: "create, modify and delete products"
-      write:orders: "modify orders status"
-      write:users: "list of registered users "
+      write:users: "crud users"
+      write:companies: "crud companies"
+      write:contacts: "crud contacts"
   
 definitions:
   orderSent:
@@ -684,7 +685,7 @@ definitions:
         type: "string"
       username:
         type: "string"
-      password:
+      pass:
         type: "string"
       repass:
         type: "string"
