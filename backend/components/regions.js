@@ -4,7 +4,15 @@ const { insertQuery, selectQuery, updateQuery, deleteQuery } = require("../datab
 
 
 //REGION
-//1. post region
+//1. get regions
+async function listRegions(req, res, next) {
+  const query = selectQuery("regions", "*");
+  const [regions] = await sequelize.query(query, { raw: true });
+  req.regionsList = [regions];
+  next();
+}
+
+//2. post region
 
 async function existenceRegion(req, res, next) {
     const { name } = req.body;
@@ -43,9 +51,17 @@ async function findRegion(name) {
 
   }
 
-  //COUNTRY 
+  //COUNTRIES
+
+  //1. get countries
+async function listCountries(req, res, next) {
+  const query = selectQuery("countries", "*");
+  const [countries] = await sequelize.query(query, { raw: true });
+  req.countriesList = [countries];
+  next();
+}
   
-  //1. post country
+  //2. post country
 
 async function existenceCountry(req, res, next) {
   const { name, region_id } = req.body;
@@ -83,5 +99,85 @@ async function addCountry(req, res, next) {
 
 }
 
+/* //3. Update country
+async function putCountry(req, res, next) {
+  const {name, region_id} = req.body;
 
-  module.exports = { existenceRegion,  addRegion, existenceCountry,  addCountry };
+  let id = req.params.value;
+  console.log(id)
+ 
+  if (id) {
+      const companyToUpdate = await findCompanyById(id);
+      console.log(companyToUpdate)
+      if( name !== "" && address !== "" && email !== "" && tel !== "" && region_id !== "" && country_id !== "" && city_id !== "" ) {
+        const query = updateQuery("companies", `name = '${name}', address = '${address}',  email= '${email}', tel = '${tel}', region_id = '${region_id}', country_id = '${country_id}', city_id = '${city_id}'`, `company_id = '${id}'`);
+        console.log(name)
+        const [companyPut] = await sequelize.query(query, { raw: true });
+        console.log(companyPut)
+        req.updatedCompany = { name, address, email, tel, region_id, country_id, city_id };
+      } else {
+        res.status(400).json("Bad Request: Missing Arguments");
+      }
+      next();
+    } else {
+      res.status(404).json("User Not Found");
+    }
+  } 
+
+  async function findCompanyById(id) {
+    const query = selectQuery("companies", "*", `company_id = '${id}'`);
+    const [dbCompanies] = await sequelize.query(query, { raw: true });
+    const foundCompany = dbCompanies[0];
+    console.log(foundCompany)
+    return foundCompany;
+  }
+ */
+
+  //CITIES
+
+   //1. get cities
+async function listCities(req, res, next) {
+  const query = selectQuery("cities", "*");
+  const [cities] = await sequelize.query(query, { raw: true });
+  req.citiesList = [cities];
+  next();
+}
+
+ //2. post cities
+
+ async function existenceCity(req, res, next) {
+  const { name, country_id } = req.body;
+  console.log(req.body)
+  const dbCities = await findCity(name);
+  if (!dbCities) {
+    next();
+  } else {
+    res.status(405).json("Country exist");
+  }
+}
+
+
+async function findCity(name) {
+console.log(name)
+  const query = selectQuery("cities", "name, country_id", `name = '${name}'`);
+  const [dbCities] = await sequelize.query(query, { raw: true });
+  const foundCity = dbCities[0];
+  return foundCity;
+}
+
+async function addCity(req, res, next) {
+  const {name, country_id} = req.body;
+    console.log(req.body)
+    if (name) {
+      const query = insertQuery("cities", "name, country_id", [name, country_id]);
+      [city_id] = await sequelize.query(query, { raw: true });
+      req.createdCityId = city_id;
+      console.log(city_id)
+      next();
+    } else {
+      res.status(400).json("Bad Request: Missing Arguments");
+    }
+
+}
+
+  module.exports = {listRegions, existenceRegion,  addRegion, listCountries, existenceCountry,  addCountry, listCities, existenceCity, addCity };

@@ -7,7 +7,7 @@ const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact,  addContact, putContact, deleteContact} = require('./components/contacts');
-const { existenceRegion,  addRegion , existenceCountry,  addCountry} = require('./components/regions');
+const { listRegions, existenceRegion,  addRegion, listCountries, existenceCountry,  addCountry, listCities,  existenceCity, addCity} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -179,7 +179,18 @@ app.delete('/contact/:value', validateToken,  deleteContact,  (req,res)=>{
 
 
 //REGIONS
-//1 post company
+
+//1. get regions
+app.get("/regions", validateToken, listRegions, (req, res) => {
+  try {
+    const { regionsList } = req;
+    res.status(200).json(regionsList);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
+
+//2 post company
 app.post("/region", validateToken, existenceRegion,  addRegion, (req, res) => {
   try {
     const { createdRegionId } = req;
@@ -190,11 +201,43 @@ app.post("/region", validateToken, existenceRegion,  addRegion, (req, res) => {
 });
 
 //COUNTRIES
-//REGIONS
-//1 post countries
+
+//1. get countries
+app.get("/countries", validateToken, listCountries, (req, res) => {
+  try {
+    const { countriesList } = req;
+    res.status(200).json(countriesList);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
+
+//2 post countrie
 app.post("/country", validateToken, existenceCountry,  addCountry, (req, res) => {
   try {
     const { createdCountryId } = req;
+    res.status(200).json("Created");
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+});
+
+//CITIES
+
+//1. get cities
+app.get("/cities", validateToken, listCities, (req, res) => {
+  try {
+    const { citiesList } = req;
+    res.status(200).json(citiesList);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
+
+//2 post city
+app.post("/city", validateToken, existenceCity,  addCity, (req, res) => {
+  try {
+    const { createdCityId } = req;
     res.status(200).json("Created");
   } catch (err) {
     res.status(500).json("Internal Server Error");
