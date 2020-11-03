@@ -120,6 +120,7 @@ paths:
       security:
         - store_auth:
             - "write:users"
+  /user/{userId}:
     put:
       tags:
       - "users"
@@ -136,6 +137,12 @@ paths:
         description: "Authentication Token"
         required: true
         type: "string"
+      - name: "userId"
+        in: "path"
+        description: "User Id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
       - in: "body"
         name: "body"
         description: "User Information to update"
