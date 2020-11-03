@@ -7,7 +7,7 @@ const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact,  addContact, putContact, deleteContact} = require('./components/contacts');
-const { existenceRegion,  addRegion} = require('./components/regions');
+const { existenceRegion,  addRegion , existenceCountry,  addCountry} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -179,10 +179,22 @@ app.delete('/contact/:value', validateToken,  deleteContact,  (req,res)=>{
 
 
 //REGIONS
-//2 post company
+//1 post company
 app.post("/region", validateToken, existenceRegion,  addRegion, (req, res) => {
   try {
     const { createdRegionId } = req;
+    res.status(200).json("Created");
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+});
+
+//COUNTRIES
+//REGIONS
+//1 post countries
+app.post("/country", validateToken, existenceCountry,  addCountry, (req, res) => {
+  try {
+    const { createdCountryId } = req;
     res.status(200).json("Created");
   } catch (err) {
     res.status(500).json("Internal Server Error");
