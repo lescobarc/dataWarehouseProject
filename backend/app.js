@@ -7,7 +7,7 @@ const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact,  addContact, putContact, deleteContact} = require('./components/contacts');
-const { listRegions, existenceRegion,  addRegion, listCountries, existenceCountry,  addCountry, listCities,  existenceCity, addCity} = require('./components/regions');
+const { listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, listCitiesByCountry,  existenceCity, addCity} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -203,7 +203,7 @@ app.post("/region", validateToken, existenceRegion,  addRegion, (req, res) => {
 //COUNTRIES
 
 //1. get countries
-app.get("/countries", validateToken, listCountries, (req, res) => {
+app.get("/countries/:region_id", validateToken, listCountriesByRegion, (req, res) => {
   try {
     const { countriesList } = req;
     res.status(200).json(countriesList);
@@ -225,7 +225,7 @@ app.post("/country", validateToken, existenceCountry,  addCountry, (req, res) =>
 //CITIES
 
 //1. get cities
-app.get("/cities", validateToken, listCities, (req, res) => {
+app.get("/cities/:country_id", validateToken, listCitiesByCountry, (req, res) => {
   try {
     const { citiesList } = req;
     res.status(200).json(citiesList);

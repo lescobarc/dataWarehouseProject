@@ -1,6 +1,6 @@
 const { sequelize } = require("../database/sequelize/config");
 const { JWT, signature } = require("./auth");
-const { insertQuery, selectQuery, updateQuery, deleteQuery } = require("../database/sequelize/commons");
+const { insertQuery, selectQuery, updateQuery, deleteQuery, joinQuery } = require("../database/sequelize/commons");
 
 
 //REGION
@@ -53,14 +53,25 @@ async function findRegion(name) {
 
   //COUNTRIES
 
-  //1. get countries
+/*   //1. get countries
 async function listCountries(req, res, next) {
   const query = selectQuery("countries", "*");
   const [countries] = await sequelize.query(query, { raw: true });
   req.countriesList = [countries];
   next();
-}
+} */
+
+  //1. get countries
+  async function listCountriesByRegion(req, res, next) {
+    let id = req.params.region_id;
+    const query = joinQuery("countries", "name", "regions", "region_id", `${id}`)
+    const [countries] = await sequelize.query(query, { raw: true });
+    req.countriesList = [countries];
+    next();
+  }
   
+
+
   //2. post country
 
 async function existenceCountry(req, res, next) {
@@ -136,8 +147,18 @@ async function putCountry(req, res, next) {
   //CITIES
 
    //1. get cities
-async function listCities(req, res, next) {
+  
+
+/* async function listCities(req, res, next) {
   const query = selectQuery("cities", "*");
+  const [cities] = await sequelize.query(query, { raw: true });
+  req.citiesList = [cities];
+  next();
+} */
+
+async function listCitiesByCountry(req, res, next) {
+  let id = req.params.country_id;
+  const query = joinQuery("cities", "name", "countries", "country_id", `${id}`)
   const [cities] = await sequelize.query(query, { raw: true });
   req.citiesList = [cities];
   next();
@@ -180,4 +201,9 @@ async function addCity(req, res, next) {
 
 }
 
-  module.exports = {listRegions, existenceRegion,  addRegion, listCountries, existenceCountry,  addCountry, listCities, existenceCity, addCity };
+  module.exports = {listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, listCitiesByCountry, existenceCity, addCity };
+
+
+
+
+/*   SELECT countries.name FROM countries JOIN regions ON countries.region_id = regions.region_id */

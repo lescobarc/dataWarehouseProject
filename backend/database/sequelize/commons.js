@@ -32,7 +32,7 @@ function deleteQuery(table, conditions) {
   return query;
 }
 
-function joinQuery(mainTable, columns, joiners, conditions) {
+/*  function joinQuery(mainTable, columns, joiners, conditions) {
   const fullJoiners = joiners
     .map((element) => `JOIN ${dbName}.${element} `)
     .toString()
@@ -43,6 +43,14 @@ function joinQuery(mainTable, columns, joiners, conditions) {
     `${conditions ? `WHERE ${conditions}` : ""}`;
   return query;
 }
+ */
+function joinQuery(dbName1, column1, dbName2, column2, id  ){
+  const query = `SELECT ${dbName1}.${column1} FROM ${dbName1} JOIN ${dbName2} ON ${dbName1}.${column2} = ${dbName2}.${column2} WHERE ${dbName2}.${column2} = ${id} ` 
+ return query;
+}
+
+/* SELECT countries.name FROM countries JOIN regions ON countries.region_id = regions.region_id */
+
 
 
 module.exports = {deleteQuery, insertQuery, joinQuery, selectQuery, updateQuery, useQuery};
