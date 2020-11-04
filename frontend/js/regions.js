@@ -28,6 +28,7 @@ function getRegions() {
   }).then(respuesta => respuesta.json())
       .then(res => {
           console.log(res)
+
           if (res) {
               for (let i = 0; i < res.length; i++) {
                   console.log(res)
@@ -57,9 +58,10 @@ function getRegions() {
 getRegions();
 
 function getCountries(i) {
-    region_id = i.id
-    console.log(region_id)
-    /fetch(`http://localhost:3000/countries/${region_id}`, {
+    region_id = i.id;
+    console.log(region_id);
+
+    fetch(`http://localhost:3000/countries/${region_id}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -71,7 +73,9 @@ function getCountries(i) {
             console.log(res)
             if (res) {
                 const ul = document.createElement('ul');
-                    ul.setAttribute('class', '') 
+                ul.setAttribute('id', 'sectionCountries') 
+                    ul.setAttribute('class', 'nested');
+                    ul.setAttribute('id', 'sectionCountries') ;
                     
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
@@ -80,7 +84,7 @@ function getCountries(i) {
                     liCountry.setAttribute('id', `liCountry${res[i].country_id}`) 
                     
                     liCountry.innerHTML += `
-                    <span class="" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}   <i class="fas fa-trash" id="iconTrashDelete1"></i><i
+                    <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}   <i class="fas fa-trash" id="iconTrashDelete1"></i><i
                     class="fas fa-pencil-alt "></i></span> <button
                 class="buttonTerciary buttonLarge ">Agregar Ciudad</button>
             `;
@@ -90,12 +94,14 @@ function getCountries(i) {
                 }
             } else {
                 res.json().then((data) => {
-                    console.log('Regions not found');
-                    alert('Regions not found');
+                    console.log('Countries not found');
+                    alert('Countries not found');
                 });
             }
   
         }) /* .catch(res=>{res.json().then(data=>alert(data.msg))}); */
+
+     
   }
 
   function getCities(i) {
@@ -128,8 +134,8 @@ function getCountries(i) {
                 }
             } else {
                 res.json().then((data) => {
-                    console.log('Regions not found');
-                    alert('Regions not found');
+                    console.log('Citiess not found');
+                    alert('Cities not found');
                 });
             }
   
