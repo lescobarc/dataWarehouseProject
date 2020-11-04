@@ -44,8 +44,8 @@ function deleteQuery(table, conditions) {
   return query;
 }
  */
-function joinQuery(dbName1, column1, dbName2, column2, id  ){
-  const query = `SELECT ${dbName1}.${column1} FROM ${dbName1} JOIN ${dbName2} ON ${dbName1}.${column2} = ${dbName2}.${column2} WHERE ${dbName2}.${column2} = ${id} ` 
+function joinQuery(dbName1, column1, dbName2, column2, id, column3  ){
+  const query = `SELECT ${dbName1}.${column1}, ${dbName1}.${column3} FROM ${dbName1} JOIN ${dbName2} ON ${dbName1}.${column2} = ${dbName2}.${column2} WHERE ${dbName2}.${column2} = ${id} ` 
  return query;
 }
 

@@ -8,7 +8,7 @@ const { insertQuery, selectQuery, updateQuery, deleteQuery, joinQuery } = requir
 async function listRegions(req, res, next) {
   const query = selectQuery("regions", "*");
   const [regions] = await sequelize.query(query, { raw: true });
-  req.regionsList = [regions];
+  req.regionsList = regions;
   next();
 }
 
@@ -53,20 +53,13 @@ async function findRegion(name) {
 
   //COUNTRIES
 
-/*   //1. get countries
-async function listCountries(req, res, next) {
-  const query = selectQuery("countries", "*");
-  const [countries] = await sequelize.query(query, { raw: true });
-  req.countriesList = [countries];
-  next();
-} */
 
   //1. get countries
   async function listCountriesByRegion(req, res, next) {
     let id = req.params.region_id;
-    const query = joinQuery("countries", "name", "regions", "region_id", `${id}`)
+    const query = joinQuery("countries", "name", "regions", "region_id", `${id}`, "country_id")
     const [countries] = await sequelize.query(query, { raw: true });
-    req.countriesList = [countries];
+    req.countriesList = countries;
     next();
   }
   
@@ -110,57 +103,18 @@ async function addCountry(req, res, next) {
 
 }
 
-/* //3. Update country
-async function putCountry(req, res, next) {
-  const {name, region_id} = req.body;
 
-  let id = req.params.value;
-  console.log(id)
- 
-  if (id) {
-      const companyToUpdate = await findCompanyById(id);
-      console.log(companyToUpdate)
-      if( name !== "" && address !== "" && email !== "" && tel !== "" && region_id !== "" && country_id !== "" && city_id !== "" ) {
-        const query = updateQuery("companies", `name = '${name}', address = '${address}',  email= '${email}', tel = '${tel}', region_id = '${region_id}', country_id = '${country_id}', city_id = '${city_id}'`, `company_id = '${id}'`);
-        console.log(name)
-        const [companyPut] = await sequelize.query(query, { raw: true });
-        console.log(companyPut)
-        req.updatedCompany = { name, address, email, tel, region_id, country_id, city_id };
-      } else {
-        res.status(400).json("Bad Request: Missing Arguments");
-      }
-      next();
-    } else {
-      res.status(404).json("User Not Found");
-    }
-  } 
-
-  async function findCompanyById(id) {
-    const query = selectQuery("companies", "*", `company_id = '${id}'`);
-    const [dbCompanies] = await sequelize.query(query, { raw: true });
-    const foundCompany = dbCompanies[0];
-    console.log(foundCompany)
-    return foundCompany;
-  }
- */
 
   //CITIES
 
    //1. get cities
   
 
-/* async function listCities(req, res, next) {
-  const query = selectQuery("cities", "*");
-  const [cities] = await sequelize.query(query, { raw: true });
-  req.citiesList = [cities];
-  next();
-} */
-
 async function listCitiesByCountry(req, res, next) {
   let id = req.params.country_id;
-  const query = joinQuery("cities", "name", "countries", "country_id", `${id}`)
+  const query = joinQuery("cities", "name", "countries", "country_id", `${id}`, "city_id")
   const [cities] = await sequelize.query(query, { raw: true });
-  req.citiesList = [cities];
+  req.citiesList = cities;
   next();
 }
 

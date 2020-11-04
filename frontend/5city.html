@@ -34,14 +34,12 @@
 <body>
     <section id="citySection">
         <button class="buttonPrimary buttonLarge buttonRegion">Agregar Región</button>
-        <table>
-            <ul id="myUL">
-                <li><span class="caret">Sudamérica</span> <button class="buttonSecondary buttonLarge">Agregar
-                        País</button></div>
+        <table id="regionsTable">
+            <tbody>
+          
+                <li><span class="caret">Sudamérica</span> <button class="buttonSecondary buttonLarge">Agregar País</button>
                     <ul class="nested">
-                        <li><span class="caret"> Argentina <i class="fas fa-trash" id="iconTrashDelete1"></i><i
-                                    class="fas fa-pencil-alt "></i></span> <button
-                                class="buttonTerciary buttonLarge ">Agregar Ciudad</button>
+                        <li><span class="caret"> Argentina <i class="fas fa-trash" id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></span> <button class="buttonTerciary buttonLarge ">Agregar Ciudad</button>
                             <ul class="nested">
                                 <li><span>Buenos Aires <i class="fas fa-trash" id="iconTrashDelete1"></i><i
                                             class="fas fa-pencil-alt "></i></span></li>
@@ -64,7 +62,8 @@
                         <li><span class="caret">Chile <i class="fas fa-trash" id="iconTrashDelete1"></i><i
                                     class="fas fa-pencil-alt "></i> </span> <button
                                 class=" buttonTerciary buttonLarge ">Agregar Ciudad</button>
-                            <ul class="nested">
+        
+                                <ul class="nested">
                                 <li><span>Atacama <i class="fas fa-trash" id="iconTrashDelete1"></i><i
                                             class="fas fa-pencil-alt "></i> </span></li>
                                 <li><span>Santiago <i class="fas fa-trash" id="iconTrashDelete1"></i><i
@@ -110,7 +109,8 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            
+        </tbody>
         </table>
     </section>
 
