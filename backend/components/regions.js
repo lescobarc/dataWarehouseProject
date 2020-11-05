@@ -69,7 +69,7 @@ async function findRegion(name) {
 
 async function existenceCountry(req, res, next) {
   const { name } = req.body;
-  const {region_id}  = req.params.region_id;
+  const region_id  = req.params.region_id;
   console.log(req.body)
   const dbCountries = await findCountry(name);
   if (!dbCountries) {
@@ -103,6 +103,39 @@ async function addCountry(req, res, next) {
       res.status(400).json("Bad Request: Missing Arguments");
     }
 
+}
+
+//3. Update country
+async function putCountry(req, res, next) {
+  const { name } = req.body;
+  console.log(name)
+  let id = req.params.country_id;
+  console.log(id)
+
+  if (id) {
+    const countryToUpdate = await findCountryById(id);
+    console.log(countryToUpdate)
+    if (name !== "" ) {
+      const query = updateQuery("countries", `name = '${name}'`, `country_id = '${id}'`);
+      console.log(name)
+      const [countryPut] = await sequelize.query(query, { raw: true });
+      console.log(countryPut)
+      req.updatedCountry = { name };
+    } else {
+      res.status(400).json("Bad Request: Missing Arguments");
+    }
+    next();
+  } else {
+    res.status(404).json("User Not Found");
+  }
+}
+
+async function findCountryById(id) {
+  const query = selectQuery("countries", "*", `country_id = '${id}'`);
+  const [dbCountry] = await sequelize.query(query, { raw: true });
+  const foundCountry = dbCountry[0];
+  console.log(foundCountry)
+  return foundCountry;
 }
 
 
@@ -165,10 +198,42 @@ async function addCity(req, res, next) {
     }
 
 }
+//3. Update city
+async function putCity(req, res, next) {
+  const { name } = req.body;
+  console.log(name)
+  let id = req.params.city_id;
+  console.log(id)
+
+  if (id) {
+    const cityToUpdate = await findCityById(id);
+    console.log(cityToUpdate)
+    if (name !== "" ) {
+      const query = updateQuery("cities", `name = '${name}'`, `city_id = '${id}'`);
+      console.log(name)
+      const [cityPut] = await sequelize.query(query, { raw: true });
+      console.log(cityPut)
+      req.updatedCity = { name };
+    } else {
+      res.status(400).json("Bad Request: Missing Arguments");
+    }
+    next();
+  } else {
+    res.status(404).json("User Not Found");
+  }
+}
+
+async function findCityById(id) {
+  const query = selectQuery("cities", "*", `city_id = '${id}'`);
+  const [dbCity] = await sequelize.query(query, { raw: true });
+  const foundCity = dbCity[0];
+  console.log(foundCity)
+  return foundCity;
+}
 
 
 
-  module.exports = {listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, listCitiesByCountry, existenceCity, addCity };
+  module.exports = {listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, existenceCity, addCity, putCity };
 
 
 

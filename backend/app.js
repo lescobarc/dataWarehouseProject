@@ -7,7 +7,7 @@ const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact,  addContact, putContact, deleteContact} = require('./components/contacts');
-const { listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, listCitiesByCountry,  existenceCity, addCity} = require('./components/regions');
+const { listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry,  existenceCity, addCity, putCity} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -221,6 +221,15 @@ app.post("/country/:region_id", validateToken, existenceCountry,  addCountry, (r
     res.status(500).json("Internal Server Error");
   }
 });
+//3. update country
+app.put("/country/:country_id", validateToken,  putCountry, (req, res) => {
+  try {
+    const { updatedCountry } = req;
+    res.status(200).json('Created');
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+})
 
 //CITIES
 
@@ -243,3 +252,13 @@ app.post("/city/:country_id", validateToken, existenceCity,  addCity, (req, res)
     res.status(500).json("Internal Server Error");
   }
 });
+
+//3. update city
+app.put("/city/:city_id", validateToken,  putCity, (req, res) => {
+  try {
+    const { updatedCity } = req;
+    res.status(200).json('Created');
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+})

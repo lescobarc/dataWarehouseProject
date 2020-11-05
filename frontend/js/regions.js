@@ -1,9 +1,11 @@
 let token = localStorage.token;
+
 //Table
 let table = document.querySelector('#regionsTable tbody')
 let regionsSection = document.getElementById('citySection');
 
-//Region
+//REGIONS
+//create
 let createButtonRegion = document.getElementById('createButtonRegion');
 let cancelButtonRegion = document.getElementById('cancelButtonRegion');
 let addButtonRegion = document.getElementById('addButtonRegion');
@@ -11,21 +13,34 @@ let createRegionSection = document.getElementById('createRegion');
 
 let nameRegion = document.getElementById('nameRegion')
 
-//Country
+//COUNTRIES
+//create
 let sectionCountries = document.getElementById('countries');
 let createButtonCountry = document.getElementById('createButtonCountry');
 let cancelButtonCountry = document.getElementById('cancelButtonCountry');
 let addButtonCountry = document.getElementById('addButtonCountry');
 let createCountrySection = document.getElementById('createCountry');
 let nameCountry = document.getElementById('nameCountry');
+//update
+let nameCountryUp = document.getElementById('nameCountryUp');
+let updateCountrySection = document.getElementById('updateCountrySection');
+let cancelButtonUpCountry = document.getElementById('cancelButtonUpCountry');
+let createButtonUpCountry = document.getElementById('createButtonUpCountry');
 
-//City
+//CITIES
+//create
 let sectionCities = document.getElementById('cities');
 let createButtonCity = document.getElementById('createButtonCity');
 let cancelButtonCity = document.getElementById('cancelButtonCity');
 let addButtonCity = document.getElementById('addButtonCity');
 let createCitySection = document.getElementById('createCity');
 let nameCity = document.getElementById('nameCity')
+//update
+let nameCityUp = document.getElementById('nameCityUp');
+let updateCitySection = document.getElementById('updateCitySection');
+let cancelButtonUpCity = document.getElementById('cancelButtonUpCity');
+let createButtonUpCity = document.getElementById('createButtonUpCity');
+
 
 
 
@@ -181,8 +196,10 @@ function getCountries(i) {
                     liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
 
                     liCountry.innerHTML += `
-                    <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}   <i class="fas fa-trash" id="iconTrashDelete1"></i><i
-                    class="fas fa-pencil-alt "></i></span> <button class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button>
+                    <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}  </span>
+                     <i class="fas fa-trash" id="iconTrashDelete1"></i>
+                     <i class="fas fa-pencil-alt" id= "${res[i].country_id}" onclick = "showUpdateCountry(this)"></i>
+                    <button class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button>
             `;
                     console.log(liCountry)
 
@@ -267,8 +284,69 @@ function createCountry(id) {
     })
 };
 
+// 3. Put Country
+
+function showUpdateCountry(i) {
+    console.log(i)
+    let idCountry = i.id
+   console.log(idCountry)
+    updateCountrySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
+    createButtonUpCountry.addEventListener('click', () => {
+        console.log(idCountry)
+        updateCountries(idCountry)
+    }); 
+}
+
+
+function updateCountries(idCountry) {
+    console.log(idCountry)
+
+    fetch(`http://localhost:3000/country/${idCountry}`, {
+
+        method: 'PUT',
+        body: `{"name":"${nameCountryUp.value}"}`,
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Updated');
+            });
+            location.reload()
+        }
+        else if (res.status == 400) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Missing Arguments');
+            });
+        }
+        else if (res.status == 404) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('User Not Found');
+            });
+        }
+    })
+
+    updateCountrySection.classList.add('hidden');
+    regionsSection.classList.remove('hidden');
+
+    
+
+}
+
+cancelButtonUpCountry.addEventListener('click', () => {
+    updateCountrySection.classList.add('hidden');
+    regionsSection.classList.remove('hidden');
+});
 
 //CITIES
+//1. get cities
 function getCities(i) {
     console.log(i)
     country_id = i.id
@@ -297,10 +375,11 @@ function getCities(i) {
                         const liCity = document.createElement('li');
                         liCity.setAttribute('id', `liCity${res[i].city_id}`)
                         liCity.innerHTML += `
-                    <span class=""> ${res[i].name}  <i class="fas fa-trash" id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i> </span>
-            `;
-                        console.log(liCity)
+                    <span class=""> ${res[i].name} </span>
+                     <i class="fas fa-trash" id="iconTrashDelete1"> </i>
+                     <i class="fas fa-pencil-alt" id= "${res[i].city_id}" onclick = "showUpdateCity(this) "></i> `;
 
+                        console.log(liCity)
                         document.getElementById(`liCountry${country_id}`).appendChild(liCity);
                     }
                 } else {
@@ -379,4 +458,65 @@ function createCity(id) {
         }
 
     })
-};  
+}; 
+
+// 3. Put City
+
+function showUpdateCity(i) {
+    console.log(i)
+    let idCity = i.id
+   console.log(idCity)
+    updateCitySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
+    createButtonUpCity.addEventListener('click', () => {
+        console.log(idCity)
+        updateCities(idCity)
+    }); 
+}
+
+
+function updateCities(idCity) {
+    console.log(idCity)
+
+    fetch(`http://localhost:3000/city/${idCity}`, {
+
+        method: 'PUT',
+        body: `{"name":"${nameCityUp.value}"}`,
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Updated');
+            });
+            location.reload()
+        }
+        else if (res.status == 400) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Missing Arguments');
+            });
+        }
+        else if (res.status == 404) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('User Not Found');
+            });
+        }
+    })
+
+    updateCitySection.classList.add('hidden');
+    regionsSection.classList.remove('hidden');
+
+    
+
+}
+
+cancelButtonUpCity.addEventListener('click', () => {
+    updateCitySection.classList.add('hidden');
+    regionsSection.classList.remove('hidden');
+});
