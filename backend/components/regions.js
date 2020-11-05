@@ -138,6 +138,22 @@ async function findCountryById(id) {
   return foundCountry;
 }
 
+//4.delete country
+async function deleteCountry(req, res, next) {
+  let id = req.params.country_id;
+  console.log(id)
+  const findCountry = await findCountryById(id);
+  if (findCountry) {
+    const query = deleteQuery("countries", `country_id = ${id}`);
+    await sequelize.query(query, { raw: true });
+    req.isDeleted = true;
+    next();
+  } else {
+    res.status(404).json("Country Not Found");
+  }
+}
+
+
 
 
   //CITIES
@@ -231,9 +247,22 @@ async function findCityById(id) {
   return foundCity;
 }
 
+//4.delete city
+async function deleteCity(req, res, next) {
+  let id = req.params.city_id;
+  console.log(id)
+  const findCity = await findCityById(id);
+  if (findCity) {
+    const query = deleteQuery("cities", `city_id = ${id}`);
+    await sequelize.query(query, { raw: true });
+    req.isDeleted = true;
+    next();
+  } else {
+    res.status(404).json("City Not Found");
+  }
+}
 
-
-  module.exports = {listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, existenceCity, addCity, putCity };
+  module.exports = {listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity };
 
 
 

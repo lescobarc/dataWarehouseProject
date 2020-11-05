@@ -26,6 +26,10 @@ let nameCountryUp = document.getElementById('nameCountryUp');
 let updateCountrySection = document.getElementById('updateCountrySection');
 let cancelButtonUpCountry = document.getElementById('cancelButtonUpCountry');
 let createButtonUpCountry = document.getElementById('createButtonUpCountry');
+//delete
+let deleteCountriesSection = document.getElementById('deleteCountriesSection');
+let cancelButtonDeleteCountry = document.getElementById('cancelButtonDeleteCountry');
+let deleteButtonDeleteCountry = document.getElementById('deleteButtonDeleteCountry')
 
 //CITIES
 //create
@@ -40,6 +44,10 @@ let nameCityUp = document.getElementById('nameCityUp');
 let updateCitySection = document.getElementById('updateCitySection');
 let cancelButtonUpCity = document.getElementById('cancelButtonUpCity');
 let createButtonUpCity = document.getElementById('createButtonUpCity');
+//delete
+let deleteCitiesSection = document.getElementById('deleteCitiesSection');
+let cancelButtonDeleteCity = document.getElementById('cancelButtonDeleteCity');
+let deleteButtonDeleteCity = document.getElementById('deleteButtonDeleteCity')
 
 
 
@@ -197,7 +205,7 @@ function getCountries(i) {
 
                     liCountry.innerHTML += `
                     <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}  </span>
-                     <i class="fas fa-trash" id="iconTrashDelete1"></i>
+                     <i class="fas fa-trash" id= "${res[i].country_id}" onclick = "showDeleteCountry(this)"></i>
                      <i class="fas fa-pencil-alt" id= "${res[i].country_id}" onclick = "showUpdateCountry(this)"></i>
                     <button class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button>
             `;
@@ -345,6 +353,45 @@ cancelButtonUpCountry.addEventListener('click', () => {
     regionsSection.classList.remove('hidden');
 });
 
+//4. Delete Country
+
+cancelButtonDeleteCountry.addEventListener('click', () => {
+    deleteCountriesSection.classList.toggle('hidden');
+    regionsSection.classList.remove('hidden');
+});
+
+function showDeleteCountry(i) {
+    console.log(i)
+    let id = i.id
+    console.log(id)
+    deleteCountriesSection.classList.toggle('hidden')
+
+    deleteButtonDeleteCountry.addEventListener('click', () => {
+        console.log(id)
+        deleteCountry(id)
+    });
+}
+
+
+function deleteCountry(id) {
+    console.log(id)
+    fetch(`http://localhost:3000/country/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+
+    deleteCountriesSection.classList.add('hidden');
+    regionsSection.classList.remove('hidden');
+
+    location.reload()
+
+}
+
+
 //CITIES
 //1. get cities
 function getCities(i) {
@@ -376,7 +423,7 @@ function getCities(i) {
                         liCity.setAttribute('id', `liCity${res[i].city_id}`)
                         liCity.innerHTML += `
                     <span class=""> ${res[i].name} </span>
-                     <i class="fas fa-trash" id="iconTrashDelete1"> </i>
+                     <i class="fas fa-trash" id= "${res[i].city_id}" onclick = "showDeleteCity(this)"> </i>
                      <i class="fas fa-pencil-alt" id= "${res[i].city_id}" onclick = "showUpdateCity(this) "></i> `;
 
                         console.log(liCity)
@@ -520,3 +567,41 @@ cancelButtonUpCity.addEventListener('click', () => {
     updateCitySection.classList.add('hidden');
     regionsSection.classList.remove('hidden');
 });
+
+//4. Delete City
+
+cancelButtonDeleteCity.addEventListener('click', () => {
+    deleteCitiesSection.classList.toggle('hidden');
+    regionsSection.classList.remove('hidden');
+});
+
+function showDeleteCity(i) {
+    console.log(i)
+    let id = i.id
+    console.log(id)
+    deleteCitiesSection.classList.toggle('hidden')
+
+    deleteButtonDeleteCity.addEventListener('click', () => {
+        console.log(id)
+        deleteCity(id)
+    });
+}
+
+
+function deleteCity(id) {
+    console.log(id)
+    fetch(`http://localhost:3000/city/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+
+    deleteCitiesSection.classList.add('hidden');
+    regionsSection.classList.remove('hidden');
+
+    location.reload()
+
+}
