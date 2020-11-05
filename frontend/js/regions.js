@@ -304,10 +304,7 @@ function getCities(i) {
 
 //2. post city
 
-/* addButtonCity.addEventListener('click', () => {
-    createCitySection.classList.toggle('hidden');
-    regionsSection.classList.toggle('hidden');
-}); */
+
 createButtonCity.addEventListener('click', () => {
     createCitySection.classList.toggle('hidden');
     regionsSection.classList.toggle('hidden');
