@@ -85,6 +85,10 @@ td {
   vertical-align: middle;
 }
 
+li {
+  list-style-type: none;
+}
+
 #createUser, #updateUserSection, #createRegion, .create {
   margin: 40px;
 }
@@ -128,6 +132,40 @@ td {
   display: -ms-flexbox;
   display: flex;
   margin-left: 5%;
+}
+
+#companiesSection, #usersSection, #citySection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 2% 3% 5% 3%;
+}
+
+#companiesSection div, #usersSection div, #citySection div {
+  width: 1306px;
+}
+
+#companiesSection div h1, #usersSection div h1, #citySection div h1 {
+  float: left;
+}
+
+#companiesSection div button, #usersSection div button, #citySection div button {
+  float: right;
+  margin-top: 15px;
+}
+
+#companiesSection table, #usersSection table, #citySection table {
+  width: 1200px;
+  margin: 4% 3%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#companiesSection table .iconPoints, #usersSection table .iconPoints, #citySection table .iconPoints {
+  padding-left: 8%;
 }
 
 nav {
@@ -598,51 +636,6 @@ nav ul li:hover {
   margin: 0 2%;
 }
 
-#companiesSection, #usersSection {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding: 2% 3% 5% 3%;
-}
-
-#companiesSection div, #usersSection div {
-  width: 1306px;
-}
-
-#companiesSection div h1, #usersSection div h1 {
-  float: left;
-}
-
-#companiesSection div button, #usersSection div button {
-  float: right;
-  margin-top: 15px;
-}
-
-#companiesSection table, #usersSection table {
-  width: 1200px;
-  margin: 4% 3%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-#companiesSection table .iconPoints, #usersSection table .iconPoints {
-  padding-left: 8%;
-}
-
-/* Remove default bullets */
-ul, #myUL {
-  list-style-type: none;
-}
-
-/* Remove margins and padding from the parent ul */
-#myUL {
-  margin: 0;
-  padding: 0;
-}
-
 /* Style the caret/arrow */
 .caret {
   cursor: pointer;
@@ -661,16 +654,6 @@ ul, #myUL {
   margin-right: 6px;
 }
 
-/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-.caret-down::before {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-}
-
-#citySection {
-  margin: 10%;
-}
-
 #citySection button {
   float: right;
 }
@@ -684,14 +667,12 @@ ul, #myUL {
 }
 
 #citySection .buttonRegion {
-  position: absolute;
-  top: 20%;
-  right: 12.3%;
+  margin-right: 5%;
 }
 
 #citySection .buttonTerciary {
   position: absolute;
-  right: 12.3%;
+  right: 8%;
   border: 1px solid #1D72C2;
 }
 

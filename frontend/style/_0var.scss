@@ -98,7 +98,9 @@ td{
     text-align: center;
   vertical-align: middle; 
 } 
-
+li {
+    list-style-type: none;
+  }
 
 #createUser, #updateUserSection, #createRegion, .create {
     margin: 40px;
@@ -132,6 +134,36 @@ td{
          }
      } 
  }
+
+ #companiesSection, #usersSection, #citySection{
+    display: flex;
+    flex-direction: column;
+    padding: 2% 3% 5% 3%;
+    div{
+        width: 1306px;
+        
+        h1{
+            float: left;
+        }
+        button{
+            float: right;
+            margin-top: 15px;
+        }
+        
+        
+    }
+    table{
+        
+        width: 1200px;
+       margin: 4% 3%;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        .iconPoints{
+            padding-left: 8%;
+        }
+        
+    }
+} 
+
 
 
 
