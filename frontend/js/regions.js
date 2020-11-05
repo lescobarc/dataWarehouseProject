@@ -163,10 +163,10 @@ function getCountries(i) {
         .then(res => {
             console.log("aqui")
             console.log(res)
-            let validar = document.getElementById(`sectionCountries${region_id}`);
-            console.log(validar)
+            let validateSearchCountry = document.getElementById(`sectionCountries${region_id}`);
+            console.log(validateSearchCountry)
 
-            if (res && validar == null) {
+            if (res && validateSearchCountry == null) {
                 const ul = document.createElement('ul');
                 ul.setAttribute('id', `sectionCountries${region_id}`)
                 ul.setAttribute('class', 'nested');
