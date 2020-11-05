@@ -68,7 +68,8 @@ async function findRegion(name) {
   //2. post country
 
 async function existenceCountry(req, res, next) {
-  const { name, region_id } = req.body;
+  const { name } = req.body;
+  const {region_id}  = req.params.region_id;
   console.log(req.body)
   const dbCountries = await findCountry(name);
   if (!dbCountries) {
@@ -88,10 +89,11 @@ console.log(name)
 }
 
 async function addCountry(req, res, next) {
-  const {name, region_id} = req.body;
-    console.log(req.body)
-    if (name) {
-      const query = insertQuery("countries", "name, region_id", [name, region_id]);
+  const {name} = req.body;
+  const region_id  = req.params.region_id;
+    if (name !=="" && region_id !=="") {
+      const query = insertQuery("countries", "name, region_id",
+      [name, region_id]);
       [country_id] = await sequelize.query(query, { raw: true });
       console.log(country_id)
       req.createdCountryId = country_id;
@@ -154,6 +156,8 @@ async function addCity(req, res, next) {
     }
 
 }
+
+
 
   module.exports = {listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, listCitiesByCountry, existenceCity, addCity };
 

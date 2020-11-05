@@ -57,7 +57,7 @@ function getRegions() {
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.innerHTML += `
               <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].name} </span>
-              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" >Agregar País</button>
+              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button>
           `;
                     console.log(row)
                     console.log(table)
@@ -137,7 +137,7 @@ createButtonRegion.addEventListener('click', () => {
 
 //COUNTRIES
 
-/* 
+
 //1. get Countries
 function getCountries(i) {
    
@@ -206,48 +206,60 @@ cancelButtonRegion.addEventListener('click', () => {
 
 function postCountry(i){
     console.log(i)
-} */
-/* createButtonRegion.addEventListener('click', () => {
-    console.log('llamado al API');
-    fetch('http://localhost:3000/region', {
-        method: 'POST',
-        body: `{"name":"${nameRegion.value}"}`,
-        headers: {
-            "Content-Type": "application/json",
-            'Authorization': `Bearer ${token}`
-        }
-        
-    }).then((res) => {
-        console.log(res);
-        if (res.status == 200) {
-            res.json().then((data) => {
-                console.log(data);
-                alert('Created');
-            });
-            location.reload()
-        }
-        else if (res.status == 400) {
-            console.log(res);
-            res.json().then((data) => {
-                console.log(data);
-                alert('Missing Arguments');
-            });
-        } else if (res.status == 403) {
-            res.json().then((data) => {
-                console.log(data);
-                alert('Forbidden: No Permission To Access');
-            });
-        }
-        else if (res.status == 405) {
-            res.json().then((data) => {
-                console.log(data);
-                alert('Region Exist');
-            });
-        }
-        
-    })
+    let id = i.id
+    console.log(id)
+    createCountrySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
+    createButtonCountry.addEventListener('click', () => {
+        console.log(id)
+        createCountry(id)
+    });
+} 
 
-}); */
+
+    function createCountry(id){
+         console.log('llamado al API');
+        fetch(`http://localhost:3000/country/${id}`, {
+            method: 'POST',
+            body: `{"name":"${nameCountry.value}"}`,
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+            
+        }).then((res) => {
+            console.log(res);
+            if (res.status == 200) {
+                res.json().then((data) => {
+                    console.log(data);
+                    alert('Created');
+                });
+                location.reload()
+            }
+            else if (res.status == 400) {
+                console.log(res);
+                res.json().then((data) => {
+                    console.log(data);
+                    alert('Missing Arguments');
+                });
+            } else if (res.status == 403) {
+                res.json().then((data) => {
+                    console.log(data);
+                    alert('Forbidden: No Permission To Access');
+                });
+            }
+            else if (res.status == 405) {
+                res.json().then((data) => {
+                    console.log(data);
+                    alert('Country Exist');
+                });
+            }
+            
+        })
+    }
+    
+
+; 
 
 
 //CITIES

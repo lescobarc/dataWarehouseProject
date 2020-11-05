@@ -212,8 +212,8 @@ app.get("/countries/:region_id", validateToken, listCountriesByRegion, (req, res
   }
 });
 
-//2 post countrie
-app.post("/country", validateToken, existenceCountry,  addCountry, (req, res) => {
+//2 post country
+app.post("/country/:region_id", validateToken, existenceCountry,  addCountry, (req, res) => {
   try {
     const { createdCountryId } = req;
     res.status(200).json("Created");
