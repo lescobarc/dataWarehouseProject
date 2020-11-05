@@ -30,7 +30,7 @@ let nameCity = document.getElementById('nameCity')
 
 
 //Tree
-var toggler = document.getElementsByClassName("caret");
+/* var toggler = document.getElementsByClassName("caret");
 console.log("togle" + toggler)
 console.log(toggler)
 var i;
@@ -39,7 +39,7 @@ for (i = 0; i < toggler.length; i++) {
         this.parentElement.querySelector(".nested").classList.toggle("active");
         this.classList.toggle("caret-down");
     });
-}
+} */
 
 
 //REGIONS
