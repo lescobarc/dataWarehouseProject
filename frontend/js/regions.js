@@ -163,10 +163,10 @@ function getCountries(i) {
         .then(res => {
             console.log("aqui")
             console.log(res)
-            let validar =   document.getElementById(`sectionCountries${region_id}`) ;
-          console.log(validar)
+            let validar = document.getElementById(`sectionCountries${region_id}`);
+            console.log(validar)
 
-            if (res && validar == null ) {
+            if (res && validar == null) {
                 const ul = document.createElement('ul');
                 ul.setAttribute('id', `sectionCountries${region_id}`)
                 ul.setAttribute('class', 'nested');
@@ -189,13 +189,13 @@ function getCountries(i) {
 
                 }
             } else {
-              
-                    console.log('Search Realized');
-                    
-                   
-           
+                console.log('Search Realized');
+                for (let i = 0; i < res.length; i++) {
+                    rowDelete = document.getElementById(`liCountry${res[i].country_id}`)
+                    console.log(rowDelete)
+                    rowDelete.classList.toggle('hidden')
+                }
             }
-
         })
 
 }
