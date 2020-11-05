@@ -170,7 +170,7 @@ function getCountries(i) {
             if (res && validateSearchCountry == null) {
                 const ul = document.createElement('ul');
                 ul.setAttribute('id', `sectionCountries${region_id}`)
-                ul.setAttribute('class', 'nested');
+
                 sectionCountries.appendChild(ul)
 
 
