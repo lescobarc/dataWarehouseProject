@@ -3,7 +3,8 @@ const { JWT, signature } = require("./auth");
 const { insertQuery, selectQuery, updateQuery, deleteQuery, joinQuery } = require("../database/sequelize/commons");
 
 
-//REGION
+//REGIONS
+
 //1. get regions
 async function listRegions(req, res, next) {
   const query = selectQuery("regions", "*");
@@ -13,63 +14,60 @@ async function listRegions(req, res, next) {
 }
 
 //2. post region
-
 async function existenceRegion(req, res, next) {
-    const { name } = req.body;
-    console.log(req.body)
-    console.log(req.body.name)
-    const dbRegions = await findRegion(name);
-    if (!dbRegions) {
-      next();
-    } else {
-      res.status(405).json("Region exist");
-    }
+  const { name } = req.body;
+  console.log(req.body)
+  console.log(req.body.name)
+  const dbRegions = await findRegion(name);
+  if (!dbRegions) {
+    next();
+  } else {
+    res.status(405).json("Region exist");
   }
+}
 
-  
+
 async function findRegion(name) {
   console.log(name)
-    const query = selectQuery("regions", "name", `name = '${name}'`);
-    const [dbRegions] = await sequelize.query(query, { raw: true });
-    const foundRegion = dbRegions[0];
-    return foundRegion;
-  }
-  
-  async function addRegion(req, res, next) {
-    const {name} = req.body;
-      console.log(req.body)
-      if (name) {
-        const query = insertQuery("regions", "name", [name]);
-        [region_id] = await sequelize.query(query, { raw: true });
-        console.log(region_id)
-        req.createdRegionId = region_id;
-        console.log(region_id)
-        next();
-      } else {
-        res.status(400).json("Bad Request: Missing Arguments");
-      }
+  const query = selectQuery("regions", "name", `name = '${name}'`);
+  const [dbRegions] = await sequelize.query(query, { raw: true });
+  const foundRegion = dbRegions[0];
+  return foundRegion;
+}
 
-  }
-
-  //COUNTRIES
-
-
-  //1. get countries
-  async function listCountriesByRegion(req, res, next) {
-    let id = req.params.region_id;
-    const query = joinQuery("countries", "name", "regions", "region_id", `${id}`, "country_id")
-    const [countries] = await sequelize.query(query, { raw: true });
-    req.countriesList = countries;
+async function addRegion(req, res, next) {
+  const { name } = req.body;
+  console.log(req.body)
+  if (name) {
+    const query = insertQuery("regions", "name", [name]);
+    [region_id] = await sequelize.query(query, { raw: true });
+    console.log(region_id)
+    req.createdRegionId = region_id;
+    console.log(region_id)
     next();
+  } else {
+    res.status(400).json("Bad Request: Missing Arguments");
   }
-  
+
+}
+
+//COUNTRIES
+
+//1. get countries
+async function listCountriesByRegion(req, res, next) {
+  let id = req.params.region_id;
+  const query = joinQuery("countries", "name", "regions", "region_id", `${id}`, "country_id")
+  const [countries] = await sequelize.query(query, { raw: true });
+  req.countriesList = countries;
+  next();
+}
 
 
-  //2. post country
 
+//2. post country
 async function existenceCountry(req, res, next) {
   const { name } = req.body;
-  const region_id  = req.params.region_id;
+  const region_id = req.params.region_id;
   console.log(req.body)
   const dbCountries = await findCountry(name);
   if (!dbCountries) {
@@ -79,9 +77,8 @@ async function existenceCountry(req, res, next) {
   }
 }
 
-
 async function findCountry(name) {
-console.log(name)
+  console.log(name)
   const query = selectQuery("countries", "name, region_id", `name = '${name}'`);
   const [dbCountries] = await sequelize.query(query, { raw: true });
   const foundCountry = dbCountries[0];
@@ -89,19 +86,19 @@ console.log(name)
 }
 
 async function addCountry(req, res, next) {
-  const {name} = req.body;
-  const region_id  = req.params.region_id;
-    if (name !=="" && region_id !=="") {
-      const query = insertQuery("countries", "name, region_id",
+  const { name } = req.body;
+  const region_id = req.params.region_id;
+  if (name !== "" && region_id !== "") {
+    const query = insertQuery("countries", "name, region_id",
       [name, region_id]);
-      [country_id] = await sequelize.query(query, { raw: true });
-      console.log(country_id)
-      req.createdCountryId = country_id;
-      console.log(country_id)
-      next();
-    } else {
-      res.status(400).json("Bad Request: Missing Arguments");
-    }
+    [country_id] = await sequelize.query(query, { raw: true });
+    console.log(country_id)
+    req.createdCountryId = country_id;
+    console.log(country_id)
+    next();
+  } else {
+    res.status(400).json("Bad Request: Missing Arguments");
+  }
 
 }
 
@@ -115,7 +112,7 @@ async function putCountry(req, res, next) {
   if (id) {
     const countryToUpdate = await findCountryById(id);
     console.log(countryToUpdate)
-    if (name !== "" ) {
+    if (name !== "") {
       const query = updateQuery("countries", `name = '${name}'`, `country_id = '${id}'`);
       console.log(name)
       const [countryPut] = await sequelize.query(query, { raw: true });
@@ -155,12 +152,9 @@ async function deleteCountry(req, res, next) {
 
 
 
+//CITIES
 
-  //CITIES
-
-   //1. get cities
-  
-
+//1. get cities
 async function listCitiesByCountry(req, res, next) {
   let id = req.params.country_id;
   const query = joinQuery("cities", "name", "countries", "country_id", `${id}`, "city_id")
@@ -169,14 +163,13 @@ async function listCitiesByCountry(req, res, next) {
   next();
 }
 
-   //2. post city
-
+//2. post city
 async function existenceCity(req, res, next) {
   const { name } = req.body;
   const country_id = req.params.country_id;
   console.log(name);
   console.log(country_id)
-  
+
   console.log(req.body)
   const dbCities = await findCity(name);
   if (!dbCities) {
@@ -188,7 +181,7 @@ async function existenceCity(req, res, next) {
 
 
 async function findCity(name) {
-console.log(name)
+  console.log(name)
   const query = selectQuery("cities", "name, country_id", `name = '${name}'`);
   const [dbCities] = await sequelize.query(query, { raw: true });
   const foundCity = dbCities[0];
@@ -197,23 +190,24 @@ console.log(name)
 }
 
 async function addCity(req, res, next) {
-  const {name} = req.body;
-  const country_id  = req.params.country_id;
+  const { name } = req.body;
+  const country_id = req.params.country_id;
   console.log(name);
   console.log(country_id)
-    if (name !=="" && country_id !=="") {
-      const query = insertQuery("cities", "name, country_id",
+  if (name !== "" && country_id !== "") {
+    const query = insertQuery("cities", "name, country_id",
       [name, country_id]);
-      [city_id] = await sequelize.query(query, { raw: true });
-      console.log(city_id)
-      req.createdCityId = city_id;
-      console.log(city_id)
-      next();
-    } else {
-      res.status(400).json("Bad Request: Missing Arguments");
-    }
+    [city_id] = await sequelize.query(query, { raw: true });
+    console.log(city_id)
+    req.createdCityId = city_id;
+    console.log(city_id)
+    next();
+  } else {
+    res.status(400).json("Bad Request: Missing Arguments");
+  }
 
 }
+
 //3. Update city
 async function putCity(req, res, next) {
   const { name } = req.body;
@@ -224,7 +218,7 @@ async function putCity(req, res, next) {
   if (id) {
     const cityToUpdate = await findCityById(id);
     console.log(cityToUpdate)
-    if (name !== "" ) {
+    if (name !== "") {
       const query = updateQuery("cities", `name = '${name}'`, `city_id = '${id}'`);
       console.log(name)
       const [cityPut] = await sequelize.query(query, { raw: true });
@@ -262,9 +256,9 @@ async function deleteCity(req, res, next) {
   }
 }
 
-  module.exports = {listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity };
+
+module.exports = { listRegions, existenceRegion, addRegion, listCountriesByRegion, existenceCountry, addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity };
 
 
 
 
-/*   SELECT countries.name FROM countries JOIN regions ON countries.region_id = regions.region_id */
