@@ -57,7 +57,7 @@ function getRegions() {
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.innerHTML += `
               <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].name} </span>
-              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}">Agregar País</button>
+              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" >Agregar País</button>
           `;
                     console.log(row)
                     console.log(table)
@@ -137,7 +137,7 @@ createButtonRegion.addEventListener('click', () => {
 
 //COUNTRIES
 
-
+/* 
 //1. get Countries
 function getCountries(i) {
    
@@ -185,13 +185,13 @@ function getCountries(i) {
                 });
             }
 
-        }) /* .catch(res=>{res.json().then(data=>alert(data.msg))}); */
+        }) 
 
 }
 
 //2. post country
 
-/* addButtonRegion.addEventListener('click', () => {
+addButtonRegion.addEventListener('click', () => {
     createRegionSection.classList.toggle('hidden');
     citySection.classList.toggle('hidden');
 });
@@ -204,7 +204,10 @@ cancelButtonRegion.addEventListener('click', () => {
     citySection.classList.toggle('hidden');
 });
 
-createButtonRegion.addEventListener('click', () => {
+function postCountry(i){
+    console.log(i)
+} */
+/* createButtonRegion.addEventListener('click', () => {
     console.log('llamado al API');
     fetch('http://localhost:3000/region', {
         method: 'POST',
@@ -244,8 +247,8 @@ createButtonRegion.addEventListener('click', () => {
         
     })
 
-});
- */
+}); */
+
 
 //CITIES
 function getCities(i) {
