@@ -1,13 +1,14 @@
 let token = localStorage.token;
 //Table
 let table = document.querySelector('#regionsTable tbody')
+let regionsSection = document.getElementById('citySection');
 
 //Region
 let createButtonRegion = document.getElementById('createButtonRegion');
 let cancelButtonRegion = document.getElementById('cancelButtonRegion');
 let addButtonRegion = document.getElementById('addButtonRegion');
 let createRegionSection = document.getElementById('createRegion');
-let regionsSection = document.getElementById('citySection');
+
 let nameRegion = document.getElementById('nameRegion')
 
 //Country
@@ -15,7 +16,6 @@ let createButtonCountry = document.getElementById('createButtonCountry');
 let cancelButtonCountry = document.getElementById('cancelButtonCountry');
 let addButtonCountry = document.getElementById('addButtonCountry');
 let createCountrySection = document.getElementById('createCountry');
-/* let regionsSection = document.getElementById('citySection'); */
 let nameCountry = document.getElementById('nameCountry');
 
 //City
@@ -23,7 +23,6 @@ let createButtonCity = document.getElementById('createButtonCity');
 let cancelButtonCity = document.getElementById('cancelButtonCity');
 let addButtonCity = document.getElementById('addButtonCity');
 let createCitySection = document.getElementById('createCity');
-/* let regionsSection = document.getElementById('citySection'); */
 let nameCity = document.getElementById('nameCity')
 
 
@@ -179,7 +178,7 @@ function getCountries(i) {
                     liCountry.innerHTML += `
                     <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}   <i class="fas fa-trash" id="iconTrashDelete1"></i><i
                     class="fas fa-pencil-alt "></i></span> <button
-                class="buttonTerciary buttonLarge ">Agregar Ciudad</button>
+                class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button>
             `;
                     console.log(liCountry)
 
@@ -307,15 +306,15 @@ function getCities(i) {
 
 /* addButtonCity.addEventListener('click', () => {
     createCitySection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
-});
+    regionsSection.classList.toggle('hidden');
+}); */
 createButtonCity.addEventListener('click', () => {
     createCitySection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
 });
 cancelButtonCity.addEventListener('click', () => {
     createCitySection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
 });
 
 function postCity(i){
@@ -326,16 +325,16 @@ function postCity(i){
     regionsSection.classList.toggle('hidden');
     createButtonCity.addEventListener('click', () => {
         console.log(id)
-        createCountry(id)
+        createCity(id)
     });
 } 
 
 
-    function createCountry(id){
+    function createCity(id){
          console.log('llamado al API');
-        fetch(`http://localhost:3000/country/${id}`, {
+        fetch(`http://localhost:3000/city/${id}`, {
             method: 'POST',
-            body: `{"name":"${nameCountry.value}"}`,
+            body: `{"name":"${nameCity.value}"}`,
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`
@@ -365,9 +364,9 @@ function postCity(i){
             else if (res.status == 405) {
                 res.json().then((data) => {
                     console.log(data);
-                    alert('Country Exist');
+                    alert('City Exist');
                 });
             }
             
         })
-    };  */
+    };  

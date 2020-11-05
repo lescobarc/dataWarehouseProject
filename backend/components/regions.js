@@ -120,10 +120,14 @@ async function listCitiesByCountry(req, res, next) {
   next();
 }
 
- //2. post cities
+   //2. post city
 
- async function existenceCity(req, res, next) {
-  const { name, country_id } = req.body;
+async function existenceCity(req, res, next) {
+  const { name } = req.body;
+  const country_id = req.params.country_id;
+  console.log(name);
+  console.log(country_id)
+  
   console.log(req.body)
   const dbCities = await findCity(name);
   if (!dbCities) {
@@ -139,15 +143,20 @@ console.log(name)
   const query = selectQuery("cities", "name, country_id", `name = '${name}'`);
   const [dbCities] = await sequelize.query(query, { raw: true });
   const foundCity = dbCities[0];
+  console.log(foundCity)
   return foundCity;
 }
 
 async function addCity(req, res, next) {
-  const {name, country_id} = req.body;
-    console.log(req.body)
-    if (name) {
-      const query = insertQuery("cities", "name, country_id", [name, country_id]);
+  const {name} = req.body;
+  const country_id  = req.params.country_id;
+  console.log(name);
+  console.log(country_id)
+    if (name !=="" && country_id !=="") {
+      const query = insertQuery("cities", "name, country_id",
+      [name, country_id]);
       [city_id] = await sequelize.query(query, { raw: true });
+      console.log(city_id)
       req.createdCityId = city_id;
       console.log(city_id)
       next();

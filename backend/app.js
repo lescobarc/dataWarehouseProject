@@ -235,7 +235,7 @@ app.get("/cities/:country_id", validateToken, listCitiesByCountry, (req, res) =>
 });
 
 //2 post city
-app.post("/city", validateToken, existenceCity,  addCity, (req, res) => {
+app.post("/city/:country_id", validateToken, existenceCity,  addCity, (req, res) => {
   try {
     const { createdCityId } = req;
     res.status(200).json("Created");
