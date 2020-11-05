@@ -16,7 +16,15 @@ let cancelButtonCountry = document.getElementById('cancelButtonCountry');
 let addButtonCountry = document.getElementById('addButtonCountry');
 let createCountrySection = document.getElementById('createCountry');
 /* let regionsSection = document.getElementById('citySection'); */
-let nameCountry = document.getElementById('nameCountry')
+let nameCountry = document.getElementById('nameCountry');
+
+//City
+let createButtonCity = document.getElementById('createButtonCity');
+let cancelButtonCity = document.getElementById('cancelButtonCity');
+let addButtonCity = document.getElementById('addButtonCity');
+let createCitySection = document.getElementById('createCity');
+/* let regionsSection = document.getElementById('citySection'); */
+let nameCity = document.getElementById('nameCity')
 
 
 
@@ -81,15 +89,15 @@ getRegions();
 
 addButtonRegion.addEventListener('click', () => {
     createRegionSection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
 });
 createButtonRegion.addEventListener('click', () => {
     createRegionSection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
-});
+    regionsSection.classList.toggle('hidden');
+}); 
 cancelButtonRegion.addEventListener('click', () => {
     createRegionSection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
 });
 
 createButtonRegion.addEventListener('click', () => {
@@ -191,17 +199,14 @@ function getCountries(i) {
 
 //2. post country
 
-addButtonRegion.addEventListener('click', () => {
-    createRegionSection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
+
+createButtonCountry.addEventListener('click', () => {
+    createCountrySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
 });
-createButtonRegion.addEventListener('click', () => {
-    createRegionSection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
-});
-cancelButtonRegion.addEventListener('click', () => {
-    createRegionSection.classList.toggle('hidden');
-    citySection.classList.toggle('hidden');
+cancelButtonCountry.addEventListener('click', () => {
+    createCountrySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
 });
 
 function postCountry(i){
@@ -256,10 +261,7 @@ function postCountry(i){
             }
             
         })
-    }
-    
-
-; 
+    }; 
 
 
 //CITIES
@@ -299,4 +301,73 @@ function getCities(i) {
                 }
 
             })
+};
+
+//2. post city
+
+/* addButtonCity.addEventListener('click', () => {
+    createCitySection.classList.toggle('hidden');
+    citySection.classList.toggle('hidden');
+});
+createButtonCity.addEventListener('click', () => {
+    createCitySection.classList.toggle('hidden');
+    citySection.classList.toggle('hidden');
+});
+cancelButtonCity.addEventListener('click', () => {
+    createCitySection.classList.toggle('hidden');
+    citySection.classList.toggle('hidden');
+});
+
+function postCity(i){
+    console.log(i)
+    let id = i.id
+    console.log(id)
+    createCitySection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
+    createButtonCity.addEventListener('click', () => {
+        console.log(id)
+        createCountry(id)
+    });
 } 
+
+
+    function createCountry(id){
+         console.log('llamado al API');
+        fetch(`http://localhost:3000/country/${id}`, {
+            method: 'POST',
+            body: `{"name":"${nameCountry.value}"}`,
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+            
+        }).then((res) => {
+            console.log(res);
+            if (res.status == 200) {
+                res.json().then((data) => {
+                    console.log(data);
+                    alert('Created');
+                });
+                location.reload()
+            }
+            else if (res.status == 400) {
+                console.log(res);
+                res.json().then((data) => {
+                    console.log(data);
+                    alert('Missing Arguments');
+                });
+            } else if (res.status == 403) {
+                res.json().then((data) => {
+                    console.log(data);
+                    alert('Forbidden: No Permission To Access');
+                });
+            }
+            else if (res.status == 405) {
+                res.json().then((data) => {
+                    console.log(data);
+                    alert('Country Exist');
+                });
+            }
+            
+        })
+    };  */
