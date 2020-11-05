@@ -100,5 +100,38 @@ td{
 } 
 
 
+#createUser, #updateUserSection, #createRegion, .create {
+    margin: 40px;
+    
+      .container{
+         border: 1px solid $bgPrimary;
+         background: linear-gradient(to bottom, $bgPrimary 26%,white 23%,white 100%);      
+         border-radius: 2px;
+         width: 350px;
+         height: 380px;
+         margin: auto;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-around;
+         text-align: start;
+         padding: 1%;
+         color: $bgBlack;
+         font-size: 12pt;
+         h1{
+             color: $bgWhite;
+             position: relative;
+             text-align: center;
+         }
+         label{
+             display: inline-block;
+             width: 150px;
+         }
+         .buttonsAction{
+            display: flex;
+            margin-left: 5%;
+         }
+     } 
+ }
+
 
 

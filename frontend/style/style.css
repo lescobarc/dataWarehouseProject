@@ -85,6 +85,51 @@ td {
   vertical-align: middle;
 }
 
+#createUser, #updateUserSection, #createRegion, .create {
+  margin: 40px;
+}
+
+#createUser .container, #updateUserSection .container, #createRegion .container, .create .container {
+  border: 1px solid #1D72C2;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(26%, #1D72C2), color-stop(23%, white), to(white));
+  background: linear-gradient(to bottom, #1D72C2 26%, white 23%, white 100%);
+  border-radius: 2px;
+  width: 350px;
+  height: 380px;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: start;
+  padding: 1%;
+  color: #000000;
+  font-size: 12pt;
+}
+
+#createUser .container h1, #updateUserSection .container h1, #createRegion .container h1, .create .container h1 {
+  color: #FFFFFF;
+  position: relative;
+  text-align: center;
+}
+
+#createUser .container label, #updateUserSection .container label, #createRegion .container label, .create .container label {
+  display: inline-block;
+  width: 150px;
+}
+
+#createUser .container .buttonsAction, #updateUserSection .container .buttonsAction, #createRegion .container .buttonsAction, .create .container .buttonsAction {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 5%;
+}
+
 nav {
   height: 64px;
   width: 1366px;
@@ -587,50 +632,6 @@ nav ul li:hover {
   padding-left: 8%;
 }
 
-#createUser, #updateUserSection {
-  margin: 40px;
-}
-
-#createUser .container, #updateUserSection .container {
-  border: 1px solid #1D72C2;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(23%, #1D72C2), color-stop(23%, white), to(white));
-  background: linear-gradient(to bottom, #1D72C2 23%, white 23%, white 100%);
-  border-radius: 2px;
-  width: 350px;
-  height: 380px;
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  text-align: start;
-  padding: 1%;
-  color: #000000;
-  font-size: 12pt;
-}
-
-#createUser .container h1, #updateUserSection .container h1 {
-  color: #FFFFFF;
-  text-align: center;
-}
-
-#createUser .container label, #updateUserSection .container label {
-  display: inline-block;
-  width: 150px;
-}
-
-#createUser .container .buttonsAction, #updateUserSection .container .buttonsAction {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: 5%;
-}
-
 /* Remove default bullets */
 ul, #myUL {
   list-style-type: none;
@@ -702,6 +703,12 @@ ul, #myUL {
   position: absolute;
   right: 12.3%;
   border: 1px solid #1D72C2;
+}
+
+#createRegion .container {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #1D72C2), color-stop(23%, white), to(white));
+  background: linear-gradient(to bottom, #1D72C2 40%, white 23%, white 100%);
+  height: 200px;
 }
 
 #loginUser {

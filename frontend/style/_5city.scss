@@ -63,3 +63,11 @@ ul, #myUL {
       }
     
   }
+  
+  #createRegion{
+    .container{
+      background: linear-gradient(to bottom, $bgPrimary 40%,white 23%,white 100%);    
+      height: 200px;
+    }
+  
+  }

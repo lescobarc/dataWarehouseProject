@@ -33,7 +33,7 @@
 
 <body>
     <section id="citySection">
-        <button class="buttonPrimary buttonLarge buttonRegion">Agregar Región</button>
+        <button class="buttonPrimary buttonLarge buttonRegion" id="addButtonRegion">Agregar Región</button>
         <table id="regionsTable">
             <tbody>
           
@@ -114,7 +114,41 @@
         </table>
     </section>
 
+    <section id= "createRegion" class="create hidden">
+            <div class="container">
+                <h1> Agregar Región</h1>
+                <div>
+                    <label for="nameRegion"> Región:</label>
+                    <input type="text" id="nameRegion">
+                </div>
+                <div class="buttonsAction" >
+                    <div id="createButtonRegion">
+                        <button class='buttonLarge buttonPrimary'> Crear</button>
+                    </div>
+                    <div id="cancelButtonRegion">
+                        <button class='buttonLarge buttonSecondary'> Cancelar </button>
+                    </div>
+                </div>
+            </div>
+    </section>
 
+    <section id= "createCountry" class="create hidden">
+        <div class="container">
+            <h1> Agregar País</h1>
+            <div>
+                <label for="nameCountry"> País:</label>
+                <input type="text" id="nameCountry">
+            </div>
+            <div class="buttonsAction" >
+                <div id="createButtonCountry">
+                    <button class='buttonLarge buttonPrimary'> Crear</button>
+                </div>
+                <div id="cancelButtonCountry">
+                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
+                </div>
+            </div>
+        </div>
+</section>
 
 
 
