@@ -20,6 +20,7 @@ let createCountrySection = document.getElementById('createCountry');
 let nameCountry = document.getElementById('nameCountry');
 
 //City
+let sectionCities = document.getElementById('cities');
 let createButtonCity = document.getElementById('createButtonCity');
 let cancelButtonCity = document.getElementById('cancelButtonCity');
 let addButtonCity = document.getElementById('addButtonCity');
@@ -282,13 +283,19 @@ function getCities(i) {
             .then(res => {
                 console.log('ESTA')
                 console.log(res)
-                if (res) {
+                let validateSearchCity = document.getElementById(`sectionCities${country_id}`);
+                console.log(validateSearchCity)
+                if (res && validateSearchCity == null) {
                     const ulCity = document.createElement('ul');
+                    ulCity.setAttribute('id', `sectionCities${country_id}`)
                     ulCity.setAttribute('class', '')
+                    sectionCities.appendChild(ulCity)
+
+        
                     for (let i = 0; i < res.length; i++) {
                         console.log(res)
                         const liCity = document.createElement('li');
-                        liCity.setAttribute('id', `liCity${res[i].country_id}`)
+                        liCity.setAttribute('id', `liCity${res[i].city_id}`)
                         liCity.innerHTML += `
                     <span class=""> ${res[i].name}  <i class="fas fa-trash" id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i> </span>
             `;
@@ -297,10 +304,12 @@ function getCities(i) {
                         document.getElementById(`liCountry${country_id}`).appendChild(liCity);
                     }
                 } else {
-                    res.json().then((data) => {
-                        console.log('Citiess not found');
-                        alert('Cities not found');
-                    });
+                    console.log('Search Realized');
+                  for (let i = 0; i < res.length; i++) {
+                        rowDelete = document.getElementById(`liCity${res[i].city_id}`)
+                        console.log(rowDelete)
+                        rowDelete.classList.toggle('hidden')
+                    } 
                 }
 
             })
