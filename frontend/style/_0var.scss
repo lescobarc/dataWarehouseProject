@@ -101,6 +101,9 @@ td{
 li {
     list-style-type: none;
   }
+td{
+    padding: 8px;
+}
 
 
 
@@ -157,6 +160,7 @@ li {
              color: $bgWhite;
              position: relative;
              text-align: center;
+             margin-top: 0;
          }
          label{
              display: inline-block;

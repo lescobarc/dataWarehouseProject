@@ -89,6 +89,10 @@ li {
   list-style-type: none;
 }
 
+td {
+  padding: 8px;
+}
+
 #companiesSection, #usersSection, #citySection {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -163,6 +167,7 @@ li {
   color: #FFFFFF;
   position: relative;
   text-align: center;
+  margin-top: 0;
 }
 
 #createUser .container label, #updateUserSection .container label, #createRegion .container label, .create .container label {
@@ -225,7 +230,7 @@ li {
 
 nav {
   height: 64px;
-  width: 1366px;
+  width: 1360px;
   background-color: #1D72C2;
   color: white;
   display: -webkit-box !important;

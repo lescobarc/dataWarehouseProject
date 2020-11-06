@@ -88,8 +88,8 @@ function getRegions() {
                     const row = document.createElement('li');
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.innerHTML += `
-             <h3> <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].name} 
-              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button></span> <h3>
+             <h2> <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].name} 
+              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button></span> <h2>
           `;
                     console.log(row)
                     console.log(table)
@@ -204,10 +204,10 @@ function getCountries(i) {
                     liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
 
                     liCountry.innerHTML += `
-                    <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}  </span>
+                    <h4> <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}  </span> 
                      <i class="fas fa-trash" id= "${res[i].country_id}" onclick = "showDeleteCountry(this)"></i>
                      <i class="fas fa-pencil-alt" id= "${res[i].country_id}" onclick = "showUpdateCountry(this)"></i>
-                    <button class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button>
+                    <button class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button><h4>
             `;
                     console.log(liCountry)
 
