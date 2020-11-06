@@ -20,8 +20,6 @@
     
       button{
           float: right;
-        
-          
       }
       li{
           margin: 3%;
@@ -43,6 +41,15 @@
         right: 8%;
         border: 1px solid $bgPrimary;
       }
+      .fas{
+        display: none;
+      }
+      li:hover .fas{
+        display: inline;
+        padding: 1%;
+        border: 2px $bgGray solid;
+      }
+     
     
   }
   

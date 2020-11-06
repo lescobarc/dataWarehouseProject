@@ -5,11 +5,18 @@ const { deleteQuery, insertQuery, joinQuery, selectQuery, updateQuery, useQuery 
 
 //1. get companies
 async function listCompanies(req, res, next) {
-  const query = selectQuery("companies", "*");
+  const query = selectQuery("companies", "name, address, email, tel, region_id, country_id, city_id");
   const [companies] = await sequelize.query(query, { raw: true });
   req.companiesList = [companies];
   next();
 }
+/* async function listCompanies(req, res, next) {
+  const query = selectQuery("companies", "name, address, email, tel, region_id, country_id, city_id");
+  const query2 = joinQuery("countries", "name", "regions", "region_id", `${id}`, "country_id")
+  const [companies] = await sequelize.query(query, { raw: true });
+  req.companiesList = [companies];
+  next();
+} */
 
 //2. post company
 async function existenceCompany(req, res, next) {
