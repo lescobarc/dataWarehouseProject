@@ -88,8 +88,8 @@ function getRegions() {
                     const row = document.createElement('li');
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.innerHTML += `
-              <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].name} </span>
-              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button>
+             <h3> <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].name} 
+              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button></span> <h3>
           `;
                     console.log(row)
                     console.log(table)

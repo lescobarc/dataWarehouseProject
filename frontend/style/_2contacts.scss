@@ -94,36 +94,7 @@
     } 
 }
 
-#importContactsSection, .deleteSection{
-    @include sectionExtend;
-    .container{
-       background: $bgWhite;
-       border-radius: 4px;
-       width: 339px;
-       height: 303px;
-       position: relative;
-        top: 25%;
-       margin: auto;
-       display: flex;
-       flex-direction: column;
-       justify-content: space-around;
-        text-align: center;
-        padding: 2%;
-        color: gray;
-        font-size: 14pt;
-        img{
-            width: 105px;
-            height: 105px;
-            margin-left: 35%;
-        };
-        .deleteButton{
-            background: rgb(231, 35, 35);
-            color: white;
-            border: none;
-        }
 
- }
-}
 
 #newContactSection{
     
