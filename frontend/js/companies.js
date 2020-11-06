@@ -28,9 +28,9 @@ function getCompanies() {
                 <td>${company[i].address}</td>
                 <td>${company[i].email}</td>
                 <td>${company[i].tel}</td>
-                <td>${company[i].name}</td>
-                <td>${company[i].name}</td>
-                <td>${company[i].name}</td>
+                <td>${company[i].nameRegion}</td>
+                <td>${company[i].nameCountry}</td>
+                <td>${company[i].nameCity}</td>
                 <td id="actions">
                     <i class="fas fa-ellipsis-h iconPoints"></i>
                     <i class="fas fa-trash" id=${company[i].company_id} onclick = "showDeleteCompany(this)" ></i>

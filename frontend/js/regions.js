@@ -88,7 +88,7 @@ function getRegions() {
                     const row = document.createElement('li');
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.innerHTML += `
-             <h2> <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].name} 
+             <h2> <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].nameRegion} 
               <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button></span> <h2>
           `;
                     console.log(row)
@@ -128,7 +128,7 @@ createButtonRegion.addEventListener('click', () => {
     console.log('llamado al API');
     fetch('http://localhost:3000/region', {
         method: 'POST',
-        body: `{"name":"${nameRegion.value}"}`,
+        body: `{"nameRegion":"${nameRegion.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -204,7 +204,7 @@ function getCountries(i) {
                     liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
 
                     liCountry.innerHTML += `
-                    <h4> <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].name}  </span> 
+                    <h4> <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].nameCountry}  </span> 
                      <i class="fas fa-trash" id= "${res[i].country_id}" onclick = "showDeleteCountry(this)"></i>
                      <i class="fas fa-pencil-alt" id= "${res[i].country_id}" onclick = "showUpdateCountry(this)"></i>
                     <button class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button><h4>
@@ -255,7 +255,7 @@ function createCountry(id) {
     console.log('llamado al API');
     fetch(`http://localhost:3000/country/${id}`, {
         method: 'POST',
-        body: `{"name":"${nameCountry.value}"}`,
+        body: `{"nameCountry":"${nameCountry.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -313,7 +313,7 @@ function updateCountries(idCountry) {
     fetch(`http://localhost:3000/country/${idCountry}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameCountryUp.value}"}`,
+        body: `{"nameCountry":"${nameCountryUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -422,7 +422,7 @@ function getCities(i) {
                         const liCity = document.createElement('li');
                         liCity.setAttribute('id', `liCity${res[i].city_id}`)
                         liCity.innerHTML += `
-                  <p>  <span class=""> ${res[i].name} </span>
+                  <p>  <span class=""> ${res[i].nameCity} </span>
                      <i class="fas fa-trash" id= "${res[i].city_id}" onclick = "showDeleteCity(this)"> </i>
                      <i class="fas fa-pencil-alt" id= "${res[i].city_id}" onclick = "showUpdateCity(this) "></i> <p>`;
 
@@ -470,7 +470,7 @@ function createCity(id) {
     console.log('llamado al API');
     fetch(`http://localhost:3000/city/${id}`, {
         method: 'POST',
-        body: `{"name":"${nameCity.value}"}`,
+        body: `{"nameCity":"${nameCity.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -528,7 +528,7 @@ function updateCities(idCity) {
     fetch(`http://localhost:3000/city/${idCity}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameCityUp.value}"}`,
+        body: `{"City":"${nameCityUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`

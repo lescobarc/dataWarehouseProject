@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2020 a las 01:34:28
+-- Tiempo de generación: 07-11-2020 a las 00:25:31
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cities` (
   `city_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `nameCity` varchar(50) NOT NULL,
   `country_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -37,10 +37,7 @@ CREATE TABLE `cities` (
 -- Volcado de datos para la tabla `cities`
 --
 
-INSERT INTO `cities` (`city_id`, `name`, `country_id`) VALUES
-(9, 'Medellín', 41),
-(10, 'Cali', 41),
-(11, 'Buenos Aires', 42),
+INSERT INTO `cities` (`city_id`, `nameCity`, `country_id`) VALUES
 (12, 'Roma', 44),
 (13, 'Venecia', 44),
 (14, 'Guadalajara', 43);
@@ -61,6 +58,13 @@ CREATE TABLE `companies` (
   `country_id` int(11) NOT NULL,
   `city_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `companies`
+--
+
+INSERT INTO `companies` (`company_id`, `name`, `address`, `email`, `tel`, `region_id`, `country_id`, `city_id`) VALUES
+(4, 'Softtek', 'cll 30 #67-22', 'softek@gmail.com', 458721, 9, 44, 12);
 
 -- --------------------------------------------------------
 
@@ -89,7 +93,7 @@ CREATE TABLE `contacts` (
 
 CREATE TABLE `countries` (
   `country_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `nameCountry` varchar(50) NOT NULL,
   `region_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -97,9 +101,7 @@ CREATE TABLE `countries` (
 -- Volcado de datos para la tabla `countries`
 --
 
-INSERT INTO `countries` (`country_id`, `name`, `region_id`) VALUES
-(41, 'Colombia', 1),
-(42, 'Argentina', 1),
+INSERT INTO `countries` (`country_id`, `nameCountry`, `region_id`) VALUES
 (43, 'México', 2),
 (44, 'Italia', 9),
 (45, 'Alemania', 9),
@@ -113,14 +115,14 @@ INSERT INTO `countries` (`country_id`, `name`, `region_id`) VALUES
 
 CREATE TABLE `regions` (
   `region_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `nameRegion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `regions`
 --
 
-INSERT INTO `regions` (`region_id`, `name`) VALUES
+INSERT INTO `regions` (`region_id`, `nameRegion`) VALUES
 (1, 'Suramérica'),
 (2, 'Norteamérica'),
 (3, 'África'),
@@ -151,10 +153,10 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `pass`, `repass`, `
 (4, 's', 's', 's', 's', 's', 0),
 (6, 'sd', 's', 'ss', 's', 's', 0),
 (8, 'dfghg', 'hjjkyyyyyyyyy', 'ssdddsssssl', '12', '123', 0),
-(10, 'L', 'l', 'ssddxdssssxsl', '12', '123', 0),
 (11, 'dfgh', 'jj', 'hgh', '1', '1', 0),
 (12, 't', 't', 't', 't', 't', 0),
-(13, 'admin', 'admin@hotmail.com', 'admin', '1234', '1234', 1);
+(13, 'admin', 'admin@hotmail.com', 'admin', '1234', '1234', 1),
+(14, 'a', 'a', 'a', 'a', 'a', 0);
 
 --
 -- Índices para tablas volcadas
@@ -220,7 +222,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT de la tabla `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `contacts`
@@ -232,7 +234,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT de la tabla `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `regions`
@@ -244,7 +246,7 @@ ALTER TABLE `regions`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas

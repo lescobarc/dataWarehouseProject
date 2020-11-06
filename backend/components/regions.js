@@ -15,10 +15,10 @@ async function listRegions(req, res, next) {
 
 //2. post region
 async function existenceRegion(req, res, next) {
-  const { name } = req.body;
+  const { nameRegion } = req.body;
   console.log(req.body)
-  console.log(req.body.name)
-  const dbRegions = await findRegion(name);
+  console.log(req.body.nameRegion)
+  const dbRegions = await findRegion(nameRegion);
   if (!dbRegions) {
     next();
   } else {
@@ -27,19 +27,19 @@ async function existenceRegion(req, res, next) {
 }
 
 
-async function findRegion(name) {
-  console.log(name)
-  const query = selectQuery("regions", "name", `name = '${name}'`);
+async function findRegion(nameRegion) {
+  console.log(nameRegion)
+  const query = selectQuery("regions", "nameRegion", `nameRegion = '${nameRegion}'`);
   const [dbRegions] = await sequelize.query(query, { raw: true });
   const foundRegion = dbRegions[0];
   return foundRegion;
 }
 
 async function addRegion(req, res, next) {
-  const { name } = req.body;
+  const { nameRegion } = req.body;
   console.log(req.body)
-  if (name) {
-    const query = insertQuery("regions", "name", [name]);
+  if (nameRegion) {
+    const query = insertQuery("regions", "nameRegion", [nameRegion]);
     [region_id] = await sequelize.query(query, { raw: true });
     console.log(region_id)
     req.createdRegionId = region_id;
@@ -56,7 +56,7 @@ async function addRegion(req, res, next) {
 //1. get countries
 async function listCountriesByRegion(req, res, next) {
   let id = req.params.region_id;
-  const query = joinQuery("countries", "name", "regions", "region_id", `${id}`, "country_id")
+  const query = joinQuery("countries", "nameCountry", "regions", "region_id", `${id}`, "country_id")
   const [countries] = await sequelize.query(query, { raw: true });
   req.countriesList = countries;
   next();
@@ -66,10 +66,10 @@ async function listCountriesByRegion(req, res, next) {
 
 //2. post country
 async function existenceCountry(req, res, next) {
-  const { name } = req.body;
+  const { nameCountry } = req.body;
   const region_id = req.params.region_id;
   console.log(req.body)
-  const dbCountries = await findCountry(name);
+  const dbCountries = await findCountry(nameCountry);
   if (!dbCountries) {
     next();
   } else {
@@ -77,20 +77,20 @@ async function existenceCountry(req, res, next) {
   }
 }
 
-async function findCountry(name) {
-  console.log(name)
-  const query = selectQuery("countries", "name, region_id", `name = '${name}'`);
+async function findCountry(nameCountry) {
+  console.log(nameCountry)
+  const query = selectQuery("countries", "nameCountry, region_id", `nameCountry = '${nameCountry}'`);
   const [dbCountries] = await sequelize.query(query, { raw: true });
   const foundCountry = dbCountries[0];
   return foundCountry;
 }
 
 async function addCountry(req, res, next) {
-  const { name } = req.body;
+  const { nameCountry } = req.body;
   const region_id = req.params.region_id;
-  if (name !== "" && region_id !== "") {
-    const query = insertQuery("countries", "name, region_id",
-      [name, region_id]);
+  if (nameCountry !== "" && region_id !== "") {
+    const query = insertQuery("countries", "nameCountry, region_id",
+      [nameCountry, region_id]);
     [country_id] = await sequelize.query(query, { raw: true });
     console.log(country_id)
     req.createdCountryId = country_id;
@@ -104,20 +104,20 @@ async function addCountry(req, res, next) {
 
 //3. Update country
 async function putCountry(req, res, next) {
-  const { name } = req.body;
-  console.log(name)
+  const { nameCountry } = req.body;
+  console.log(nameCountry)
   let id = req.params.country_id;
   console.log(id)
 
   if (id) {
     const countryToUpdate = await findCountryById(id);
     console.log(countryToUpdate)
-    if (name !== "") {
-      const query = updateQuery("countries", `name = '${name}'`, `country_id = '${id}'`);
-      console.log(name)
+    if (nameCountry !== "") {
+      const query = updateQuery("countries", `nameCountry = '${nameCountry}'`, `country_id = '${id}'`);
+      console.log(nameCountry)
       const [countryPut] = await sequelize.query(query, { raw: true });
       console.log(countryPut)
-      req.updatedCountry = { name };
+      req.updatedCountry = { nameCountry };
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
     }
@@ -157,7 +157,7 @@ async function deleteCountry(req, res, next) {
 //1. get cities
 async function listCitiesByCountry(req, res, next) {
   let id = req.params.country_id;
-  const query = joinQuery("cities", "name", "countries", "country_id", `${id}`, "city_id")
+  const query = joinQuery("cities", "nameCity", "countries", "country_id", `${id}`, "city_id")
   const [cities] = await sequelize.query(query, { raw: true });
   req.citiesList = cities;
   next();
@@ -165,13 +165,13 @@ async function listCitiesByCountry(req, res, next) {
 
 //2. post city
 async function existenceCity(req, res, next) {
-  const { name } = req.body;
+  const { nameCity } = req.body;
   const country_id = req.params.country_id;
-  console.log(name);
+  console.log(nameCity);
   console.log(country_id)
 
   console.log(req.body)
-  const dbCities = await findCity(name);
+  const dbCities = await findCity(nameCity);
   if (!dbCities) {
     next();
   } else {
@@ -180,9 +180,9 @@ async function existenceCity(req, res, next) {
 }
 
 
-async function findCity(name) {
-  console.log(name)
-  const query = selectQuery("cities", "name, country_id", `name = '${name}'`);
+async function findCity(nameCity) {
+  console.log(nameCity)
+  const query = selectQuery("cities", "nameCity, country_id", `nameCity = '${nameCity}'`);
   const [dbCities] = await sequelize.query(query, { raw: true });
   const foundCity = dbCities[0];
   console.log(foundCity)
@@ -190,13 +190,13 @@ async function findCity(name) {
 }
 
 async function addCity(req, res, next) {
-  const { name } = req.body;
+  const { nameCity } = req.body;
   const country_id = req.params.country_id;
-  console.log(name);
+  console.log(nameCity);
   console.log(country_id)
-  if (name !== "" && country_id !== "") {
-    const query = insertQuery("cities", "name, country_id",
-      [name, country_id]);
+  if (nameCity !== "" && country_id !== "") {
+    const query = insertQuery("cities", "nameCity, country_id",
+      [nameCity, country_id]);
     [city_id] = await sequelize.query(query, { raw: true });
     console.log(city_id)
     req.createdCityId = city_id;
@@ -210,20 +210,20 @@ async function addCity(req, res, next) {
 
 //3. Update city
 async function putCity(req, res, next) {
-  const { name } = req.body;
-  console.log(name)
+  const { nameCity } = req.body;
+  console.log(nameCity)
   let id = req.params.city_id;
   console.log(id)
 
   if (id) {
     const cityToUpdate = await findCityById(id);
     console.log(cityToUpdate)
-    if (name !== "") {
-      const query = updateQuery("cities", `name = '${name}'`, `city_id = '${id}'`);
-      console.log(name)
+    if (nameCity !== "") {
+      const query = updateQuery("cities", `nameCity = '${nameCity}'`, `city_id = '${id}'`);
+      console.log(nameCity)
       const [cityPut] = await sequelize.query(query, { raw: true });
       console.log(cityPut)
-      req.updatedCity = { name };
+      req.updatedCity = { nameCity };
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
     }
