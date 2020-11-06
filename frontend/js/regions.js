@@ -422,9 +422,9 @@ function getCities(i) {
                         const liCity = document.createElement('li');
                         liCity.setAttribute('id', `liCity${res[i].city_id}`)
                         liCity.innerHTML += `
-                    <span class=""> ${res[i].name} </span>
+                  <p>  <span class=""> ${res[i].name} </span>
                      <i class="fas fa-trash" id= "${res[i].city_id}" onclick = "showDeleteCity(this)"> </i>
-                     <i class="fas fa-pencil-alt" id= "${res[i].city_id}" onclick = "showUpdateCity(this) "></i> `;
+                     <i class="fas fa-pencil-alt" id= "${res[i].city_id}" onclick = "showUpdateCity(this) "></i> <p>`;
 
                         console.log(liCity)
                         document.getElementById(`liCountry${country_id}`).appendChild(liCity);

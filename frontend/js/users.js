@@ -1,14 +1,17 @@
-/* const { TokenExpiredError } = require("jsonwebtoken"); */
 let token = localStorage.token;
 
+//USERS
+//create
 let createButton = document.getElementById('createButton');
 let cancelButton = document.getElementById('cancelButton');
 let addButton = document.getElementById('addButton');
 let createUserSection = document.getElementById('createUser');
 let usersSection = document.getElementById('usersSection');
+//update
 let updateUserSection = document.getElementById('updateUserSection');
 let cancelButtonUp = document.getElementById('cancelButtonUp');
 let createButtonUp = document.getElementById('createButtonUp');
+//delete
 let deleteUsersSection = document.getElementById('deleteUsersSection');
 let cancelButtonDeleteUser = document.getElementById('cancelButtonDeleteUser');
 let deleteButtonDeleteUser = document.getElementById('deleteButtonDeleteUser')

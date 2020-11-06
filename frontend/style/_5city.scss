@@ -8,7 +8,7 @@
   /* Create the caret/arrow with a unicode, and style it */
   .caret::before {
     content: "\25B6";
-    color: black;
+    color: $bgPrimary;
     display: inline-block;
     margin-right: 6px;
   }
@@ -17,7 +17,10 @@
 
 
   #citySection {
-    
+    table{
+      width: 600px;
+      margin: 5% auto;
+    }
       button{
           float: right;
       }
@@ -35,20 +38,29 @@
         border: 1px solid #CCCCCC;
         background: $bgGray;
         color: $bgBlack;
+        display: none;
+        margin: auto;
       }
       .buttonTerciary{
-        position: absolute;
-        right: 8%;
+        margin: auto;
         border: 1px solid $bgPrimary;
+        display: none;
       }
       .fas{
         display: none;
       }
-      li:hover .fas{
+      h4:hover .fas, p:hover .fas{
         display: inline;
-        padding: 1%;
+       
+       padding: 1%; 
         border: 2px $bgGray solid;
+        
       }
+     
+      h2:hover .buttonSecondary, h4:hover .buttonTerciary{
+        display: inline;
+      }
+    
      
     
   }

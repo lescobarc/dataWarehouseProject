@@ -5,19 +5,14 @@ const { deleteQuery, insertQuery, joinQuery, selectQuery, updateQuery, useQuery 
 
 //1. get companies
 async function listCompanies(req, res, next) {
-  const query = selectQuery("companies", "name, address, email, tel, region_id, country_id, city_id");
+  const company_id = req.params.company_id;
+  const query = `SELECT companies.name, companies.address, companies.email, companies.tel, regions.name, countries.name, cities.name FROM companies INNER JOIN regions ON companies.region_id = regions.region_id INNER JOIN countries ON companies.country_id= countries.country_id INNER JOIN cities ON companies.city_id = cities.city_id`
   const [companies] = await sequelize.query(query, { raw: true });
   req.companiesList = [companies];
   next();
 }
-/* async function listCompanies(req, res, next) {
-  const query = selectQuery("companies", "name, address, email, tel, region_id, country_id, city_id");
-  const query2 = joinQuery("countries", "name", "regions", "region_id", `${id}`, "country_id")
-  const [companies] = await sequelize.query(query, { raw: true });
-  req.companiesList = [companies];
-  next();
-} */
 
+/* `SELECT companies.name, companies.address, companies.email, companies.tel, regions.name, countries.name, cities.name FROM companies INNER JOIN regions ON companies.region_id = regions.region_id INNER JOIN countries ON companies.country_id= countries.country_id INNER JOIN cities ON companies.city_id = cities.city_id WHERE companies.company_id = ${company_id}` */
 //2. post company
 async function existenceCompany(req, res, next) {
     const { name } = req.body;

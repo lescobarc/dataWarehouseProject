@@ -145,9 +145,9 @@ td {
   background: linear-gradient(to bottom, #1D72C2 24%, white 23%, white 100%);
   border-radius: 2px;
   width: 350px;
-  height: 390px;
+  height: 480px;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -157,6 +157,8 @@ td {
           flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -ms-flex-line-pack: center;
+      align-content: center;
   text-align: start;
   padding: 1%;
   color: #000000;
@@ -174,9 +176,21 @@ td {
   margin-top: 0;
 }
 
+#createUser .container div:not(.buttonsAction), #updateUserSection .container div:not(.buttonsAction), #createRegion .container div:not(.buttonsAction), .create .container div:not(.buttonsAction) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 #createUser .container input, #updateUserSection .container input, #createRegion .container input, .create .container input {
-  margin: 0 20%;
-  width: 200px;
+  margin: 0.3% 2%;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  height: 30px;
 }
 
 #createUser .container .buttonsAction, #updateUserSection .container .buttonsAction, #createRegion .container .buttonsAction, .create .container .buttonsAction {
@@ -189,7 +203,8 @@ td {
 #createUser .container img, #updateUserSection .container img, #createRegion .container img, .create .container img {
   width: 105px;
   height: 105px;
-  margin-left: 35%;
+  margin: 0 auto;
+  border-radius: 40%;
 }
 
 #importContactsSection, .deleteSection {
@@ -268,6 +283,13 @@ nav ul li {
 nav ul li:hover {
   border-bottom: 4px solid white;
   cursor: pointer;
+}
+
+nav #imgLogo {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  margin: 0.5%;
 }
 
 #contacts {
@@ -673,9 +695,14 @@ nav ul li:hover {
 /* Create the caret/arrow with a unicode, and style it */
 .caret::before {
   content: "\25B6";
-  color: black;
+  color: #1D72C2;
   display: inline-block;
   margin-right: 6px;
+}
+
+#citySection table {
+  width: 600px;
+  margin: 5% auto;
 }
 
 #citySection button {
@@ -698,22 +725,28 @@ nav ul li:hover {
   border: 1px solid #CCCCCC;
   background: #E8E8E8;
   color: #000000;
+  display: none;
+  margin: auto;
 }
 
 #citySection .buttonTerciary {
-  position: absolute;
-  right: 8%;
+  margin: auto;
   border: 1px solid #1D72C2;
+  display: none;
 }
 
 #citySection .fas {
   display: none;
 }
 
-#citySection li:hover .fas {
+#citySection h4:hover .fas, #citySection p:hover .fas {
   display: inline;
   padding: 1%;
   border: 2px #E8E8E8 solid;
+}
+
+#citySection h2:hover .buttonSecondary, #citySection h4:hover .buttonTerciary {
+  display: inline;
 }
 
 #loginUser {
