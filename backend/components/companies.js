@@ -36,25 +36,12 @@ async function findCompanyName(name) {
 
 async function addCompany(req, res, next) {
   const { name, address, email, tel, region_id, country_id, city_id } = req.body;
-  console.log(req.body)
-
-
-
-  console.log(region_id)
   region = region_id.split(" ");
   const regionId = parseInt(region[0]);
-  console.log(regionId)
-
   country = country_id.split(" ");
   const countryId = parseInt(country[0]);
-  console.log(countryId)
-
   city = city_id.split(" ");
   const cityId = parseInt(city[0]);
-  console.log(cityId)
-
-
-
 
   if (name && address && email && tel && region_id && country_id && city_id) {
     const query = insertQuery("companies", "name, address, email, tel, region_id, country_id, city_id ",
