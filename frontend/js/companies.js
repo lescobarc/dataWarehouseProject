@@ -13,8 +13,14 @@ let companiesSection = document.getElementById('companiesSection');
 let regionCompany = document.getElementById('regionCompany');
 let countryCompany = document.getElementById('countryCompany');
 let cityCompany = document.getElementById('cityCompany');
-/* let secondInfoCompani = document.getElementById('secondInfoCompany') */
-/* let tableRegions = document.getElementById('regionCompany') */
+let nameCompany = document.getElementById('nameCompany');
+let addressCompany = document.getElementById('addressCompany');
+let emailCompany = document.getElementById('emailCompany');
+let telCompany = document.getElementById('telCompany');
+/* let regionCompany = document.getElementById('regionCompany');
+let countryCompany = document.getElementById('countryCompany');
+let cityCompany = document.getElementById('cityCompany'); */
+
 
 
 //1. get companies
@@ -66,10 +72,11 @@ getCompanies();
 //2. Post Companies
 
 createButton.addEventListener('click', () => {
+    console.log(nameCompany.value)
     console.log('llamado al API');
     fetch('http://localhost:3000/company', {
         method: 'POST',
-        body: `{"name":"${nameCompany.value}","address":"${addressCompany.value}","email":"${emailCompany.value}","region_id":"${regionCompany.value}","country_id":"${countryCompany.value}","city_id":"${cityCompany.value}"}`,
+        body: `{"name":"${nameCompany.value}","address":"${addressCompany.value}","email":"${emailCompany.value}", "tel":"${telCompany.value}", "region_id":"${regionCompany.value}","country_id":"${countryCompany.value}","city_id":"${cityCompany.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -128,7 +135,7 @@ cancelButton.addEventListener('click', () => {
 
 //Select Region
 regionCompany.addEventListener('click', () => {
-    
+
 
     fetch('http://localhost:3000/regions', {
         method: 'GET',
@@ -138,7 +145,7 @@ regionCompany.addEventListener('click', () => {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-            
+
             console.log(res)
             let validateSearchRegion = document.getElementsByClassName(`rowRegion`);
 
@@ -160,120 +167,123 @@ regionCompany.addEventListener('click', () => {
                 console.log('Search Realized');
             }
         })
-        
+
 
     getCountries();
 }
 )
 
-
+//Select Countries
 function getCountries() {
     let validateSearchCountry = document.getElementsByClassName(`liCountry`);
     console.log(validateSearchCountry)
-     
-       /* countryCompany.remove()
-         let newSelectCountry = document.createElement('select');
-                            newSelectCountry.setAttribute('id', `countryCompany`)
-                            newSelectCountry.setAttribute('name', 'companyCountry')
-                            secondInfoCompani.appendChild(newSelectCountry); */
-      
-            
-        const regionCompanySelectValue = regionCompany.value.split(" ");
-        console.log(regionCompanySelectValue)
-        const region_idSelect = regionCompanySelectValue[0];
-        if (region_idSelect) {
-            countryCompany.disabled = false
 
-            countryCompany.addEventListener('click', () => {
-    
-                fetch(`http://localhost:3000/countries/${region_idSelect}`, {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                        'Authorization': `Bearer ${token}` 
-                    }
-                }).then(respuesta => respuesta.json())
-                    .then(res => {
-        
-                      
-                        if (res && validateSearchCountry.length == 0) {
-                            for (let i = 0; i < res.length; i++) {
-                                console.log(res)
-                                console.log(res[i].country_id)
-                                const liCountry = document.createElement('option');
-                                liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
-                                liCountry.setAttribute('class', `liCountry`)
-                                liCountry.innerHTML += `
+    /* countryCompany.remove()
+      let newSelectCountry = document.createElement('select');
+                         newSelectCountry.setAttribute('id', `countryCompany`)
+                         newSelectCountry.setAttribute('name', 'companyCountry')
+                         secondInfoCompani.appendChild(newSelectCountry); */
+
+
+    const regionCompanySelectValue = regionCompany.value.split(" ");
+    console.log(regionCompanySelectValue)
+    const region_idSelect = regionCompanySelectValue[0];
+    if (region_idSelect) {
+        countryCompany.disabled = false
+
+        countryCompany.addEventListener('click', () => {
+
+            fetch(`http://localhost:3000/countries/${region_idSelect}`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(respuesta => respuesta.json())
+                .then(res => {
+
+
+                    if (res && validateSearchCountry.length == 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            console.log(res)
+                            console.log(res[i].country_id)
+                            const liCountry = document.createElement('option');
+                            liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
+                            liCountry.setAttribute('class', `liCountry`)
+                            liCountry.innerHTML += `
                             <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
-                                console.log(liCountry)
-                                countryCompany.appendChild(liCountry);
-                            }
-                        } else {
-                            console.log('Search Realized');
+                            console.log(liCountry)
+                            countryCompany.appendChild(liCountry);
                         }
-                    })
-                    getCities()
-        
-            })
-            
-           
+                    } else {
+                        console.log('Search Realized');
+                    }
+                })
+            getCities()
+
+        })
 
 
 
-        } else { console.log('Region Id Not Exist ') };
-        console.log(region_idSelect);
-    
+
+
+    } else { console.log('Region Id Not Exist ') };
+    console.log(region_idSelect);
+
 }
 
+//Select Cities
 function getCities() {
     let validateSearchCity = document.getElementsByClassName(`liCity`);
     console.log(validateSearchCity)
-     
-       /* countryCompany.remove()
-         let newSelectCountry = document.createElement('select');
-                            newSelectCountry.setAttribute('id', `countryCompany`)
-                            newSelectCountry.setAttribute('name', 'companyCountry')
-                            secondInfoCompani.appendChild(newSelectCountry); */
-      
-            
-        const countryCompanySelectValue = countryCompany.value.split(" ");
-        console.log(countryCompanySelectValue)
-        const country_idSelect = countryCompanySelectValue[0];
-        if (country_idSelect) {
-            cityCompany.disabled = false
+
+    /* countryCompany.remove()
+      let newSelectCountry = document.createElement('select');
+                         newSelectCountry.setAttribute('id', `countryCompany`)
+                         newSelectCountry.setAttribute('name', 'companyCountry')
+                         secondInfoCompani.appendChild(newSelectCountry); */
+
+
+    const countryCompanySelectValue = countryCompany.value.split(" ");
+    console.log(countryCompanySelectValue)
+    const country_idSelect = countryCompanySelectValue[0];
+    if (country_idSelect) {
+        cityCompany.disabled = false
 
 
 
-    cityCompany.addEventListener('click', () => {
-        fetch(`http://localhost:3000/cities/${country_idSelect}`, {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(respuesta => respuesta.json())
-            .then(res => {
-                console.log(res)
-                if (res && validateSearchCity.length == 0) {
-                    for (let i = 0; i < res.length; i++) {
-                        console.log(res)
-                        console.log(validateSearchCity)
-                        let liCity = document.createElement('option');
-                        liCity.setAttribute('id', `liCity${res[i].city_id}`)
-                        liCity.setAttribute('class', `liCity`)
-                        liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
-                        console.log(liCity)
-                        cityCompany.appendChild(liCity);
-                    }
-                } else {
-                    console.log('Search Realized');
-                   
+        cityCompany.addEventListener('click', () => {
+            fetch(`http://localhost:3000/cities/${country_idSelect}`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 }
+            }).then(respuesta => respuesta.json())
+                .then(res => {
+                    console.log(res)
+                    if (res && validateSearchCity.length == 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            console.log(res)
+                            console.log(validateSearchCity)
+                            let liCity = document.createElement('option');
+                            liCity.setAttribute('id', `liCity${res[i].city_id}`)
+                            liCity.setAttribute('class', `liCity`)
+                            liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
+                            console.log(liCity)
+                            cityCompany.appendChild(liCity);
+                        }
+                    } else {
+                        console.log('Search Realized');
 
-            })
-    }
-    ) 
-}else { console.log('Country Id Not Exist ') };
+                    }
+
+                })
+        }
+        )
+
+
+    } else { console.log('Country Id Not Exist ') };
 
 }
 
