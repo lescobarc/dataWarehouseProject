@@ -20,8 +20,8 @@ let telCompany = document.getElementById('telCompany');
 /* let regionCompany = document.getElementById('regionCompany');
 let countryCompany = document.getElementById('countryCompany');
 let cityCompany = document.getElementById('cityCompany'); */
-
-let validateSearchCountry = document.getElementsByClassName(`liCountry`);
+/* 
+let validateSearchCountry = document.getElementsByClassName(`liCountry`); */
 
 
 
@@ -137,12 +137,6 @@ cancelButton.addEventListener('click', () => {
 
 //Select Region
 regionCompany.addEventListener('click', () => {
-
-    /*     for (let i = validateSearchCountry.length; i >= 0; i--) {
-            countryCompany.remove(i);
-        }
-        console.log(validateSearchCountry.length) */
-
     fetch('http://localhost:3000/regions', {
         method: 'GET',
         headers: {
@@ -151,11 +145,8 @@ regionCompany.addEventListener('click', () => {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-
             console.log(res)
             let validateSearchRegion = document.getElementsByClassName(`rowRegion`);
-
-
             if (res && validateSearchRegion.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
@@ -169,21 +160,20 @@ regionCompany.addEventListener('click', () => {
                     console.log(regionCompany)
                     regionCompany.appendChild(row);
                 }
-
-                for (let i = countryCompany.options.length; i >= 0; i--) {
-                    countryCompany.remove(i);
-                }
             } else {
                 console.log('Search Realized');
-                for (let i = countryCompany.options.length; i >= 0; i--) {
-                    countryCompany.remove(i);
-                }
             }
-            console.log(countryCompany.options.length)
+            
 
         })
 
-
+        console.log('Search Realized');
+        for (let i = countryCompany.options.length; i >= 0; i--) {
+            countryCompany.remove(i);
+        }
+        for (let i = cityCompany.options.length; i >= 0; i--) {
+            cityCompany.remove(i);
+        }
 
     getCountries();
 }
@@ -191,20 +181,13 @@ regionCompany.addEventListener('click', () => {
 
 
 
-/* function clearSelectCountries() {
-   for (let i = countryCompany.options.length; i >= 0; i--) {
-        countryCompany.remove(i);
-      }
 
-    
-} */
 
 //Select Countries
 function getCountries() {
-    /*  let validateSearchCountry = document.getElementsByClassName(`liCountry`); */
+    let validateSearchCountry = document.getElementsByClassName(`liCountry`); 
     console.log(validateSearchCountry)
     countryCompany.disabled = false
-
     countryCompany.addEventListener('click', () => {
         const regionCompanySelectValue = regionCompany.value.split(" ");
         console.log(regionCompanySelectValue)
@@ -218,9 +201,6 @@ function getCountries() {
             }
         }).then(respuesta => respuesta.json())
             .then(res => {
-
-
-
                 console.log(res)
                 console.log(validateSearchCountry.length)
                 if (res && validateSearchCountry.length == 0) {
@@ -235,33 +215,13 @@ function getCountries() {
                         console.log(liCountry)
                         countryCompany.appendChild(liCountry);
                     }
-                } /* else {
-                            console.log('Search Realized');
-                             for (let i = validateSearchCountry.length; i >= 0; i--) {
-                                countryCompany.remove(i);
-                            }
-                              for (let i = countryCompany.options.length; i >= 0; i--) {
-                                countryCompany.remove(i);
-                            }  
-                        } */
-
-
-
-
-
+                } 
             })
             for (let i = cityCompany.options.length; i >= 0; i--) {
                 cityCompany.remove(i);
             }
-
         getCities()
-
     })
-
-
-
-
-
 }
 
 
@@ -270,20 +230,7 @@ function getCountries() {
 function getCities() {
     let validateSearchCity = document.getElementsByClassName(`liCity`);
     console.log(validateSearchCity)
-
-    /* countryCompany.remove()
-      let newSelectCountry = document.createElement('select');
-                         newSelectCountry.setAttribute('id', `countryCompany`)
-                         newSelectCountry.setAttribute('name', 'companyCountry')
-                         secondInfoCompani.appendChild(newSelectCountry); */
-
-
-  
         cityCompany.disabled = false
-
-
-
-
         cityCompany.addEventListener('click', () => {
             const countryCompanySelectValue = countryCompany.value.split(" ");
             console.log(countryCompanySelectValue)
@@ -297,13 +244,6 @@ function getCities() {
                 }
             }).then(respuesta => respuesta.json())
                 .then(res => {
-
-                    for (let i = cityCompany.options.length; i >= 0; i--) {
-                        cityCompany.remove(i);
-                    }
-
-
-
                     console.log(res)
                     if (res && validateSearchCity.length == 0) {
                         for (let i = 0; i < res.length; i++) {
@@ -318,18 +258,11 @@ function getCities() {
                         }
                     } else {
                         console.log('Search Realized');
-                        for (let i = validateSearchCity.length; i >= 0; i--) {
-                            cityCompany.remove(i);
-                        }
-
                     }
 
                 })
         }
         )
-
-
-    
 
 }
 
