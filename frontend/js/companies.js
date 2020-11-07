@@ -261,7 +261,7 @@ function getCities() {
                         let liCity = document.createElement('option');
                         liCity.setAttribute('id', `liCity${res[i].city_id}`)
                         liCity.setAttribute('class', `liCity`)
-                        liCity.innerHTML += ` <span class="">  ${res[i].nameCity} </span> `;
+                        liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
                         console.log(liCity)
                         cityCompany.appendChild(liCity);
                     }

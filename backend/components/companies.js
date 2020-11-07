@@ -36,6 +36,10 @@ async function existenceCompany(req, res, next) {
   
   async function addCompany(req, res, next) {
  const { name, address, email, tel, region_id, country_id, city_id } = req.body;  
+
+
+ 
+
     if (name && address  && email && tel  && region_id && country_id && city_id ) {
       const query = insertQuery("companies", "name, address, email, tel, region_id, country_id, city_id ",
         [name, address, email, tel, region_id, country_id, city_id]);
