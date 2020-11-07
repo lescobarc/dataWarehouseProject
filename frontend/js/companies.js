@@ -6,11 +6,12 @@ let tabla = document.querySelector('#companiesTable tbody')
 //COMPANIES
 //create
 let createButton = document.getElementById('createButton');
- let cancelButton = document.getElementById('cancelButton');
+let cancelButton = document.getElementById('cancelButton');
 let addButton = document.getElementById('addButton');
 let createCompanySection = document.getElementById('createCompany');
-let companiesSection = document.getElementById('companiesSection'); 
+let companiesSection = document.getElementById('companiesSection');
 let regionCompany = document.getElementById('regionCompany');
+let countryCompany = document.getElementById('countryCompany');
 /* let tableRegions = document.getElementById('regionCompany') */
 
 
@@ -29,7 +30,7 @@ function getCompanies() {
             let company = res[0];
             if (res) {
                 for (let i = 0; i < company.length; i++) {
-                    
+
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
@@ -71,7 +72,7 @@ createButton.addEventListener('click', () => {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-        
+
     }).then((res) => {
         console.log(res);
         if (res.status == 200) {
@@ -121,10 +122,54 @@ createButton.addEventListener('click', () => {
 cancelButton.addEventListener('click', () => {
     createCompanySection.classList.toggle('hidden');
     companiesSection.classList.toggle('hidden');
-}); 
-regionCompany.addEventListener('click', () =>{
-   
-        fetch('http://localhost:3000/regions', {
+});
+regionCompany.addEventListener('click', () => {
+    fetch('http://localhost:3000/regions', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            let validateSearchRegion = document.getElementsByClassName(`rowRegion`);
+
+
+            if (res && validateSearchRegion.length == 0) {
+                for (let i = 0; i < res.length; i++) {
+                    console.log(res)
+                    /* console.log(res.users[i].name)  */
+                    const row = document.createElement('option');
+                    row.setAttribute('id', `rowRegion${res[i].region_id}`)
+                    row.setAttribute('class', `rowRegion`)
+                    row.innerHTML += `
+                  <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
+                    console.log(row)
+                    console.log(regionCompany)
+                    regionCompany.appendChild(row);
+                }
+            } else {
+                console.log('Search Realized');
+            }
+        })
+
+    getCountries();
+}
+)
+
+
+function getCountries() {
+    const regionCompanySelectValue = regionCompany.value.split(" ");
+    console.log(regionCompanySelectValue)
+    const region_idSelect = regionCompanySelectValue[0];
+    if (region_idSelect) {
+        countryCompany.disabled = false
+    } else { console.log('Region Id Not Exist ') };
+    console.log(region_idSelect);
+
+    countryCompany.addEventListener('click', () => {
+        fetch(`http://localhost:3000/countries/${region_idSelect}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -132,37 +177,42 @@ regionCompany.addEventListener('click', () =>{
             }
         }).then(respuesta => respuesta.json())
             .then(res => {
+                console.log("aqui")
                 console.log(res)
-                let validateSearchRegion = document.getElementsByClassName(`rowRegion`) ;
+                /*   let validateSearchCountry = document.getElementById(`sectionCountries${region_id}`);
+                  console.log(validateSearchCountry) */
+
+                if (res) {
+                    /*  const ul = document.createElement('ul'); */
+                    /* ul.setAttribute('id', `sectionCountries${region_id}`)
     
-    
-                if (res && validateSearchRegion.length == 0) {
+                    sectionCountries.appendChild(ul) */
+
+
                     for (let i = 0; i < res.length; i++) {
                         console.log(res)
-                        /* console.log(res.users[i].name)  */
-                        const row = document.createElement('option');
-                        row.setAttribute('id', `rowRegion${res[i].region_id}`)
-                        row.setAttribute('class', `rowRegion`)
-                        row.innerHTML += `
-                  <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].nameRegion} </span> 
-                
-              `;
-                        console.log(row)
-                        console.log(regionCompany)
-                        regionCompany.appendChild(row);
-    
+                        console.log(res[i].country_id)
+                        const liCountry = document.createElement('option');
+                        liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
+                        liCountry.innerHTML += `
+                    <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
+                        console.log(liCountry)
+                        countryCompany.appendChild(liCountry);
                     }
                 } else {
                     console.log('Search Realized');
+                    for (let i = 0; i < res.length; i++) {
+                        rowDelete = document.getElementById(`liCountry${res[i].country_id}`)
+                        console.log(rowDelete)
+                        rowDelete.classList.toggle('hidden')
+                    }
                 }
-    
             })
-    
-    
-    
 
+    })
 
 }
-)
+
+
 
 
