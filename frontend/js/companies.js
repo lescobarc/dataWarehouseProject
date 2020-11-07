@@ -12,6 +12,8 @@ let createCompanySection = document.getElementById('createCompany');
 let companiesSection = document.getElementById('companiesSection');
 let regionCompany = document.getElementById('regionCompany');
 let countryCompany = document.getElementById('countryCompany');
+let cityCompany = document.getElementById('cityCompany');
+/* let secondInfoCompani = document.getElementById('secondInfoCompany') */
 /* let tableRegions = document.getElementById('regionCompany') */
 
 
@@ -123,7 +125,11 @@ cancelButton.addEventListener('click', () => {
     createCompanySection.classList.toggle('hidden');
     companiesSection.classList.toggle('hidden');
 });
+
+//Select Region
 regionCompany.addEventListener('click', () => {
+    
+
     fetch('http://localhost:3000/regions', {
         method: 'GET',
         headers: {
@@ -132,6 +138,7 @@ regionCompany.addEventListener('click', () => {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
+            
             console.log(res)
             let validateSearchRegion = document.getElementsByClassName(`rowRegion`);
 
@@ -153,6 +160,7 @@ regionCompany.addEventListener('click', () => {
                 console.log('Search Realized');
             }
         })
+        
 
     getCountries();
 }
@@ -160,16 +168,84 @@ regionCompany.addEventListener('click', () => {
 
 
 function getCountries() {
-    const regionCompanySelectValue = regionCompany.value.split(" ");
-    console.log(regionCompanySelectValue)
-    const region_idSelect = regionCompanySelectValue[0];
-    if (region_idSelect) {
-        countryCompany.disabled = false
-    } else { console.log('Region Id Not Exist ') };
-    console.log(region_idSelect);
+    let validateSearchCountry = document.getElementsByClassName(`liCountry`);
+    console.log(validateSearchCountry)
+     
+       /* countryCompany.remove()
+         let newSelectCountry = document.createElement('select');
+                            newSelectCountry.setAttribute('id', `countryCompany`)
+                            newSelectCountry.setAttribute('name', 'companyCountry')
+                            secondInfoCompani.appendChild(newSelectCountry); */
+      
+            
+        const regionCompanySelectValue = regionCompany.value.split(" ");
+        console.log(regionCompanySelectValue)
+        const region_idSelect = regionCompanySelectValue[0];
+        if (region_idSelect) {
+            countryCompany.disabled = false
 
-    countryCompany.addEventListener('click', () => {
-        fetch(`http://localhost:3000/countries/${region_idSelect}`, {
+            countryCompany.addEventListener('click', () => {
+    
+                fetch(`http://localhost:3000/countries/${region_idSelect}`, {
+                    method: 'GET',
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': `Bearer ${token}` 
+                    }
+                }).then(respuesta => respuesta.json())
+                    .then(res => {
+        
+                      
+                        if (res && validateSearchCountry.length == 0) {
+                            for (let i = 0; i < res.length; i++) {
+                                console.log(res)
+                                console.log(res[i].country_id)
+                                const liCountry = document.createElement('option');
+                                liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
+                                liCountry.setAttribute('class', `liCountry`)
+                                liCountry.innerHTML += `
+                            <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
+                                console.log(liCountry)
+                                countryCompany.appendChild(liCountry);
+                            }
+                        } else {
+                            console.log('Search Realized');
+                        }
+                    })
+                    getCities()
+        
+            })
+            
+           
+
+
+
+        } else { console.log('Region Id Not Exist ') };
+        console.log(region_idSelect);
+    
+}
+
+function getCities() {
+    let validateSearchCity = document.getElementsByClassName(`liCity`);
+    console.log(validateSearchCity)
+     
+       /* countryCompany.remove()
+         let newSelectCountry = document.createElement('select');
+                            newSelectCountry.setAttribute('id', `countryCompany`)
+                            newSelectCountry.setAttribute('name', 'companyCountry')
+                            secondInfoCompani.appendChild(newSelectCountry); */
+      
+            
+        const countryCompanySelectValue = countryCompany.value.split(" ");
+        console.log(countryCompanySelectValue)
+        const country_idSelect = countryCompanySelectValue[0];
+        if (country_idSelect) {
+            cityCompany.disabled = false
+
+
+
+    cityCompany.addEventListener('click', () => {
+        fetch(`http://localhost:3000/cities/${country_idSelect}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -177,42 +253,29 @@ function getCountries() {
             }
         }).then(respuesta => respuesta.json())
             .then(res => {
-                console.log("aqui")
                 console.log(res)
-                /*   let validateSearchCountry = document.getElementById(`sectionCountries${region_id}`);
-                  console.log(validateSearchCountry) */
-
-                if (res) {
-                    /*  const ul = document.createElement('ul'); */
-                    /* ul.setAttribute('id', `sectionCountries${region_id}`)
-    
-                    sectionCountries.appendChild(ul) */
-
-
+                if (res && validateSearchCity.length == 0) {
                     for (let i = 0; i < res.length; i++) {
                         console.log(res)
-                        console.log(res[i].country_id)
-                        const liCountry = document.createElement('option');
-                        liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
-                        liCountry.innerHTML += `
-                    <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
-                        console.log(liCountry)
-                        countryCompany.appendChild(liCountry);
+                        console.log(validateSearchCity)
+                        let liCity = document.createElement('option');
+                        liCity.setAttribute('id', `liCity${res[i].city_id}`)
+                        liCity.setAttribute('class', `liCity`)
+                        liCity.innerHTML += ` <span class="">  ${res[i].nameCity} </span> `;
+                        console.log(liCity)
+                        cityCompany.appendChild(liCity);
                     }
                 } else {
                     console.log('Search Realized');
-                    for (let i = 0; i < res.length; i++) {
-                        rowDelete = document.getElementById(`liCountry${res[i].country_id}`)
-                        console.log(rowDelete)
-                        rowDelete.classList.toggle('hidden')
-                    }
+                   
                 }
-            })
 
-    })
+            })
+    }
+    ) 
+}else { console.log('Country Id Not Exist ') };
 
 }
-
 
 
 
