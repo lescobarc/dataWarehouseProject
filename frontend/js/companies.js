@@ -2,14 +2,14 @@ let token = localStorage.token;
 
 //Table 
 let tabla = document.querySelector('#companiesTable tbody')
+let companiesSection = document.getElementById('companiesSection');
 
 //COMPANIES
 //create
 let createButton = document.getElementById('createButton');
 let cancelButton = document.getElementById('cancelButton');
 let addButton = document.getElementById('addButton');
-let createCompanySection = document.getElementById('createCompany');
-let companiesSection = document.getElementById('companiesSection');
+let createCompanySection = document.getElementById('createCompanySection');
 let regionCompany = document.getElementById('regionCompany');
 let countryCompany = document.getElementById('countryCompany');
 let cityCompany = document.getElementById('cityCompany');
@@ -17,12 +17,19 @@ let nameCompany = document.getElementById('nameCompany');
 let addressCompany = document.getElementById('addressCompany');
 let emailCompany = document.getElementById('emailCompany');
 let telCompany = document.getElementById('telCompany');
-/* let regionCompany = document.getElementById('regionCompany');
-let countryCompany = document.getElementById('countryCompany');
-let cityCompany = document.getElementById('cityCompany'); */
-/* 
-let validateSearchCountry = document.getElementsByClassName(`liCountry`); */
 
+//update
+let createButtonUp = document.getElementById('createButtonUp');
+let cancelButtonUp = document.getElementById('cancelButtonUp');
+/* let addButton = document.getElementById('addButton'); */
+let updateCompanySection = document.getElementById('updateCompanySection');
+let regionCompanyUp = document.getElementById('regionCompanyUp');
+let countryCompanyUp = document.getElementById('countryCompanyUp');
+let cityCompanyUp = document.getElementById('cityCompanyUp');
+let nameCompanyUp = document.getElementById('nameCompanyUp');
+let addressCompanyUp = document.getElementById('addressCompanyUp');
+let emailCompanyUp = document.getElementById('emailCompanyUp');
+let telCompanyUp = document.getElementById('telCompanyUp'); 
 
 
 //1. get companies
@@ -180,9 +187,6 @@ regionCompany.addEventListener('click', () => {
 )
 
 
-
-
-
 //Select Countries
 function getCountries() {
     let validateSearchCountry = document.getElementsByClassName(`liCountry`); 
@@ -266,5 +270,107 @@ function getCities() {
 
 }
 
+// 3. Put companies
+
+function showUpdateCompany(i) {
+    console.log(i)
+    let id = i.id
+    console.log(id)
+    updateCompanySection.classList.toggle('hidden');
+    companiesSection.classList.toggle('hidden');
+    createButtonUp.addEventListener('click', () => {
+        console.log(id)
+        updateUsers(id)
+    });
+}
+function updateUsers(id) {
+    console.log(id)
+
+    fetch(`http://localhost:3000/company/${id}`, {
+
+        method: 'PUT',
+        body: `{"name":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Updated');
+            });
+            location.reload()
+        }
+        else if (res.status == 400) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Missing Arguments');
+            });
+        }
+        else if (res.status == 404) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Company Not Found');
+            });
+        }
+    })
+
+    updateCompanySection.classList.add('hidden');
+    companiesSection.classList.remove('hidden');
+
+    
+
+}
+
+cancelButtonUp.addEventListener('click', () => {
+    updateCompanySection.classList.add('hidden');
+    companiesSection.classList.remove('hidden');
+});
+
+//Select Region
+regionCompanyUp.addEventListener('click', () => {
+    fetch('http://localhost:3000/regions', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            let validateSearchRegion = document.getElementsByClassName(`rowRegion`);
+            if (res && validateSearchRegion.length == 0) {
+                for (let i = 0; i < res.length; i++) {
+                    console.log(res)
+                    /* console.log(res.users[i].name)  */
+                    const row = document.createElement('option');
+                    row.setAttribute('id', `rowRegion${res[i].region_id}`)
+                    row.setAttribute('class', `rowRegion`)
+                    row.innerHTML += `
+                  <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
+                    console.log(row)
+                    console.log(regionCompanyUp)
+                    regionCompanyUp.appendChild(row);
+                }
+            } else {
+                console.log('Search Realized');
+            }
+            
+
+        })
+
+        console.log('Search Realized');
+        for (let i = countryCompanyUp.options.length; i >= 0; i--) {
+            countryCompanyUp.remove(i);
+        }
+        for (let i = cityCompanyUp.options.length; i >= 0; i--) {
+            cityCompanyUp.remove(i);
+        }
+
+    getCountries();
+}
+)
 
 

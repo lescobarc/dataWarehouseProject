@@ -79,7 +79,7 @@
     </section>
 
      <!--  New Company  -->
-     <section id="createCompany" class="newSection hidden">
+     <section id="createCompanySection" class="newSection hidden">
         <div class="container">
             <h1>Nueva Compañía</h1>
             
@@ -127,6 +127,63 @@
                 <div id="buttonsCompany" class="buttonsActions">
                     <button id="cancelButton"> Cancelar</button>
                     <button class="buttonDisabled" id="createButton">Guardar Compañía</button>
+                    
+                </div>
+
+        </div>
+            
+
+    </section>
+
+    <!--  update Company  -->
+    <section id="updateCompanySection" class="newSection hidden">
+        <div class="container">
+            <h1>Actualizar Compañía</h1>
+            
+                <div id="principalInfoCompany" class="principalInfo">
+                    <img src="style/img/addPhoto.png" alt="Photo">
+                    <div>
+                        <label for="name" > Nombre<strong>*</strong></label>
+                        <input type="text" id="nameCompanyUp">
+                    </div>
+                    <div>
+                        <label for="address" >Dirección<strong>*</strong></label>
+                        <input type="text" id="addressCompanyUp">
+                    </div>
+                    <div>
+                        <label for="email" >Email<strong>*</strong></label>
+                        <input type="text" id="emailCompanyUp">
+                    </div>
+                    <div>
+                        <label for="tel" >Teléfono<strong>*</strong></label>
+                        <input type="text" id="telCompanyUp">
+                    </div>
+
+                </div>
+                <div id="secondInfoCompany" class="secondInfo">
+                    <div>
+                        <label for="region"> Región <strong>*</strong> </label>
+                        <select name="companyRegion" id="regionCompanyUp">
+                            <option label="Seleccionar región"></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="country"> País <strong>*</strong> </label>
+                        <select name="companyCountry" id="countryCompanyUp"  disabled>
+                            <option label="Seleccionar país"></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="city"> Ciudad <strong>*</strong> </label>
+                        <select name="contactCity" id="cityCompanyUp"  disabled>
+                            <option label="Seleccionar ciudad"></option>
+                        </select>
+                    </div>
+                   
+                </div>
+                <div id="buttonsCompany" class="buttonsActions">
+                    <button id="cancelButtonUp"> Cancelar</button>
+                    <button class="buttonDisabled" id="createButtonUp">Guardar Compañía</button>
                     
                 </div>
 

@@ -115,7 +115,7 @@ app.post("/company", validateToken, existenceCompany,  addCompany, (req, res) =>
 });
 
 //3. update company
-app.put('/company/:value', validateToken,  putCompany, (req, res) => {
+app.put('/company/:company_id', validateToken,  putCompany, (req, res) => {
   try {
     const { updatedCompany } = req;
     res.status(200).json(updatedCompany);
