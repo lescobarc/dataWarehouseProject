@@ -3,6 +3,16 @@ let token = localStorage.token;
 //Table 
 let tabla = document.querySelector('#companiesTable tbody')
 
+//COMPANIES
+//create
+let createButton = document.getElementById('createButton');
+ let cancelButton = document.getElementById('cancelButton');
+let addButton = document.getElementById('addButton');
+let createCompanySection = document.getElementById('createCompany');
+let companiesSection = document.getElementById('companiesSection'); 
+let regionCompany = document.getElementById('regionCompany');
+/* let tableRegions = document.getElementById('regionCompany') */
+
 
 //1. get companies
 function getCompanies() {
@@ -50,5 +60,109 @@ function getCompanies() {
 }
 getCompanies();
 
+//2. Post Companies
+
+createButton.addEventListener('click', () => {
+    console.log('llamado al API');
+    fetch('http://localhost:3000/company', {
+        method: 'POST',
+        body: `{"name":"${nameCompany.value}","address":"${addressCompany.value}","email":"${emailCompany.value}","region_id":"${regionCompany.value}","country_id":"${countryCompany.value}","city_id":"${cityCompany.value}"}`,
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+        
+    }).then((res) => {
+        console.log(res);
+        if (res.status == 200) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Created');
+            });
+            location.reload()
+        }
+        else if (res.status == 400) {
+            console.log(res);
+            res.json().then((data) => {
+                console.log(data);
+                alert('Missing Arguments');
+            });
+        } else if (res.status == 403) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Forbidden: No Permission To Access');
+            });
+        }
+        else if (res.status == 405) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Username Exist');
+            });
+        }
+        else if (res.status == 406) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Verify: Password and Corfirmation Password');
+            });
+        }
+    })
+
+});
+
+addButton.addEventListener('click', () => {
+    createCompanySection.classList.toggle('hidden');
+    companiesSection.classList.toggle('hidden');
+});
+
+createButton.addEventListener('click', () => {
+    createCompanySection.classList.toggle('hidden');
+    companiesSection.classList.toggle('hidden');
+});
+cancelButton.addEventListener('click', () => {
+    createCompanySection.classList.toggle('hidden');
+    companiesSection.classList.toggle('hidden');
+}); 
+regionCompany.addEventListener('click', () =>{
+   
+        fetch('http://localhost:3000/regions', {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(respuesta => respuesta.json())
+            .then(res => {
+                console.log(res)
+                let validateSearchRegion = document.getElementsByClassName(`rowRegion`) ;
+    
+    
+                if (res && validateSearchRegion.length == 0) {
+                    for (let i = 0; i < res.length; i++) {
+                        console.log(res)
+                        /* console.log(res.users[i].name)  */
+                        const row = document.createElement('option');
+                        row.setAttribute('id', `rowRegion${res[i].region_id}`)
+                        row.setAttribute('class', `rowRegion`)
+                        row.innerHTML += `
+                  <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].nameRegion} </span> 
+                
+              `;
+                        console.log(row)
+                        console.log(regionCompany)
+                        regionCompany.appendChild(row);
+    
+                    }
+                } else {
+                    console.log('Search Realized');
+                }
+    
+            })
+    
+    
+    
+
+
+}
+)
 
 

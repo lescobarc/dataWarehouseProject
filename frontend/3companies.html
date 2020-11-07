@@ -34,7 +34,7 @@
 <body>
     
     <section id="companiesSection">
-        <div> <h1>Compañías</h1> <button class="buttonPrimary buttonLarge">Agregar</button></div>
+        <div> <h1>Compañías</h1> <button class="buttonPrimary buttonLarge" id="addButton">Agregar</button></div>
         <table id="companiesTable">
             <thead>
                 <tr>
@@ -76,9 +76,10 @@
                 </tr>
         </table>
 
+    </section>
 
-      <!--  New Company  -->
-    <section id="newCompanySection" class="newSection hidden">
+     <!--  New Company  -->
+     <section id="createCompany" class="newSection hidden">
         <div class="container">
             <h1>Nueva Compañía</h1>
             
@@ -105,21 +106,22 @@
                 <div id="secondInfoCompany" class="secondInfo">
                     <div>
                         <label for="region"> Región <strong>*</strong> </label>
-                        <select name="companyRegion" id="companyRegion">
+                        <select name="companyRegion" id="regionCompany">
+                            
                             <option label="Seleccionar región"></option>
                             <option value=""></option>
                         </select>
                     </div>
                     <div>
                         <label for="country"> País <strong>*</strong> </label>
-                        <select name="companyCountry" id="companyCountry" class="inputDisabled">
+                        <select name="companyCountry" id="countryCompany" class="inputDisabled">
                             <option label="Seleccionar país"></option>
                             <option value=""></option>
                         </select>
                     </div>
                     <div>
                         <label for="city"> Ciudad <strong>*</strong> </label>
-                        <select name="contactCity" id="" class="inputDisabled">
+                        <select name="contactCity" id="cityCompany" class="inputDisabled">
                             <option label="Seleccionar ciudad"></option>
                             <option value=""></option>
                         </select>
@@ -127,8 +129,8 @@
                    
                 </div>
                 <div id="buttonsCompany" class="buttonsActions">
-                    <button id="cancelButtonNewCompany"> Cancelar</button>
-                    <button class="buttonDisabled">Guardar Compañía</button>
+                    <button id="cancelButton"> Cancelar</button>
+                    <button class="buttonDisabled" id="createButton">Guardar Compañía</button>
                     
                 </div>
 
@@ -137,18 +139,12 @@
 
     </section>
 
-        
-            
-        
-
-      
-
-    </section>
 
 
 
     <script src="js/index.js"></script>
     <script src="js/companies.js"></script>
+    
 </body>  
 </html>
         
