@@ -163,11 +163,11 @@
     </section>
 
     <!-- 10. New Contact  -->
-    <section id="newContactSection" class="hidden">
+    <section id="newContactSection" class="hidden newSection">
         <div class="container">
             <h1>Nuevo Contacto</h1>
             
-                <div id="principalInfoContact">
+                <div id="principalInfoContact" class="principalInfo">
                     <img src="style/img/addPhoto.png" alt="Photo">
                     <div>
                         <label for="Nombre"> Nombre<strong>*</strong></label>
@@ -191,7 +191,7 @@
                     </div>
 
                 </div>
-                <div id="secondInfoContact">
+                <div id="secondInfoContact" class="secondInfo">
                     <div>
                         <label for="region"> Región </label>
                         <select name="contactRegion" id="">
@@ -219,7 +219,7 @@
                     </div>
                     <div >
                         <label for="interest">Interés</label>
-                        <div id="divInterestContact">
+                        <div id="divInterestContact" class="divInterest">
                         <span>*******</span>
                         <select name="interest" id="selectInterestContact">
                             <option value="0">0%</option>
@@ -252,7 +252,7 @@
                         <button class="buttonLarge"><i class="fas fa-plus"></i> Agregar Canal</button>
                     </div>
                 </div>
-                <div id="buttonsContact">
+                <div id="buttonsContact" class="buttonsActions">
                     <button id="cancelButtonNewContact"> Cancelar</button>
                     <button class="buttonDisabled">Guardar Contacto</button>
                     

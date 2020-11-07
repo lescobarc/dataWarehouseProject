@@ -113,14 +113,14 @@ td{
     flex-direction: column;
     padding: 2% 3% 5% 3%;
     div{
-        width: 1306px;
+        /* width: 1306px; */
         
         h1{
             float: left;
         }
         button{
             float: right;
-            margin-top: 15px;
+            /* margin-top: 15px; */
         }
         
         
@@ -225,5 +225,83 @@ td{
  }
 }
 
+.newSection{
+    
+    @include sectionExtend;
+    
+      .container{
+       
+          width:1215px;
+          height: 577px;
+          border-radius: 4px;
+          background: linear-gradient(to bottom, $bgPrimary 25%,white 25%,white 100%);
+          position: absolute;       
+        margin: 3% 4%;
+         
+          
+          h1{
+          color: white;
+          margin: 2%;
+          padding-top: 2%;
+          }
+          input, select, button{
+              width: 190px;
+              height: 36px;
+              border: 1px solid #CCCCCC;
+              border-radius: 4px;
+          }
+      }
+      .principalInfo{
+          width: 1172px ;
+          height: 131px;
+          border: 3px  solid  $borderBlue;
+          margin: auto;
+          border-radius: 6.5px;
+          background: white;
+          display: flex;
+          align-items: center;
+          img{
+              width: 85px;
+              height: 84px;
+              border-radius: 100%;
+              border: 3px solid $borderBlue;
+              margin: 10px;
+          }
+      }
+      .secondInfo{
+      display: flex;
+      flex-wrap: wrap;
+      margin: 45px 20px;
+      div{
+          display: flex;
+          flex-direction: column;
+          margin: 20px;
+      }
+      .divInterest{
+       
+          flex-direction: row;
+          margin: 0;
+          align-items: center;
+         
+          select{
+              width:70px ;
+              margin-left: 10%;
+              padding-left: 2%;
+          }
+      
+      }
+      #buttonAddChannel{
+          padding-top: 18px;
+      }
+  
+      }
+      .buttonsActions{
+          text-align: end;
+          margin: 0 2%;
+      }
+     
+  
+  }
+  
 
 
