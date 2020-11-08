@@ -50,6 +50,52 @@ async function addRegion(req, res, next) {
   }
 
 }
+//3. Update Region
+async function putRegion(req, res, next) {
+  const { nameRegion } = req.body;
+  console.log(nameRegion)
+  let id = req.params.region_id;
+  console.log(id)
+
+  if (id) {
+    const regionToUpdate = await findRegionById(id);
+    console.log(regionToUpdate)
+    if (nameRegion !== "") {
+      const query = updateQuery("regions", `nameRegion = '${nameRegion}'`, `region_id = '${id}'`);
+      console.log(nameRegion)
+      const [regionPut] = await sequelize.query(query, { raw: true });
+      console.log(regionPut)
+      req.updatedRegion = { nameRegion };
+    } else {
+      res.status(400).json("Bad Request: Missing Arguments");
+    }
+    next();
+  } else {
+    res.status(404).json("User Not Found");
+  }
+}
+
+async function findRegionById(id) {
+  const query = selectQuery("regions", "*", `region_id = '${id}'`);
+  const [dbRegion] = await sequelize.query(query, { raw: true });
+  const foundRegion = dbRegion[0];
+  console.log(foundRegion)
+  return foundRegion;
+}
+//4.delete region
+async function deleteRegion(req, res, next) {
+  let id = req.params.region_id;
+  console.log(id)
+  const findRegion = await findRegionById(id);
+  if (findRegion) {
+    const query = deleteQuery("regions", `region_id = ${id}`);
+    await sequelize.query(query, { raw: true });
+    req.isDeleted = true;
+    next();
+  } else {
+    res.status(404).json("Region Not Found");
+  }
+}
 
 //COUNTRIES
 
@@ -61,8 +107,6 @@ async function listCountriesByRegion(req, res, next) {
   req.countriesList = countries;
   next();
 }
-
-
 
 //2. post country
 async function existenceCountry(req, res, next) {
@@ -257,7 +301,7 @@ async function deleteCity(req, res, next) {
 }
 
 
-module.exports = { listRegions, existenceRegion, addRegion, listCountriesByRegion, existenceCountry, addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity };
+module.exports = { listRegions, existenceRegion, addRegion, putRegion, deleteRegion, listCountriesByRegion, existenceCountry, addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity };
 
 
 

@@ -7,7 +7,7 @@ const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact,  addContact, putContact, deleteContact} = require('./components/contacts');
-const { listRegions, existenceRegion,  addRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity} = require('./components/regions');
+const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -200,6 +200,26 @@ app.post("/region", validateToken, existenceRegion,  addRegion, (req, res) => {
   }
 });
 
+//3. update region
+app.put("/region/:region_id", validateToken,  putRegion, (req, res) => {
+  try {
+    const { updatedRegion } = req;
+    res.status(200).json('Updated');
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+})
+
+//4. delete region
+app.delete('/region/:region_id', validateToken,  deleteRegion,  (req,res)=>{
+  try{
+    const { isDeleted } = req;
+    isDeleted && res.status(200).json("Deleted");
+  }catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+}); 
+
 //COUNTRIES
 
 //1. get countries
@@ -225,7 +245,7 @@ app.post("/country/:region_id", validateToken, existenceCountry,  addCountry, (r
 app.put("/country/:country_id", validateToken,  putCountry, (req, res) => {
   try {
     const { updatedCountry } = req;
-    res.status(200).json('Created');
+    res.status(200).json('Updated');
   } catch (err) {
     res.status(500).json("Internal Server Error");
   }
@@ -266,7 +286,7 @@ app.post("/city/:country_id", validateToken, existenceCity,  addCity, (req, res)
 app.put("/city/:city_id", validateToken,  putCity, (req, res) => {
   try {
     const { updatedCity } = req;
-    res.status(200).json('Created');
+    res.status(200).json('Updated');
   } catch (err) {
     res.status(500).json("Internal Server Error");
   }

@@ -10,8 +10,17 @@ let createButtonRegion = document.getElementById('createButtonRegion');
 let cancelButtonRegion = document.getElementById('cancelButtonRegion');
 let addButtonRegion = document.getElementById('addButtonRegion');
 let createRegionSection = document.getElementById('createRegion');
-
 let nameRegion = document.getElementById('nameRegion')
+//update
+let nameRegionUp = document.getElementById('nameRegionUp');
+let updateRegionSection = document.getElementById('updateRegionSection');
+let cancelButtonUpRegion = document.getElementById('cancelButtonUpRegion');
+let createButtonUpRegion = document.getElementById('createButtonUpRegion');
+//delete
+let deleteRegionsSection = document.getElementById('deleteRegionsSection');
+let cancelButtonDeleteRegion = document.getElementById('cancelButtonDeleteRegion');
+let deleteButtonDeleteRegion = document.getElementById('deleteButtonDeleteRegion')
+
 
 //COUNTRIES
 //create
@@ -88,8 +97,10 @@ function getRegions() {
                     const row = document.createElement('li');
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.innerHTML += `
-             <h2> <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].nameRegion} 
-              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button></span> <h2>
+             <h2> <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].nameRegion} </span>
+            <i class="fas fa-trash" id= "${res[i].region_id}" onclick = "showDeleteRegion(this)"></i>
+            <i class="fas fa-pencil-alt" id= "${res[i].region_id}" onclick = "showUpdateRegion(this)"></i>
+              <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button> <h2>
           `;
                     console.log(row)
                     console.log(table)
@@ -165,6 +176,96 @@ createButtonRegion.addEventListener('click', () => {
     })
 
 });
+// 3. Put Region
+
+function showUpdateRegion(i) {
+    console.log(i)
+    let idRegion = i.id
+   console.log(idRegion)
+    updateRegionSection.classList.toggle('hidden');
+    regionsSection.classList.toggle('hidden');
+    createButtonUpRegion.addEventListener('click', () => {
+        console.log(idRegion)
+        updateRegions(idRegion)
+    }); 
+}
+
+
+function updateRegions(idRegion) {
+    console.log(idRegion)
+
+    fetch(`http://localhost:3000/region/${idRegion}`, {
+
+        method: 'PUT',
+        body: `{"nameRegion":"${nameRegionUp.value}"}`,
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Updated');
+            });
+            location.reload()
+        }
+        else if (res.status == 400) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Missing Arguments');
+            });
+        }
+        else if (res.status == 404) {
+            res.json().then((data) => {
+                console.log(data);
+                alert('Region Not Found');
+            });
+        }
+    })
+
+    updateRegionSection.classList.add('hidden');
+    regionsSection.classList.remove('hidden');
+}
+
+//4. Delete Region
+
+cancelButtonDeleteRegion.addEventListener('click', () => {
+    deleteRegionsSection.classList.toggle('hidden');
+    regionsSection.classList.remove('hidden');
+});
+
+function showDeleteRegion(i) {
+    console.log(i)
+    let id = i.id
+    console.log(id)
+    deleteRegionsSection.classList.toggle('hidden')
+
+    deleteButtonDeleteRegion.addEventListener('click', () => {
+        console.log(id)
+        deleteRegion(id)
+    });
+}
+
+
+function deleteRegion(id) {
+    console.log(id)
+    fetch(`http://localhost:3000/region/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+
+    deleteRegionsSection.classList.add('hidden');
+    regionsSection.classList.remove('hidden');
+
+    location.reload()
+
+}
 
 
 //COUNTRIES

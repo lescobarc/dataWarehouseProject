@@ -370,36 +370,36 @@ nav #imgLogo {
   width: 172px;
 }
 
-#table {
+.table {
   width: 1310px;
   height: 624px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   margin: 27px;
 }
 
-#table thead th {
+.table thead th {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#table thead th input {
+.table thead th input {
   width: 54px;
 }
 
-#table th, #table td {
+.table th, .table td {
   text-align: left;
   width: 13%;
   padding: 1%;
 }
 
-#table th:nth-child(1), #table td:nth-child(1) {
+.table th:nth-child(1), .table td:nth-child(1) {
   width: 5%;
 }
 
-#table th input, #table td input {
+.table th input, .table td input {
   width: 54px;
 }
 
-#table .channel span {
+.table .channel span {
   color: #0683F9;
   background-color: rgba(221, 223, 250, 0.9);
   border-radius: 4px;
@@ -407,7 +407,7 @@ nav #imgLogo {
   padding: 2%;
 }
 
-#table #interes {
+.table #interes {
   width: 186px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -415,7 +415,7 @@ nav #imgLogo {
   padding-top: 20px;
 }
 
-#table #interes .progressBar {
+.table #interes .progressBar {
   height: 11px;
   width: 103px;
   margin-left: 20px;
@@ -424,7 +424,7 @@ nav #imgLogo {
   border-radius: 5px;
 }
 
-#table #interes .progressBar100 {
+.table #interes .progressBar100 {
   border: 1px solid #DE0028;
   background-color: #DE0028;
   margin-left: -6px;
@@ -434,7 +434,7 @@ nav #imgLogo {
   padding-left: 4%;
 }
 
-#table #interes .progressBar75 {
+.table #interes .progressBar75 {
   border: 1px solid #FF6F00;
   border-radius: 5px;
   background-color: #FF6F00;
@@ -442,7 +442,7 @@ nav #imgLogo {
   width: 75%;
 }
 
-#table #interes .progressBar50 {
+.table #interes .progressBar50 {
   border: 1px solid #FFC700;
   border-radius: 5px;
   background-color: #FFC700;
@@ -450,7 +450,7 @@ nav #imgLogo {
   width: 50%;
 }
 
-#table #interes .progressBar25 {
+.table #interes .progressBar25 {
   border: 1px solid #1CC1F5;
   border-radius: 5px;
   background-color: #1CC1F5;
@@ -458,7 +458,7 @@ nav #imgLogo {
   width: 20%;
 }
 
-#table #actions .iconPoints {
+.table #actions .iconPoints {
   padding-left: 40%;
 }
 
@@ -667,7 +667,7 @@ nav #imgLogo {
   display: none;
 }
 
-#citySection h4:hover .fas, #citySection p:hover .fas {
+#citySection h4:hover .fas, #citySection p:hover .fas, #citySection h2:hover .fas {
   display: inline;
   padding: 1%;
   border: 2px #E8E8E8 solid;
