@@ -42,9 +42,9 @@ cancelButtonDelete.addEventListener('click', ()=>{
 
 //10. New Contact
 let iconAdd = document.getElementById('iconAdd');
-let newContactSection = document.getElementById('newContactSection');
+let createContactSection = document.getElementById('createContactSection');
 iconAdd.addEventListener('click', ()=>{
-    newContactSection.classList.toggle('hidden')
+    createContactSection.classList.toggle('hidden')
 })
 
 let cancelButtonNewContact = document.getElementById('cancelButtonNewContact');

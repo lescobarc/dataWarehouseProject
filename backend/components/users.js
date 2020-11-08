@@ -92,7 +92,7 @@ async function listUsers(req, res, next) {
 
 //5. Update user 
 async function putUser(req, res, next) {
-  const { name, email } = req.body;
+  const { name, email, username } = req.body;
 
   let id = req.params.value;
   console.log(id)
@@ -101,7 +101,7 @@ async function putUser(req, res, next) {
     const userToUpdate = await findUserById(id);
     console.log(userToUpdate)
     if (name !== "" && email !== "") {
-      const query = updateQuery("users", `name = '${name}', email= '${email}'`, `user_id = '${id}'`);
+      const query = updateQuery("users", `name = '${name}', email= '${email}', username = '${username}'`, `user_id = '${id}'`);
       console.log(name)
       const [userPut] = await sequelize.query(query, { raw: true });
       console.log(userPut)

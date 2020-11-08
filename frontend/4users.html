@@ -21,7 +21,7 @@
 
 <header class="userSection">
     <nav>
-        <a href="1login.html" > <img src="style/img/logo.png" id="imgLogo" alt="logo"> </a>
+        <a href="1login.html"> <img src="style/img/logo.png" id="imgLogo" alt="logo"> </a>
         <ul>
             <li><a href="2contacts.html">Contactos</a></li>
             <li><a href="3companies.html">Compañías</a></li>
@@ -34,10 +34,10 @@
 
 <body>
 
-   
 
 
-    <section id="usersSection" >
+
+    <section id="usersSection">
         <div>
             <h1>Usuarios</h1> <button id="addButton" class="buttonPrimary buttonLarge">Agregar</button>
         </div>
@@ -46,7 +46,7 @@
                 <tr>
                     <th><input type="checkbox" name="companySelect" id="companySelect"></th>
                     <th>Nombre <i class="fas fa-arrows-alt-v"></i> </th>
-                   <!--  <th>Apellido <i class="fas fa-arrows-alt-v"></i></th> -->
+                    <!--  <th>Apellido <i class="fas fa-arrows-alt-v"></i></th> -->
                     <th>Email <i class="fas fa-arrows-alt-v"></i></th>
                     <th>Usuario <i class="fas fa-arrows-alt-v"></i></th>
                 </tr>
@@ -55,7 +55,7 @@
                 <tr class="arrowContact arrowSelect">
                     <th><input type="checkbox" name="companySelect"></th>
                     <td>Andres <br></td>
-               <!--      <td>Sanchez<br> </td> -->
+                    <!--      <td>Sanchez<br> </td> -->
                     <td>andres@email.com</td>
                     <td>andres</td>
                     <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
@@ -64,7 +64,7 @@
                 <tr class="arrowContact ">
                     <th><input type="checkbox" name="companySelect"></th>
                     <td>Laura <br></td>
-                  <!--   <td>Escobar</td> -->
+                    <!--   <td>Escobar</td> -->
                     <td>lauraesc@email.com</td>
                     <td>laurae</td>
 
@@ -74,81 +74,85 @@
         </table>
     </section>
 
-     <!-- create user -->
-     <section id="createUser" class="hidden create ">
+    <!-- create user -->
+    <section id="createUser" class="newSection hidden sections">
         <div class="container">
-            <img src="style/img/user.png" alt="image world">
-        
-            <div>
-                <label for="name"> Nombre:</label>
-                <input type="text" id="nameUser">
-            </div>
-           
-            <div>
-                <label for="email"> Email: </label>
-                <input type="text" id="emailUser">
-            </div>
-            <div>
-                <label for="username"> Usuario:</label>
-                <input type="text" id="usernameUser">
-            </div>
-            <div>
-                <label for="pass"> Contraseña:</label>
-                <input type="text" id="passUser">
-            </div>
-            <div>
-                <label for="repass"> Repetir Contraseña:</label>
-                <input type="text" id="repassUser">
-            </div>
-          
-            <div class="buttonsAction" >
-                <div id="createButton">
-                    <button class='buttonLarge buttonPrimary'> Crear</button>
+            <h1>Nuevo Usuario</h1>
+            <div id="principalInfoCompany" class="principalInfo">
+                <img src="style/img/addPhoto.png" alt="Photo">
+
+                <div>
+                    <label for="name"> Nombre <strong>*</strong></label>
+                    <input type="text" id="nameUser">
                 </div>
-                <div id="cancelButton">
-                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
+
+                <div>
+                    <label for="email"> Email <strong>*</strong></label>
+                    <input type="text" id="emailUser">
                 </div>
+                <div>
+                    <label for="username"> Usuario <strong>*</strong></label>
+                    <input type="text" id="usernameUser">
+                </div>
+            </div>
+
+            <div id="secondInfoCompany" class="secondInfo">
+                <div>
+                    <label for="pass"> Contraseña <strong>*</strong></label>
+                    <input type="text" id="passUser">
+                </div>
+                <div>
+                    <label for="repass"> Repetir Contraseña <strong>*</strong></label>
+                    <input type="text" id="repassUser">
+                </div>
+
+            </div>
+
+            <div class="buttonsActions">
+                <button class='buttonLarge buttonPrimary' id="createButton"> Crear Usuario</button>
+                <button class='buttonLarge buttonSecondary' id="cancelButton"> Cancelar </button>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    
+    <!-- update user -->
+    <section id="updateUserSection" class="hidden newSection sections">
+        <div class="container">
+            <h1> Actualizar Usuario</h1>
+            <div id="principalInfoCompany" class="principalInfo">
+                <img src="style/img/addPhoto.png" alt="Photo">
+
+                <div>
+                    <label for="name"> Nombre <strong>*</strong></label>
+                    <input type="text" id="nameUserUp">
+                </div>
+                <div>
+                    <label for="email"> Email <strong>*</strong></label>
+                    <input type="text" id="emailUserUp">
+                </div>
+                <div>
+                    <label for="username"> Usuario <strong>*</strong></label>
+                    <input type="text" id="usernameUserUp">
+                </div>
+            </div>
+            <div class="buttonsActions">
+                    <button class="buttonLarge buttonSecondary" id="cancelButtonUp"> Cancelar </button>
+                    <button class='buttonLarge buttonPrimary' id="createButtonUp"> Actualizar</button>
+               
             </div>
         </div>
     </section>
 
-     <!-- update user -->
-     <section id="updateUserSection" class="hidden create">
-        <div class="container">
-            
-           <h1> Actualizar Usuario</h1> 
-            <!-- <img src="style/img/upUser.png" alt="image world" id="imgUpUser">  -->
 
-            <div>
-                <label for="name"> Nombre:</label>
-                <input type="text" id="nameUserUp">
-            </div>
-            <div>
-                <label for="email"> Email: </label>
-                <input type="text" id="emailUserUp">
-            </div>
-            <!-- <div>
-                <label for="username"> Usuario:</label>
-                <input type="text" id="usernameUserUp">
-            </div> -->
-            
-            <div class="buttonsAction" >
-                <div id="cancelButtonUp">
-                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
-                </div>
-                <div id="createButtonUp">
-                    <button class='buttonLarge buttonPrimary'> Actualizar</button>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-     <!-- 9. Delete Users  -->
-     <section id="deleteUsersSection" class="hidden deleteSection">
+    <!-- Delete Users  -->
+    <section id="deleteUsersSection" class="hidden deleteSection">
         <div class="container">
             <img src="style/img/deleteContact.png" alt="Delete Contacts">
-            <p>¿Seguro que deseas eliminar este usuario?</p>
+            <p>¿Seguro deseas eliminar este usuario?</p>
             <div>
                 <button class='buttonLarge cancelSecondary' id="cancelButtonDeleteUser"> Cancelar </button>
                 <button class='buttonLarge deleteButton' id="deleteButtonDeleteUser"> Eliminar </button>

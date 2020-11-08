@@ -11,6 +11,7 @@ let usersSection = document.getElementById('usersSection');
 let updateUserSection = document.getElementById('updateUserSection');
 let cancelButtonUp = document.getElementById('cancelButtonUp');
 let createButtonUp = document.getElementById('createButtonUp');
+
 //delete
 let deleteUsersSection = document.getElementById('deleteUsersSection');
 let cancelButtonDeleteUser = document.getElementById('cancelButtonDeleteUser');
@@ -162,7 +163,7 @@ function updateUsers(id) {
     fetch(`http://localhost:3000/user/${id}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameUp.value}", "email":"${emailUp.value}"}`,
+        body: `{"name":"${nameUp.value}", "email":"${emailUp.value}", "username":"${usernameUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`

@@ -134,7 +134,7 @@ td{
     }
 } 
 
-#createUser, #updateUserSection, #createRegion, .create {
+  #createRegion, .create {
     margin: 40px;
     @include sectionExtend;
 
@@ -246,6 +246,8 @@ td{
               height: 36px;
               border: 1px solid #CCCCCC;
               border-radius: 4px;
+            
+            
           }
       }
       .principalInfo{

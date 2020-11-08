@@ -122,7 +122,7 @@ td {
   padding-left: 8%;
 }
 
-#createUser, #updateUserSection, #createRegion, .create {
+#createRegion, .create {
   margin: 40px;
   position: fixed;
   padding: 0;
@@ -134,7 +134,7 @@ td {
   background: rgba(0, 0, 0, 0.897);
 }
 
-#createUser .container, #updateUserSection .container, #createRegion .container, .create .container {
+#createRegion .container, .create .container {
   border: 1px solid #1D72C2;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(24%, #1D72C2), color-stop(23%, white), to(white));
   background: linear-gradient(to bottom, #1D72C2 24%, white 23%, white 100%);
@@ -164,14 +164,14 @@ td {
          } */
 }
 
-#createUser .container h1, #updateUserSection .container h1, #createRegion .container h1, .create .container h1 {
+#createRegion .container h1, .create .container h1 {
   color: #FFFFFF;
   position: relative;
   text-align: center;
   margin-top: 0;
 }
 
-#createUser .container div:not(.buttonsAction), #updateUserSection .container div:not(.buttonsAction), #createRegion .container div:not(.buttonsAction), .create .container div:not(.buttonsAction) {
+#createRegion .container div:not(.buttonsAction), .create .container div:not(.buttonsAction) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -181,21 +181,21 @@ td {
           flex-direction: column;
 }
 
-#createUser .container input, #updateUserSection .container input, #createRegion .container input, .create .container input {
+#createRegion .container input, .create .container input {
   margin: 0.3% 2%;
   border: 1px solid #CCCCCC;
   border-radius: 4px;
   height: 30px;
 }
 
-#createUser .container .buttonsAction, #updateUserSection .container .buttonsAction, #createRegion .container .buttonsAction, .create .container .buttonsAction {
+#createRegion .container .buttonsAction, .create .container .buttonsAction {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-left: 5%;
 }
 
-#createUser .container img, #updateUserSection .container img, #createRegion .container img, .create .container img {
+#createRegion .container img, .create .container img {
   width: 105px;
   height: 105px;
   margin: 0 auto;
@@ -675,6 +675,19 @@ nav #imgLogo {
   margin-left: 3%;
   color: #1D72C2;
   font-size: 11pt;
+}
+
+#updateUserSection .container {
+  height: 320px;
+  margin: 8% 6%;
+}
+
+#updateUserSection .buttonsActions {
+  margin-top: 1%;
+}
+
+.sections label {
+  margin: 1%;
 }
 
 /* Style the caret/arrow */
