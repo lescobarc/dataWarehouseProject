@@ -122,6 +122,10 @@ td {
   padding-left: 8%;
 }
 
+#companiesSection table tr, #usersSection table tr, #citySection table tr {
+  height: 70px;
+}
+
 #importContactsSection, .deleteSection {
   position: fixed;
   padding: 0;
@@ -629,7 +633,7 @@ nav #imgLogo {
 }
 
 #citySection table {
-  width: 600px;
+  width: 500px;
   margin: 5% auto;
 }
 

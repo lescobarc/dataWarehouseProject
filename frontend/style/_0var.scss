@@ -103,9 +103,6 @@ td{
 }
 
 
-
-
-
  #companiesSection, #usersSection, #citySection{
     display: flex;
     flex-direction: column;
@@ -128,9 +125,14 @@ td{
         .iconPoints{
             padding-left: 8%;
         }
-        
+        tr{
+            height: 70px;
+        }
     }
+
+    
 } 
+
 
  
  
