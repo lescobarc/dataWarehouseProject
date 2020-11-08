@@ -369,8 +369,89 @@ regionCompanyUp.addEventListener('click', () => {
             cityCompanyUp.remove(i);
         }
 
-    getCountries();
+    getCountriesUp();
 }
 )
+
+//Select Countries
+function getCountriesUp() {
+    let validateSearchCountry = document.getElementsByClassName(`liCountry`); 
+    console.log(validateSearchCountry)
+    countryCompanyUp.disabled = false
+    countryCompanyUp.addEventListener('click', () => {
+        const regionCompanySelectValue = regionCompanyUp.value.split(" ");
+        console.log(regionCompanySelectValue)
+        const region_idSelect = regionCompanySelectValue[0];
+
+        fetch(`http://localhost:3000/countries/${region_idSelect}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(respuesta => respuesta.json())
+            .then(res => {
+                console.log(res)
+                console.log(validateSearchCountry.length)
+                if (res && validateSearchCountry.length == 0) {
+                    for (let i = 0; i < res.length; i++) {
+                        console.log(res)
+                        console.log(res[i].country_id)
+                        const liCountry = document.createElement('option');
+                        liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
+                        liCountry.setAttribute('class', `liCountry`)
+                        liCountry.innerHTML += `
+                            <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
+                        console.log(liCountry)
+                        countryCompanyUp.appendChild(liCountry);
+                    }
+                } 
+            })
+            for (let i = cityCompanyUp.options.length; i >= 0; i--) {
+                cityCompanyUp.remove(i);
+            }
+        getCitiesUp()
+    })
+}
+
+//Select Cities
+function getCitiesUp() {
+    let validateSearchCity = document.getElementsByClassName(`liCity`);
+    console.log(validateSearchCity)
+        cityCompanyUp.disabled = false
+        cityCompanyUp.addEventListener('click', () => {
+            const countryCompanySelectValue = countryCompanyUp.value.split(" ");
+            console.log(countryCompanySelectValue)
+            const country_idSelect = countryCompanySelectValue[0];
+
+            fetch(`http://localhost:3000/cities/${country_idSelect}`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(respuesta => respuesta.json())
+                .then(res => {
+                    console.log(res)
+                    if (res && validateSearchCity.length == 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            console.log(res)
+                            console.log(validateSearchCity)
+                            let liCity = document.createElement('option');
+                            liCity.setAttribute('id', `liCity${res[i].city_id}`)
+                            liCity.setAttribute('class', `liCity`)
+                            liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
+                            console.log(liCity)
+                            cityCompanyUp.appendChild(liCity);
+                        }
+                    } else {
+                        console.log('Search Realized');
+                    }
+
+                })
+        }
+        )
+
+}
 
 
