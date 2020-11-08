@@ -15,12 +15,12 @@
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    
+
 </head>
 
 <header>
     <nav>
-        <a href="1login.html" > <img src="style/img/logo.png" id="imgLogo" alt="logo"> </a>
+        <a href="1login.html"> <img src="style/img/logo.png" id="imgLogo" alt="logo"> </a>
         <ul>
             <li><a href="2contacts.html">Contactos</a></li>
             <li><a href="3companies.html">Compañías</a></li>
@@ -35,10 +35,11 @@
 
     <section id="citySection">
         <div>
-            <h1>Región / País / Ciudad</h1> <button class="buttonPrimary buttonLarge buttonRegion" id="addButtonRegion">Agregar Región</button>
+            <h1>Región / País / Ciudad</h1> <button class="buttonPrimary buttonLarge buttonRegion"
+                id="addButtonRegion">Agregar Región</button>
 
         </div>
-        
+
         <table id="regionsTable">
             <tbody>
                 <div id="countries"> </div>
@@ -48,60 +49,54 @@
     </section>
 
     <!-- CREATE -->
-
-    <section id="createRegion" class="create hidden">
+    <section id="createRegion" class="newSection hidden secondSections">
         <div class="container">
-            <h1> Nueva Región</h1>
-            <img src="style/img/region.png" alt="image world">
-            <div>
-                <label for="nameRegion"> </label>
-                <input type="text" id="nameRegion" placeholder="Región">
+            <h1>Nueva Región</h1>
+            <div id="principalInfoCompany" class="principalInfo">
+                <img src="style/img/addPhoto.png" alt="Photo">
+
+                <div>
+                    <label for="nameRegion"> </label>
+                    <input type="text" id="nameRegion" placeholder="Región">
+                </div>
             </div>
-            <div class="buttonsAction">
-                <div id="createButtonRegion">
-                    <button class='buttonLarge buttonPrimary'> Crear</button>
-                </div>
-                <div id="cancelButtonRegion">
-                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
-                </div>
+            <div class="buttonsActions">
+                <button class='buttonLarge buttonPrimary' id="createButtonRegion"> Crear</button>
+                <button class='buttonLarge buttonSecondary' id="cancelButtonRegion"> Cancelar </button>
             </div>
         </div>
     </section>
 
-    <section id="createCountry" class="create hidden">
+    <section id="createCountry" class="newSection hidden secondSections">
         <div class="container">
             <h1> Nuevo País</h1>
-            <img src="style/img/region.png" alt="image world">
-            <div>
-                <label for="nameCountry"> </label>
-                <input type="text" id="nameCountry" placeholder="País">
+            <div id="principalInfoCompany" class="principalInfo">
+                <img src="style/img/addPhoto.png" alt="Photo">
+                <div>
+                    <label for="nameCountry"> </label>
+                    <input type="text" id="nameCountry" placeholder="País">
+                </div>
             </div>
-            <div class="buttonsAction">
-                <div id="createButtonCountry">
-                    <button class='buttonLarge buttonPrimary'> Crear</button>
-                </div>
-                <div id="cancelButtonCountry">
-                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
-                </div>
+            <div class="buttonsActions">
+                <button class='buttonLarge buttonPrimary' id="createButtonCountry"> Crear</button>
+                <button class='buttonLarge buttonSecondary' id="cancelButtonCountry"> Cancelar </button>
             </div>
         </div>
     </section>
 
-    <section id="createCity" class="create hidden ">
+    <section id="createCity" class="newSection hidden secondSections">
         <div class="container">
             <h1> Nueva Ciudad</h1>
-            <img src="style/img/region.png" alt="image world">
-            <div>
-                <label for="nameCity"> </label>
-                <input type="text" id="nameCity" placeholder="Ciudad">
+            <div id="principalInfoCompany" class="principalInfo">
+                <img src="style/img/addPhoto.png" alt="Photo">
+                <div>
+                    <label for="nameCity"> </label>
+                    <input type="text" id="nameCity" placeholder="Ciudad">
+                </div>
             </div>
-            <div class="buttonsAction">
-                <div id="createButtonCity">
-                    <button class='buttonLarge buttonPrimary'> Crear</button>
-                </div>
-                <div id="cancelButtonCity">
-                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
-                </div>
+            <div class="buttonsActions">
+                <button class='buttonLarge buttonPrimary' id="createButtonCity"> Crear</button>
+                <button class='buttonLarge buttonSecondary' id="cancelButtonCity"> Cancelar </button>
             </div>
         </div>
     </section>
@@ -109,49 +104,40 @@
     <!-- UPDATE -->
 
     <!-- update country -->
-    <section id="updateCountrySection" class="hidden create">
+    <section id="updateCountrySection" class="newSection hidden secondSections">
         <div class="container">
 
             <h1> Actualizar País</h1>
-            <img src="style/img/region.png" alt="image world">
-
-            <div>
-                <label for="name"> </label>
-                <input type="text" id="nameCountryUp" placeholder="País">
+            <div id="principalInfoCompany" class="principalInfo">
+                <img src="style/img/addPhoto.png" alt="Photo">
+                <div>
+                    <label for="name"> </label>
+                    <input type="text" id="nameCountryUp" placeholder="País">
+                </div>
             </div>
-
-            <div class="buttonsAction">
-                <div id="cancelButtonUpCountry">
-                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
-                </div>
-                <div id="createButtonUpCountry">
-                    <button class='buttonLarge buttonPrimary'> Actualizar</button>
-                </div>
-
+            <div class="buttonsActions">
+                <button class='buttonLarge buttonSecondary' id="cancelButtonUpCountry"> Cancelar </button>
+                <button class='buttonLarge buttonPrimary' id="createButtonUpCountry"> Actualizar</button>
             </div>
         </div>
     </section>
 
     <!-- update city -->
-    <section id="updateCitySection" class="hidden create">
+    <section id="updateCitySection" class="newSection hidden secondSections">
         <div class="container">
 
             <h1> Actualizar Ciudad</h1>
-            <img src="style/img/region.png" alt="image world">
+            <div id="principalInfoCompany" class="principalInfo">
+                <img src="style/img/addPhoto.png" alt="Photo">
 
-            <div>
-                <label for="name"> </label>
-                <input type="text" id="nameCityUp" placeholder="Ciudad">
+                <div>
+                    <label for="name"> </label>
+                    <input type="text" id="nameCityUp" placeholder="Ciudad">
+                </div>
             </div>
-
-            <div class="buttonsAction">
-                <div id="cancelButtonUpCity">
-                    <button class='buttonLarge buttonSecondary'> Cancelar </button>
-                </div>
-                <div id="createButtonUpCity">
-                    <button class='buttonLarge buttonPrimary'> Actualizar</button>
-                </div>
-
+            <div class="buttonsActions">
+                <button class='buttonLarge buttonSecondary' id="cancelButtonUpCity"> Cancelar </button>
+                <button class='buttonLarge buttonPrimary' id="createButtonUpCity"> Actualizar</button>
             </div>
         </div>
     </section>
@@ -162,7 +148,7 @@
     <section id="deleteCountriesSection" class="hidden deleteSection">
         <div class="container">
             <img src="style/img/deleteContact.png" alt="Delete Countries">
-            <p>¿Seguro que deseas eliminar este país?</p>
+            <p>¿Seguro deseas eliminar este país?</p>
             <div>
                 <button class='buttonLarge cancelSecondary' id="cancelButtonDeleteCountry"> Cancelar </button>
                 <button class='buttonLarge deleteButton' id="deleteButtonDeleteCountry"> Eliminar </button>
@@ -174,7 +160,7 @@
     <section id="deleteCitiesSection" class="hidden deleteSection">
         <div class="container">
             <img src="style/img/deleteContact.png" alt="Delete Cities">
-            <p>¿Seguro que deseas eliminar esta ciudad?</p>
+            <p>¿Seguro deseas eliminar esta ciudad?</p>
             <div>
                 <button class='buttonLarge cancelSecondary' id="cancelButtonDeleteCity"> Cancelar </button>
                 <button class='buttonLarge deleteButton' id="deleteButtonDeleteCity"> Eliminar </button>
@@ -187,7 +173,7 @@
 
     <script src="js/index.js"></script>
     <script src="js/regions.js"></script>
-  
+
 </body>
 
 </html>

@@ -119,13 +119,10 @@ td{
             float: right;
             /* margin-top: 15px; */
         }
-        
-        
     }
     table{
-        
         width: 1200px;
-       margin: 4% 3%;
+        margin: 4% 3%;
         border: 1px solid rgba(0, 0, 0, 0.1);
         .iconPoints{
             padding-left: 8%;
@@ -134,62 +131,7 @@ td{
     }
 } 
 
-  #createRegion, .create {
-    margin: 40px;
-    @include sectionExtend;
-
-      .container{
-         border: 1px solid $bgPrimary;
-         background: linear-gradient(to bottom, $bgPrimary 24%,white 23%,white 100%);      
-         border-radius: 2px;
-         width: 350px;
-         height: 480px;
-         margin: auto;
-         margin-top: 5%;
-         display: flex;
-         flex-direction: column;
-         justify-content: space-around;
-         align-content: center;
-         text-align: start;
-         padding: 1%;
-         color: $bgBlack;
-         font-size: 12pt;
-         h1{
-             color: $bgWhite;
-             position: relative;
-             text-align: center;
-             margin-top: 0;
-         }
-        /*  label{
-             display: inline-block;
-              width: 150px; 
-         } */
-         div:not(.buttonsAction){
-             display: flex;
-             flex-direction: column;
-         }
-         input{
-             margin: 0.3% 2%; 
-             
-             border: 1px solid #CCCCCC;
-            border-radius: 4px;
-            height: 30px;
-         }
-         
-         .buttonsAction{
-            display: flex;
-            margin-left: 5%;
-         }
-         img{
-            width: 105px;
-            height: 105px;
-            margin: 0 auto;
-            border-radius: 40%;
-        };
-       
-       
-     } 
- }
+ 
  
 #importContactsSection, .deleteSection{
     @include sectionExtend;
@@ -223,19 +165,14 @@ td{
 }
 
 .newSection{
-    
     @include sectionExtend;
-    
       .container{
-       
           width:1215px;
           height: 577px;
           border-radius: 4px;
           background: linear-gradient(to bottom, $bgPrimary 25%,white 25%,white 100%);
           position: absolute;       
-        margin: 3% 4%;
-         
-          
+          margin: 3% 4%;
           h1{
           color: white;
           margin: 2%;
@@ -246,8 +183,6 @@ td{
               height: 36px;
               border: 1px solid #CCCCCC;
               border-radius: 4px;
-            
-            
           }
       }
       .principalInfo{
@@ -298,8 +233,6 @@ td{
           text-align: end;
           margin: 0 2%;
       }
-     
-  
   }
   
 

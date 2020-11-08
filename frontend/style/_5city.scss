@@ -60,9 +60,21 @@
       h2:hover .buttonSecondary, h4:hover .buttonTerciary{
         display: inline;
       }
-    
-     
-    
+
+      
   }
-  
  
+ .secondSections{
+   .container{
+     height: 330px;
+     width: 600px;
+     margin: 8% 28%;
+     .principalInfo{
+       width: 500px;
+     }
+   }
+   .buttonsActions{
+    margin-top: 5%;
+}
+  
+  }

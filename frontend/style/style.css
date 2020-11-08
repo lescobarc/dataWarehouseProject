@@ -122,86 +122,6 @@ td {
   padding-left: 8%;
 }
 
-#createRegion, .create {
-  margin: 40px;
-  position: fixed;
-  padding: 0;
-  margin: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.897);
-}
-
-#createRegion .container, .create .container {
-  border: 1px solid #1D72C2;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(24%, #1D72C2), color-stop(23%, white), to(white));
-  background: linear-gradient(to bottom, #1D72C2 24%, white 23%, white 100%);
-  border-radius: 2px;
-  width: 350px;
-  height: 480px;
-  margin: auto;
-  margin-top: 5%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  text-align: start;
-  padding: 1%;
-  color: #000000;
-  font-size: 12pt;
-  /*  label{
-             display: inline-block;
-              width: 150px; 
-         } */
-}
-
-#createRegion .container h1, .create .container h1 {
-  color: #FFFFFF;
-  position: relative;
-  text-align: center;
-  margin-top: 0;
-}
-
-#createRegion .container div:not(.buttonsAction), .create .container div:not(.buttonsAction) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-#createRegion .container input, .create .container input {
-  margin: 0.3% 2%;
-  border: 1px solid #CCCCCC;
-  border-radius: 4px;
-  height: 30px;
-}
-
-#createRegion .container .buttonsAction, .create .container .buttonsAction {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: 5%;
-}
-
-#createRegion .container img, .create .container img {
-  width: 105px;
-  height: 105px;
-  margin: 0 auto;
-  border-radius: 40%;
-}
-
 #importContactsSection, .deleteSection {
   position: fixed;
   padding: 0;
@@ -686,7 +606,7 @@ nav #imgLogo {
   margin-top: 1%;
 }
 
-.sections label {
+#updateUserSection label {
   margin: 1%;
 }
 
@@ -755,6 +675,20 @@ nav #imgLogo {
 
 #citySection h2:hover .buttonSecondary, #citySection h4:hover .buttonTerciary {
   display: inline;
+}
+
+.secondSections .container {
+  height: 330px;
+  width: 600px;
+  margin: 8% 28%;
+}
+
+.secondSections .container .principalInfo {
+  width: 500px;
+}
+
+.secondSections .buttonsActions {
+  margin-top: 5%;
 }
 
 #loginUser {
