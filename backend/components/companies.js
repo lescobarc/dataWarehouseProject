@@ -91,7 +91,7 @@ async function findCompanyById(id) {
 
 //6.delete company
 async function deleteCompany(req, res, next) {
-  let id = req.params.value;
+  let id = req.params.company_id;
   console.log(id)
   const findCompany = await findCompanyById(id);
   if (findCompany) {

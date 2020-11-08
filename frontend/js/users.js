@@ -232,7 +232,6 @@ function deleteUser(id) {
         }
     })
 
-
     deleteUsersSection.classList.add('hidden');
     usersSection.classList.remove('hidden');
 

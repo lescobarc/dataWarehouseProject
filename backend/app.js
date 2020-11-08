@@ -125,7 +125,7 @@ app.put('/company/:company_id', validateToken,  putCompany, (req, res) => {
 })
 
 //4. delete company
-app.delete('/company/:value', validateToken,  deleteCompany,  (req,res)=>{
+app.delete('/company/:company_id', validateToken,  deleteCompany,  (req,res)=>{
   try{
     const { isDeleted } = req;
     isDeleted && res.status(200).json("Deleted");

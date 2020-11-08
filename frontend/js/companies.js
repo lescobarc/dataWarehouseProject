@@ -21,7 +21,6 @@ let telCompany = document.getElementById('telCompany');
 //update
 let createButtonUp = document.getElementById('createButtonUp');
 let cancelButtonUp = document.getElementById('cancelButtonUp');
-/* let addButton = document.getElementById('addButton'); */
 let updateCompanySection = document.getElementById('updateCompanySection');
 let regionCompanyUp = document.getElementById('regionCompanyUp');
 let countryCompanyUp = document.getElementById('countryCompanyUp');
@@ -30,6 +29,11 @@ let nameCompanyUp = document.getElementById('nameCompanyUp');
 let addressCompanyUp = document.getElementById('addressCompanyUp');
 let emailCompanyUp = document.getElementById('emailCompanyUp');
 let telCompanyUp = document.getElementById('telCompanyUp'); 
+
+//delete
+let deleteCompaniesSection = document.getElementById('deleteCompaniesSection');
+let cancelButtonDeleteCompany = document.getElementById('cancelButtonDeleteCompany');
+let deleteButtonDeleteCompany = document.getElementById('deleteButtonDeleteCompany')
 
 
 //1. get companies
@@ -453,5 +457,44 @@ function getCitiesUp() {
         )
 
 }
+
+//6. Delete User
+
+cancelButtonDeleteCompany.addEventListener('click', () => {
+    deleteCompaniesSection.classList.toggle('hidden');
+    companiesSection.classList.remove('hidden');
+});
+
+function showDeleteCompany(i) {
+    console.log(i)
+    let id = i.id
+    console.log(id)
+    deleteCompaniesSection.classList.toggle('hidden')
+
+    deleteButtonDeleteCompany.addEventListener('click', () => {
+        console.log(id)
+        deleteCompany(id)
+    });
+}
+
+
+function deleteCompany(id) {
+    console.log(id)
+    fetch(`http://localhost:3000/company/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+
+    deleteCompaniesSection.classList.add('hidden');
+    companiesSection.classList.remove('hidden');
+
+    location.reload()
+
+}
+
 
 
