@@ -56,7 +56,7 @@ function getCompanies() {
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
                 <td>  <input type="checkbox" </td>
-                <td>${company[i].name}</td>
+                <td>${company[i].nameCompany}</td>
                 <td>${company[i].address}</td>
                 <td>${company[i].email}</td>
                 <td>${company[i].tel}</td>
@@ -73,8 +73,8 @@ function getCompanies() {
                 }
             } else {
                 res.json().then((data) => {
-                    console.log('Users not found');
-                    alert('Users not found');
+                    console.log('Companies not found');
+                    alert('Companies not found');
                 });
             }
 
@@ -89,7 +89,7 @@ createButton.addEventListener('click', () => {
     console.log('llamado al API');
     fetch('http://localhost:3000/company', {
         method: 'POST',
-        body: `{"name":"${nameCompany.value}","address":"${addressCompany.value}","email":"${emailCompany.value}", "tel":"${telCompany.value}", "region_id":"${regionCompany.value}","country_id":"${countryCompany.value}","city_id":"${cityCompany.value}"}`,
+        body: `{"nameCompany":"${nameCompany.value}","address":"${addressCompany.value}","email":"${emailCompany.value}", "tel":"${telCompany.value}", "region_id":"${regionCompany.value}","country_id":"${countryCompany.value}","city_id":"${cityCompany.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -293,7 +293,7 @@ function updateUsers(id) {
     fetch(`http://localhost:3000/company/${id}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
+        body: `{"nameCompany":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`

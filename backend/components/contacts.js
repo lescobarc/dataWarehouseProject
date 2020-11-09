@@ -5,7 +5,7 @@ const { deleteQuery, insertQuery, joinQuery, selectQuery, updateQuery, useQuery 
 
 //1. get contacts
 async function listContacts(req, res, next) {
-  const query = selectQuery("contacts", "*");
+  const query = `SELECT contacts.contact_id, contacts.name, contacts.email, regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position, contacts.channel, contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id `
   const [contacts] = await sequelize.query(query, { raw: true });
   req.contactsList = [contacts];
   next();
