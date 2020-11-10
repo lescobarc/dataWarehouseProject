@@ -18,8 +18,14 @@ let countryContact = document.getElementById('countryContact');
 let positionContact = document.getElementById('positionContact');
 let interestContact = document.getElementById('interestContact');
 let channelContact = document.getElementById('channelContact');
+let channelContact2 = document.getElementById('channelContact2');
 let accountContact = document.getElementById('accountContact');
+let accountContact2 = document.getElementById('accountContact2');
 let preferencesContact = document.getElementById('preferencesContact');
+let preferencesContact2 = document.getElementById('preferencesContact2');
+let buttonAddChannel = document.getElementById('buttonAddChannel');
+
+
 
 //update
 /* let createButtonUp = document.getElementById('createButtonUp');
@@ -298,7 +304,7 @@ channelContact.addEventListener('click', () => {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
                     const row = document.createElement('option');
-                    row.setAttribute('id', `rowChannel${res[i].region_id}`)
+                    row.setAttribute('id', `rowChannel${res[i].channel_id}`)
                     row.setAttribute('class', `rowChannel`)
                     row.innerHTML += `
                   <span class="caret"  id ="${res[i].channel_id}" value="${res[i].channel_id}"> ${res[i].channel_id} ${res[i].nameChannel} </span>  `;
@@ -333,7 +339,7 @@ companyContact.addEventListener('click', () => {
             if (res && validateSearchCompany.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
-                    const row = document.createElement('option');
+                    let row = document.createElement('option');
                     row.setAttribute('id', `rowCompany${res[i].company_id}`)
                     row.setAttribute('class', `rowCompany`)
                     row.innerHTML += `
@@ -345,10 +351,48 @@ companyContact.addEventListener('click', () => {
             } else {
                 console.log('Search Realized');
             }
+        })
+}
+)
+
+/* //Add channel
+buttonAddChannel.addEventListener('click', ()=>{
+
+    document.getElementById('channel2').classList.remove('hidden');
+    document.getElementById('account2').classList.remove('hidden');
+    document.getElementById('preferences2').classList.remove('hidden');
+})
 
 
+channelContact2.addEventListener('click', () => {
+    fetch('http://localhost:3000/channels', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            let validateSearchChannel = document.getElementsByClassName(`rowChannel2`);
+
+            if (res && validateSearchChannel.length == 0) {
+                for (let i = 0; i < res.length; i++) {
+                    console.log(res)
+                    let row = document.createElement('option');
+                    row.setAttribute('id', `rowChannel${res[i].channel_id}`)
+                    row.setAttribute('class', `rowChannel2`)
+                    row.innerHTML += `
+                  <span class="caret"  id ="${res[i].channel_id}" value="${res[i].channel_id}"> ${res[i].channel_id} ${res[i].nameChannel} </span>  `;
+                    console.log(row)
+
+                    channelContact2.appendChild(row);
+                }
+            } else {
+                console.log('Search Realized');
+            }
         })
 
 
 }
-)
+) */

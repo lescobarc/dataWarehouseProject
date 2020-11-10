@@ -247,9 +247,34 @@
                             <option label="No Molestar" value="No Molestar"></option>
                         </select>
                     </div>
+
                     <div id="buttonAddChannel">
-                        <button class="buttonLarge"><i class="fas fa-plus"></i> Agregar Canal</button>
+                        <button class="buttonLarge" id="plusChannel" ><i class="fas fa-plus"></i> Agregar Canal</button>
                     </div>
+
+
+                      <!-- Add Channel -->
+                      
+                      <div id="channel2" class="hidden">
+                        <label for="contactChannel">Canal de contacto</label>
+                        <select name="contactChannel" id="channelContact2">
+                            <option label="Seleccionar canal"></option>
+                        </select>
+                    </div>
+                    <div id="account2" class="hidden">
+                        <label for="userAccount">Cuenta de usuario</label>
+                        <input type="text" id="accountContact2" placeholder="@ejemplo" class="inputDisabled">
+                    </div>
+                    <div id="preferences2" class="hidden">
+                        <label for="preferences">Preferencias</label>
+                        <select name="contactChannel" id="preferencesContact2" class="inputDisabled">
+                            <option label="Sin Preferencia" value="Sin Preferencia"></option>
+                            <option label="Canal Favorito" value="Canal Favorito"></option>
+                            <option label="No Molestar" value="No Molestar"></option>
+                        </select>
+                    </div>
+                
+                    
                 </div>
                 <div id="buttonsContact" class="buttonsActions">
                     <button id="cancelButton"> Cancelar</button>
