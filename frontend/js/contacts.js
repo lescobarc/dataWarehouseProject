@@ -98,11 +98,13 @@ addButton.addEventListener('click', () => {
     const channelContactSelectValue = channelContact.value.split(" ");
     const channelId = parseInt(channelContactSelectValue[0]);
     console.log(regionContactSelectValue[0])
-    console.log(interestContact.value)
+    const channelContactSelectValue2 = channelContact2.value.split(" ");
+    const channelId2 = parseInt(channelContactSelectValue2[0]);
 
+   
     fetch('http://localhost:3000/contact', {
         method: 'POST',
-        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${companyId}", "region_id":"${regionId}","country_id":"${countryId}","city_id":"${cityId}", "interest":"${interestContact.value}", "channel_id":"${channelId}",  "account":"${accountContact.value}", "preferences":"${preferencesContact.value}"}`,
+        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${companyId}", "region_id":"${regionId}","country_id":"${countryId}","city_id":"${cityId}", "interest":"${interestContact.value}", "channel1": "${channelId}", "channel2": "${channelId2}", "account1":"${accountContact.value}", "account2":"${accountContact2.value}", "preferences1":"${preferencesContact.value}", "preferences2":"${preferencesContact2.value}"} `,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -355,7 +357,7 @@ companyContact.addEventListener('click', () => {
 }
 )
 
-/* //Add channel
+ //Add channel
 buttonAddChannel.addEventListener('click', ()=>{
 
     document.getElementById('channel2').classList.remove('hidden');
@@ -395,4 +397,4 @@ channelContact2.addEventListener('click', () => {
 
 
 }
-) */
+) 
