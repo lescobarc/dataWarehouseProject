@@ -92,6 +92,7 @@ addButton.addEventListener('click', () => {
     const channelContactSelectValue = channelContact.value.split(" ");
     const channelId = parseInt(channelContactSelectValue[0]);
     console.log(regionContactSelectValue[0])
+    console.log(interestContact.value)
 
     fetch('http://localhost:3000/contact', {
         method: 'POST',
