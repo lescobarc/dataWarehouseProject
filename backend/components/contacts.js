@@ -13,18 +13,18 @@ async function listContacts(req, res, next) {
 
  //2. post contact
 async function existenceContact(req, res, next) {
-    const { name } = req.body;
+    const { email } = req.body;
     console.log(req.body)
-    const dbContacts = await findContactName(name);
+    const dbContacts = await findContactName(email);
     if (!dbContacts) {
       next();
     } else {
-      res.status(405).json("Contact exist");
+      res.status(405).json("Contact Email exist");
     }
   }
   
-  async function findContactName(name) {
-    const query = selectQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest", `name = '${name}'`);
+  async function findContactName(email) {
+    const query = selectQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest", `email = '${email}'`);
     const [dbContacts] = await sequelize.query(query, { raw: true });
     const foundContact = dbContacts[0];
     return foundContact;

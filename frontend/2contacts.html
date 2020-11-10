@@ -187,7 +187,9 @@
                     </div>
                     <div>
                         <label for="Nombre">Compañia<strong>*</strong></label>
-                        <input type="text" id="companyContact">
+                        <select name="company" id="companyContact">
+                            <option label="Seleccionar compañía"></option>
+                        </select>
                     </div>
 
                 </div>
@@ -200,13 +202,13 @@
                     </div>
                     <div>
                         <label for="country"> País </label>
-                        <select name="contactCountry" id="countryContact" class="inputDisabled">
+                        <select name="contactCountry" id="countryContact" class="inputDisabled" disabled>
                             <option label="Seleccionar país"></option>
                         </select>
                     </div>
                     <div>
                         <label for="city"> Ciudad </label>
-                        <select name="contactCity" id="cityContact" class="inputDisabled">
+                        <select name="contactCity" id="cityContact" class="inputDisabled" disabled>
                             <option label="Seleccionar ciudad"></option>
                         </select>
                     </div>
@@ -240,9 +242,9 @@
                     <div>
                         <label for="preferences">Preferencias</label>
                         <select name="contactChannel" id="preferencesContact" class="inputDisabled">
-                            <option label="Sin preferencia"></option>
-                            <option label="Canal Favorito"></option>
-                            <option label="No Molestar"></option>
+                            <option label="Sin Preferencia" value="Sin Preferencia"></option>
+                            <option label="Canal Favorito" value="Canal Favorito"></option>
+                            <option label="No Molestar" value="No Molestar"></option>
                         </select>
                     </div>
                     <div id="buttonAddChannel">

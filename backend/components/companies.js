@@ -8,7 +8,7 @@ async function listCompanies(req, res, next) {
   const company_id = req.params.company_id;
   const query = `SELECT companies.company_id, companies.nameCompany, companies.address, companies.email, companies.tel, regions.nameRegion, countries.nameCountry, cities.nameCity FROM companies INNER JOIN regions ON companies.region_id = regions.region_id INNER JOIN countries ON companies.country_id= countries.country_id INNER JOIN cities ON companies.city_id = cities.city_id`
   const [companies] = await sequelize.query(query, { raw: true });
-  req.companiesList = [companies];
+  req.companiesList = companies;
   next();
 }
 

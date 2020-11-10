@@ -12,7 +12,7 @@ let cancelButton = document.getElementById('cancelButton');
 let addButton = document.getElementById('addButton');
 let nameContact = document.getElementById('nameContact');
 let lastnameContact = document.getElementById('lastnameContact');
-let nameCompanyContact = document.getElementById('nameCompanyContact');
+let nameCompanyContact = document.getElementById('companyContact');
 let regionContact = document.getElementById('regionContact');
 let countryContact = document.getElementById('countryContact');
 let positionContact = document.getElementById('positionContact');
@@ -80,12 +80,25 @@ getContacts();
 
 //2. Post Contacts
 
- createButton.addEventListener('click', () => {
+ addButton.addEventListener('click', () => {
     console.log(nameContact.value)
     console.log('llamado al API');
+   console.log(nameContact.value ) 
+   console.log(lastnameContact.value )
+   console.log(emailContact.value )
+   console.log(positionContact.value )
+   console.log(nameCompanyContact.value )
+   console.log(regionContact.value )
+   console.log(countryContact.value )
+   console.log(cityContact.value )
+   console.log(interestContact.value )
+   console.log(channelContact.value )
+   console.log(preferencesContact.value )
+   console.log(accountContact.value )
+
     fetch('http://localhost:3000/contact', {
         method: 'POST',
-        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${companyNameContact.value}", "region_id":"${regionContact.value}","country_id":"${countryContact.value}","city_id":"${cityContact.value}", "channel_id":"${channelContact.value}", "account":"${accountContact.value}", "preferences":"${preferencesContact.value}"}`,
+        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${nameCompanyContact.value}", "region_id":"${regionContact.value}","country_id":"${countryContact.value}","city_id":"${cityContact.value}", "interest":"${interestContact.value}", "channel_id":"${channelContact.value}",  "account":"${accountContact.value}", "preferences":"${preferencesContact.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -164,6 +177,7 @@ regionContact.addEventListener('click', () => {
                     row.innerHTML += `
                   <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
                     console.log(row)
+                    console.log(row.value)
                     console.log(regionContact)
                     regionContact.appendChild(row);
                 }
@@ -292,6 +306,42 @@ channelContact.addEventListener('click', () => {
                     console.log(row)
                     
                     channelContact.appendChild(row);
+                }
+            } else {
+                console.log('Search Realized');
+            }
+            
+
+        })
+
+      
+}
+)
+
+//Select Companies
+companyContact.addEventListener('click', () => {
+    fetch('http://localhost:3000/companies', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            let validateSearchCompany = document.getElementsByClassName(`rowCompany`);
+           
+            if (res && validateSearchCompany.length == 0) {
+                for (let i = 0; i < res.length; i++) {
+                    console.log(res)
+                    const row = document.createElement('option');
+                    row.setAttribute('id', `rowCompany${res[i].company_id}`)
+                    row.setAttribute('class', `rowCompany`)
+                    row.innerHTML += `
+                  <span class="caret"  id ="${res[i].company_id}" value="${res[i].company_id}"> ${res[i].company_id} ${res[i].nameCompany} </span>  `;
+                    console.log(row)
+                    
+                    companyContact.appendChild(row);
                 }
             } else {
                 console.log('Search Realized');
