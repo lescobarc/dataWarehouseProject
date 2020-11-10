@@ -13,6 +13,7 @@ async function listCompanies(req, res, next) {
 }
 
 /* `SELECT companies.nameCompany, companies.address, companies.email, companies.tel, regions.nameRegion, countries.nameCountry, cities.nameCity FROM companies INNER JOIN regions ON companies.region_id = regions.region_id INNER JOIN countries ON companies.country_id= countries.country_id INNER JOIN cities ON companies.city_id = cities.city_id WHERE companies.company_id = ${company_id}` */
+
 //2. post company
 async function existenceCompany(req, res, next) {
   const { nameCompany } = req.body;

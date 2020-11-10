@@ -6,7 +6,7 @@ app.use(express.json());
 const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
-const { listContacts, existenceContact,  addContact, putContact, deleteContact} = require('./components/contacts');
+const { listContacts, existenceContact,  addContact, addChannel, putContact, deleteContact} = require('./components/contacts');
 const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
@@ -147,7 +147,7 @@ app.get("/contacts", validateToken, listContacts, (req, res) => {
 });
 
 //2 post contact
-app.post("/contact", validateToken, existenceContact,  addContact, (req, res) => {
+app.post("/contact", validateToken, existenceContact,  addContact, addChannel, (req, res) => {
   try {
     const { createdContactId } = req;
     res.status(200).json({ contactId: createdContactId });

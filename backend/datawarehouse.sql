@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2020 a las 00:25:31
+-- Tiempo de generación: 10-11-2020 a las 00:03:28
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -24,6 +24,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `channels`
+--
+
+CREATE TABLE `channels` (
+  `channel_id` int(11) NOT NULL,
+  `nameChannel` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cities`
 --
 
@@ -38,9 +49,8 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`city_id`, `nameCity`, `country_id`) VALUES
-(12, 'Roma', 44),
-(13, 'Venecia', 44),
-(14, 'Guadalajara', 43);
+(18, 'Medellín', 53),
+(19, 'Cali', 53);
 
 -- --------------------------------------------------------
 
@@ -50,21 +60,21 @@ INSERT INTO `cities` (`city_id`, `nameCity`, `country_id`) VALUES
 
 CREATE TABLE `companies` (
   `company_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `nameCompany` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `tel` int(11) NOT NULL,
-  `region_id` int(11) NOT NULL,
-  `country_id` int(11) NOT NULL,
-  `city_id` int(11) NOT NULL
+  `region_id` int(11) DEFAULT NULL,
+  `country_id` int(11) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `companies`
 --
 
-INSERT INTO `companies` (`company_id`, `name`, `address`, `email`, `tel`, `region_id`, `country_id`, `city_id`) VALUES
-(4, 'Softtek', 'cll 30 #67-22', 'softek@gmail.com', 458721, 9, 44, 12);
+INSERT INTO `companies` (`company_id`, `nameCompany`, `address`, `email`, `tel`, `region_id`, `country_id`, `city_id`) VALUES
+(21, 'Softtek', 'cll 30 #67-22', 'softek@gmail.com5458796', 4568798, 15, 53, 19);
 
 -- --------------------------------------------------------
 
@@ -81,8 +91,31 @@ CREATE TABLE `contacts` (
   `city_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   `position` varchar(50) NOT NULL,
-  `channel` varchar(50) NOT NULL,
-  `interest` int(11) NOT NULL
+  `contact_channel_id` int(50) NOT NULL,
+  `interest` int(11) NOT NULL,
+  `lastname` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `contacts`
+--
+
+INSERT INTO `contacts` (`contact_id`, `name`, `email`, `region_id`, `country_id`, `city_id`, `company_id`, `position`, `contact_channel_id`, `interest`, `lastname`) VALUES
+(8, 'Veronica Sanchez', 'vera@gmail.com', 15, 53, 19, 21, 'UX Designer', 0, 100, ''),
+(9, 'Verónica ', 'vera@gmail.com', 15, 53, 19, 21, 'UX Designer', 0, 100, 'Sanchez');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contacts_channels`
+--
+
+CREATE TABLE `contacts_channels` (
+  `contact_channel_id` int(11) NOT NULL,
+  `contact_id` int(11) NOT NULL,
+  `channel_id` int(11) NOT NULL,
+  `account` varchar(50) NOT NULL,
+  `preferences` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -102,10 +135,8 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`country_id`, `nameCountry`, `region_id`) VALUES
-(43, 'México', 2),
-(44, 'Italia', 9),
-(45, 'Alemania', 9),
-(46, 'Japon', 8);
+(46, 'Japon', 8),
+(53, 'Colombia', 15);
 
 -- --------------------------------------------------------
 
@@ -123,11 +154,10 @@ CREATE TABLE `regions` (
 --
 
 INSERT INTO `regions` (`region_id`, `nameRegion`) VALUES
-(1, 'Suramérica'),
 (2, 'Norteamérica'),
-(3, 'África'),
 (8, 'Asia'),
-(9, 'Europa');
+(14, 'África'),
+(15, 'Suramérica');
 
 -- --------------------------------------------------------
 
@@ -151,8 +181,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `pass`, `repass`, `isAdmin`) VALUES
 (4, 's', 's', 's', 's', 's', 0),
-(6, 'sd', 's', 'ss', 's', 's', 0),
-(8, 'dfghg', 'hjjkyyyyyyyyy', 'ssdddsssssl', '12', '123', 0),
+(6, 'f', 'f', 'ss', 's', 's', 0),
 (11, 'dfgh', 'jj', 'hgh', '1', '1', 0),
 (12, 't', 't', 't', 't', 't', 0),
 (13, 'admin', 'admin@hotmail.com', 'admin', '1234', '1234', 1),
@@ -161,6 +190,13 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `pass`, `repass`, `
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `channels`
+--
+ALTER TABLE `channels`
+  ADD PRIMARY KEY (`channel_id`),
+  ADD KEY `channel_id` (`channel_id`);
 
 --
 -- Indices de la tabla `cities`
@@ -186,7 +222,17 @@ ALTER TABLE `contacts`
   ADD KEY `region_id` (`region_id`),
   ADD KEY `country_id` (`country_id`),
   ADD KEY `city_id` (`city_id`),
-  ADD KEY `company_id` (`company_id`);
+  ADD KEY `company_id` (`company_id`),
+  ADD KEY `contact_channel_id` (`contact_channel_id`);
+
+--
+-- Indices de la tabla `contacts_channels`
+--
+ALTER TABLE `contacts_channels`
+  ADD PRIMARY KEY (`contact_channel_id`),
+  ADD KEY `contact_id` (`contact_id`),
+  ADD KEY `channel_id` (`channel_id`),
+  ADD KEY `contact_channel_id` (`contact_channel_id`);
 
 --
 -- Indices de la tabla `countries`
@@ -213,34 +259,46 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `channels`
+--
+ALTER TABLE `channels`
+  MODIFY `channel_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `contacts_channels`
+--
+ALTER TABLE `contacts_channels`
+  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `regions`
 --
 ALTER TABLE `regions`
-  MODIFY `region_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `region_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -274,6 +332,14 @@ ALTER TABLE `contacts`
   ADD CONSTRAINT `contact_company` FOREIGN KEY (`company_id`) REFERENCES `companies` (`company_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `contact_country` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `contact_region` FOREIGN KEY (`region_id`) REFERENCES `regions` (`region_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `contacts_channels`
+--
+ALTER TABLE `contacts_channels`
+  ADD CONSTRAINT `contacts_channels_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contacts_channels_ibfk_2` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`channel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contacts_channels_ibfk_3` FOREIGN KEY (`contact_channel_id`) REFERENCES `contacts` (`contact_channel_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `countries`

@@ -5,7 +5,7 @@ const { deleteQuery, insertQuery, joinQuery, selectQuery, updateQuery, useQuery 
 
 //1. get contacts
 async function listContacts(req, res, next) {
-  const query = `SELECT contacts.contact_id, contacts.name, contacts.email, regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position, contacts.channel, contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id `
+  const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id `
   const [contacts] = await sequelize.query(query, { raw: true });
   req.contactsList = [contacts];
   next();
@@ -24,7 +24,7 @@ async function existenceContact(req, res, next) {
   }
   
   async function findContactName(name) {
-    const query = selectQuery("contacts", "name, email, region_id, country_id, city_id, company_id, position, channel, interest", `name = '${name}'`);
+    const query = selectQuery("contacts", "name, email, region_id, country_id, city_id, company_id, position,  interest", `name = '${name}'`);
     const [dbContacts] = await sequelize.query(query, { raw: true });
     const foundContact = dbContacts[0];
     return foundContact;
@@ -33,10 +33,10 @@ async function existenceContact(req, res, next) {
  
   
   async function addContact(req, res, next) {
- const { name,  email, region_id, country_id, city_id, company_id, position, channel, interest  } = req.body;  
-    if (name  && email  && region_id && country_id && city_id && company_id && position && channel && interest ) {
-      const query = insertQuery("contacts", "name, email, region_id, country_id, city_id, company_id, position, channel, interest",
-        [name, email, region_id, country_id, city_id, company_id, position, channel, interest]);
+ const { name, lastname,  email, region_id, country_id, city_id, company_id, position,  interest } = req.body;  
+    if (name && lastname  && email  && region_id && country_id && city_id && company_id && position &&  interest ) {
+      const query = insertQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest",
+        [name, lastname,  email, region_id, country_id, city_id, company_id, position, interest]);
       [contactId] = await sequelize.query(query, { raw: true });
       req.createdContactId = contactId;
       next();
@@ -45,6 +45,21 @@ async function existenceContact(req, res, next) {
     }
   }
 
+  async function addChannel(req, res, next) {
+
+    contact_id = req.params.contact_id;
+
+    const {  channel_id, account, preferences   } = req.body;  
+       if (contact_id, channel_id  && account  && preferences) {
+         const query = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences",
+           [contact_id, channel_id, account, preferences]);
+         [contact_channel_id] = await sequelize.query(query, { raw: true });
+         req.createdContactId = contact_channel_id;
+         next();
+       } else {
+         res.status(400).json("Bad Request: Missing Arguments");
+       }
+     }
   
 //3. Update contact
 async function putContact(req, res, next) {
@@ -95,4 +110,4 @@ async function putContact(req, res, next) {
     }
   } 
 
-module.exports = {  listContacts, existenceContact,  addContact, putContact, deleteContact};
+module.exports = {  listContacts, existenceContact,  addContact, addChannel, putContact, deleteContact};
