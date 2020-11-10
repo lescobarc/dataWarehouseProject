@@ -48,7 +48,7 @@ function getCompanies() {
         .then(res => {
             console.log('este')
             console.log(res)
-            let company = res[0];
+            let company = res;
             if (res) {
                 for (let i = 0; i < company.length; i++) {
 
@@ -293,7 +293,7 @@ function updateUsers(id) {
     fetch(`http://localhost:3000/company/${id}`, {
 
         method: 'PUT',
-        body: `{"nameCompany":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
+        body: `{"name":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`

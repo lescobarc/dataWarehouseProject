@@ -43,7 +43,7 @@ function getContacts() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-           
+
             console.log(res)
             let contact = res[0];
             if (res) {
@@ -80,25 +80,22 @@ getContacts();
 
 //2. Post Contacts
 
- addButton.addEventListener('click', () => {
-    console.log(nameContact.value)
-    console.log('llamado al API');
-   console.log(nameContact.value ) 
-   console.log(lastnameContact.value )
-   console.log(emailContact.value )
-   console.log(positionContact.value )
-   console.log(nameCompanyContact.value )
-   console.log(regionContact.value )
-   console.log(countryContact.value )
-   console.log(cityContact.value )
-   console.log(interestContact.value )
-   console.log(channelContact.value )
-   console.log(preferencesContact.value )
-   console.log(accountContact.value )
+addButton.addEventListener('click', () => {
+    const companyContactSelectValue = companyContact.value.split(" ");
+    const companyId = parseInt(companyContactSelectValue[0]);
+    const regionContactSelectValue = regionContact.value.split(" ");
+    const regionId = parseInt(regionContactSelectValue[0]);
+    const countryContactSelectValue = countryContact.value.split(" ");
+    const countryId = parseInt(countryContactSelectValue[0]);
+    const cityContactSelectValue = cityContact.value.split(" ");
+    const cityId = parseInt(cityContactSelectValue[0]);
+    const channelContactSelectValue = channelContact.value.split(" ");
+    const channelId = parseInt(channelContactSelectValue[0]);
+    console.log(regionContactSelectValue[0])
 
     fetch('http://localhost:3000/contact', {
         method: 'POST',
-        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${nameCompanyContact.value}", "region_id":"${regionContact.value}","country_id":"${countryContact.value}","city_id":"${cityContact.value}", "interest":"${interestContact.value}", "channel_id":"${channelContact.value}",  "account":"${accountContact.value}", "preferences":"${preferencesContact.value}"}`,
+        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${companyId}", "region_id":"${regionId}","country_id":"${countryId}","city_id":"${cityId}", "interest":"${interestContact.value}", "channel_id":"${channelId}",  "account":"${accountContact.value}", "preferences":"${preferencesContact.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -140,7 +137,7 @@ getContacts();
     })
 
 });
- 
+
 addButton.addEventListener('click', () => {
     createContactSection.classList.toggle('hidden');
     contactsSection.classList.toggle('hidden');
@@ -175,26 +172,27 @@ regionContact.addEventListener('click', () => {
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.setAttribute('class', `rowRegion`)
                     row.innerHTML += `
-                  <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
+                    <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
                     console.log(row)
                     console.log(row.value)
                     console.log(regionContact)
                     regionContact.appendChild(row);
+                    console.log(regionContact.value)
                 }
             } else {
                 console.log('Search Realized');
             }
-            
+
 
         })
 
-        console.log('Search Realized');
-        for (let i = countryContact.options.length; i >= 0; i--) {
-            countryContact.remove(i);
-        }
-        for (let i = cityContact.options.length; i >= 0; i--) {
-            cityContact.remove(i);
-        }
+    console.log('Search Realized');
+    for (let i = countryContact.options.length; i >= 0; i--) {
+        countryContact.remove(i);
+    }
+    for (let i = cityContact.options.length; i >= 0; i--) {
+        cityContact.remove(i);
+    }
 
     getCountries();
 }
@@ -202,7 +200,7 @@ regionContact.addEventListener('click', () => {
 
 //Select Countries
 function getCountries() {
-    let validateSearchCountry = document.getElementsByClassName(`liCountry`); 
+    let validateSearchCountry = document.getElementsByClassName(`liCountry`);
     console.log(validateSearchCountry)
     countryContact.disabled = false
     countryContact.addEventListener('click', () => {
@@ -232,11 +230,11 @@ function getCountries() {
                         console.log(liCountry)
                         countryContact.appendChild(liCountry);
                     }
-                } 
+                }
             })
-            for (let i = cityContact.options.length; i >= 0; i--) {
-                cityContact.remove(i);
-            }
+        for (let i = cityContact.options.length; i >= 0; i--) {
+            cityContact.remove(i);
+        }
         getCities()
     })
 }
@@ -245,39 +243,39 @@ function getCountries() {
 function getCities() {
     let validateSearchCity = document.getElementsByClassName(`liCity`);
     console.log(validateSearchCity)
-        cityContact.disabled = false
-        cityContact.addEventListener('click', () => {
-            const countryContactSelectValue = countryContact.value.split(" ");
-            console.log(countryContactSelectValue)
-            const country_idSelect = countryContactSelectValue[0];
+    cityContact.disabled = false
+    cityContact.addEventListener('click', () => {
+        const countryContactSelectValue = countryContact.value.split(" ");
+        console.log(countryContactSelectValue)
+        const country_idSelect = countryContactSelectValue[0];
 
-            fetch(`http://localhost:3000/cities/${country_idSelect}`, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`
-                }
-            }).then(respuesta => respuesta.json())
-                .then(res => {
-                    console.log(res)
-                    if (res && validateSearchCity.length == 0) {
-                        for (let i = 0; i < res.length; i++) {
-                            console.log(res)
-                            console.log(validateSearchCity)
-                            let liCity = document.createElement('option');
-                            liCity.setAttribute('id', `liCity${res[i].city_id}`)
-                            liCity.setAttribute('class', `liCity`)
-                            liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
-                            console.log(liCity)
-                            cityContact.appendChild(liCity);
-                        }
-                    } else {
-                        console.log('Search Realized');
+        fetch(`http://localhost:3000/cities/${country_idSelect}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(respuesta => respuesta.json())
+            .then(res => {
+                console.log(res)
+                if (res && validateSearchCity.length == 0) {
+                    for (let i = 0; i < res.length; i++) {
+                        console.log(res)
+                        console.log(validateSearchCity)
+                        let liCity = document.createElement('option');
+                        liCity.setAttribute('id', `liCity${res[i].city_id}`)
+                        liCity.setAttribute('class', `liCity`)
+                        liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
+                        console.log(liCity)
+                        cityContact.appendChild(liCity);
                     }
+                } else {
+                    console.log('Search Realized');
+                }
 
-                })
-        }
-        )
+            })
+    }
+    )
 
 }
 
@@ -294,7 +292,7 @@ channelContact.addEventListener('click', () => {
         .then(res => {
             console.log(res)
             let validateSearchChannel = document.getElementsByClassName(`rowChannel`);
-           
+
             if (res && validateSearchChannel.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
@@ -304,17 +302,17 @@ channelContact.addEventListener('click', () => {
                     row.innerHTML += `
                   <span class="caret"  id ="${res[i].channel_id}" value="${res[i].channel_id}"> ${res[i].channel_id} ${res[i].nameChannel} </span>  `;
                     console.log(row)
-                    
+
                     channelContact.appendChild(row);
                 }
             } else {
                 console.log('Search Realized');
             }
-            
+
 
         })
 
-      
+
 }
 )
 
@@ -330,7 +328,7 @@ companyContact.addEventListener('click', () => {
         .then(res => {
             console.log(res)
             let validateSearchCompany = document.getElementsByClassName(`rowCompany`);
-           
+
             if (res && validateSearchCompany.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
@@ -340,16 +338,16 @@ companyContact.addEventListener('click', () => {
                     row.innerHTML += `
                   <span class="caret"  id ="${res[i].company_id}" value="${res[i].company_id}"> ${res[i].company_id} ${res[i].nameCompany} </span>  `;
                     console.log(row)
-                    
+
                     companyContact.appendChild(row);
                 }
             } else {
                 console.log('Search Realized');
             }
-            
+
 
         })
 
-      
+
 }
 )

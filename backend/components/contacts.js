@@ -33,7 +33,8 @@ async function existenceContact(req, res, next) {
  
   
   async function addContact(req, res, next) {
- const { name, lastname,  email, region_id, country_id, city_id, company_id, position,  interest} = req.body;  
+ const { name, lastname,  email, region_id, country_id, city_id, company_id, position,  interest} = req.body;
+   
     if (name && lastname  && email  && region_id && country_id && city_id && company_id && position &&  interest ) {
       const query = insertQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest",
         [name, lastname,  email, region_id, country_id, city_id, company_id, position, interest]);
