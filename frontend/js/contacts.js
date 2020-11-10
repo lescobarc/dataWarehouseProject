@@ -16,12 +16,13 @@ let nameCompanyContact = document.getElementById('nameCompanyContact');
 let regionContact = document.getElementById('regionContact');
 let countryContact = document.getElementById('countryContact');
 let positionContact = document.getElementById('positionContact');
-let channelContact = document.getElementById('channelContact');
 let interestContact = document.getElementById('interestContact');
-
+let channelContact = document.getElementById('channelContact');
+let accountContact = document.getElementById('accountContact');
+let preferencesContact = document.getElementById('preferencesContact');
 
 //update
-let createButtonUp = document.getElementById('createButtonUp');
+/* let createButtonUp = document.getElementById('createButtonUp');
 let cancelButtonUp = document.getElementById('cancelButtonUp');
 let updateCompanySection = document.getElementById('updateCompanySection');
 let regionCompanyUp = document.getElementById('regionCompanyUp');
@@ -30,7 +31,7 @@ let cityCompanyUp = document.getElementById('cityCompanyUp');
 let nameCompanyUp = document.getElementById('nameCompanyUp');
 let addressCompanyUp = document.getElementById('addressCompanyUp');
 let emailCompanyUp = document.getElementById('emailCompanyUp');
-let telCompanyUp = document.getElementById('telCompanyUp'); 
+let telCompanyUp = document.getElementById('telCompanyUp');  */
 
 //1. get contacts
 function getContacts() {
@@ -77,14 +78,14 @@ function getContacts() {
 }
 getContacts();
 
-//2. Post Companies
+//2. Post Contacts
 
  createButton.addEventListener('click', () => {
     console.log(nameContact.value)
     console.log('llamado al API');
     fetch('http://localhost:3000/contact', {
         method: 'POST',
-        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "companyName":"${companyNameContact.value}", "region_id":"${regionContact.value}","country_id":"${countryContact.value}","city_id":"${cityContact.value}"}`,
+        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${companyNameContact.value}", "region_id":"${regionContact.value}","country_id":"${countryContact.value}","city_id":"${cityContact.value}", "channel_id":"${channelContact.value}", "account":"${accountContact.value}", "preferences":"${preferencesContact.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -114,7 +115,7 @@ getContacts();
         else if (res.status == 405) {
             res.json().then((data) => {
                 console.log(data);
-                alert('User Exist');
+                alert('Contact Exist');
             });
         }
         else if (res.status == 406) {
@@ -140,3 +141,165 @@ cancelButton.addEventListener('click', () => {
     createContactSection.classList.toggle('hidden');
     contactsSection.classList.toggle('hidden');
 });
+
+//Select Region
+regionContact.addEventListener('click', () => {
+    fetch('http://localhost:3000/regions', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            let validateSearchRegion = document.getElementsByClassName(`rowRegion`);
+            if (res && validateSearchRegion.length == 0) {
+                for (let i = 0; i < res.length; i++) {
+                    console.log(res)
+                    /* console.log(res.users[i].name)  */
+                    const row = document.createElement('option');
+                    row.setAttribute('id', `rowRegion${res[i].region_id}`)
+                    row.setAttribute('class', `rowRegion`)
+                    row.innerHTML += `
+                  <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
+                    console.log(row)
+                    console.log(regionContact)
+                    regionContact.appendChild(row);
+                }
+            } else {
+                console.log('Search Realized');
+            }
+            
+
+        })
+
+        console.log('Search Realized');
+        for (let i = countryContact.options.length; i >= 0; i--) {
+            countryContact.remove(i);
+        }
+        for (let i = cityContact.options.length; i >= 0; i--) {
+            cityContact.remove(i);
+        }
+
+    getCountries();
+}
+)
+
+//Select Countries
+function getCountries() {
+    let validateSearchCountry = document.getElementsByClassName(`liCountry`); 
+    console.log(validateSearchCountry)
+    countryContact.disabled = false
+    countryContact.addEventListener('click', () => {
+        const regionContactSelectValue = regionContact.value.split(" ");
+        console.log(regionContactSelectValue)
+        const region_idSelect = regionContactSelectValue[0];
+
+        fetch(`http://localhost:3000/countries/${region_idSelect}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(respuesta => respuesta.json())
+            .then(res => {
+                console.log(res)
+                console.log(validateSearchCountry.length)
+                if (res && validateSearchCountry.length == 0) {
+                    for (let i = 0; i < res.length; i++) {
+                        console.log(res)
+                        console.log(res[i].country_id)
+                        const liCountry = document.createElement('option');
+                        liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
+                        liCountry.setAttribute('class', `liCountry`)
+                        liCountry.innerHTML += `
+                            <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
+                        console.log(liCountry)
+                        countryContact.appendChild(liCountry);
+                    }
+                } 
+            })
+            for (let i = cityContact.options.length; i >= 0; i--) {
+                cityContact.remove(i);
+            }
+        getCities()
+    })
+}
+
+//Select Cities
+function getCities() {
+    let validateSearchCity = document.getElementsByClassName(`liCity`);
+    console.log(validateSearchCity)
+        cityContact.disabled = false
+        cityContact.addEventListener('click', () => {
+            const countryContactSelectValue = countryContact.value.split(" ");
+            console.log(countryContactSelectValue)
+            const country_idSelect = countryContactSelectValue[0];
+
+            fetch(`http://localhost:3000/cities/${country_idSelect}`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(respuesta => respuesta.json())
+                .then(res => {
+                    console.log(res)
+                    if (res && validateSearchCity.length == 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            console.log(res)
+                            console.log(validateSearchCity)
+                            let liCity = document.createElement('option');
+                            liCity.setAttribute('id', `liCity${res[i].city_id}`)
+                            liCity.setAttribute('class', `liCity`)
+                            liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
+                            console.log(liCity)
+                            cityContact.appendChild(liCity);
+                        }
+                    } else {
+                        console.log('Search Realized');
+                    }
+
+                })
+        }
+        )
+
+}
+
+
+//Select Channel
+channelContact.addEventListener('click', () => {
+    fetch('http://localhost:3000/channels', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            let validateSearchChannel = document.getElementsByClassName(`rowChannel`);
+           
+            if (res && validateSearchChannel.length == 0) {
+                for (let i = 0; i < res.length; i++) {
+                    console.log(res)
+                    const row = document.createElement('option');
+                    row.setAttribute('id', `rowChannel${res[i].region_id}`)
+                    row.setAttribute('class', `rowChannel`)
+                    row.innerHTML += `
+                  <span class="caret"  id ="${res[i].channel_id}" value="${res[i].channel_id}"> ${res[i].channel_id} ${res[i].nameChannel} </span>  `;
+                    console.log(row)
+                    
+                    channelContact.appendChild(row);
+                }
+            } else {
+                console.log('Search Realized');
+            }
+            
+
+        })
+
+      
+}
+)

@@ -24,7 +24,7 @@ async function existenceContact(req, res, next) {
   }
   
   async function findContactName(name) {
-    const query = selectQuery("contacts", "name, email, region_id, country_id, city_id, company_id, position,  interest", `name = '${name}'`);
+    const query = selectQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest", `name = '${name}'`);
     const [dbContacts] = await sequelize.query(query, { raw: true });
     const foundContact = dbContacts[0];
     return foundContact;
@@ -33,33 +33,31 @@ async function existenceContact(req, res, next) {
  
   
   async function addContact(req, res, next) {
- const { name, lastname,  email, region_id, country_id, city_id, company_id, position,  interest } = req.body;  
+ const { name, lastname,  email, region_id, country_id, city_id, company_id, position,  interest} = req.body;  
     if (name && lastname  && email  && region_id && country_id && city_id && company_id && position &&  interest ) {
       const query = insertQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest",
         [name, lastname,  email, region_id, country_id, city_id, company_id, position, interest]);
       [contactId] = await sequelize.query(query, { raw: true });
+      let contact_id = [contactId];
+      console.log(contactId);
+     console.log(contact_id) 
+
+     const { channel_id, account, preferences   } = req.body;  
+       if (contact_id & channel_id  && account  && preferences) {
+         const query = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences",
+           [contact_id, channel_id, account, preferences]);
+         [contact_channel_id] = await sequelize.query(query, { raw: true });
+         //req.createdContactId = contact_channel_id; 
+
       req.createdContactId = contactId;
-      next();
+      next(); 
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
     }
   }
+  }
 
-  async function addChannel(req, res, next) {
 
-    contact_id = req.params.contact_id;
-
-    const {  channel_id, account, preferences   } = req.body;  
-       if (contact_id, channel_id  && account  && preferences) {
-         const query = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences",
-           [contact_id, channel_id, account, preferences]);
-         [contact_channel_id] = await sequelize.query(query, { raw: true });
-         req.createdContactId = contact_channel_id;
-         next();
-       } else {
-         res.status(400).json("Bad Request: Missing Arguments");
-       }
-     }
   
 //3. Update contact
 async function putContact(req, res, next) {
@@ -110,4 +108,14 @@ async function putContact(req, res, next) {
     }
   } 
 
-module.exports = {  listContacts, existenceContact,  addContact, addChannel, putContact, deleteContact};
+//CHANNELS
+
+//1. get channels
+async function listChannels(req, res, next) {
+  const query = selectQuery("channels", "*");
+  const [channels] = await sequelize.query(query, { raw: true });
+  req.channelsList = channels;
+  next();
+}
+
+module.exports = {  listContacts, existenceContact,  addContact, putContact, deleteContact, listChannels};

@@ -171,57 +171,54 @@
                     <img src="style/img/addPhoto.png" alt="Photo">
                     <div>
                         <label for="Nombre"> Nombre<strong>*</strong></label>
-                        <input type="text">
+                        <input type="text" id="nameContact">
                     </div>
                     <div>
                         <label for="Nombre">Apellido<strong>*</strong></label>
-                        <input type="text">
+                        <input type="text" id="lastnameContact">
                     </div>
                     <div>
                         <label for="Nombre">Cargo<strong>*</strong></label>
-                        <input type="text">
+                        <input type="text" id="positionContact">
                     </div>
                     <div>
                         <label for="Nombre">Email<strong>*</strong></label>
-                        <input type="text">
+                        <input type="text" id="emailContact">
                     </div>
                     <div>
                         <label for="Nombre">Compañia<strong>*</strong></label>
-                        <input type="text">
+                        <input type="text" id="companyContact">
                     </div>
 
                 </div>
                 <div id="secondInfoContact" class="secondInfo">
                     <div>
                         <label for="region"> Región </label>
-                        <select name="contactRegion" id="">
+                        <select name="contactRegion" id="regionContact">
                             <option label="Seleccionar región"></option>
-                            <option value=""></option>
                         </select>
                     </div>
                     <div>
                         <label for="country"> País </label>
-                        <select name="contactCountry" id="" class="inputDisabled">
+                        <select name="contactCountry" id="countryContact" class="inputDisabled">
                             <option label="Seleccionar país"></option>
-                            <option value=""></option>
                         </select>
                     </div>
                     <div>
                         <label for="city"> Ciudad </label>
-                        <select name="contactCity" id="" class="inputDisabled">
+                        <select name="contactCity" id="cityContact" class="inputDisabled">
                             <option label="Seleccionar ciudad"></option>
-                            <option value=""></option>
                         </select>
                     </div>
                     <div>
                         <label for="addres"> Dirección </label>
-                        <input type="text" placeholder="Ingresa una dirección" class="inputDisabled">
+                        <input type="text" id="addressContact" placeholder="Ingresa una dirección" class="inputDisabled">
                     </div>
                     <div >
                         <label for="interest">Interés</label>
                         <div id="divInterestContact" class="divInterest">
                        
-                        <select name="interest" id="selectInterestContact">
+                        <select name="interest" id="interestContact">
                             <option value="0">0%</option>
                             <option value="25">25%</option>
                             <option value="50">50%</option>
@@ -232,20 +229,20 @@
                     </div>
                     <div>
                         <label for="contactChannel">Canal de contacto</label>
-                        <select name="contactChannel" id="">
+                        <select name="contactChannel" id="channelContact">
                             <option label="Seleccionar canal"></option>
-                            <option value=""></option>
                         </select>
                     </div>
                     <div>
                         <label for="userAccount">Cuenta de usuario</label>
-                        <input type="text" placeholder="@ejemplo" class="inputDisabled">
+                        <input type="text" id="accountContact" placeholder="@ejemplo" class="inputDisabled">
                     </div>
                     <div>
                         <label for="preferences">Preferencias</label>
-                        <select name="contactChannel" id="" class="inputDisabled">
+                        <select name="contactChannel" id="preferencesContact" class="inputDisabled">
                             <option label="Sin preferencia"></option>
-                            <option value=""></option>
+                            <option label="Canal Favorito"></option>
+                            <option label="No Molestar"></option>
                         </select>
                     </div>
                     <div id="buttonAddChannel">
