@@ -410,6 +410,10 @@ function showUpdateContact(i) {
     console.log(id)
     updateContactSection.classList.toggle('hidden');
     contactsSection.classList.toggle('hidden');
+
+
+
+    
     addButtonUp.addEventListener('click', () => {
         console.log(id)
         updateContacts(id)
