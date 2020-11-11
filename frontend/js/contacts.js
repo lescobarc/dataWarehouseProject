@@ -410,10 +410,6 @@ function showUpdateContact(i) {
     console.log(id)
     updateContactSection.classList.toggle('hidden');
     contactsSection.classList.toggle('hidden');
-
-
-
-    
     addButtonUp.addEventListener('click', () => {
         console.log(id)
         updateContacts(id)
@@ -421,7 +417,6 @@ function showUpdateContact(i) {
 }
 function updateContacts(id) {
     console.log(id)
-
     const companyContactSelectValueUp = companyContactUp.value.split(" ");
     const companyIdUp = parseInt(companyContactSelectValueUp[0]);
     const regionContactSelectValueUp = regionContactUp.value.split(" ");
@@ -435,8 +430,6 @@ function updateContacts(id) {
     console.log(regionContactSelectValueUp[0])
     const channelContactSelectValue2Up = channelContact2Up.value.split(" ");
     const channelId2Up = parseInt(channelContactSelectValue2Up[0]);
-
-
 
     fetch(`http://localhost:3000/contact/${id}`, {
 
@@ -494,7 +487,6 @@ regionContactUp.addEventListener('click', () => {
             if (res && validateSearchRegion.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
-                
                     const row = document.createElement('option');
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.setAttribute('class', `rowRegionUp`)
@@ -520,22 +512,21 @@ regionContactUp.addEventListener('click', () => {
     for (let i = cityContactUp.options.length; i >= 0; i--) {
         cityContactUp.remove(i);
     }
-
     getCountriesUp();
 }
 )
 
 //Select Countries
 function getCountriesUp() {
-    let validateSearchCountry = document.getElementsByClassName(`liCountryUp`);
-    console.log(validateSearchCountry)
+    let validateSearchCountryUp = document.getElementsByClassName(`liCountryUp`);
+    console.log(validateSearchCountryUp)
     countryContactUp.disabled = false
     countryContactUp.addEventListener('click', () => {
-        const regionContactSelectValue = regionContactUp.value.split(" ");
-        console.log(regionContactSelectValue)
-        const region_idSelect = regionContactSelectValue[0];
+        let regionContactSelectValueUp = regionContactUp.value.split(" ");
+        console.log(regionContactSelectValueUp)
+        let region_idSelectUp = regionContactSelectValueUp[0];
 
-        fetch(`http://localhost:3000/countries/${region_idSelect}`, {
+        fetch(`http://localhost:3000/countries/${region_idSelectUp}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -544,18 +535,18 @@ function getCountriesUp() {
         }).then(respuesta => respuesta.json())
             .then(res => {
                 console.log(res)
-                console.log(validateSearchCountry.length)
-                if (res && validateSearchCountry.length == 0) {
+                console.log(validateSearchCountryUp.length)
+                if (res && validateSearchCountryUp.length == 0) {
                     for (let i = 0; i < res.length; i++) {
                         console.log(res)
                         console.log(res[i].country_id)
-                        const liCountry = document.createElement('option');
-                        liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
-                        liCountry.setAttribute('class', `liCountryUp`)
-                        liCountry.innerHTML += `
+                        const liCountryUp = document.createElement('option');
+                        liCountryUp.setAttribute('id', `liCountry${res[i].country_id}`)
+                        liCountryUp.setAttribute('class', `liCountryUp`)
+                        liCountryUp.innerHTML += `
                             <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
-                        console.log(liCountry)
-                        countryContactUp.appendChild(liCountry);
+                        console.log(liCountryUp)
+                        countryContactUp.appendChild(liCountryUp);
                     }
                 }
             })
@@ -568,15 +559,15 @@ function getCountriesUp() {
 
 //Select Cities
 function getCitiesUp() {
-    let validateSearchCity = document.getElementsByClassName(`liCityUp`);
-    console.log(validateSearchCity)
+    let validateSearchCityUp = document.getElementsByClassName(`liCityUp`);
+    console.log(validateSearchCityUp)
     cityContactUp.disabled = false
     cityContactUp.addEventListener('click', () => {
-        const countryContactSelectValue = countryContactUp.value.split(" ");
-        console.log(countryContactSelectValue)
-        const country_idSelect = countryContactSelectValue[0];
+        const countryContactSelectValueUp = countryContactUp.value.split(" ");
+        console.log(countryContactSelectValueUp)
+        const country_idSelectUp = countryContactSelectValueUp[0];
 
-        fetch(`http://localhost:3000/cities/${country_idSelect}`, {
+        fetch(`http://localhost:3000/cities/${country_idSelectUp}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -585,16 +576,16 @@ function getCitiesUp() {
         }).then(respuesta => respuesta.json())
             .then(res => {
                 console.log(res)
-                if (res && validateSearchCity.length == 0) {
+                if (res && validateSearchCityUp.length == 0) {
                     for (let i = 0; i < res.length; i++) {
                         console.log(res)
-                        console.log(validateSearchCity)
-                        let liCity = document.createElement('option');
-                        liCity.setAttribute('id', `liCity${res[i].city_id}`)
-                        liCity.setAttribute('class', `liCityUp`)
-                        liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
-                        console.log(liCity)
-                        cityContactUp.appendChild(liCity);
+                        console.log(validateSearchCityUp)
+                        let liCityUp = document.createElement('option');
+                        liCityUp.setAttribute('id', `liCity${res[i].city_id}`)
+                        liCityUp.setAttribute('class', `liCityUp`)
+                        liCityUp.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
+                        console.log(liCityUp)
+                        cityContactUp.appendChild(liCityUp);
                     }
                 } else {
                     console.log('Search Realized');
@@ -617,19 +608,19 @@ channelContactUp.addEventListener('click', () => {
     }).then(respuesta => respuesta.json())
         .then(res => {
             console.log(res)
-            let validateSearchChannel = document.getElementsByClassName(`rowChannel`);
+            let validateSearchChannelUp = document.getElementsByClassName(`rowChannelUp`);
 
-            if (res && validateSearchChannel.length == 0) {
+            if (res && validateSearchChannelUp.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
-                    const row = document.createElement('option');
-                    row.setAttribute('id', `rowChannel${res[i].channel_id}`)
-                    row.setAttribute('class', `rowChannel`)
-                    row.innerHTML += `
+                    const rowUp = document.createElement('option');
+                    rowUp.setAttribute('id', `rowChannel${res[i].channel_id}`)
+                    rowUp.setAttribute('class', `rowChannelUp`)
+                    rowUp.innerHTML += `
                   <span class="caret"  id ="${res[i].channel_id}" value="${res[i].channel_id}"> ${res[i].channel_id} ${res[i].nameChannel} </span>  `;
-                    console.log(row)
+                    console.log(rowUp)
 
-                    channelContactUp.appendChild(row);
+                    channelContactUp.appendChild(rowUp);
                 }
             } else {
                 console.log('Search Realized');
@@ -649,19 +640,19 @@ companyContactUp.addEventListener('click', () => {
     }).then(respuesta => respuesta.json())
         .then(res => {
             console.log(res)
-            let validateSearchCompany = document.getElementsByClassName(`rowCompany`);
+            let validateSearchCompanyUp = document.getElementsByClassName(`rowCompanyUp`);
 
-            if (res && validateSearchCompany.length == 0) {
+            if (res && validateSearchCompanyUp.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
-                    let row = document.createElement('option');
-                    row.setAttribute('id', `rowCompany${res[i].company_id}`)
-                    row.setAttribute('class', `rowCompany`)
-                    row.innerHTML += `
+                    let rowUp = document.createElement('option');
+                    rowUp.setAttribute('id', `rowCompany${res[i].company_id}`)
+                    rowUp.setAttribute('class', `rowCompanyUp`)
+                    rowUp.innerHTML += `
                   <span class="caret"  id ="${res[i].company_id}" value="${res[i].company_id}"> ${res[i].company_id} ${res[i].nameCompany} </span>  `;
-                    console.log(row)
+                    console.log(rowUp)
 
-                    companyContactUp.appendChild(row);
+                    companyContactUp.appendChild(rowUp);
                 }
             } else {
                 console.log('Search Realized');
@@ -689,19 +680,19 @@ channelContact2Up.addEventListener('click', () => {
     }).then(respuesta => respuesta.json())
         .then(res => {
             console.log(res)
-            let validateSearchChannel = document.getElementsByClassName(`rowChannel2`);
+            let validateSearchChannelUp = document.getElementsByClassName(`rowChannel2Up`);
 
-            if (res && validateSearchChannel.length == 0) {
+            if (res && validateSearchChannelUp.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
-                    let row = document.createElement('option');
-                    row.setAttribute('id', `rowChannel${res[i].channel_id}`)
-                    row.setAttribute('class', `rowChannel2`)
-                    row.innerHTML += `
+                    let rowUp = document.createElement('option');
+                    rowUp.setAttribute('id', `rowChannel${res[i].channel_id}`)
+                    rowUp.setAttribute('class', `rowChannel2Up`)
+                    rowUp.innerHTML += `
                   <span class="caret"  id ="${res[i].channel_id}" value="${res[i].channel_id}"> ${res[i].channel_id} ${res[i].nameChannel} </span>  `;
-                    console.log(row)
+                    console.log(rowUp)
 
-                    channelContact2Up.appendChild(row);
+                    channelContact2Up.appendChild(rowUp);
                 }
             } else {
                 console.log('Search Realized');
