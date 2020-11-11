@@ -79,7 +79,6 @@ function getContacts() {
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
                 <td>${contact[i].position}</td>
-                <td>${contact[i].channel}</td>
                 <td class ="interes interest${contact[i].interest}"><div >${contact[i].interest}%</div>
                 <div class="progressBar">
                                 <div class="progressBar${contact[i].interest}"></div>
@@ -748,5 +747,8 @@ async function deleteContact(id) {
     location.reload()
 
 }
+
+
+//SEARCH CONTACT
 
   
