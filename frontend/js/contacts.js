@@ -725,9 +725,9 @@ function showDeleteContact(i) {
 }
 
 
-function deleteContact(id) {
+async function deleteContact(id) {
     console.log(id)
-    fetch(`http://localhost:3000/contact/${id}`, {
+    await fetch(`http://localhost:3000/contact/${id}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
