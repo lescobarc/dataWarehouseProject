@@ -411,15 +411,16 @@ nav #imgLogo {
   padding: 2%;
 }
 
-.table #interes {
+.table .interes {
   width: 186px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   padding-top: 20px;
+  padding-left: 10px;
 }
 
-.table #interes .progressBar {
+.table .interes .progressBar {
   height: 11px;
   width: 103px;
   margin-left: 20px;
@@ -428,7 +429,7 @@ nav #imgLogo {
   border-radius: 5px;
 }
 
-.table #interes .progressBar100 {
+.table .interes .progressBar100 {
   border: 1px solid #DE0028;
   background-color: #DE0028;
   margin-left: -6px;
@@ -438,7 +439,7 @@ nav #imgLogo {
   padding-left: 4%;
 }
 
-.table #interes .progressBar75 {
+.table .interes .progressBar75 {
   border: 1px solid #FF6F00;
   border-radius: 5px;
   background-color: #FF6F00;
@@ -446,7 +447,7 @@ nav #imgLogo {
   width: 75%;
 }
 
-.table #interes .progressBar50 {
+.table .interes .progressBar50 {
   border: 1px solid #FFC700;
   border-radius: 5px;
   background-color: #FFC700;
@@ -454,12 +455,24 @@ nav #imgLogo {
   width: 50%;
 }
 
-.table #interes .progressBar25 {
+.table .interes .progressBar25 {
   border: 1px solid #1CC1F5;
   border-radius: 5px;
   background-color: #1CC1F5;
   height: 8px;
   width: 20%;
+}
+
+.table .interest0 {
+  padding-left: 20px;
+}
+
+.table .interest25 .interest50 .interest75 {
+  width: 186px;
+}
+
+.table .interest100 {
+  margin-left: -5px;
 }
 
 .table #actions .iconPoints {

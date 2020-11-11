@@ -5,6 +5,7 @@ let table = document.querySelector('#contactsTable tbody');
 let contactsSection = document.getElementById('contactsSection');
 
 //CONTACTS
+
 //create
 let createContactsSection = document.getElementById('createContactsSection');
 let createButton = document.getElementById('createButton');
@@ -55,6 +56,7 @@ let deleteButtonDeleteContact = document.getElementById('deleteButtonDeleteConta
 
 //1. get contacts
 function getContacts() {
+    
     fetch('http://localhost:3000/contacts', {
         method: 'GET',
         headers: {
@@ -78,7 +80,11 @@ function getContacts() {
                 <td>${contact[i].nameCompany}</td>
                 <td>${contact[i].position}</td>
                 <td>${contact[i].channel}</td>
-                <td>${contact[i].interest}</td>
+                <td class ="interes interest${contact[i].interest}"><div >${contact[i].interest}%</div>
+                <div class="progressBar">
+                                <div class="progressBar${contact[i].interest}"></div>
+                </div>
+                </td>
                 <td id="actions">
                     <i class="fas fa-ellipsis-h iconPoints"></i>
                     <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>

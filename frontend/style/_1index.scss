@@ -122,11 +122,13 @@ nav{
         }
     }
     
-    #interes{
+    .interes{
         
         width: 186px;
         display: flex;
         padding-top: 20px; 
+        padding-left: 10px; 
+
 
         .progressBar{
             height: 11px;
@@ -138,6 +140,7 @@ nav{
         }
         //Modificar Width
         .progressBar100{
+           
             border:  1px solid $bgRed;
             background-color: $bgRed;
             margin-left: -6px;
@@ -169,6 +172,22 @@ nav{
         }
 
     }
+
+    .interest0{
+        padding-left: 20px ;
+    }
+    .interest25 .interest50 .interest75{
+        
+        width: 186px;
+
+    }
+    .interest100{
+        
+        margin-left: -5px ;
+    }
+
+
+
     #actions{
         .iconPoints{
             padding-left: 40%;
