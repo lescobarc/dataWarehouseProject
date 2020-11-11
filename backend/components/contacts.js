@@ -34,20 +34,15 @@ async function findContactName(email) {
 
 async function addContact(req, res, next) {
   const { name, lastname, email, region_id, country_id, city_id, company_id, position, interest, channel1, account1, preferences1, channel2, account2, preferences2 } = req.body;
-
-
   if (name && lastname && email && region_id && country_id && city_id && company_id && position && interest) {
     const query = insertQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest",
-      [name, lastname, email, region_id, country_id, city_id, company_id, position, interest]);
+    [name, lastname, email, region_id, country_id, city_id, company_id, position, interest]);
     [contactId] = await sequelize.query(query, { raw: true });
     let contact_id = [contactId];
     const query2 = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences", [contact_id, channel1, account1, preferences1]);
     const query3 = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences", [contact_id, channel2, account2, preferences2]);
     [channelId1] = await sequelize.query(query2, { raw: true });
     [channelId2] = await sequelize.query(query3, { raw: true });
-    
-
-
     req.createdContactId = contactId;
     next();
   } else {
@@ -55,41 +50,37 @@ async function addContact(req, res, next) {
   }
 }
 
-
-async function channels(channelsInfo, contact_id) {
-  console.log(channelsInfo)
-  console.log(channelsInfo[0].channel)
-  channelsInfo.forEach(async (element) => {
-    console.log(channelsInfo)
-    const { channel, account, preferences } = element;
-    const query = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences", [contact_id, channel, account, preferences]);
-    await sequelize.query(query, { raw: true });
-  });
-  return true;
-}
-
 //3. Update contact
 async function putContact(req, res, next) {
-  const { name, email, region_id, country_id, city_id, company_id, position, channel, interest } = req.body;
+  const { name, lastname, email, region_id, country_id, city_id, company_id, position, interest, channel1, account1, preferences1, channel2, account2, preferences2  } = req.body;
 
   let id = req.params.value;
   console.log(id)
 
   if (id) {
     const contactToUpdate = await findContactById(id);
+    const contactChannelToUpdate = await findContact_channel_idByContact_id(id);
+    const contactChannelToUpdate1 = contactChannelToUpdate[0];
+    const contactChannelToUpdate2 = contactChannelToUpdate[1];
+
+
     console.log(contactToUpdate)
-    if (name !== "" && email !== "" && region_id !== "" && country_id !== "" && city_id !== "" && company_id !== "" && position !== "" && channel !== "" && interest !== "") {
-      const query = updateQuery("contacts", `name = '${name}', email = '${email}',  region_id= '${region_id}', country_id = '${country_id}', city_id = '${city_id}', company_id = '${company_id}', position = '${position}', channel = '${channel}', interest = '${interest}'`, `contact_id = '${id}'`);
-      console.log(name)
-      const [contactPut] = await sequelize.query(query, { raw: true });
-      console.log(contactPut)
-      req.updatedContact = { name, email, region_id, country_id, city_id, company_id, position, channel, interest };
-    } else {
-      res.status(400).json("Bad Request: Missing Arguments");
-    }
+    console.log(contactChannelToUpdate)
+    console.log(contactChannelToUpdate1)
+    console.log(contactChannelToUpdate2)
+    const query = updateQuery("contacts", `name = '${name}', lastname = '${lastname}',  email= '${email}', region_id = '${region_id}', country_id = '${country_id}', city_id = '${city_id}', company_id = '${company_id}', position = '${position}',  interest = '${interest}'`, `contact_id = '${id}'`);
+    const query2 = updateQuery("contacts_channels", `channel_id = '${channel1}', account = '${account1}',  preferences= '${preferences1}'`, `contact_channel_id = '${contactChannelToUpdate1.contact_channel_id}' `);
+    const query3 = updateQuery("contacts_channels", `channel_id = '${channel2}', account = '${account2}',  preferences= '${preferences2}'`, `contact_channel_id = '${contactChannelToUpdate2.contact_channel_id}' `);
+
+    console.log(name)
+    const [contactPut] = await sequelize.query(query, { raw: true });
+    const [contactChannel1] = await sequelize.query(query2, { raw: true });
+    const [contactChannel2] = await sequelize.query(query3, { raw: true });
+    console.log(contactPut)
+    req.updatedContact = { name, email, region_id, country_id, city_id, company_id, position, interest };
     next();
   } else {
-    res.status(404).json("User Not Found");
+    res.status(404).json("Contact Not Found");
   }
 }
 
@@ -101,6 +92,18 @@ async function findContactById(id) {
   return foundContact;
 }
 
+async function findContact_channel_idByContact_id(id) {
+  const query = selectQuery("contacts_channels", "*", `contact_id = '${id}'`);
+  console.log(query)
+  const [dbContacts] = await sequelize.query(query, { raw: true });
+  const foundContactChannel1 = dbContacts[0];
+  const foundContactChannel2 = dbContacts[1]; 
+  console.log(dbContacts)
+  console.log(foundContactChannel1)
+  console.log(foundContactChannel2)
+  return dbContacts;
+}
+ 
 
 //4. delete company
 async function deleteContact(req, res, next) {

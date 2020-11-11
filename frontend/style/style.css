@@ -266,7 +266,7 @@ td {
   padding-left: 2%;
 }
 
-.newSection .secondInfo #buttonAddChannel {
+.newSection .secondInfo .buttonAddChannel {
   padding-top: 18px;
 }
 
@@ -601,11 +601,11 @@ nav #imgLogo {
   font-size: 11pt;
 }
 
-#plusChannel {
+.plusChannel {
   margin-left: 70px;
 }
 
-#buttonsContact {
+.buttonsContact {
   position: absolute;
   right: 10px;
   bottom: 10px;
