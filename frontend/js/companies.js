@@ -344,19 +344,19 @@ regionCompanyUp.addEventListener('click', () => {
     }).then(respuesta => respuesta.json())
         .then(res => {
             console.log(res)
-            let validateSearchRegion = document.getElementsByClassName(`rowRegion`);
-            if (res && validateSearchRegion.length == 0) {
+            let validateSearchRegionUp = document.getElementsByClassName(`rowRegionUp`);
+            if (res && validateSearchRegionUp.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
                     /* console.log(res.users[i].name)  */
-                    const row = document.createElement('option');
-                    row.setAttribute('id', `rowRegion${res[i].region_id}`)
-                    row.setAttribute('class', `rowRegion`)
-                    row.innerHTML += `
+                    const rowUp = document.createElement('option');
+                    rowUp.setAttribute('id', `rowRegion${res[i].region_id}`)
+                    rowUp.setAttribute('class', `rowRegionUp`)
+                    rowUp.innerHTML += `
                   <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
-                    console.log(row)
+                    console.log(rowUp)
                     console.log(regionCompanyUp)
-                    regionCompanyUp.appendChild(row);
+                    regionCompanyUp.appendChild(rowUp);
                 }
             } else {
                 console.log('Search Realized');
@@ -379,15 +379,15 @@ regionCompanyUp.addEventListener('click', () => {
 
 //Select Countries
 function getCountriesUp() {
-    let validateSearchCountry = document.getElementsByClassName(`liCountry`); 
-    console.log(validateSearchCountry)
+    let validateSearchCountryUp = document.getElementsByClassName(`liCountryUp`); 
+    console.log(validateSearchCountryUp)
     countryCompanyUp.disabled = false
     countryCompanyUp.addEventListener('click', () => {
-        const regionCompanySelectValue = regionCompanyUp.value.split(" ");
-        console.log(regionCompanySelectValue)
-        const region_idSelect = regionCompanySelectValue[0];
+        const regionCompanySelectValueUp = regionCompanyUp.value.split(" ");
+        console.log(regionCompanySelectValueUp)
+        const region_idSelectUp = regionCompanySelectValueUp[0];
 
-        fetch(`http://localhost:3000/countries/${region_idSelect}`, {
+        fetch(`http://localhost:3000/countries/${region_idSelectUp}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -396,18 +396,18 @@ function getCountriesUp() {
         }).then(respuesta => respuesta.json())
             .then(res => {
                 console.log(res)
-                console.log(validateSearchCountry.length)
-                if (res && validateSearchCountry.length == 0) {
+                console.log(validateSearchCountryUp.length)
+                if (res && validateSearchCountryUp.length == 0) {
                     for (let i = 0; i < res.length; i++) {
                         console.log(res)
                         console.log(res[i].country_id)
-                        const liCountry = document.createElement('option');
-                        liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
-                        liCountry.setAttribute('class', `liCountry`)
-                        liCountry.innerHTML += `
+                        const liCountryUp = document.createElement('option');
+                        liCountryUp.setAttribute('id', `liCountry${res[i].country_id}`)
+                        liCountryUp.setAttribute('class', `liCountryUp`)
+                        liCountryUp.innerHTML += `
                             <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
-                        console.log(liCountry)
-                        countryCompanyUp.appendChild(liCountry);
+                        console.log(liCountryUp)
+                        countryCompanyUp.appendChild(liCountryUp);
                     }
                 } 
             })
@@ -420,15 +420,15 @@ function getCountriesUp() {
 
 //Select Cities
 function getCitiesUp() {
-    let validateSearchCity = document.getElementsByClassName(`liCity`);
-    console.log(validateSearchCity)
+    let validateSearchCityUp = document.getElementsByClassName(`liCityUp`);
+    console.log(validateSearchCityUp)
         cityCompanyUp.disabled = false
         cityCompanyUp.addEventListener('click', () => {
-            const countryCompanySelectValue = countryCompanyUp.value.split(" ");
-            console.log(countryCompanySelectValue)
-            const country_idSelect = countryCompanySelectValue[0];
+            const countryCompanySelectValueUp = countryCompanyUp.value.split(" ");
+            console.log(countryCompanySelectValueUp)
+            const country_idSelectUp = countryCompanySelectValueUp[0];
 
-            fetch(`http://localhost:3000/cities/${country_idSelect}`, {
+            fetch(`http://localhost:3000/cities/${country_idSelectUp}`, {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
@@ -437,16 +437,16 @@ function getCitiesUp() {
             }).then(respuesta => respuesta.json())
                 .then(res => {
                     console.log(res)
-                    if (res && validateSearchCity.length == 0) {
+                    if (res && validateSearchCityUp.length == 0) {
                         for (let i = 0; i < res.length; i++) {
                             console.log(res)
-                            console.log(validateSearchCity)
-                            let liCity = document.createElement('option');
-                            liCity.setAttribute('id', `liCity${res[i].city_id}`)
-                            liCity.setAttribute('class', `liCity`)
-                            liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
-                            console.log(liCity)
-                            cityCompanyUp.appendChild(liCity);
+                            console.log(validateSearchCityUp)
+                            let liCityUp = document.createElement('option');
+                            liCityUp.setAttribute('id', `liCity${res[i].city_id}`)
+                            liCityUp.setAttribute('class', `liCityUp`)
+                            liCityUp.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
+                            console.log(liCityUp)
+                            cityCompanyUp.appendChild(liCityUp);
                         }
                     } else {
                         console.log('Search Realized');
