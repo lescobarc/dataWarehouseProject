@@ -48,6 +48,10 @@ let preferencesContactUp = document.getElementById('preferencesContactUp');
 let preferencesContact2Up = document.getElementById('preferencesContact2Up');
 let buttonAddChannelUp = document.getElementById('buttonAddChannelUp');
 
+//delete
+let deleteContactsSection = document.getElementById('deleteContactsSection');
+let cancelButtonDeleteContact = document.getElementById('cancelButtonDeleteContact');
+let deleteButtonDeleteContact = document.getElementById('deleteButtonDeleteContact')
 
 //1. get contacts
 function getContacts() {
@@ -700,4 +704,43 @@ channelContact2Up.addEventListener('click', () => {
         })
 }
 ) 
+
+//6. Delete Contact
+
+cancelButtonDeleteContact.addEventListener('click', () => {
+    deleteContactsSection.classList.toggle('hidden');
+    contactsSection.classList.remove('hidden');
+});
+
+function showDeleteContact(i) {
+    console.log(i)
+    let id = i.id
+    console.log(id)
+    deleteContactsSection.classList.toggle('hidden')
+
+    deleteButtonDeleteContact.addEventListener('click', () => {
+        console.log(id)
+        deleteContact(id)
+    });
+}
+
+
+function deleteContact(id) {
+    console.log(id)
+    fetch(`http://localhost:3000/contact/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+
+    deleteContactsSection.classList.add('hidden');
+    contactsSection.classList.remove('hidden');
+
+    location.reload()
+
+}
+
   

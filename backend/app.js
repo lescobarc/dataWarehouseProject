@@ -167,7 +167,7 @@ app.put('/contact/:value', validateToken,  putContact, (req, res) => {
 })
 
 //4. delete contact
-app.delete('/contact/:value', validateToken,  deleteContact,  (req,res)=>{
+app.delete('/contact/:contact_id', validateToken,  deleteContact,  (req,res)=>{
   try{
     const { isDeleted } = req;
     isDeleted && res.status(200).json("Deleted");

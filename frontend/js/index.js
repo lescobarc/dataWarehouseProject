@@ -27,7 +27,7 @@ cancelButtonImport.addEventListener('click', ()=>{
     importContactsSection.classList.toggle('hidden')
 });
 
-//9. Delete Contacts
+/* //9. Delete Contacts
 let contactId = 1;
 let iconTrashDelete = document.getElementById(`iconTrashDelete${contactId}`);
 let deleteContactsSection = document.getElementById('deleteContactsSection');
@@ -51,6 +51,6 @@ let cancelButtonNewContact = document.getElementById('cancelButtonNewContact');
 cancelButtonNewContact.addEventListener('click', ()=>{
     newContactSection.classList.toggle('hidden')
 })
-
+ */
 
 

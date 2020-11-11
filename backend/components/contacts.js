@@ -113,9 +113,9 @@ async function findContact_channel_idByContact_id(id) {
 }
 
 
-//4. delete company
+//6.delete contact
 async function deleteContact(req, res, next) {
-  let id = req.params.value;
+  let id = req.params.contact_id;
   console.log(id)
   const findContact = await findContactById(id);
   if (findContact) {
@@ -124,9 +124,10 @@ async function deleteContact(req, res, next) {
     req.isDeleted = true;
     next();
   } else {
-    res.status(404).json("User Not Found");
+    res.status(404).json("Contact Not Found");
   }
 }
+
 
 //CHANNELS
 

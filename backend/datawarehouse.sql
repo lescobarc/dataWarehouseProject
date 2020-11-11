@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2020 a las 00:03:28
+-- Tiempo de generación: 11-11-2020 a las 21:18:48
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -31,6 +31,16 @@ CREATE TABLE `channels` (
   `channel_id` int(11) NOT NULL,
   `nameChannel` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `channels`
+--
+
+INSERT INTO `channels` (`channel_id`, `nameChannel`) VALUES
+(1, 'Whatsapp'),
+(2, 'Instagram'),
+(3, 'Facebook'),
+(4, 'Linkedin');
 
 -- --------------------------------------------------------
 
@@ -74,7 +84,8 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`company_id`, `nameCompany`, `address`, `email`, `tel`, `region_id`, `country_id`, `city_id`) VALUES
-(21, 'Softtek', 'cll 30 #67-22', 'softek@gmail.com5458796', 4568798, 15, 53, 19);
+(21, 'Softtek', 'cll 30 #67-22', 'softek@gmail.com5458796', 4568798, 15, 53, 19),
+(23, 's', 's', 's', 0, 15, 53, 18);
 
 -- --------------------------------------------------------
 
@@ -91,8 +102,7 @@ CREATE TABLE `contacts` (
   `city_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   `position` varchar(50) NOT NULL,
-  `contact_channel_id` int(50) NOT NULL,
-  `interest` int(11) NOT NULL,
+  `interest` varchar(11) NOT NULL,
   `lastname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -100,9 +110,9 @@ CREATE TABLE `contacts` (
 -- Volcado de datos para la tabla `contacts`
 --
 
-INSERT INTO `contacts` (`contact_id`, `name`, `email`, `region_id`, `country_id`, `city_id`, `company_id`, `position`, `contact_channel_id`, `interest`, `lastname`) VALUES
-(8, 'Veronica Sanchez', 'vera@gmail.com', 15, 53, 19, 21, 'UX Designer', 0, 100, ''),
-(9, 'Verónica ', 'vera@gmail.com', 15, 53, 19, 21, 'UX Designer', 0, 100, 'Sanchez');
+INSERT INTO `contacts` (`contact_id`, `name`, `email`, `region_id`, `country_id`, `city_id`, `company_id`, `position`, `interest`, `lastname`) VALUES
+(77, 'a', 'a', 15, 53, 18, 21, 'a', '0%', 'a'),
+(78, 'v', 'v', 15, 53, 18, 21, 'v', '0%', 'v');
 
 -- --------------------------------------------------------
 
@@ -222,8 +232,7 @@ ALTER TABLE `contacts`
   ADD KEY `region_id` (`region_id`),
   ADD KEY `country_id` (`country_id`),
   ADD KEY `city_id` (`city_id`),
-  ADD KEY `company_id` (`company_id`),
-  ADD KEY `contact_channel_id` (`contact_channel_id`);
+  ADD KEY `company_id` (`company_id`);
 
 --
 -- Indices de la tabla `contacts_channels`
@@ -262,7 +271,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `channels`
 --
 ALTER TABLE `channels`
-  MODIFY `channel_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `cities`
@@ -274,19 +283,19 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT de la tabla `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de la tabla `contacts_channels`
 --
 ALTER TABLE `contacts_channels`
-  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `countries`
@@ -338,8 +347,7 @@ ALTER TABLE `contacts`
 --
 ALTER TABLE `contacts_channels`
   ADD CONSTRAINT `contacts_channels_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `contacts_channels_ibfk_2` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`channel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `contacts_channels_ibfk_3` FOREIGN KEY (`contact_channel_id`) REFERENCES `contacts` (`contact_channel_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `contacts_channels_ibfk_2` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`channel_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `countries`

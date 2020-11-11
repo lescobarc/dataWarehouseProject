@@ -458,7 +458,7 @@ function getCitiesUp() {
 
 }
 
-//6. Delete User
+//6. Delete Company
 
 cancelButtonDeleteCompany.addEventListener('click', () => {
     deleteCompaniesSection.classList.toggle('hidden');
