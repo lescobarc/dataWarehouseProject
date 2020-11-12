@@ -457,7 +457,12 @@ function showInfoContact(id){
             countryContactUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
             cityContactUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
             addressContactUp.value = `${res.address}`;
-            interestContactUp.innerHTML = ` <option label = ${res.interest}%  value = ${res.interest}>`;
+            interestContactUp.innerHTML = ` <option label = ${res.interest}%  value = ${res.interest}>
+                            <option value="0">0%</option>
+                            <option value="25">25%</option>
+                            <option value="50">50%</option>
+                            <option value="75">75%</option>
+                            <option value="100">100%</option>`;
             } else {
                 res.json().then((data) => {
                     console.log('Contacts not found');

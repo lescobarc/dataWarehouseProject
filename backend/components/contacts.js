@@ -1,6 +1,7 @@
 const { sequelize } = require("../database/sequelize/config");
 const { JWT, signature } = require("./auth");
 const { deleteQuery, insertQuery, joinQuery, selectQuery, updateQuery, useQuery } = require("../database/sequelize/commons");
+const { default: contentSecurityPolicy } = require("helmet/dist/middlewares/content-security-policy");
 
 
 //1. get contacts
@@ -55,7 +56,7 @@ async function addContact(req, res, next) {
 }
 
 
-//3. get info of contact
+// get info of contact
 async function infoContact(req, res, next) {
   let id = req.params.value;
  const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id`
@@ -82,18 +83,26 @@ async function putContact(req, res, next) {
     console.log(contactChannelToUpdate2)
     const query = updateQuery("contacts", `name = '${name}', lastname = '${lastname}',  email= '${email}', region_id = '${region_id}', country_id = '${country_id}', city_id = '${city_id}', company_id = '${company_id}', position = '${position}',  interest = '${interest}'`, `contact_id = '${id}'`);
     const [contactPut] = await sequelize.query(query, { raw: true });
- 
-    if (contactChannelToUpdate1 !== undefined) {
+ console.log('NOW')
+ console.log(contactChannelToUpdate1)
+    console.log(contactChannelToUpdate2)
+    console.log(channel1)
+    console.log(account1)
+
+
+    if (contactChannelToUpdate1 !== undefined && !isNaN(channel1) && account1 !== " ") {
+      console.log(channel1)
+    console.log(account1)
       const query2 = updateQuery("contacts_channels", `channel_id = '${channel1}', account = '${account1}',  preferences= '${preferences1}'`, `contact_channel_id = '${contactChannelToUpdate1.contact_channel_id}' `);
       const [contactChannel1] = await sequelize.query(query2, { raw: true });
-    }else if(account1 !== ''){
+    }else if(account1 !== '' && channel1 !== NaN ){
       const query2 = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences", [id, channel1, account1, preferences1]);
       [channelId1] = await sequelize.query(query2, { raw: true });
     }
-    if (contactChannelToUpdate1 !== undefined) {
+    if (contactChannelToUpdate2 !== undefined && !isNaN(channel2)  && account2 !== " ") {
       const query3 = updateQuery("contacts_channels", `channel_id = '${channel2}', account = '${account2}',  preferences= '${preferences2}'`, `contact_channel_id = '${contactChannelToUpdate2.contact_channel_id}' `);
       const [contactChannel2] = await sequelize.query(query3, { raw: true });
-    }else if(account2 !== ''){
+    }else if(account2 !== '' && channel2 !== NaN ){
       const query3 = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences", [id, channel2, account2, preferences2]);
       [channelId2] = await sequelize.query(query3, { raw: true });
     }
