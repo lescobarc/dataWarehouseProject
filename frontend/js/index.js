@@ -1,12 +1,12 @@
 
 
 // 2. Drop Down Filter
-let iconFilter = document.getElementById('iconFilter');
+/* let iconFilter = document.getElementById('iconFilter');
 let contactsFilter = document.getElementById('contactsFilter')
  iconFilter.addEventListener('click', ()=>{
     contactsFilter.classList.toggle('hidden')
 });
-
+ */
 
 //7. Export Contacts 
 /* let exportButton = document.getElementById('exportButton');

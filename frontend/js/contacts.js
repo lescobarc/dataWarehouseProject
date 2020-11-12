@@ -3,7 +3,7 @@ let token = localStorage.token;
 //Table 
 let table = document.querySelector('#contactsTable tbody');
 let contactsSection = document.getElementById('contactsSection');
-let iconSearch = document.getElementById('iconSearch')
+
 
 //CONTACTS
 
@@ -56,7 +56,12 @@ let cancelButtonDeleteContact = document.getElementById('cancelButtonDeleteConta
 let deleteButtonDeleteContact = document.getElementById('deleteButtonDeleteContact')
 
 //search
-let inputSearchContact = document.getElementById('contactsInput')
+let inputSearchContact = document.getElementById('contactsInput');
+let iconSearch = document.getElementById('iconSearch');
+let iconFilter = document.getElementById('iconFilter');
+let searchInfo = document.getElementById('searchInfo')
+
+
 
 //1. get contacts
 function getContacts() {
@@ -757,7 +762,7 @@ async function deleteContact(id) {
 
 function doSearch()
 {
-    
+  
     const searchText = inputSearchContact.value.toLowerCase();
     let total = 0;
 
@@ -781,27 +786,36 @@ function doSearch()
         }
         if (found) {
             table.rows[i].style.display = '';
+            iconFilter.classList.remove('hidden')
         } else {
             // si no ha encontrado ninguna coincidencia, esconde la
             // fila de la tabla
             table.rows[i].style.display = 'none';
+          
         }
     }
 
     // mostramos las coincidencias
     const lastTR=table.rows[table.rows.length-1];
     const td=lastTR.querySelector("td");
-    lastTR.classList.remove("hide", "red");
+    lastTR.classList.remove("hide");
     if (searchText == "") {
         lastTR.classList.add("hide");
-    } else if (total) {
-        td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
-    } else {
-        lastTR.classList.add("red");
-        td.innerHTML="No se han encontrado coincidencias";
+    }else if (total) {
+        searchInfo.classList.remove('hidden')
+        searchInfo.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"")} 
+    else{
+        console.log('No se han encontrado coincidencias')
+        searchInfo.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"")
+        searchInfo.classList.remove('hidden')
+        iconFilter.classList.remove('hidden')
     }
 }
 
 iconSearch.addEventListener('click', () =>{
     doSearch();
+})
+
+iconFilter.addEventListener('click', () =>{
+    location.reload()
 })
