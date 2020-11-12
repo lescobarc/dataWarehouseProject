@@ -15,7 +15,7 @@ exportButton.addEventListener('click', () => {
     exportContactsOptions.classList.toggle('exportContactsOptions')
 }); */
 
-//8. Import Contacts
+/* //8. Import Contacts
 let iconImport = document.getElementById('iconImport');
 let importContactsSection = document.getElementById('importContactsSection');
 iconImport.addEventListener('click', ()=>{
@@ -25,5 +25,64 @@ iconImport.addEventListener('click', ()=>{
 let cancelButtonImport = document.getElementById('cancelButtonImport');
 cancelButtonImport.addEventListener('click', ()=>{
     importContactsSection.classList.toggle('hidden')
-});
+}); */
 
+//search
+let searchInput = document.getElementById('searchInput');
+let iconSearch = document.getElementById('iconSearch');
+let iconFilter = document.getElementById('iconFilter');
+let searchInfo = document.getElementById('searchInfo');
+function doSearch()
+{
+    const searchText = searchInput.value.toLowerCase();
+    let total = 0;
+    // Recorremos todas las filas con contenido de la tabla
+    for (let i = 0; i < table.rows.length; i++) {
+        // Si el td tiene la clase "noSearch" no se busca en su cntenido
+        if (table.rows[i].classList.contains("noSearch")) {
+            continue;
+        }
+        let found = false;
+        const cellsOfRow = table.rows[i].getElementsByTagName('td');
+        // Recorremos todas las celdas
+        for (let j = 0; j < cellsOfRow.length && !found; j++) {
+            const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+            // Buscamos el texto en el contenido de la celda
+            if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
+                found = true;
+                total++;
+            }
+        }
+        if (found) {
+            table.rows[i].style.display = '';
+            iconFilter.classList.remove('hidden')
+        } else {
+            // si no ha encontrado ninguna coincidencia, esconde la
+            // fila de la tabla
+            table.rows[i].style.display = 'none';
+        }
+    }
+    // mostramos las coincidencias
+    const lastTR=table.rows[table.rows.length-1];
+    const td=lastTR.querySelector("td");
+    lastTR.classList.remove("hide");
+    if (searchText == "") {
+        lastTR.classList.add("hide");
+    }else if (total) {
+        searchInfo.classList.remove('hidden')
+        searchInfo.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"")} 
+    else{
+        console.log('No se han encontrado coincidencias')
+        searchInfo.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"")
+        searchInfo.classList.remove('hidden')
+        iconFilter.classList.remove('hidden')
+    }
+}
+
+iconSearch.addEventListener('click', () =>{
+    doSearch();
+})
+
+iconFilter.addEventListener('click', () =>{
+    location.reload()
+}) 

@@ -18,7 +18,7 @@ let cancelButtonDeleteUser = document.getElementById('cancelButtonDeleteUser');
 let deleteButtonDeleteUser = document.getElementById('deleteButtonDeleteUser')
 
 //Table Add User
-let tabla = document.querySelector('#usersTable tbody')
+let table = document.querySelector('#usersTable tbody')
 let name = document.getElementById('nameUser');
 
 let email = document.getElementById('emailUser');
@@ -65,7 +65,7 @@ function getUsers() {
                     <i class="fas fa-pencil-alt" id=${user[i].user_id} onclick = "showUpdateUser(this)"></i>
                 </td>
             `;
-                    tabla.appendChild(row);
+                    table.appendChild(row);
                 }
             } else {
                 res.json().then((data) => {

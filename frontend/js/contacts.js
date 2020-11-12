@@ -56,10 +56,10 @@ let cancelButtonDeleteContact = document.getElementById('cancelButtonDeleteConta
 let deleteButtonDeleteContact = document.getElementById('deleteButtonDeleteContact')
 
 //search
-let inputSearchContact = document.getElementById('contactsInput');
+/* let searchInput = document.getElementById('searchInput');
 let iconSearch = document.getElementById('iconSearch');
 let iconFilter = document.getElementById('iconFilter');
-let searchInfo = document.getElementById('searchInfo')
+let searchInfo = document.getElementById('searchInfo'); */
 
 
 
@@ -719,8 +719,7 @@ channelContact2Up.addEventListener('click', () => {
 }
 ) 
 
-//6. Delete Contact
-
+//4. Delete Contact
 cancelButtonDeleteContact.addEventListener('click', () => {
     deleteContactsSection.classList.toggle('hidden');
     contactsSection.classList.remove('hidden');
@@ -758,21 +757,18 @@ async function deleteContact(id) {
 }
 
 
-//SEARCH CONTACT
+//5. Search Contact
 
-function doSearch()
+/* function doSearch()
 {
-  
-    const searchText = inputSearchContact.value.toLowerCase();
+    const searchText = searchInput.value.toLowerCase();
     let total = 0;
-
     // Recorremos todas las filas con contenido de la tabla
     for (let i = 1; i < table.rows.length; i++) {
         // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (table.rows[i].classList.contains("noSearch")) {
             continue;
         }
-
         let found = false;
         const cellsOfRow = table.rows[i].getElementsByTagName('td');
         // Recorremos todas las celdas
@@ -791,10 +787,8 @@ function doSearch()
             // si no ha encontrado ninguna coincidencia, esconde la
             // fila de la tabla
             table.rows[i].style.display = 'none';
-          
         }
     }
-
     // mostramos las coincidencias
     const lastTR=table.rows[table.rows.length-1];
     const td=lastTR.querySelector("td");
@@ -818,4 +812,4 @@ iconSearch.addEventListener('click', () =>{
 
 iconFilter.addEventListener('click', () =>{
     location.reload()
-})
+})  */

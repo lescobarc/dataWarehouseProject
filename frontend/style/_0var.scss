@@ -103,7 +103,7 @@ td{
 }
 
 
- #companiesSection, #usersSection, #citySection{
+#companiesSection, #usersSection, #citySection{
     display: flex;
     flex-direction: column;
     padding: 2% 3% 5% 3%;
@@ -113,14 +113,17 @@ td{
         h1{
             float: left;
         }
-        button{
-            float: right;
-            /* margin-top: 15px; */
+        #addButton{
+            position: absolute;
+           top: 160px;
+         right: 60px; 
+         height: 41px;
+         width: 172px;
         }
     }
     table{
         width: 1200px;
-        margin: 4% 3%;
+        margin: 0 3%;
         border: 1px solid rgba(0, 0, 0, 0.1);
         .iconPoints{
             padding-left: 8%;
@@ -237,6 +240,3 @@ td{
           margin: 0 2%;
       }
   }
-  
-
-

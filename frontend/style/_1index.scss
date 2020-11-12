@@ -32,49 +32,46 @@ nav{
     }
 }
 
-#contacts{
+.title{
     height: 191.5px;
     width: 1306px;
     padding: 0 30px;
-   /*  h1{
-
-    } */
-   
-    #contactsContainer{
+  
+    .container{
         display: flex;
         justify-content: space-between;
         height: 41px;
-        
-        #contactsInput{
-            width: 502px;
+        .searchInput{
+            width: 480px;
             height: 41px;
             padding: 0;
             border-radius: 3.5px;
             position: relative;
             bottom: 10%;
         }
-        #iconFilter{
+        
+        .iconFilter{
             z-index: 10;
             position: relative;
             left: -30px;
         }
-        #iconSearch{
+        .iconSearch{
             margin-top: 4px;
         }
-        #contactsButtons{
+        .titleButtons{
             display: flex;
             
-            #iconImport{
+            .iconImport{
                 border: 1px solid rgba(0,0,0,0.25);
                 border-radius: 3.5px;
                 margin-right: 9px;
             }
-            #exportContacts{
+            .exportButton{
                 width: 172px;
                 height: 41px;
                 margin-right: 9px;
                 }
-            #createButton{
+            .createButton{
                 width: 172px;
             }  
 
@@ -96,8 +93,6 @@ nav{
                width: 54px;
            }
        }
-
-    
     }
     th, td{
         text-align: left;
@@ -185,17 +180,12 @@ nav{
         
         margin-left: -5px ;
     }
-
-
-
     #actions{
         .iconPoints{
             padding-left: 40%;
         }
     }
-    
-   
-    
+     
 }
 
 #tablePagination {

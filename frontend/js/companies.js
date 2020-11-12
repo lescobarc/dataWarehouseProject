@@ -1,7 +1,7 @@
 let token = localStorage.token;
 
 //Table 
-let tabla = document.querySelector('#companiesTable tbody')
+let table = document.querySelector('#companiesTable tbody')
 let companiesSection = document.getElementById('companiesSection');
 
 //COMPANIES
@@ -69,7 +69,7 @@ function getCompanies() {
                     <i class="fas fa-pencil-alt" id=${company[i].company_id} onclick = "showUpdateCompany(this)"></i>
                 </td>
             `;
-                    tabla.appendChild(row);
+                    table.appendChild(row);
                 }
             } else {
                 res.json().then((data) => {

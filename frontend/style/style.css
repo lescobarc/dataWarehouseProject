@@ -107,14 +107,17 @@ td {
   float: left;
 }
 
-#companiesSection div button, #usersSection div button, #citySection div button {
-  float: right;
-  /* margin-top: 15px; */
+#companiesSection div #addButton, #usersSection div #addButton, #citySection div #addButton {
+  position: absolute;
+  top: 160px;
+  right: 60px;
+  height: 41px;
+  width: 172px;
 }
 
 #companiesSection table, #usersSection table, #citySection table {
   width: 1200px;
-  margin: 4% 3%;
+  margin: 0 3%;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -314,16 +317,13 @@ nav #imgLogo {
   margin: 0.5%;
 }
 
-#contacts {
+.title {
   height: 191.5px;
   width: 1306px;
   padding: 0 30px;
-  /*  h1{
-
-    } */
 }
 
-#contacts #contactsContainer {
+.title .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -333,8 +333,8 @@ nav #imgLogo {
   height: 41px;
 }
 
-#contacts #contactsContainer #contactsInput {
-  width: 502px;
+.title .container .searchInput {
+  width: 480px;
   height: 41px;
   padding: 0;
   border-radius: 3.5px;
@@ -342,35 +342,35 @@ nav #imgLogo {
   bottom: 10%;
 }
 
-#contacts #contactsContainer #iconFilter {
+.title .container .iconFilter {
   z-index: 10;
   position: relative;
   left: -30px;
 }
 
-#contacts #contactsContainer #iconSearch {
+.title .container .iconSearch {
   margin-top: 4px;
 }
 
-#contacts #contactsContainer #contactsButtons {
+.title .container .titleButtons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-#contacts #contactsContainer #contactsButtons #iconImport {
+.title .container .titleButtons .iconImport {
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 3.5px;
   margin-right: 9px;
 }
 
-#contacts #contactsContainer #contactsButtons #exportContacts {
+.title .container .titleButtons .exportButton {
   width: 172px;
   height: 41px;
   margin-right: 9px;
 }
 
-#contacts #contactsContainer #contactsButtons #createButton {
+.title .container .titleButtons .createButton {
   width: 172px;
 }
 

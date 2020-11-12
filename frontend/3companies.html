@@ -32,10 +32,48 @@
 </header>
 
 <body>
+
+    <section  class="title">
+        <h1>Compañías</h1>
+        <div  class="container">
+            <div class="search">
+                <input type="text" id="searchInput" class="searchInput">
+                <span id="iconFilter" class="hidden iconFilter"><i class="fas fa-times-circle"></i></span>
+                <button id="iconSearch" class="iconSearch"><i class="fas fa-search fa-2x"></i></button>
+                <p class="hidden" id="searchInfo" class="searchInfo"></p>
+            </div>
+
+            <div class="titleButtons">
+                <button id="iconImport" class="iconImport"><i class="fas fa-upload fa-2x"></i></button>
+                 <select id="exportButton" class="buttonSecondary exportButton">
+                        <option label="Exportar"> </option>
+                        <option value="select"> Exportar seleccionados </option>
+                        <option value="allFilter"> Todos los filtrados </option>
+                    </select> 
+
+                <!-- <div id="exportButton"> <button id="exportContacts" class="buttonSecondary"> Exportar Contactos <i
+                            class="fas fa-caret-down"></i> </button></div> -->
+
+                <button id="addButton" class="buttonPrimary createButton">Agregar Compañía</button> 
+                
+            </div>
+        </div>
+    </section>
     
     <section id="companiesSection">
+        
          
-        <div> <h1>Compañías</h1> <button class="buttonPrimary buttonLarge" id="addButton">Agregar Compañía</button></div>
+        <!-- <div> <h1>Compañías</h1> <button class="buttonPrimary buttonLarge" id="addButton">Agregar Compañía</button></div>
+
+        <div id="divSearch">
+            <input type="text" name="contact" id="searchInput" class="searchInput">
+            <span id="iconFilter" class="hidden"><i class="fas fa-times-circle"></i></span>
+            <button id="iconSearch"><i class="fas fa-search fa-2x"></i></button>
+        </div>
+        <p class="hidden" id="searchInfo"></p> -->
+
+
+        
         <table id="companiesTable">
             <thead>
                 <tr>
@@ -184,9 +222,9 @@
 
 
 
-    <script src="js/index.js"></script>
-    <script src="js/companies.js"></script>
     
+    <script src="js/companies.js"></script>
+    <script src="js/index.js"></script>
 </body>  
 </html>
         

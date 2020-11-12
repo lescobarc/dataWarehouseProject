@@ -32,19 +32,19 @@
 </header>
 
 <body>
-    <section id="contacts">
+    <section id="contacts" class="title">
         <h1>Contactos</h1>
-        <div id="contactsContainer">
-            <div id="contactsSearch">
-                <input type="text" name="contact" id="contactsInput" class="inputText">
-                <span id="iconFilter" class="hidden"><i class="fas fa-times-circle"></i></span>
-                <button id="iconSearch"><i class="fas fa-search fa-2x"></i></button>
-                <p class="hidden" id="searchInfo">No hay coincidencias</p>
+        <div id="contactsContainer" class="container">
+            <div id="contactsSearch"class="search">
+                <input type="text" name="contact" id="searchInput" class="searchInput">
+                <span id="iconFilter" class="hidden iconFilter"><i class="fas fa-times-circle"></i></span>
+                <button id="iconSearch" class="iconSearch"><i class="fas fa-search fa-2x"></i></button>
+                <p class="hidden" id="searchInfo" class="searchInfo"></p>
             </div>
 
-            <div id="contactsButtons">
-                <button id="iconImport"><i class="fas fa-upload fa-2x"></i></button>
-                 <select name="exportContacts" id="exportButton" class="buttonSecondary">
+            <div id="contactsButtons" class="titleButtons">
+                <button id="iconImport" class="iconImport"><i class="fas fa-upload fa-2x"></i></button>
+                 <select name="exportContacts" id="exportButton" class="buttonSecondary exportButton">
                         <option label="Exportar Contactos"> </option>
                         <option value="selectContacts"> Exportar seleccionados </option>
                         <option value="allFilterContacts"> Todos los filtrados </option>
@@ -53,7 +53,7 @@
                 <!-- <div id="exportButton"> <button id="exportContacts" class="buttonSecondary"> Exportar Contactos <i
                             class="fas fa-caret-down"></i> </button></div> -->
 
-                <button id="createButton" class="buttonPrimary">Agregar Contacto</button> 
+                <button id="createButton" class="buttonPrimary createButton">Agregar Contacto</button> 
                 
             </div>
         </div>
@@ -446,54 +446,8 @@
                         </td>
                         <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash " id="iconTrashDelete1"></i><i
                                 class="fas fa-pencil-alt "></i></td>
-
                     </tr>
-                    <tr>
-                        <th><input type="checkbox" name="contactSelect" ></th>
-                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
-                        <td>Argentina <br> <span>Latam</span></td>
-                        <td>Ecom Experts</td>
-                        <td>UX Designer</td>
-                        <td id="interes">
-                            <div>75%</div>
-                            <div class="progressBar">
-                                <div class="progressBar75"></div>
-                            </div>
-                        </td>
-                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
-                                class="fas fa-pencil-alt "></i></td>
-                    </tr>
-                    <tr>
-                        <th><input type="checkbox" name="contactSelect" ></th>
-                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
-                        <td>Argentina <br> <span>Latam</span></td>
-                        <td>Ecom Experts</td>
-                        <td>UX Designer</td>
-                        <td id="interes">
-                            <div>50%</div>
-                            <div class="progressBar">
-                                <div class="progressBar50"></div>
-                            </div>
-                        </td>
-                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
-                                class="fas fa-pencil-alt "></i></td>
-                    </tr>
-                    <tr class="arrowContact">
-                        <th><input type="checkbox" name="contactSelect" ></th>
-                        <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
-                        <td>Argentina <br> <span>Latam</span></td>
-                        <td>Ecom Experts</td>
-                        <td>UX Designer</td>
-                        <td id="interes"> </td>
-                            
-                            <div class="progressBar">
-                                <div class="progressBar25"></div>
-                            </div>
-                        
-                        <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "></i><i
-                                class="fas fa-pencil-alt "></i></td>
-
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -508,8 +462,9 @@
     </section>
 
 
-    <script src="js/index.js"></script>
+    
     <script src="js/contacts.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 
