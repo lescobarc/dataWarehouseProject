@@ -6,7 +6,7 @@ app.use(express.json());
 const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
-const { listContacts, existenceContact,  addContact, putContact, deleteContact, listChannels} = require('./components/contacts');
+const { listContacts, existenceContact, infoContact,  addContact, putContact, deleteContact, listChannels} = require('./components/contacts');
 const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
@@ -114,6 +114,7 @@ app.post("/company", validateToken, existenceCompany,  addCompany, (req, res) =>
   }
 });
 
+
 //3. update company
 app.put('/company/:company_id', validateToken,  putCompany, (req, res) => {
   try {
@@ -146,6 +147,8 @@ app.get("/contacts", validateToken, listContacts, (req, res) => {
   }
 });
 
+
+
 //2 post contact
 app.post("/contact", validateToken, existenceContact,  addContact, (req, res) => {
   try {
@@ -153,6 +156,15 @@ app.post("/contact", validateToken, existenceContact,  addContact, (req, res) =>
     res.status(200).json({ contactId: createdContactId });
   } catch (err) {
     res.status(500).json("Internal Server Error");
+  }
+});
+//. get info of contact
+app.get("/contact/:value", validateToken, infoContact, (req, res) => {
+  try {
+    const { contact } = req;
+    res.status(200).json(contact);
+  } catch (err) {
+    res.status(404).json("Not Found");
   }
 });
 

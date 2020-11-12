@@ -54,7 +54,19 @@ async function addContact(req, res, next) {
   }
 }
 
+
+//3. get info of contact
+async function infoContact(req, res, next) {
+  let id = req.params.value;
+ const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id`
+  const [dbContact] = await sequelize.query(query, { raw: true });
+  const foundContact = dbContact[0];
+  req.contact = foundContact;
+  next();
+}
+
 //3. Update contact
+
 async function putContact(req, res, next) {
   const { name, lastname, email, region_id, country_id, city_id, company_id, position, interest, channel1, account1, preferences1, channel2, account2, preferences2 } = req.body;
   let id = req.params.value;
@@ -139,4 +151,6 @@ async function listChannels(req, res, next) {
   next();
 }
 
-module.exports = { listContacts, existenceContact, addContact, putContact, deleteContact, listChannels };
+
+
+module.exports = { listContacts, existenceContact, infoContact, addContact, putContact, deleteContact, listChannels };

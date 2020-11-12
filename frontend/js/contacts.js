@@ -428,11 +428,47 @@ function showUpdateContact(i) {
     console.log(id)
     updateContactSection.classList.toggle('hidden');
     contactsSection.classList.toggle('hidden');
+    showInfoContact(id);
     addButtonUp.addEventListener('click', () => {
-        console.log(id)
-        updateContacts(id)
+        console.log(id);
+        updateContacts(id);
     });
 }
+function showInfoContact(id){
+    fetch(`http://localhost:3000/contact/${id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+           
+            if (res) {
+            
+            nameContactUp.value= `${res.name}`;
+            lastnameContactUp.value = `${res.lastname}`;
+            positionContactUp.value = `${res.position}`;
+            emailContactUp.value = `${res.email}`;
+          
+            nameCompanyContactUp.innerHTML = ` <option label = ${res.position} value = ${res.company_id}>`;
+            regionContactUp.innerHTML = ` <option label = ${res.nameRegion} value = ${res.region_id}>`;
+            countryContactUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
+            cityContactUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
+            addressContactUp.value = `${res.address}`;
+            interestContactUp.innerHTML = ` <option label = ${res.interest}%  value = ${res.interest}>`;
+            } else {
+                res.json().then((data) => {
+                    console.log('Contacts not found');
+                    alert('Contacts not found');
+                });
+            }
+
+        })
+    
+}
+
 function updateContacts(id) {
     console.log(id)
     const companyContactSelectValueUp = companyContactUp.value.split(" ");
