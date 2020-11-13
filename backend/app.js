@@ -7,7 +7,7 @@ const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact, infoContact,  addContact, putContact, deleteContact, listChannels} = require('./components/contacts');
-const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity} = require('./components/regions');
+const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, listContactsRegion_id, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, listContactsCountry_id, existenceCity, addCity, putCity, deleteCity} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -232,6 +232,17 @@ app.delete('/region/:region_id', validateToken,  deleteRegion,  (req,res)=>{
   }
 }); 
 
+//5. contacts region_id
+app.get("/contacts/regions/:region_id", validateToken, listContactsRegion_id, (req, res) => {
+  try {
+   console.log(req)
+    const { contacts } = req;
+     console.log(contacts)
+    res.status(200).json(contacts);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
 //COUNTRIES
 
 //1. get countries
@@ -271,6 +282,17 @@ app.delete('/country/:country_id', validateToken,  deleteCountry,  (req,res)=>{
     res.status(500).json("Internal Server Error");
   }
 }); 
+//5. contacts country_id
+app.get("/contacts/countries/:country_id", validateToken, listContactsCountry_id, (req, res) => {
+  try {
+   console.log(req)
+    const { contacts } = req;
+     console.log(contacts)
+    res.status(200).json(contacts);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
 
 //CITIES
 

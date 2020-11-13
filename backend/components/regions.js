@@ -97,6 +97,20 @@ async function deleteRegion(req, res, next) {
   }
 }
 
+//5. contacts region_id
+async function listContactsRegion_id(req, res, next) {
+  let id = req.params.region_id;
+  console.log(id)
+  const query =  `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id WHERE regions.region_id =${id} `
+  console.log(query)
+  const [contactsRegionId] = await sequelize.query(query, { raw: true });
+  console.log(query)
+  req.contacts = contactsRegionId;
+  next();
+}
+
+
+
 //COUNTRIES
 
 //1. get countries
@@ -194,7 +208,17 @@ async function deleteCountry(req, res, next) {
   }
 }
 
-
+//5. contacts country_id
+async function listContactsCountry_id(req, res, next) {
+  let id = req.params.country_id;
+  console.log(id)
+  const query =  `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id WHERE countries.country_id =${id} `
+  console.log(query)
+  const [contactsCountryId] = await sequelize.query(query, { raw: true });
+  console.log(query)
+  req.contacts = contactsCountryId;
+  next();
+}
 
 //CITIES
 
@@ -301,7 +325,7 @@ async function deleteCity(req, res, next) {
 }
 
 
-module.exports = { listRegions, existenceRegion, addRegion, putRegion, deleteRegion, listCountriesByRegion, existenceCountry, addCountry, putCountry, listCitiesByCountry, deleteCountry, existenceCity, addCity, putCity, deleteCity };
+module.exports = { listRegions, existenceRegion, addRegion, putRegion, deleteRegion, listContactsRegion_id, listCountriesByRegion, existenceCountry, addCountry, putCountry, listCitiesByCountry, deleteCountry,listContactsCountry_id, existenceCity, addCity, putCity, deleteCity };
 
 
 

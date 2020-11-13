@@ -3,6 +3,7 @@ let token = localStorage.token;
 //Table
 let table = document.querySelector('#regionsTable tbody')
 let regionsSection = document.getElementById('citySection');
+let tableContacts = document.getElementById('tableContacts')
 
 //REGIONS
 //create
@@ -100,6 +101,7 @@ function getRegions() {
              <h2> <span class="caret" onclick = "getCountries(this)" id ="${res[i].region_id}"> ${res[i].nameRegion} </span>
             <i class="fas fa-trash" id= "${res[i].region_id}" onclick = "showDeleteRegion(this)"></i>
             <i class="fas fa-pencil-alt" id= "${res[i].region_id}" onclick = "showUpdateRegion(this)"></i>
+            <i class="fas fa-id-card-alt" id= "${res[i].region_id}" onclick = "showContactsRegion(this)"></i>
               <button class="buttonSecondary buttonLarge" id="${res[i].region_id}" onclick = "postCountry(this)" >Agregar País</button> <h2>
           `;
                     console.log(row)
@@ -267,6 +269,55 @@ function deleteRegion(id) {
 
 }
 
+//5. get contacts region_id
+function showContactsRegion(i) {
+    region_id = i.id;
+    console.log(region_id);
+    fetch(`http://localhost:3000/contacts/regions/${region_id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            let contact = res;
+            if (res) {
+                for (let i = 0; i < contact.length; i++) {
+
+                    const row = document.createElement('tr');
+                    row.setAttribute('class', 'arrowContact')
+                    row.innerHTML += `
+                <td>  <input type="checkbox" </td>
+                <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
+                <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
+                <td>${contact[i].nameCompany}</td>
+                <td>${contact[i].position}</td>
+                <td class ="interes interest${contact[i].interest}"><div >${contact[i].interest}%</div>
+                <div class="progressBar">
+                                <div class="progressBar${contact[i].interest}"></div>
+                </div>
+                </td>
+                <td id="actions">
+                    <i class="fas fa-ellipsis-h iconPoints"></i>
+                    <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>
+                    <i class="fas fa-pencil-alt" id=${contact[i].contact_id} onclick = "showUpdateContact(this)"></i>
+                </td>
+            `;
+                    tableContacts.appendChild(row);
+                }
+            } else {
+                res.json().then((data) => {
+                    console.log('Contacts not found');
+                    alert('Contacts not found');
+                });
+            }
+
+        })
+
+}
+
 
 //COUNTRIES
 
@@ -308,7 +359,8 @@ function getCountries(i) {
                     <h4> <span class="caret" onclick = "getCities(this)" id ="${res[i].country_id}"> ${res[i].nameCountry}  </span> 
                      <i class="fas fa-trash" id= "${res[i].country_id}" onclick = "showDeleteCountry(this)"></i>
                      <i class="fas fa-pencil-alt" id= "${res[i].country_id}" onclick = "showUpdateCountry(this)"></i>
-                    <button class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button><h4>
+                     <i class="fas fa-id-card-alt" id= "${res[i].region_id}" onclick = "showContactsRegion(this)"></i>
+                     <button class="buttonTerciary buttonLarge" id="${res[i].country_id}" onclick = "postCity(this)">Agregar Ciudad</button><h4>
             `;
                     console.log(liCountry)
 
@@ -489,6 +541,55 @@ function deleteCountry(id) {
     regionsSection.classList.remove('hidden');
 
     location.reload()
+
+}
+
+//5. get contacts country_id
+function showContactsCountry(i) {
+    country_id = i.id;
+    console.log(country_id);
+    fetch(`http://localhost:3000/contacts/regions/${country_id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            let contact = res;
+            if (res) {
+                for (let i = 0; i < contact.length; i++) {
+
+                    const row = document.createElement('tr');
+                    row.setAttribute('class', 'arrowContact')
+                    row.innerHTML += `
+                <td>  <input type="checkbox" </td>
+                <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
+                <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
+                <td>${contact[i].nameCompany}</td>
+                <td>${contact[i].position}</td>
+                <td class ="interes interest${contact[i].interest}"><div >${contact[i].interest}%</div>
+                <div class="progressBar">
+                                <div class="progressBar${contact[i].interest}"></div>
+                </div>
+                </td>
+                <td id="actions">
+                    <i class="fas fa-ellipsis-h iconPoints"></i>
+                    <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>
+                    <i class="fas fa-pencil-alt" id=${contact[i].contact_id} onclick = "showUpdateContact(this)"></i>
+                </td>
+            `;
+                    tableContacts.appendChild(row);
+                }
+            } else {
+                res.json().then((data) => {
+                    console.log('Contacts not found');
+                    alert('Contacts not found');
+                });
+            }
+
+        })
 
 }
 
