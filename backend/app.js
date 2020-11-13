@@ -7,7 +7,7 @@ const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact, infoContact,  addContact, putContact, deleteContact, listChannels} = require('./components/contacts');
-const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, listContactsRegion_id, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, listContactsCountry_id, existenceCity, addCity, putCity, deleteCity} = require('./components/regions');
+const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, listContactsRegion_id, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, listContactsCountry_id, existenceCity, addCity, putCity, deleteCity, listContactsCity_id} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
 const cors = require('cors');
@@ -335,6 +335,18 @@ app.delete('/city/:city_id', validateToken,  deleteCity,  (req,res)=>{
     res.status(500).json("Internal Server Error");
   }
 }); 
+
+//5. contacts city_id
+app.get("/contacts/cities/:city_id", validateToken, listContactsCity_id, (req, res) => {
+  try {
+   console.log(req)
+    const { contacts } = req;
+     console.log(contacts)
+    res.status(200).json(contacts);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
 
 //CHANNEL
 

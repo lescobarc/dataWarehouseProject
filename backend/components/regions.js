@@ -324,8 +324,20 @@ async function deleteCity(req, res, next) {
   }
 }
 
+//5. contacts city_id
+async function listContactsCity_id(req, res, next) {
+  let id = req.params.city_id;
+  console.log(id)
+  const query =  `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id WHERE cities.city_id =${id} `
+  console.log(query)
+  const [contactsCityId] = await sequelize.query(query, { raw: true });
+  console.log(query)
+  req.contacts = contactsCityId;
+  next();
+}
 
-module.exports = { listRegions, existenceRegion, addRegion, putRegion, deleteRegion, listContactsRegion_id, listCountriesByRegion, existenceCountry, addCountry, putCountry, listCitiesByCountry, deleteCountry,listContactsCountry_id, existenceCity, addCity, putCity, deleteCity };
+
+module.exports = { listRegions, existenceRegion, addRegion, putRegion, deleteRegion, listContactsRegion_id, listCountriesByRegion, existenceCountry, addCountry, putCountry, listCitiesByCountry, deleteCountry,listContactsCountry_id, existenceCity, addCity, putCity, deleteCity, listContactsCity_id };
 
 
 
