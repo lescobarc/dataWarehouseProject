@@ -40,19 +40,24 @@
 
         </div>
 
-        <table id="regionsTable">
-            <tbody>
-                <div id="countries"> </div>
-                <div id="cities"> </div>
-            </tbody>
-        </table>
+        
+            <table id="regionsTable">
+                <tbody>
+                    <div id="countries"> </div>
+                    <div id="cities"> </div>
+                </tbody>
+            </table>
+
+
+            
     </section>
 
     <!-- CREATE -->
+
     <section id="createRegion" class="newSection hidden secondSections">
         <div class="container">
             <h1>Nueva Región</h1>
-            <div  class="principalInfo">
+            <div class="principalInfo">
                 <img src="style/img/addPhoto.png" alt="Photo">
 
                 <div>
@@ -70,7 +75,7 @@
     <section id="createCountry" class="newSection hidden secondSections">
         <div class="container">
             <h1> Nuevo País</h1>
-            <div  class="principalInfo">
+            <div class="principalInfo">
                 <img src="style/img/addPhoto.png" alt="Photo">
                 <div>
                     <label for="nameCountry"> </label>
@@ -84,10 +89,11 @@
         </div>
     </section>
 
+
     <section id="createCity" class="newSection hidden secondSections">
         <div class="container">
             <h1> Nueva Ciudad</h1>
-            <div  class="principalInfo">
+            <div class="principalInfo">
                 <img src="style/img/addPhoto.png" alt="Photo">
                 <div>
                     <label for="nameCity"> </label>
@@ -100,6 +106,43 @@
             </div>
         </div>
     </section>
+
+    <div class="table" id="divTableContacts">
+        <table id="tableContacts">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
+                    <th>Contacto  </th>
+                    <th>País/Región </th>
+                    <th>Compañía </th>
+                    <th>Cargo </th>
+                    <th>Interés </th>
+                    <th>Acciones </th>
+                </tr>
+            </thead>
+            <tbody class="arrowHover" id="bodyTableContacts">
+                <tr class="arrowContact arrowSelect">
+                    <th><input type="checkbox" name="contactSelect"></th>
+                    <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
+                    <td>Argentina <br> <span>Latam</span></td>
+                    <td>Ecom Experts</td>
+                    <td>UX Designer</td>
+                    <td id="interes">
+                        <div>100%</div>
+                        <div class="progressBar">
+                            <div class="progressBar100"></div>
+                        </div>
+                    </td>
+                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
+                            id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    
+
 
     <!-- UPDATE -->
     <!-- update region -->
@@ -126,7 +169,7 @@
         <div class="container">
 
             <h1> Actualizar País</h1>
-            <div  class="principalInfo">
+            <div class="principalInfo">
                 <img src="style/img/addPhoto.png" alt="Photo">
                 <div>
                     <label for="name"> </label>
@@ -145,7 +188,7 @@
         <div class="container">
 
             <h1> Actualizar Ciudad</h1>
-            <div  class="principalInfo">
+            <div class="principalInfo">
                 <img src="style/img/addPhoto.png" alt="Photo">
 
                 <div>
@@ -186,8 +229,8 @@
         </div>
     </section>
 
-     <!-- delete regions -->
-     <section id="deleteRegionsSection" class="hidden deleteSection">
+    <!-- delete regions -->
+    <section id="deleteRegionsSection" class="hidden deleteSection">
         <div class="container">
             <img src="style/img/deleteContact.png" alt="Delete Regions">
             <p>¿Seguro deseas eliminar esta ciudad?</p>
@@ -198,41 +241,8 @@
         </div>
     </section>
 
- 
-    <div class="table">
-        <table id="tableContacts">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
-                    <th>Contacto <i class="fas fa-arrows-alt-v"></i> </th>
-                    <th>País/Región <i class="fas fa-arrows-alt-v"></i></th>
-                    <th>Compañía <i class="fas fa-arrows-alt-v"></i></th>
-                    <th>Cargo <i class="fas fa-arrows-alt-v"></i></th>
-                    <th>Interés <i class="fas fa-arrows-alt-v"></i></th>
-                    <th>Acciones <i class="fas fa-arrows-alt-v"></i></th>
-                </tr>
-            </thead>
-            <tbody class="arrowHover" id="bodyTableContacts">
-                <tr class="arrowContact arrowSelect">
-                    <th><input type="checkbox" name="contactSelect" ></th>
-                    <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
-                    <td>Argentina <br> <span>Latam</span></td>
-                    <td>Ecom Experts</td>
-                    <td>UX Designer</td>
-                    <td id="interes">
-                        <div>100%</div>
-                        <div class="progressBar">
-                            <div class="progressBar100"></div>
-                        </div>
-                    </td>
-                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash " id="iconTrashDelete1"></i><i
-                            class="fas fa-pencil-alt "></i></td>
-                </tr>
-                
-            </tbody>
-        </table>
-    </div>
-    
+
+
 
 
 

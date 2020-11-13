@@ -77,4 +77,21 @@
     margin-top: 5%;
 }
   
-  }
+}
+#principalCont{
+  display: flex;
+  flex-direction: row;
+  
+}
+#divTableContacts{
+  width: 655px;
+  font-size: 13px;
+  height: auto;
+  position: absolute;
+  float: right;
+  top: 150px;
+  left: 600px;
+  z-index: 0;
+  
+}
+
