@@ -53,9 +53,11 @@ function getUsers() {
                 for (let i = 0; i < user.length; i++) {
                     
                     const row = document.createElement('tr');
-                    row.setAttribute('class', 'arrowContact')
+                    row.setAttribute('class', 'arrowContact');
+                    row.setAttribute('class', 'arrow');
+                    row.setAttribute('id', `arrow${i}`);
                     row.innerHTML += `
-                <td>  <input type="checkbox" onclick="contar(this)" name="check"> </td>
+                <td>  <input type="checkbox" onclick="contar(this, ${i})" name="check"> </td>
                 <td>${user[i].name}</td>
                 <td>${user[i].email}</td>
                 <td>${user[i].username}</td>

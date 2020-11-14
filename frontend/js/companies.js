@@ -51,11 +51,12 @@ function getCompanies() {
             let company = res;
             if (res) {
                 for (let i = 0; i < company.length; i++) {
-
                     const row = document.createElement('tr');
-                    row.setAttribute('class', 'arrowContact')
+                    row.setAttribute('class', 'arrowContact');
+                    row.setAttribute('class', 'arrow');
+                    row.setAttribute('id', `arrow${i}`);
                     row.innerHTML += `
-                <td>  <input type="checkbox" onclick="contar(this)" name="check"> </td>
+                <td>  <input type="checkbox" onclick="contar(this, ${i})" name="check"> </td>
                 <td>${company[i].nameCompany}</td>
                 <td>${company[i].address}</td>
                 <td>${company[i].email}</td>

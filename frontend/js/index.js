@@ -103,10 +103,12 @@ function contar(i, id) {
     var cont = 0;
     let arrow = document.getElementById(`arrow${id}`);
     console.log(arrow)
+    console.log(elements[id])
+    arrow.classList.toggle('arrowSelect')
     for (x = 0; x < elements.length; x++) {
         if (elements[x].type == "checkbox" && elements[x].checked) {
             cont += 1;
-            arrow.classList.add('arrowSelect')
+            
         }
     }
     textCheck.innerText = `${cont} seleccionados`
