@@ -90,17 +90,23 @@ iconFilter.addEventListener('click', () =>{
 //Checkbox
 let textCheck = document.getElementById('totalCheck');
 let deleteCheck = document.getElementById('deleteCheck');
-let checkSelect = document.getElementById('checkSelect');
+let checkSelect = document.getElementById('checkSelect')
 
 let listSelect = [];
-function contar(i) {
+
+
+function contar(i, id) {
     console.log(i)
+    console.log(id)
     deleteCheck.classList.remove('hidden')
     let elements = document.getElementsByName("check");
     var cont = 0;
+    let arrow = document.getElementById(`arrow${id}`);
+    console.log(arrow)
     for (x = 0; x < elements.length; x++) {
         if (elements[x].type == "checkbox" && elements[x].checked) {
             cont += 1;
+            arrow.classList.add('arrowSelect')
         }
     }
     textCheck.innerText = `${cont} seleccionados`
@@ -111,18 +117,22 @@ function selectAll() {
     deleteCheck.classList.remove('hidden')
     textCheck.innerText = ""
     let elements = document.getElementsByName("check");
+    let arrow = document.getElementsByClassName('arrow')
     if (checkSelect.checked) {
         for (i = 0; i < elements.length; i++) {
             elements[i].checked = true
+            arrow[i].classList.add('arrowSelect')
             textCheck.innerText = `${elements.length} seleccionados`
         }
     } else {
         for (i = 0; i < elements.length; i++) {
             elements[i].checked = false
+            arrow[i].classList.remove('arrowSelect')
         }
         deleteCheck.classList.add('hidden')
     }
 }
+
 
 function selectDelete() {
     let elements = document.getElementsByName("check");

@@ -74,9 +74,11 @@ function getContacts() {
                 for (let i = 0; i < contact.length; i++) {
 
                     const row = document.createElement('tr');
-                    row.setAttribute('class', 'arrowContact')
+                    row.setAttribute('class', 'arrowContact');
+                    row.setAttribute('class', 'arrow');
+                    row.setAttribute('id', `arrow${i}`);
                     row.innerHTML += `
-                <td>  <input type="checkbox" class="checkbox" onclick="contar(this)" name="check" > </td>
+                <td>  <input type="checkbox" class="checkbox" onclick='contar(this,  ${i})' name="check" > </td>
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
