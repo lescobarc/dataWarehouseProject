@@ -856,7 +856,7 @@ iconFilter.addEventListener('click', () =>{
 })  */
 
 
-//Checkbox
+/* //Checkbox
 let textCheck = document.getElementById('totalCheck');
 let deleteCheck = document.getElementById('deleteCheck');
 let contactSelect = document.getElementById('contactSelect')
@@ -900,4 +900,4 @@ function selectDelete() {
     contactSelect.checked = false
     textCheck.innerText = ""
     deleteCheck.classList.add('hidden')
-}
+} */

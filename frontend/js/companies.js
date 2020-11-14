@@ -55,7 +55,7 @@ function getCompanies() {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-                <td>  <input type="checkbox" </td>
+                <td>  <input type="checkbox" onclick="contar(this)" name="check"> </td>
                 <td>${company[i].nameCompany}</td>
                 <td>${company[i].address}</td>
                 <td>${company[i].email}</td>

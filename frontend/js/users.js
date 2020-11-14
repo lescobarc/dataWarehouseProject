@@ -55,7 +55,7 @@ function getUsers() {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-                <td>  <input type="checkbox" </td>
+                <td>  <input type="checkbox" onclick="contar(this)" name="check"> </td>
                 <td>${user[i].name}</td>
                 <td>${user[i].email}</td>
                 <td>${user[i].username}</td>

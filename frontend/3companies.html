@@ -73,11 +73,12 @@
         <p class="hidden" id="searchInfo"></p> -->
 
 
-        
+        <p id="totalCheck"> </p>
+        <p id="deleteCheck" onclick="selectDelete()" class="hidden"> Eliminar compañías </p>
         <table id="companiesTable">
             <thead>
                 <tr>
-                    <th><input type="checkbox" name="companySelect" id="companySelect"></th>
+                    <th><input type="checkbox" name="companySelect"  onclick="selectAll()" id="checkSelect"></th>
                     <th>Nombre <i class="fas fa-arrows-alt-v"></i> </th>
                     <th>Dirección <i class="fas fa-arrows-alt-v"></i></th>
                     <th>Email <i class="fas fa-arrows-alt-v"></i></th>

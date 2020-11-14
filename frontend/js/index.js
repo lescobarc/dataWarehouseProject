@@ -87,3 +87,48 @@ iconFilter.addEventListener('click', () =>{
     location.reload()
 }) 
 
+//Checkbox
+let textCheck = document.getElementById('totalCheck');
+let deleteCheck = document.getElementById('deleteCheck');
+let checkSelect = document.getElementById('checkSelect')
+
+let listSelect = [];
+function contar(i) {
+    deleteCheck.classList.remove('hidden')
+    let elements = document.getElementsByName("check");
+    var cont = 0;
+    for (x = 0; x < elements.length; x++) {
+        if (elements[x].type == "checkbox" && elements[x].checked) {
+            cont += 1;
+        }
+    }
+    textCheck.innerText = `${cont} seleccionados`
+}
+
+
+function selectAll() {
+    deleteCheck.classList.remove('hidden')
+    textCheck.innerText = ""
+    let elements = document.getElementsByName("check");
+    if (checkSelect.checked) {
+        for (i = 0; i < elements.length; i++) {
+            elements[i].checked = true
+            textCheck.innerText = `${elements.length} seleccionados`
+        }
+    } else {
+        for (i = 0; i < elements.length; i++) {
+            elements[i].checked = false
+        }
+        deleteCheck.classList.add('hidden')
+    }
+}
+
+function selectDelete() {
+    let elements = document.getElementsByName("check");
+    for (i = 0; i < elements.length; i++) {
+        elements[i].checked = false
+    }
+    checkSelect.checked = false
+    textCheck.innerText = ""
+    deleteCheck.classList.add('hidden')
+}

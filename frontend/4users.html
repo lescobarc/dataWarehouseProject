@@ -64,11 +64,13 @@
 
 
     <section id="usersSection">
+        <p id="totalCheck"> </p>
+        <p id="deleteCheck" onclick="selectDelete()" class="hidden"> Eliminar usuarios </p>
         
         <table id="usersTable">
             <thead>
                 <tr>
-                    <th><input type="checkbox" name="" id=""></th>
+                    <th><input type="checkbox" onclick="selectAll()" id="checkSelect"></th>
                     <th>Nombre <i class="fas fa-arrows-alt-v"></i> </th>
                     <!--  <th>Apellido <i class="fas fa-arrows-alt-v"></i></th> -->
                     <th>Email <i class="fas fa-arrows-alt-v"></i></th>
