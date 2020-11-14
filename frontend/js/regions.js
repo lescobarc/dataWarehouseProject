@@ -299,7 +299,7 @@ function showContactsRegion(i) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-                
+              
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
@@ -570,7 +570,7 @@ function showContactsCountry(i) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-             
+           
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
@@ -831,7 +831,7 @@ function showContactsCity(i) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-                
+     
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
