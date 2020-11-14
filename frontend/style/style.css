@@ -96,7 +96,6 @@ td {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 2% 3% 5% 3%;
 }
 
 #companiesSection div, #usersSection div, #citySection div {
@@ -722,24 +721,23 @@ nav #imgLogo {
   margin-top: 5%;
 }
 
-#principalCont {
+.mainCityRegion {
+  margin: 3% 2%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
 }
 
-#divTableContacts {
-  width: 655px;
-  font-size: 13px;
-  height: auto;
-  position: absolute;
-  float: right;
-  top: 150px;
-  left: 600px;
+.mainCityRegion #divTableContacts {
+  height: 450px;
+}
+
+.mainCityRegion h1 {
+  font-size: 1.5em;
+}
+
+.mainCityRegion .buttonRegion {
+  margin-top: 27px;
 }
 
 #loginUser {

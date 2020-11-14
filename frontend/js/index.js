@@ -90,10 +90,11 @@ iconFilter.addEventListener('click', () =>{
 //Checkbox
 let textCheck = document.getElementById('totalCheck');
 let deleteCheck = document.getElementById('deleteCheck');
-let checkSelect = document.getElementById('checkSelect')
+let checkSelect = document.getElementById('checkSelect');
 
 let listSelect = [];
 function contar(i) {
+    console.log(i)
     deleteCheck.classList.remove('hidden')
     let elements = document.getElementsByName("check");
     var cont = 0;

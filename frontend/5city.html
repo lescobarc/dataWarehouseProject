@@ -32,15 +32,15 @@
 
 <body>
     <!--  MAIN SECTION -->
+    <section class="mainCityRegion">
+        <section id="citySection">
+            <div>
+                <h1>Región / País / Ciudad</h1> <button class="buttonPrimary buttonLarge buttonRegion"
+                    id="addButtonRegion">Agregar Región</button>
 
-    <section id="citySection">
-        <div>
-            <h1>Región / País / Ciudad</h1> <button class="buttonPrimary buttonLarge buttonRegion"
-                id="addButtonRegion">Agregar Región</button>
+            </div>
 
-        </div>
 
-        
             <table id="regionsTable">
                 <tbody>
                     <div id="countries"> </div>
@@ -49,99 +49,85 @@
             </table>
 
 
-            
-    </section>
 
-    <!-- CREATE -->
+        </section>
 
-    <section id="createRegion" class="newSection hidden secondSections">
-        <div class="container">
-            <h1>Nueva Región</h1>
-            <div class="principalInfo">
-                <img src="style/img/addPhoto.png" alt="Photo">
+        <!-- CREATE -->
 
-                <div>
-                    <label for="nameRegion"> </label>
-                    <input type="text" id="nameRegion" placeholder="Región">
+        <section id="createRegion" class="newSection hidden secondSections">
+            <div class="container">
+                <h1>Nueva Región</h1>
+                <div class="principalInfo">
+                    <img src="style/img/addPhoto.png" alt="Photo">
+
+                    <div>
+                        <label for="nameRegion"> </label>
+                        <input type="text" id="nameRegion" placeholder="Región">
+                    </div>
+                </div>
+                <div class="buttonsActions">
+                    <button class='buttonLarge buttonPrimary' id="createButtonRegion"> Crear</button>
+                    <button class='buttonLarge buttonSecondary' id="cancelButtonRegion"> Cancelar </button>
                 </div>
             </div>
-            <div class="buttonsActions">
-                <button class='buttonLarge buttonPrimary' id="createButtonRegion"> Crear</button>
-                <button class='buttonLarge buttonSecondary' id="cancelButtonRegion"> Cancelar </button>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="createCountry" class="newSection hidden secondSections">
-        <div class="container">
-            <h1> Nuevo País</h1>
-            <div class="principalInfo">
-                <img src="style/img/addPhoto.png" alt="Photo">
-                <div>
-                    <label for="nameCountry"> </label>
-                    <input type="text" id="nameCountry" placeholder="País">
+        <section id="createCountry" class="newSection hidden secondSections">
+            <div class="container">
+                <h1> Nuevo País</h1>
+                <div class="principalInfo">
+                    <img src="style/img/addPhoto.png" alt="Photo">
+                    <div>
+                        <label for="nameCountry"> </label>
+                        <input type="text" id="nameCountry" placeholder="País">
+                    </div>
+                </div>
+                <div class="buttonsActions">
+                    <button class='buttonLarge buttonPrimary' id="createButtonCountry"> Crear</button>
+                    <button class='buttonLarge buttonSecondary' id="cancelButtonCountry"> Cancelar </button>
                 </div>
             </div>
-            <div class="buttonsActions">
-                <button class='buttonLarge buttonPrimary' id="createButtonCountry"> Crear</button>
-                <button class='buttonLarge buttonSecondary' id="cancelButtonCountry"> Cancelar </button>
-            </div>
-        </div>
-    </section>
+        </section>
 
 
-    <section id="createCity" class="newSection hidden secondSections">
-        <div class="container">
-            <h1> Nueva Ciudad</h1>
-            <div class="principalInfo">
-                <img src="style/img/addPhoto.png" alt="Photo">
-                <div>
-                    <label for="nameCity"> </label>
-                    <input type="text" id="nameCity" placeholder="Ciudad">
+        <section id="createCity" class="newSection hidden secondSections">
+            <div class="container">
+                <h1> Nueva Ciudad</h1>
+                <div class="principalInfo">
+                    <img src="style/img/addPhoto.png" alt="Photo">
+                    <div>
+                        <label for="nameCity"> </label>
+                        <input type="text" id="nameCity" placeholder="Ciudad">
+                    </div>
+                </div>
+                <div class="buttonsActions">
+                    <button class='buttonLarge buttonPrimary' id="createButtonCity"> Crear</button>
+                    <button class='buttonLarge buttonSecondary' id="cancelButtonCity"> Cancelar </button>
                 </div>
             </div>
-            <div class="buttonsActions">
-                <button class='buttonLarge buttonPrimary' id="createButtonCity"> Crear</button>
-                <button class='buttonLarge buttonSecondary' id="cancelButtonCity"> Cancelar </button>
-            </div>
+        </section>
+        <!-- Table contacts -->
+        <div class="table" id="divTableContacts">
+         <!--    <p id="totalCheck"> </p>
+            <p id="deleteCheck" onclick="selectDelete()" class="hidden"> Eliminar contactos </p> -->
+            <table id="tableContacts">
+                <thead>
+                    <tr>
+                        <!-- <th><input type="checkbox" name="contactSelect" onclick="selectAll()" id="checkSelect"></th> -->
+                        <th>Contacto </th>
+                        <th>País/Región </th>
+                        <th>Compañía </th>
+                        <th>Cargo </th>
+                        <th>Interés </th>
+                    </tr>
+                </thead>
+                <tbody class="arrowHover" id="bodyTableContacts">
+
+                </tbody>
+            </table>
         </div>
+
     </section>
-
-    <div class="table" id="divTableContacts">
-        <table id="tableContacts">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" name="contactSelect" id="contactSelect"></th>
-                    <th>Contacto  </th>
-                    <th>País/Región </th>
-                    <th>Compañía </th>
-                    <th>Cargo </th>
-                    <th>Interés </th>
-                    <th>Acciones </th>
-                </tr>
-            </thead>
-            <tbody class="arrowHover" id="bodyTableContacts">
-                <tr class="arrowContact arrowSelect">
-                    <th><input type="checkbox" name="contactSelect"></th>
-                    <td>Camila Soledad Pantó <br><span>camilapanto123@gmail.com</span></td>
-                    <td>Argentina <br> <span>Latam</span></td>
-                    <td>Ecom Experts</td>
-                    <td>UX Designer</td>
-                    <td id="interes">
-                        <div>100%</div>
-                        <div class="progressBar">
-                            <div class="progressBar100"></div>
-                        </div>
-                    </td>
-                    <td id="actions"><i class="fas fa-ellipsis-h iconPoints"></i><i class="fas fa-trash "
-                            id="iconTrashDelete1"></i><i class="fas fa-pencil-alt "></i></td>
-                </tr>
-
-            </tbody>
-        </table>
-    </div>
-
-    
 
 
     <!-- UPDATE -->
@@ -246,8 +232,9 @@
 
 
 
-    <script src="js/index.js"></script>
+   
     <script src="js/regions.js"></script>
+    <script src="js/index.js"></script>
 
 </body>
 

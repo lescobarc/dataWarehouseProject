@@ -299,7 +299,7 @@ function showContactsRegion(i) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-                <td>  <input type="checkbox" </td>
+                
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
@@ -308,11 +308,6 @@ function showContactsRegion(i) {
                 <div class="progressBar">
                                 <div class="progressBar${contact[i].interest}"></div>
                 </div>
-                </td>
-                <td id="actions">
-                    <i class="fas fa-ellipsis-h iconPoints"></i>
-                    <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>
-                    <i class="fas fa-pencil-alt" id=${contact[i].contact_id} onclick = "showUpdateContact(this)"></i>
                 </td>
             `;
                     bodyTableContacts.appendChild(row);
@@ -575,7 +570,7 @@ function showContactsCountry(i) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-                <td>  <input type="checkbox" </td>
+             
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
@@ -584,11 +579,6 @@ function showContactsCountry(i) {
                 <div class="progressBar">
                                 <div class="progressBar${contact[i].interest}"></div>
                 </div>
-                </td>
-                <td id="actions">
-                    <i class="fas fa-ellipsis-h iconPoints"></i>
-                    <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>
-                    <i class="fas fa-pencil-alt" id=${contact[i].contact_id} onclick = "showUpdateContact(this)"></i>
                 </td>
             `;
                     bodyTableContacts.appendChild(row);
@@ -841,7 +831,7 @@ function showContactsCity(i) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-                <td>  <input type="checkbox" </td>
+                
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
@@ -850,11 +840,6 @@ function showContactsCity(i) {
                 <div class="progressBar">
                                 <div class="progressBar${contact[i].interest}"></div>
                 </div>
-                </td>
-                <td id="actions">
-                    <i class="fas fa-ellipsis-h iconPoints"></i>
-                    <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>
-                    <i class="fas fa-pencil-alt" id=${contact[i].contact_id} onclick = "showUpdateContact(this)"></i>
                 </td>
             `;
            bodyTableContacts.appendChild(row);
