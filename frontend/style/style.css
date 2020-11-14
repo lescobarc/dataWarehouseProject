@@ -278,6 +278,10 @@ td {
   margin: 0 2%;
 }
 
+.noCheck {
+  pointer-events: none;
+}
+
 nav {
   height: 64px;
   width: 1360px;
@@ -736,7 +740,6 @@ nav #imgLogo {
   float: right;
   top: 150px;
   left: 600px;
-  z-index: 0;
 }
 
 #loginUser {

@@ -86,3 +86,4 @@ iconSearch.addEventListener('click', () =>{
 iconFilter.addEventListener('click', () =>{
     location.reload()
 }) 
+

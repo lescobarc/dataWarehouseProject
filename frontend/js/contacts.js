@@ -65,7 +65,7 @@ let searchInfo = document.getElementById('searchInfo'); */
 
 //1. get contacts
 function getContacts() {
-    
+
     fetch('http://localhost:3000/contacts', {
         method: 'GET',
         headers: {
@@ -83,7 +83,7 @@ function getContacts() {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
-                <td>  <input type="checkbox" </td>
+                <td>  <input type="checkbox" class="checkbox" onclick="contar(this)" name="check"> </td>
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
@@ -129,7 +129,7 @@ addButton.addEventListener('click', () => {
     const channelContactSelectValue2 = channelContact2.value.split(" ");
     const channelId2 = parseInt(channelContactSelectValue2[0]);
 
-   
+
     fetch('http://localhost:3000/contact', {
         method: 'POST',
         body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${companyId}", "region_id":"${regionId}","country_id":"${countryId}","city_id":"${cityId}", "interest":"${interestContact.value}", "channel1": "${channelId}", "channel2": "${channelId2}", "account1":"${accountContact.value}", "account2":"${accountContact2.value}", "preferences1":"${preferencesContact.value}", "preferences2":"${preferencesContact2.value}"} `,
@@ -380,8 +380,8 @@ companyContact.addEventListener('click', () => {
 }
 )
 
- //Add channel
-buttonAddChannel.addEventListener('click', ()=>{
+//Add channel
+buttonAddChannel.addEventListener('click', () => {
 
     document.getElementById('channel2').classList.remove('hidden');
     document.getElementById('account2').classList.remove('hidden');
@@ -418,9 +418,9 @@ channelContact2.addEventListener('click', () => {
             }
         })
 }
-) 
+)
 
- // 3. Put contacts
+// 3. Put contacts
 
 function showUpdateContact(i) {
     console.log(i)
@@ -434,7 +434,7 @@ function showUpdateContact(i) {
         updateContacts(id);
     });
 }
-function showInfoContact(id){
+function showInfoContact(id) {
     fetch(`http://localhost:3000/contact/${id}`, {
         method: 'GET',
         headers: {
@@ -444,20 +444,20 @@ function showInfoContact(id){
     }).then(respuesta => respuesta.json())
         .then(res => {
             console.log(res)
-           
+
             if (res) {
-            
-            nameContactUp.value= `${res.name}`;
-            lastnameContactUp.value = `${res.lastname}`;
-            positionContactUp.value = `${res.position}`;
-            emailContactUp.value = `${res.email}`;
-          
-            nameCompanyContactUp.innerHTML = ` <option label = ${res.position} value = ${res.company_id}>`;
-            regionContactUp.innerHTML = ` <option label = ${res.nameRegion} value = ${res.region_id}>`;
-            countryContactUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
-            cityContactUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
-            addressContactUp.value = `${res.address}`;
-            interestContactUp.innerHTML = ` <option label = ${res.interest}%  value = ${res.interest}>
+
+                nameContactUp.value = `${res.name}`;
+                lastnameContactUp.value = `${res.lastname}`;
+                positionContactUp.value = `${res.position}`;
+                emailContactUp.value = `${res.email}`;
+
+                nameCompanyContactUp.innerHTML = ` <option label = ${res.position} value = ${res.company_id}>`;
+                regionContactUp.innerHTML = ` <option label = ${res.nameRegion} value = ${res.region_id}>`;
+                countryContactUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
+                cityContactUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
+                addressContactUp.value = `${res.address}`;
+                interestContactUp.innerHTML = ` <option label = ${res.interest}%  value = ${res.interest}>
                             <option value="0">0%</option>
                             <option value="25">25%</option>
                             <option value="50">50%</option>
@@ -471,7 +471,7 @@ function showInfoContact(id){
             }
 
         })
-    
+
 }
 
 function updateContacts(id) {
@@ -720,8 +720,8 @@ companyContactUp.addEventListener('click', () => {
 }
 )
 
- //Add channel
-buttonAddChannelUp.addEventListener('click', ()=>{
+//Add channel
+buttonAddChannelUp.addEventListener('click', () => {
 
     document.getElementById('channel2Up').classList.remove('hidden');
     document.getElementById('account2Up').classList.remove('hidden');
@@ -758,7 +758,7 @@ channelContact2Up.addEventListener('click', () => {
             }
         })
 }
-) 
+)
 
 //4. Delete Contact
 cancelButtonDeleteContact.addEventListener('click', () => {
@@ -854,3 +854,52 @@ iconSearch.addEventListener('click', () =>{
 iconFilter.addEventListener('click', () =>{
     location.reload()
 })  */
+
+
+
+//Checkbox
+let textCheck = document.getElementById('totalCheck');
+let deleteCheck = document.getElementById('deleteCheck');
+
+let listSelect = [];
+function contar(i) {
+    let info = i;
+    console.log(info)
+    deleteCheck.classList.remove('hidden');
+    textCheck.innerText = "";
+    let elements = document.getElementsByName("check");
+    elements.checked = true;
+    listSelect.push(elements);
+    textCheck.innerText = `${listSelect.length} seleccionados`
+    info.classList.add('noCheck')
+}
+
+
+function selectAll() {
+    deleteCheck.classList.remove('hidden')
+    textCheck.innerText = ""
+    let elements = document.getElementsByName("check");
+    console.log(elements)
+
+    for (i = 0; i < elements.length; i++)
+        elements[i].checked = true
+
+    textCheck.innerText = `${elements.length} seleccionados`
+    document.getElementById('contactSelect').classList.add('noCheck')
+}
+
+function selectDelete() {
+    listSelect = []
+    let elements = document.getElementsByName("check");
+    console.log(elements)
+
+    for (i = 0; i < elements.length; i++) {
+        elements[i].checked = false
+        elements[i].classList.remove('noCheck')
+    }
+
+
+    document.getElementById('contactSelect').checked = false
+    textCheck.innerText = ""
+    deleteCheck.classList.add('hidden')
+}
