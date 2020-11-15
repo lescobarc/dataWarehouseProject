@@ -138,10 +138,14 @@ function selectAll() {
 
 function selectDelete() {
     let elements = document.getElementsByName("check");
+    let arrow = document.getElementsByClassName('arrow')
     for (i = 0; i < elements.length; i++) {
         elements[i].checked = false
+       arrow[i].classList.remove('arrowSelect') 
     }
     checkSelect.checked = false
     textCheck.innerText = ""
     deleteCheck.classList.add('hidden')
 }
+
+
