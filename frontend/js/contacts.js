@@ -189,8 +189,8 @@ arrowLeft.addEventListener('click', () => {
     console.log(searchI)
     validate = searchI - parseInt(rowsPage.value)
     if (validate >= 0) {
-        searchI -= parseInt(rowsPage.value)
-        searchF = parseInt(rowsPage.value)
+        searchI = searchI - parseInt(rowsPage.value)
+        searchF =  searchF - parseInt(rowsPage.value)
         console.log(searchI)
         console.log(searchF)
         getContacts(parseInt(searchF), parseInt(searchI))
