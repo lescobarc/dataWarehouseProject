@@ -51,7 +51,7 @@ function getUsers() {
             let user = res[0];
             if (res) {
                 for (let i = 0; i < user.length; i++) {
-                    
+
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact');
                     row.setAttribute('class', 'arrow');
@@ -91,7 +91,7 @@ createButton.addEventListener('click', () => {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-        
+
     }).then((res) => {
         console.log(res);
         if (res.status == 200) {
@@ -196,7 +196,7 @@ function updateUsers(id) {
     updateUserSection.classList.add('hidden');
     usersSection.classList.remove('hidden');
 
-    
+
 
 }
 
@@ -244,52 +244,39 @@ function deleteUser(id) {
 
 //Sort Table
 
-function sortTable(n,type) {
+function sortTable(n, type) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-   
-  table = document.getElementById("usersTable");
+    table = document.getElementById("usersTable");
     switching = true;
-
     dir = "asc";
-   
-    
     while (switching) {
-    
-      switching = false;
-      rows = table.rows;
-      
-      for (i = 1; i < (rows.length - 1); i++) {
-    
-        shouldSwitch = false;
-
-        x = rows[i].getElementsByTagName("TD")[n];
-        y = rows[i + 1].getElementsByTagName("TD")[n];
-   
-        if (dir == "asc") {
-          if ((type=="str" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) || (type=="int" && parseFloat(x.innerHTML) > parseFloat(y.innerHTML))) {
-    
-            shouldSwitch= true;
-            break;
-          }
-        } else if (dir == "desc") {
-          if ((type=="str" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) || (type=="int" && parseFloat(x.innerHTML) < parseFloat(y.innerHTML))) {
-          
-            shouldSwitch = true;
-            break;
-          }
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+                if ((type == "str" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) || (type == "int" && parseFloat(x.innerHTML) > parseFloat(y.innerHTML))) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if ((type == "str" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) || (type == "int" && parseFloat(x.innerHTML) < parseFloat(y.innerHTML))) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
         }
-      }
-      if (shouldSwitch) {
-    
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-      
-        switchcount ++;
-      } else {
-        if (switchcount == 0 && dir == "asc") {
-          dir = "desc";
-          switching = true;
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
         }
-      }
     }
-  }
+}

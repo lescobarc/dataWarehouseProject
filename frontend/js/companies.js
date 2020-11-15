@@ -28,7 +28,7 @@ let cityCompanyUp = document.getElementById('cityCompanyUp');
 let nameCompanyUp = document.getElementById('nameCompanyUp');
 let addressCompanyUp = document.getElementById('addressCompanyUp');
 let emailCompanyUp = document.getElementById('emailCompanyUp');
-let telCompanyUp = document.getElementById('telCompanyUp'); 
+let telCompanyUp = document.getElementById('telCompanyUp');
 
 //delete
 let deleteCompaniesSection = document.getElementById('deleteCompaniesSection');
@@ -175,17 +175,17 @@ regionCompany.addEventListener('click', () => {
             } else {
                 console.log('Search Realized');
             }
-            
+
 
         })
 
-        console.log('Search Realized');
-        for (let i = countryCompany.options.length; i >= 0; i--) {
-            countryCompany.remove(i);
-        }
-        for (let i = cityCompany.options.length; i >= 0; i--) {
-            cityCompany.remove(i);
-        }
+    console.log('Search Realized');
+    for (let i = countryCompany.options.length; i >= 0; i--) {
+        countryCompany.remove(i);
+    }
+    for (let i = cityCompany.options.length; i >= 0; i--) {
+        cityCompany.remove(i);
+    }
 
     getCountries();
 }
@@ -194,7 +194,7 @@ regionCompany.addEventListener('click', () => {
 
 //Select Countries
 function getCountries() {
-    let validateSearchCountry = document.getElementsByClassName(`liCountry`); 
+    let validateSearchCountry = document.getElementsByClassName(`liCountry`);
     console.log(validateSearchCountry)
     countryCompany.disabled = false
     countryCompany.addEventListener('click', () => {
@@ -224,11 +224,11 @@ function getCountries() {
                         console.log(liCountry)
                         countryCompany.appendChild(liCountry);
                     }
-                } 
+                }
             })
-            for (let i = cityCompany.options.length; i >= 0; i--) {
-                cityCompany.remove(i);
-            }
+        for (let i = cityCompany.options.length; i >= 0; i--) {
+            cityCompany.remove(i);
+        }
         getCities()
     })
 }
@@ -239,39 +239,39 @@ function getCountries() {
 function getCities() {
     let validateSearchCity = document.getElementsByClassName(`liCity`);
     console.log(validateSearchCity)
-        cityCompany.disabled = false
-        cityCompany.addEventListener('click', () => {
-            const countryCompanySelectValue = countryCompany.value.split(" ");
-            console.log(countryCompanySelectValue)
-            const country_idSelect = countryCompanySelectValue[0];
+    cityCompany.disabled = false
+    cityCompany.addEventListener('click', () => {
+        const countryCompanySelectValue = countryCompany.value.split(" ");
+        console.log(countryCompanySelectValue)
+        const country_idSelect = countryCompanySelectValue[0];
 
-            fetch(`http://localhost:3000/cities/${country_idSelect}`, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`
-                }
-            }).then(respuesta => respuesta.json())
-                .then(res => {
-                    console.log(res)
-                    if (res && validateSearchCity.length == 0) {
-                        for (let i = 0; i < res.length; i++) {
-                            console.log(res)
-                            console.log(validateSearchCity)
-                            let liCity = document.createElement('option');
-                            liCity.setAttribute('id', `liCity${res[i].city_id}`)
-                            liCity.setAttribute('class', `liCity`)
-                            liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
-                            console.log(liCity)
-                            cityCompany.appendChild(liCity);
-                        }
-                    } else {
-                        console.log('Search Realized');
+        fetch(`http://localhost:3000/cities/${country_idSelect}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(respuesta => respuesta.json())
+            .then(res => {
+                console.log(res)
+                if (res && validateSearchCity.length == 0) {
+                    for (let i = 0; i < res.length; i++) {
+                        console.log(res)
+                        console.log(validateSearchCity)
+                        let liCity = document.createElement('option');
+                        liCity.setAttribute('id', `liCity${res[i].city_id}`)
+                        liCity.setAttribute('class', `liCity`)
+                        liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
+                        console.log(liCity)
+                        cityCompany.appendChild(liCity);
                     }
+                } else {
+                    console.log('Search Realized');
+                }
 
-                })
-        }
-        )
+            })
+    }
+    )
 
 }
 
@@ -325,7 +325,7 @@ function updateUsers(id) {
     updateCompanySection.classList.add('hidden');
     companiesSection.classList.remove('hidden');
 
-    
+
 
 }
 
@@ -362,17 +362,17 @@ regionCompanyUp.addEventListener('click', () => {
             } else {
                 console.log('Search Realized');
             }
-            
+
 
         })
 
-        console.log('Search Realized');
-        for (let i = countryCompanyUp.options.length; i >= 0; i--) {
-            countryCompanyUp.remove(i);
-        }
-        for (let i = cityCompanyUp.options.length; i >= 0; i--) {
-            cityCompanyUp.remove(i);
-        }
+    console.log('Search Realized');
+    for (let i = countryCompanyUp.options.length; i >= 0; i--) {
+        countryCompanyUp.remove(i);
+    }
+    for (let i = cityCompanyUp.options.length; i >= 0; i--) {
+        cityCompanyUp.remove(i);
+    }
 
     getCountriesUp();
 }
@@ -380,7 +380,7 @@ regionCompanyUp.addEventListener('click', () => {
 
 //Select Countries
 function getCountriesUp() {
-    let validateSearchCountryUp = document.getElementsByClassName(`liCountryUp`); 
+    let validateSearchCountryUp = document.getElementsByClassName(`liCountryUp`);
     console.log(validateSearchCountryUp)
     countryCompanyUp.disabled = false
     countryCompanyUp.addEventListener('click', () => {
@@ -410,11 +410,11 @@ function getCountriesUp() {
                         console.log(liCountryUp)
                         countryCompanyUp.appendChild(liCountryUp);
                     }
-                } 
+                }
             })
-            for (let i = cityCompanyUp.options.length; i >= 0; i--) {
-                cityCompanyUp.remove(i);
-            }
+        for (let i = cityCompanyUp.options.length; i >= 0; i--) {
+            cityCompanyUp.remove(i);
+        }
         getCitiesUp()
     })
 }
@@ -423,39 +423,39 @@ function getCountriesUp() {
 function getCitiesUp() {
     let validateSearchCityUp = document.getElementsByClassName(`liCityUp`);
     console.log(validateSearchCityUp)
-        cityCompanyUp.disabled = false
-        cityCompanyUp.addEventListener('click', () => {
-            const countryCompanySelectValueUp = countryCompanyUp.value.split(" ");
-            console.log(countryCompanySelectValueUp)
-            const country_idSelectUp = countryCompanySelectValueUp[0];
+    cityCompanyUp.disabled = false
+    cityCompanyUp.addEventListener('click', () => {
+        const countryCompanySelectValueUp = countryCompanyUp.value.split(" ");
+        console.log(countryCompanySelectValueUp)
+        const country_idSelectUp = countryCompanySelectValueUp[0];
 
-            fetch(`http://localhost:3000/cities/${country_idSelectUp}`, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`
-                }
-            }).then(respuesta => respuesta.json())
-                .then(res => {
-                    console.log(res)
-                    if (res && validateSearchCityUp.length == 0) {
-                        for (let i = 0; i < res.length; i++) {
-                            console.log(res)
-                            console.log(validateSearchCityUp)
-                            let liCityUp = document.createElement('option');
-                            liCityUp.setAttribute('id', `liCity${res[i].city_id}`)
-                            liCityUp.setAttribute('class', `liCityUp`)
-                            liCityUp.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
-                            console.log(liCityUp)
-                            cityCompanyUp.appendChild(liCityUp);
-                        }
-                    } else {
-                        console.log('Search Realized');
+        fetch(`http://localhost:3000/cities/${country_idSelectUp}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(respuesta => respuesta.json())
+            .then(res => {
+                console.log(res)
+                if (res && validateSearchCityUp.length == 0) {
+                    for (let i = 0; i < res.length; i++) {
+                        console.log(res)
+                        console.log(validateSearchCityUp)
+                        let liCityUp = document.createElement('option');
+                        liCityUp.setAttribute('id', `liCity${res[i].city_id}`)
+                        liCityUp.setAttribute('class', `liCityUp`)
+                        liCityUp.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
+                        console.log(liCityUp)
+                        cityCompanyUp.appendChild(liCityUp);
                     }
+                } else {
+                    console.log('Search Realized');
+                }
 
-                })
-        }
-        )
+            })
+    }
+    )
 
 }
 
@@ -501,52 +501,40 @@ function deleteCompany(id) {
 
 //Sort Table
 
-function sortTable(n,type) {
+function sortTable(n, type) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-   
-  table = document.getElementById("companiesTable");
+    table = document.getElementById("companiesTable");
     switching = true;
-
     dir = "asc";
-   
-    
     while (switching) {
-    
-      switching = false;
-      rows = table.rows;
-      
-      for (i = 1; i < (rows.length - 1); i++) {
-    
-        shouldSwitch = false;
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+                if ((type == "str" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) || (type == "int" && parseFloat(x.innerHTML) > parseFloat(y.innerHTML))) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if ((type == "str" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) || (type == "int" && parseFloat(x.innerHTML) < parseFloat(y.innerHTML))) {
 
-        x = rows[i].getElementsByTagName("TD")[n];
-        y = rows[i + 1].getElementsByTagName("TD")[n];
-   
-        if (dir == "asc") {
-          if ((type=="str" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) || (type=="int" && parseFloat(x.innerHTML) > parseFloat(y.innerHTML))) {
-    
-            shouldSwitch= true;
-            break;
-          }
-        } else if (dir == "desc") {
-          if ((type=="str" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) || (type=="int" && parseFloat(x.innerHTML) < parseFloat(y.innerHTML))) {
-          
-            shouldSwitch = true;
-            break;
-          }
+                    shouldSwitch = true;
+                    break;
+                }
+            }
         }
-      }
-      if (shouldSwitch) {
-    
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-      
-        switchcount ++;
-      } else {
-        if (switchcount == 0 && dir == "asc") {
-          dir = "desc";
-          switching = true;
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
         }
-      }
     }
-  }
+}
