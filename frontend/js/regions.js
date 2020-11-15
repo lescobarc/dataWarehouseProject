@@ -622,8 +622,12 @@ function deleteCountry(id) {
 
 //5. get contacts country_id
 function showContactsCountry(i) {
+    searchFR = parseInt(rowsPageR.value);
+    searchIR = 1;
     country_id = i.id;
     console.log(country_id);
+
+    
     fetch(`http://localhost:3000/contacts/countries/${country_id}`, {
         method: 'GET',
         headers: {
@@ -636,6 +640,21 @@ function showContactsCountry(i) {
             console.log(res)
             let contact = res;
             if (res) {
+//Pagination
+rowsPageR.innerHTML = ""
+for (let i = 1; i <= contact.length; i++) {
+    console.log(contact.length)
+    const optionPag = document.createElement('option');
+    optionPag.innerText = `${i}`
+    rowsPageR.appendChild(optionPag)
+}
+rowsPageR.value = searchFR - searchIR
+rowsTotalR.innerText = `${contact.length}`
+    rowIR.innerText = `${searchIR}`
+    rowFR.innerText = `${searchFR}`
+
+
+
                 for (let i = 0; i < contact.length; i++) {
 
                     const row = document.createElement('tr');
