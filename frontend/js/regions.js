@@ -279,8 +279,27 @@ function deleteRegion(id) {
 }
 
 //5. get contacts region_id
+
+  //Pagination
+
+  let rowsPageR = document.getElementById("rowsPageR");
+  let rowsOfPageR = document.getElementById("rowsOfPageR");
+  let rowsTotalR = document.getElementById("rowsTotalR");
+  let arrowLeftR = document.getElementById('arrowLeftR');
+  let arrowRigthR = document.getElementById('arrowRigthR');
+  let rowIR = document.getElementById('rowIR');
+  let rowFR = document.getElementById('rowFR')
+  let searchFR = parseInt(rowsPageR.value);
+  let searchIR = 1;
+
 function showContactsRegion(i) {
-    region_id = i.id;
+
+    if(i !== 0){
+        region_id = i.id;
+    localStorage.setItem("region_id", region_id);
+    }
+    
+    region_id = localStorage.getItem("region_id")
     console.log(region_id);
     fetch(`http://localhost:3000/contacts/regions/${region_id}`, {
         method: 'GET',
@@ -294,7 +313,21 @@ function showContactsRegion(i) {
             console.log(res)
             let contact = res;
             if (res) {
-                for (let i = 0; i < contact.length; i++) {
+              
+
+//Pagination
+                rowsPageR.innerHTML = ""
+                for (let i = 1; i <= contact.length; i++) {
+                    console.log(contact.length)
+                    const optionPag = document.createElement('option');
+                    optionPag.innerText = `${i}`
+                    rowsPageR.appendChild(optionPag)
+                }
+                rowsPageR.value = searchFR - searchIR
+                rowsTotalR.innerText = `${contact.length}`
+                    rowIR.innerText = `${searchIR}`
+                    rowFR.innerText = `${searchFR}`
+                for (let i = searchIR; i < searchFR; i++) {
 
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
@@ -311,6 +344,7 @@ function showContactsRegion(i) {
                 </td>
             `;
                     bodyTableContacts.appendChild(row);
+                    
                 }
             } else {
                 res.json().then((data) => {
@@ -321,9 +355,46 @@ function showContactsRegion(i) {
 
         })
 
+
+ 
 }
 
 
+
+       //Pagination
+       function searchFetch (searchI, searchF){
+        showContactsRegion(searchI, searchF)
+    }
+
+    rowsPageR.addEventListener('change', () => {
+        searchFR = rowsPageR.value;
+        searchIR = 0;
+        searchFetch(searchIR, searchFR)
+        rowsPageR.selected
+    })
+    
+    arrowRigthR.addEventListener('click', () => {
+       
+        let validate = parseInt(searchFR) + parseInt(rowsPageR.value);
+  
+        if (validate <= rowsPageR.length){
+            searchIR = parseInt(searchIR) + parseInt(rowsPageR.value)
+            searchFR = parseInt(searchFR) + parseInt(rowsPageR.value)
+            
+            searchFetch(parseInt(searchFR), parseInt(searchIR))
+        }
+    })
+    
+    arrowLeftR.addEventListener('click', () => {
+        
+        validate = searchIR - parseInt(rowsPageR.value)
+        if (validate >= 0) {
+            searchIR = searchIR - parseInt(rowsPageR.value)
+            searchFR =  searchF - parseInt(rowsPageR.value)
+           
+            searchFetch(parseInt(searchFR), parseInt(searchIR))
+        }
+    })
 //COUNTRIES
 
 

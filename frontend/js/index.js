@@ -152,7 +152,6 @@ function selectDelete() {
 //Pagination
 
 let rowsPage = document.getElementById("rowsPage");
-let rowsOfPage = document.getElementById("rowsOfPage");
 let rowsTotal = document.getElementById("rowsTotal");
 let arrowLeft = document.getElementById('arrowLeft');
 let arrowRigth = document.getElementById('arrowRigth');
@@ -163,6 +162,7 @@ let searchI = 1;
 
 
 rowsPage.addEventListener('change', () => {
+    console.log('SI')
     searchF = rowsPage.value;
     searchI = 0;
     console.log(rowsPage.value)
