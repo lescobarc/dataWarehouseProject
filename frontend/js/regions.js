@@ -184,13 +184,13 @@ createButtonRegion.addEventListener('click', () => {
 function showUpdateRegion(i) {
     console.log(i)
     let idRegion = i.id
-   console.log(idRegion)
+    console.log(idRegion)
     updateRegionSection.classList.toggle('hidden');
     regionsSection.classList.toggle('hidden');
     createButtonUpRegion.addEventListener('click', () => {
         console.log(idRegion)
         updateRegions(idRegion)
-    }); 
+    });
 }
 
 
@@ -232,7 +232,7 @@ function updateRegions(idRegion) {
     regionsSection.classList.remove('hidden');
 
 
-    
+
 }
 
 cancelButtonUpRegion.addEventListener('click', () => {
@@ -280,25 +280,25 @@ function deleteRegion(id) {
 
 //5. get contacts region_id
 
-  //Pagination
+//Pagination
 
-  let rowsPageR = document.getElementById("rowsPageR");
-  let rowsOfPageR = document.getElementById("rowsOfPageR");
-  let rowsTotalR = document.getElementById("rowsTotalR");
-  let arrowLeftR = document.getElementById('arrowLeftR');
-  let arrowRigthR = document.getElementById('arrowRigthR');
-  let rowIR = document.getElementById('rowIR');
-  let rowFR = document.getElementById('rowFR')
-  let searchFR = parseInt(rowsPageR.value);
-  let searchIR = 1;
+let rowsPageR = document.getElementById("rowsPageR");
+let rowsOfPageR = document.getElementById("rowsOfPageR");
+let rowsTotalR = document.getElementById("rowsTotalR");
+let arrowLeftR = document.getElementById('arrowLeftR');
+let arrowRigthR = document.getElementById('arrowRigthR');
+let rowIR = document.getElementById('rowIR');
+let rowFR = document.getElementById('rowFR')
+let searchFR = parseInt(rowsPageR.value);
+let searchIR = 1;
 
 function showContactsRegion(i) {
 
-    if(i !== 0){
+    if (i !== 0) {
         region_id = i.id;
-    localStorage.setItem("region_id", region_id);
+        localStorage.setItem("region_id", region_id);
     }
-    
+
     region_id = localStorage.getItem("region_id")
     console.log(region_id);
     fetch(`http://localhost:3000/contacts/regions/${region_id}`, {
@@ -313,9 +313,9 @@ function showContactsRegion(i) {
             console.log(res)
             let contact = res;
             if (res) {
-              
 
-//Pagination
+
+                //Pagination
                 rowsPageR.innerHTML = ""
                 for (let i = 1; i <= contact.length; i++) {
                     console.log(contact.length)
@@ -325,8 +325,8 @@ function showContactsRegion(i) {
                 }
                 rowsPageR.value = searchFR - searchIR
                 rowsTotalR.innerText = `${contact.length}`
-                    rowIR.innerText = `${searchIR}`
-                    rowFR.innerText = `${searchFR}`
+                rowIR.innerText = `${searchIR}`
+                rowFR.innerText = `${searchFR}`
                 for (let i = searchIR; i < searchFR; i++) {
 
                     const row = document.createElement('tr');
@@ -344,7 +344,7 @@ function showContactsRegion(i) {
                 </td>
             `;
                     bodyTableContacts.appendChild(row);
-                    
+
                 }
             } else {
                 res.json().then((data) => {
@@ -356,45 +356,45 @@ function showContactsRegion(i) {
         })
 
 
- 
+
 }
 
 
 
-       //Pagination
-       function searchFetch (searchI, searchF){
-        showContactsRegion(searchI, searchF)
-    }
+//Pagination
+function searchFetch(searchI, searchF) {
+    showContactsRegion(searchI, searchF)
+}
 
-    rowsPageR.addEventListener('change', () => {
-        searchFR = rowsPageR.value;
-        searchIR = 0;
-        searchFetch(searchIR, searchFR)
-        rowsPageR.selected
-    })
-    
-    arrowRigthR.addEventListener('click', () => {
-       
-        let validate = parseInt(searchFR) + parseInt(rowsPageR.value);
-  
-        if (validate <= rowsPageR.length){
-            searchIR = parseInt(searchIR) + parseInt(rowsPageR.value)
-            searchFR = parseInt(searchFR) + parseInt(rowsPageR.value)
-            
-            searchFetch(parseInt(searchFR), parseInt(searchIR))
-        }
-    })
-    
-    arrowLeftR.addEventListener('click', () => {
-        
-        validate = searchIR - parseInt(rowsPageR.value)
-        if (validate >= 0) {
-            searchIR = searchIR - parseInt(rowsPageR.value)
-            searchFR =  searchF - parseInt(rowsPageR.value)
-           
-            searchFetch(parseInt(searchFR), parseInt(searchIR))
-        }
-    })
+rowsPageR.addEventListener('change', () => {
+    searchFR = rowsPageR.value;
+    searchIR = 0;
+    searchFetch(searchIR, searchFR)
+    rowsPageR.selected
+})
+
+arrowRigthR.addEventListener('click', () => {
+
+    let validate = parseInt(searchFR) + parseInt(rowsPageR.value);
+
+    if (validate <= rowsPageR.length) {
+        searchIR = parseInt(searchIR) + parseInt(rowsPageR.value)
+        searchFR = parseInt(searchFR) + parseInt(rowsPageR.value)
+
+        searchFetch(parseInt(searchFR), parseInt(searchIR))
+    }
+})
+
+arrowLeftR.addEventListener('click', () => {
+
+    validate = searchIR - parseInt(rowsPageR.value)
+    if (validate >= 0) {
+        searchIR = searchIR - parseInt(rowsPageR.value)
+        searchFR = searchF - parseInt(rowsPageR.value)
+
+        searchFetch(parseInt(searchFR), parseInt(searchIR))
+    }
+})
 //COUNTRIES
 
 
@@ -526,13 +526,13 @@ function createCountry(id) {
 function showUpdateCountry(i) {
     console.log(i)
     let idCountry = i.id
-   console.log(idCountry)
+    console.log(idCountry)
     updateCountrySection.classList.toggle('hidden');
     regionsSection.classList.toggle('hidden');
     createButtonUpCountry.addEventListener('click', () => {
         console.log(idCountry)
         updateCountries(idCountry)
-    }); 
+    });
 }
 
 
@@ -573,7 +573,7 @@ function updateCountries(idCountry) {
     updateCountrySection.classList.add('hidden');
     regionsSection.classList.remove('hidden');
 
-    
+
 
 }
 
@@ -627,7 +627,7 @@ function showContactsCountry(i) {
     country_id = i.id;
     console.log(country_id);
 
-    
+
     fetch(`http://localhost:3000/contacts/countries/${country_id}`, {
         method: 'GET',
         headers: {
@@ -640,18 +640,18 @@ function showContactsCountry(i) {
             console.log(res)
             let contact = res;
             if (res) {
-//Pagination
-rowsPageR.innerHTML = ""
-for (let i = 1; i <= contact.length; i++) {
-    console.log(contact.length)
-    const optionPag = document.createElement('option');
-    optionPag.innerText = `${i}`
-    rowsPageR.appendChild(optionPag)
-}
-rowsPageR.value = searchFR - searchIR
-rowsTotalR.innerText = `${contact.length}`
-    rowIR.innerText = `${searchIR}`
-    rowFR.innerText = `${searchFR}`
+                //Pagination
+                rowsPageR.innerHTML = ""
+                for (let i = 1; i <= contact.length; i++) {
+                    console.log(contact.length)
+                    const optionPag = document.createElement('option');
+                    optionPag.innerText = `${i}`
+                    rowsPageR.appendChild(optionPag)
+                }
+                rowsPageR.value = searchFR - searchIR
+                rowsTotalR.innerText = `${contact.length}`
+                rowIR.innerText = `${searchIR}`
+                rowFR.innerText = `${searchFR}`
 
 
 
@@ -709,7 +709,7 @@ function getCities(i) {
                     ulCity.setAttribute('class', '')
                     sectionCities.appendChild(ulCity)
 
-        
+
                     for (let i = 0; i < res.length; i++) {
                         console.log(res)
                         const liCity = document.createElement('li');
@@ -719,17 +719,17 @@ function getCities(i) {
                      <i class="fas fa-trash" id= "${res[i].city_id}" onclick = "showDeleteCity(this)"> </i>
                      <i class="fas fa-pencil-alt" id= "${res[i].city_id}" onclick = "showUpdateCity(this) "></i>
                      <i class="fas fa-id-card-alt" id= "${res[i].city_id}" onclick = "showContactsCity(this)"></i> <p>`;
-                    
+
                         console.log(liCity)
                         document.getElementById(`liCountry${country_id}`).appendChild(liCity);
                     }
                 } else {
                     console.log('Search Realized');
-                  for (let i = 0; i < res.length; i++) {
+                    for (let i = 0; i < res.length; i++) {
                         rowDelete = document.getElementById(`liCity${res[i].city_id}`)
                         console.log(rowDelete)
                         rowDelete.classList.toggle('hidden')
-                    } 
+                    }
                 }
 
             })
@@ -799,20 +799,20 @@ function createCity(id) {
         }
 
     })
-}; 
+};
 
 // 3. Put City
 
 function showUpdateCity(i) {
     console.log(i)
     let idCity = i.id
-   console.log(idCity)
+    console.log(idCity)
     updateCitySection.classList.toggle('hidden');
     regionsSection.classList.toggle('hidden');
     createButtonUpCity.addEventListener('click', () => {
         console.log(idCity)
         updateCities(idCity)
-    }); 
+    });
 }
 
 
@@ -853,7 +853,7 @@ function updateCities(idCity) {
     updateCitySection.classList.add('hidden');
     regionsSection.classList.remove('hidden');
 
-    
+
 
 }
 
@@ -902,6 +902,8 @@ function deleteCity(id) {
 
 //5. get contacts country_id
 function showContactsCity(i) {
+    searchFR = parseInt(rowsPageR.value);
+    searchIR = 1;
     city_id = i.id;
     console.log(city_id);
     fetch(`http://localhost:3000/contacts/cities/${city_id}`, {
@@ -915,6 +917,18 @@ function showContactsCity(i) {
             bodyTableContacts.innerHTML = " "
             console.log(res)
             let contact = res;
+            //Pagination
+            rowsPageR.innerHTML = ""
+            for (let i = 1; i <= contact.length; i++) {
+                console.log(contact.length)
+                const optionPag = document.createElement('option');
+                optionPag.innerText = `${i}`
+                rowsPageR.appendChild(optionPag)
+            }
+            rowsPageR.value = searchFR - searchIR
+            rowsTotalR.innerText = `${contact.length}`
+            rowIR.innerText = `${searchIR}`
+            rowFR.innerText = `${searchFR}`
             if (res) {
                 for (let i = 0; i < contact.length; i++) {
 
@@ -932,7 +946,7 @@ function showContactsCity(i) {
                 </div>
                 </td>
             `;
-           bodyTableContacts.appendChild(row);
+                    bodyTableContacts.appendChild(row);
                 }
             } else {
                 res.json().then((data) => {
