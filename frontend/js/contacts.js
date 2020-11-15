@@ -64,11 +64,14 @@ let rowsOfPage = document.getElementById("rowsOfPage");
 let rowsTotal = document.getElementById("rowsTotal");
 let arrowLeft = document.getElementById('arrowLeft');
 let arrowRigth = document.getElementById('arrowRigth');
-
+let searchF = parseInt(rowsPage.value);
+let searchI = 0;
+console.log(searchF)
 //1. get contacts
-let search = rowsPage.value
-console.log(search)
+
+
 function getContacts() {
+
 
     fetch('http://localhost:3000/contacts', {
         method: 'GET',
@@ -78,12 +81,15 @@ function getContacts() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
+            console.log(searchF)
+                console.log(searchI)
             console.log(rowsPage.value)
-            search = parseInt(rowsPage.value)
+          
             console.log(res)
             let contact = res[0];
             if (res) {
-
+                console.log(searchF)
+                console.log(searchI)
                 //Pagination
                 rowsPage.innerHTML = ""
                 for (let i = 0; i < contact.length; i++) {
@@ -92,12 +98,19 @@ function getContacts() {
                     optionPag.innerText = `${i}`
                     rowsPage.appendChild(optionPag)
                 }
-                rowsPage.value = search
+                rowsPage.value = searchF - searchI
 
 
                 //Create Table Contacts
                 tableBody.innerHTML = ""
-                for (let i = 0; i < search; i++) {
+                
+                    console.log(searchF)
+                    console.log(searchI)
+                for (let i = searchI; i < searchF; i++) {
+
+                    console.log(searchF)
+                    console.log(searchI)
+                  
 
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact');
@@ -142,16 +155,36 @@ getContacts();
 
 
 rowsPage.addEventListener('change', () => {
-    rowsPage.value;
+   searchF =  rowsPage.value;
+   searchI = 0;
     console.log(rowsPage.value)
-    getContacts(rowsPage.value)
+    getContacts(searchI, searchF)
     rowsPage.selected
 })
 
 arrowRigth.addEventListener('click', () => {
-    search += parseInt(search)
-    console.log(search)
-    getContacts(search)
+    searchF = parseInt(rowsPage.value)
+    console.log(searchF)
+    console.log(searchI)
+searchI += parseInt(searchF)
+    searchF += parseInt(searchF)
+    console.log(searchI)
+    console.log(searchF)
+    
+    getContacts(parseInt(searchF), parseInt(searchI))
+
+})
+
+arrowLeft.addEventListener('click', () => {
+ 
+    console.log(searchF)
+    console.log(searchI)
+searchI -= parseInt(rowsPage.value)
+    searchF = parseInt(rowsPage.value)
+    console.log(searchI)
+    console.log(searchF)
+    
+    getContacts(parseInt(searchF), parseInt(searchI))
 
 })
 //2. Post Contacts
