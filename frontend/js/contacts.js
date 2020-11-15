@@ -3,6 +3,7 @@ let token = localStorage.token;
 //Table 
 let table = document.querySelector('#contactsTable tbody');
 let contactsSection = document.getElementById('contactsSection');
+let tableBody = document.getElementById('tableBody')
 
 
 //CONTACTS
@@ -56,7 +57,17 @@ let cancelButtonDeleteContact = document.getElementById('cancelButtonDeleteConta
 let deleteButtonDeleteContact = document.getElementById('deleteButtonDeleteContact')
 
 
+//Pagination
+
+let rowsPage = document.getElementById("rowsPage");
+let rowsOfPage = document.getElementById("rowsOfPage");
+let rowsTotal = document.getElementById("rowsTotal");
+let arrowLeft = document.getElementById('arrowLeft');
+let arrowRigth = document.getElementById('arrowRigth');
+
 //1. get contacts
+let search = rowsPage.value
+console.log(search)
 function getContacts() {
 
     fetch('http://localhost:3000/contacts', {
@@ -67,11 +78,26 @@ function getContacts() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-
+            console.log(rowsPage.value)
+            search = parseInt(rowsPage.value)
             console.log(res)
             let contact = res[0];
             if (res) {
+
+                //Pagination
+                rowsPage.innerHTML = ""
                 for (let i = 0; i < contact.length; i++) {
+                    console.log(contact.length)
+                    const optionPag = document.createElement('option');
+                    optionPag.innerText = `${i}`
+                    rowsPage.appendChild(optionPag)
+                }
+                rowsPage.value = search
+
+
+                //Create Table Contacts
+                tableBody.innerHTML = ""
+                for (let i = 0; i < search; i++) {
 
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact');
@@ -95,6 +121,8 @@ function getContacts() {
                 </td>
             `;
                     table.appendChild(row);
+                    rowsTotal.innerText = `${contact.length}`
+                    rowsOfPage.innerText = `${rowsPage.value}`
                 }
             } else {
                 res.json().then((data) => {
@@ -104,9 +132,28 @@ function getContacts() {
             }
 
         })
+
+
+
 }
 getContacts();
 
+//Pagination
+
+
+rowsPage.addEventListener('change', () => {
+    rowsPage.value;
+    console.log(rowsPage.value)
+    getContacts(rowsPage.value)
+    rowsPage.selected
+})
+
+arrowRigth.addEventListener('click', () => {
+    search += parseInt(search)
+    console.log(search)
+    getContacts(search)
+
+})
 //2. Post Contacts
 
 addButton.addEventListener('click', () => {
@@ -795,39 +842,40 @@ async function deleteContact(id) {
 
 //Sort Table
 
-function sortTable(n,type) {
+function sortTable(n, type) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("contactsTable");
+    table = document.getElementById("contactsTable");
     switching = true;
     dir = "asc";
-       while (switching) {
-      switching = false;
-      rows = table.rows;
-      for (i = 1; i < (rows.length - 1); i++) {
-        shouldSwitch = false;
-        x = rows[i].getElementsByTagName("TD")[n];
-        y = rows[i + 1].getElementsByTagName("TD")[n];
-        if (dir == "asc") {
-          if ((type=="str" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) || (type=="int" && parseFloat(x.innerHTML) > parseFloat(y.innerHTML))) {
-            shouldSwitch= true;
-            break;
-          }
-        } else if (dir == "desc") {
-          if ((type=="str" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) || (type=="int" && parseFloat(x.innerHTML) < parseFloat(y.innerHTML))) {
-            shouldSwitch = true;
-            break;
-          }
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+                if ((type == "str" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) || (type == "int" && parseFloat(x.innerHTML) > parseFloat(y.innerHTML))) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if ((type == "str" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) || (type == "int" && parseFloat(x.innerHTML) < parseFloat(y.innerHTML))) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
         }
-      }
-      if (shouldSwitch) {
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-        switchcount ++;
-      } else {
-        if (switchcount == 0 && dir == "asc") {
-          dir = "desc";
-          switching = true;
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
         }
-      }
     }
-  }
+}
+
