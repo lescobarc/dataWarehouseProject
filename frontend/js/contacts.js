@@ -64,8 +64,10 @@ let rowsOfPage = document.getElementById("rowsOfPage");
 let rowsTotal = document.getElementById("rowsTotal");
 let arrowLeft = document.getElementById('arrowLeft');
 let arrowRigth = document.getElementById('arrowRigth');
+let rowI = document.getElementById('rowI');
+let rowF = document.getElementById('rowF')
 let searchF = parseInt(rowsPage.value);
-let searchI = 0;
+let searchI = 1;
 console.log(searchF)
 //1. get contacts
 
@@ -93,7 +95,7 @@ function getContacts() {
                 console.log(searchI)
                 //Pagination
                 rowsPage.innerHTML = ""
-                for (let i = 0; i < contact.length; i++) {
+                for (let i = 1; i <= contact.length; i++) {
                     console.log(contact.length)
                     const optionPag = document.createElement('option');
                     optionPag.innerText = `${i}`
@@ -138,7 +140,13 @@ function getContacts() {
             `;
                     table.appendChild(row);
                     rowsTotal.innerText = `${contact.length}`
-                    rowsOfPage.innerText = `${rowsPage.value}`
+                    rowI.innerText = `${searchI}`
+                    rowF.innerText = `${searchF}`
+                  /*    
+                    if(rowsPage.value = 0){
+                        rowI.innerText = `0`
+                    rowF.innerText = `0`
+                    }  */
                 }
 
 
@@ -181,7 +189,6 @@ arrowRigth.addEventListener('click', () => {
         console.log(searchF)
         getContacts(parseInt(searchF), parseInt(searchI))
     }
-    
 })
 
 arrowLeft.addEventListener('click', () => {
