@@ -163,6 +163,8 @@ rowsPage.addEventListener('change', () => {
 })
 
 arrowRigth.addEventListener('click', () => {
+
+    
     searchF = parseInt(rowsPage.value)
     console.log(searchF)
     console.log(searchI)
@@ -179,12 +181,15 @@ arrowLeft.addEventListener('click', () => {
  
     console.log(searchF)
     console.log(searchI)
-searchI -= parseInt(rowsPage.value)
+    validate = searchI - parseInt(rowsPage.value)
+    if(validate >= 0){
+    searchI -= parseInt(rowsPage.value)
     searchF = parseInt(rowsPage.value)
     console.log(searchI)
     console.log(searchF)
-    
     getContacts(parseInt(searchF), parseInt(searchI))
+    }
+    
 
 })
 //2. Post Contacts
