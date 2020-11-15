@@ -36,6 +36,8 @@ let cancelButtonDeleteCompany = document.getElementById('cancelButtonDeleteCompa
 let deleteButtonDeleteCompany = document.getElementById('deleteButtonDeleteCompany')
 
 
+
+
 //1. get companies
 function getCompanies() {
     fetch('http://localhost:3000/companies', {
@@ -46,11 +48,14 @@ function getCompanies() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
+
+            
             console.log('este')
             console.log(res)
             let company = res;
             if (res) {
-                for (let i = 0; i < company.length; i++) {
+                tableBody.innerHTML = ""
+                for (let i = searchI; i < searchF; i++) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact');
                     row.setAttribute('class', 'arrow');
@@ -71,6 +76,20 @@ function getCompanies() {
                 </td>
             `;
                     table.appendChild(row);
+
+                    //Pagination
+            rowsPage.innerHTML = ""
+            for (let i = 1; i <= company.length; i++) {
+                console.log(company.length)
+                const optionPag = document.createElement('option');
+                optionPag.innerText = `${i}`
+                rowsPage.appendChild(optionPag)
+            }
+            rowsPage.value = searchF - searchI
+            rowsTotal.innerText = `${company.length}`
+                    rowI.innerText = `${searchI}`
+                    rowF.innerText = `${searchF}`
+                    
                 }
             } else {
                 res.json().then((data) => {
@@ -537,4 +556,10 @@ function sortTable(n, type) {
             }
         }
     }
+}
+
+
+//Pagination
+function searchFetch (searchI, searchF){
+    getCompanies(searchI, searchF)
 }

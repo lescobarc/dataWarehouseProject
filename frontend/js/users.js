@@ -36,6 +36,8 @@ let usernameUp = document.getElementById('usernameUserUp');
 
 
 
+
+
 //4. get users
 function getUsers() {
     fetch('http://localhost:3000/users', {
@@ -46,11 +48,14 @@ function getUsers() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
+
+            
             console.log('este')
             console.log(res)
             let user = res[0];
             if (res) {
-                for (let i = 0; i < user.length; i++) {
+                tableBody.innerHTML = ""
+                for (let i = searchI; i < searchF; i++) {
 
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact');
@@ -68,6 +73,20 @@ function getUsers() {
                 </td>
             `;
                     table.appendChild(row);
+
+                    //Pagination
+            rowsPage.innerHTML = ""
+            for (let i = 1; i <= user.length; i++) {
+                console.log(user.length)
+                const optionPag = document.createElement('option');
+                optionPag.innerText = `${i}`
+                rowsPage.appendChild(optionPag)
+            }
+            rowsPage.value = searchF - searchI
+            rowsTotal.innerText = `${user.length}`
+                    rowI.innerText = `${searchI}`
+                    rowF.innerText = `${searchF}`
+                    
                 }
             } else {
                 res.json().then((data) => {
@@ -279,4 +298,9 @@ function sortTable(n, type) {
             }
         }
     }
+}
+
+//Pagination
+function searchFetch (searchI, searchF){
+    getUsers(searchI, searchF)
 }

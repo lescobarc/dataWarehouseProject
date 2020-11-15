@@ -57,18 +57,6 @@ let cancelButtonDeleteContact = document.getElementById('cancelButtonDeleteConta
 let deleteButtonDeleteContact = document.getElementById('deleteButtonDeleteContact')
 
 
-//Pagination
-
-let rowsPage = document.getElementById("rowsPage");
-let rowsOfPage = document.getElementById("rowsOfPage");
-let rowsTotal = document.getElementById("rowsTotal");
-let arrowLeft = document.getElementById('arrowLeft');
-let arrowRigth = document.getElementById('arrowRigth');
-let rowI = document.getElementById('rowI');
-let rowF = document.getElementById('rowF')
-let searchF = parseInt(rowsPage.value);
-let searchI = 1;
-console.log(searchF)
 //1. get contacts
 
 
@@ -83,40 +71,14 @@ function getContacts() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-            console.log(searchF)
-            console.log(searchI)
-            console.log(rowsPage.value)
-            const resLength = res.length;
-
-            console.log(res)
             let contact = res[0];
             if (res) {
-                console.log(searchF)
-                console.log(searchI)
-                //Pagination
-                rowsPage.innerHTML = ""
-                for (let i = 1; i <= contact.length; i++) {
-                    console.log(contact.length)
-                    const optionPag = document.createElement('option');
-                    optionPag.innerText = `${i}`
-                    rowsPage.appendChild(optionPag)
-                }
-                rowsPage.value = searchF - searchI
 
+               
 
                 //Create Table Contacts
                 tableBody.innerHTML = ""
-
-                console.log(searchF)
-                console.log(searchI)
                 for (let i = searchI; i < searchF; i++) {
-
-
-
-                    console.log(searchF)
-                    console.log(searchI)
-
-
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact');
                     row.setAttribute('class', 'arrow');
@@ -139,17 +101,21 @@ function getContacts() {
                 </td>
             `;
                     table.appendChild(row);
-                    rowsTotal.innerText = `${contact.length}`
+
+                     //Pagination
+                rowsPage.innerHTML = ""
+                for (let i = 1; i <= contact.length; i++) {
+                    console.log(contact.length)
+                    const optionPag = document.createElement('option');
+                    optionPag.innerText = `${i}`
+                    rowsPage.appendChild(optionPag)
+                }
+                rowsPage.value = searchF - searchI
+                rowsTotal.innerText = `${contact.length}`
                     rowI.innerText = `${searchI}`
                     rowF.innerText = `${searchF}`
-                  /*    
-                    if(rowsPage.value = 0){
-                        rowI.innerText = `0`
-                    rowF.innerText = `0`
-                    }  */
+                    
                 }
-
-
 
             } else {
                 res.json().then((data) => {
@@ -165,44 +131,9 @@ function getContacts() {
 }
 getContacts();
 
-//Pagination
 
 
-rowsPage.addEventListener('change', () => {
-    searchF = rowsPage.value;
-    searchI = 0;
-    console.log(rowsPage.value)
-    getContacts(searchI, searchF)
-    rowsPage.selected
-})
 
-arrowRigth.addEventListener('click', () => {
-    console.log(searchF)
-    console.log(searchI)
-    let validate = parseInt(searchF) + parseInt(rowsPage.value);
-    console.log(validate)
-    console.log(rowsPage.length)
-    if (validate <= rowsPage.length){
-        searchI = parseInt(searchI) + parseInt(rowsPage.value)
-        searchF = parseInt(searchF) + parseInt(rowsPage.value)
-        console.log(searchI)
-        console.log(searchF)
-        getContacts(parseInt(searchF), parseInt(searchI))
-    }
-})
-
-arrowLeft.addEventListener('click', () => {
-    console.log(searchF)
-    console.log(searchI)
-    validate = searchI - parseInt(rowsPage.value)
-    if (validate >= 0) {
-        searchI = searchI - parseInt(rowsPage.value)
-        searchF =  searchF - parseInt(rowsPage.value)
-        console.log(searchI)
-        console.log(searchF)
-        getContacts(parseInt(searchF), parseInt(searchI))
-    }
-})
 //2. Post Contacts
 
 addButton.addEventListener('click', () => {
@@ -928,3 +859,7 @@ function sortTable(n, type) {
     }
 }
 
+//Pagination
+function searchFetch (searchI, searchF){
+    getContacts(searchI, searchF)
+}

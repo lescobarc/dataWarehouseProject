@@ -149,3 +149,51 @@ function selectDelete() {
 }
 
 
+//Pagination
+
+let rowsPage = document.getElementById("rowsPage");
+let rowsOfPage = document.getElementById("rowsOfPage");
+let rowsTotal = document.getElementById("rowsTotal");
+let arrowLeft = document.getElementById('arrowLeft');
+let arrowRigth = document.getElementById('arrowRigth');
+let rowI = document.getElementById('rowI');
+let rowF = document.getElementById('rowF')
+let searchF = parseInt(rowsPage.value);
+let searchI = 1;
+
+
+rowsPage.addEventListener('change', () => {
+    searchF = rowsPage.value;
+    searchI = 0;
+    console.log(rowsPage.value)
+    searchFetch(searchI, searchF)
+    rowsPage.selected
+})
+
+arrowRigth.addEventListener('click', () => {
+    console.log(searchF)
+    console.log(searchI)
+    let validate = parseInt(searchF) + parseInt(rowsPage.value);
+    console.log(validate)
+    console.log(rowsPage.length)
+    if (validate <= rowsPage.length){
+        searchI = parseInt(searchI) + parseInt(rowsPage.value)
+        searchF = parseInt(searchF) + parseInt(rowsPage.value)
+        console.log(searchI)
+        console.log(searchF)
+        searchFetch(parseInt(searchF), parseInt(searchI))
+    }
+})
+
+arrowLeft.addEventListener('click', () => {
+    console.log(searchF)
+    console.log(searchI)
+    validate = searchI - parseInt(rowsPage.value)
+    if (validate >= 0) {
+        searchI = searchI - parseInt(rowsPage.value)
+        searchF =  searchF - parseInt(rowsPage.value)
+        console.log(searchI)
+        console.log(searchF)
+        searchFetch(parseInt(searchF), parseInt(searchI))
+    }
+})

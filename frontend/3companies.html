@@ -89,9 +89,23 @@
                     <th>Acciones </th>
                 </tr>
             </thead>
-            <tbody class="arrowHover"> </tbody>
+            <tbody class="arrowHover" id="tableBody"> </tbody>
                 
         </table>
+
+
+        <div id="tablePagination">
+            <div>
+                <p >Filas por página <select type="number" id="rowsPage" > 
+                    <option value="5" > </option>
+                </select> </span><i class="fas fa-angle-down"></i></p>
+            </div>
+            <div>
+                <p> <span id="rowI"></span>-<span id="rowF"></span> de <span id="rowsTotal"></span> filas
+                    <i class="fas fa-angle-left" id="arrowLeft"></i>
+                    <i class="fas fa-angle-right" id="arrowRigth"></i></p>
+            </div>
+        </div>
 
     </section>
 
