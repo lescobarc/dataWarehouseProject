@@ -309,6 +309,18 @@ td {
   color: #1D72C2;
 }
 
+#searchInfo {
+  margin-top: 0;
+  width: 260px;
+  background-color: #E8E8E8;
+  border-radius: 4px;
+}
+
+.addButton {
+  color: white;
+  background-color: #429C41;
+}
+
 nav {
   height: 64px;
   width: 1360px;
@@ -349,7 +361,7 @@ nav #imgLogo {
 }
 
 .title {
-  height: 140px;
+  height: 120px;
   width: 1306px;
   padding: 0 30px;
 }
@@ -365,12 +377,13 @@ nav #imgLogo {
 }
 
 .title .container .searchInput {
-  width: 480px;
+  width: 500px;
   height: 41px;
   padding: 0;
   border-radius: 3.5px;
   position: relative;
   bottom: 10%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .title .container .iconFilter {
@@ -381,6 +394,12 @@ nav #imgLogo {
 
 .title .container .iconSearch {
   margin-top: 4px;
+  border-radius: 3.5px;
+  background-color: white;
+}
+
+.title .container .iconSearch i {
+  color: #1D72C2;
 }
 
 .title .container .titleButtons {
