@@ -107,37 +107,41 @@
             </div>
         </section>
         <!-- Table contacts -->
-        <div class="table" id="divTableContacts">
-            <p id="totalCheck"> </p>
-            <p id="deleteCheck" onclick="selectDelete()" class="hidden"> Eliminar contactos </p>
-            <table id="tableContacts">
-                <thead>
-                    <tr>
-                        <!-- <th><input type="checkbox" name="contactSelect" onclick="selectAll()" id="checkSelect"></th> -->
-                        <th>Contacto </th>
-                        <th>País/Región </th>
-                        <th>Compañía </th>
-                        <th>Cargo </th>
-                        <th>Interés </th>
-                    </tr>
-                </thead>
-                <tbody class="arrowHover" id="bodyTableContacts">
+        <section>
+            <div class="table" id="divTableContacts">
+                <p id="totalCheck"> </p>
+                <p id="deleteCheck" onclick="selectDelete()" class="hidden"> Eliminar contactos </p>
+                <table id="tableContacts">
+                    <thead>
+                        <tr>
+                            <!-- <th><input type="checkbox" name="contactSelect" onclick="selectAll()" id="checkSelect"></th> -->
+                            <th>Contacto </th>
+                            <th>País/Región </th>
+                            <th>Compañía </th>
+                            <th>Cargo </th>
+                            <th>Interés </th>
+                        </tr>
+                    </thead>
+                    <tbody class="arrowHover" id="bodyTableContacts">
 
-                </tbody>
-            </table>
-        </div>
-         <div id="tablePagination">
-            <div>
-                <p >Filas por página <select type="number" id="rowsPageR" > 
-                    <option value="5" > </option>
-                </select> </span><i class="fas fa-angle-down"></i></p>
+                    </tbody>
+                </table>
             </div>
-            <div>
-                <p> <em id="rowIR"></em>-<em id="rowFR"></em> de <em id="rowsTotalR"></em> filas
-                    <i class="fas fa-angle-left" id="arrowLeftR"></i>
-                    <i class="fas fa-angle-right" id="arrowRigthR"></i></p>
-            </div>
-        </div>
+                <div id="tablePagination">
+                    <div>
+                        <p>Filas por página <select type="number" id="rowsPageR">
+                                <option value="5"> </option>
+                            </select> </span></p>
+                    </div>
+                    <div>
+                        <p> <em id="rowIR"></em>-<em id="rowFR"></em> de <em id="rowsTotalR"></em> filas
+                            <i class="fas fa-angle-left" id="arrowLeftR"></i>
+                            <i class="fas fa-angle-right" id="arrowRigthR"></i></p>
+                    </div>
+                </div>
+        </section>
+       
+
 
     </section>
 
@@ -244,9 +248,9 @@
 
 
 
-  <!--  <script src="js/index.js"></script> -->
+    <!--  <script src="js/index.js"></script> -->
     <script src="js/regions.js"></script>
-    
+
 
 </body>
 

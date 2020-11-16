@@ -732,7 +732,13 @@ nav #imgLogo {
 }
 
 .mainCityRegion #divTableContacts {
-  height: 450px;
+  height: auto;
+  width: 700px;
+  margin-bottom: 0;
+}
+
+.mainCityRegion #tablePagination {
+  width: 700px;
 }
 
 .mainCityRegion h1 {
