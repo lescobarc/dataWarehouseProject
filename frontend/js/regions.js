@@ -61,21 +61,6 @@ let cancelButtonDeleteCity = document.getElementById('cancelButtonDeleteCity');
 let deleteButtonDeleteCity = document.getElementById('deleteButtonDeleteCity')
 
 
-
-
-//Tree
-/* var toggler = document.getElementsByClassName("caret");
-console.log("togle" + toggler)
-console.log(toggler)
-var i;
-for (i = 0; i < toggler.length; i++) {
-    toggler[i].addEventListener("click", function showMore() {
-        this.parentElement.querySelector(".nested").classList.toggle("active");
-        this.classList.toggle("caret-down");
-    });
-} */
-
-
 //REGIONS
 
 //1. get regions
@@ -290,7 +275,7 @@ let arrowRigthR = document.getElementById('arrowRigthR');
 let rowIR = document.getElementById('rowIR');
 let rowFR = document.getElementById('rowFR')
 let searchFR = parseInt(rowsPageR.value);
-let searchIR = 1;
+let searchIR = 0;
 
 function showContactsRegion(i) {
 
@@ -917,6 +902,7 @@ function showContactsCity(i) {
             bodyTableContacts.innerHTML = " "
             console.log(res)
             let contact = res;
+
             //Pagination
             rowsPageR.innerHTML = ""
             for (let i = 1; i <= contact.length; i++) {

@@ -158,7 +158,7 @@ let arrowRigth = document.getElementById('arrowRigth');
 let rowI = document.getElementById('rowI');
 let rowF = document.getElementById('rowF')
 let searchF = parseInt(rowsPage.value);
-let searchI = 1;
+let searchI = 0;
 
 
 rowsPage.addEventListener('change', () => {
