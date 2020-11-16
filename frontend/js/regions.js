@@ -279,6 +279,7 @@ let searchIR = 0;
 
 function showContactsRegion(i) {
     tablePagination.classList.remove('hidden')
+    rowsPageR.length = 4
 
     if (i !== 0) {
         region_id = i.id;
@@ -608,10 +609,11 @@ function deleteCountry(id) {
 //5. get contacts country_id
 function showContactsCountry(i) {
     tablePagination.classList.remove('hidden')
-    searchFR = 4
+    rowsPageR.length = 4
+    
     console.log(searchFR)
     console.log(rowsPageR)
-
+    searchFR = rowsPageR.length
     
     searchFR = parseInt(rowsPageR.value);
     rowFR.innerText = `${searchFR}`
@@ -637,7 +639,7 @@ function showContactsCountry(i) {
             bodyTableContacts.innerHTML = " "
             console.log(res)
             let contact = res;
-            if (res.length = 0) {
+            if (res.length != 0) {
                 //Pagination
                 rowsPageR.innerHTML = ""
                 for (let i = 1; i <= contact.length; i++) {
@@ -649,7 +651,9 @@ function showContactsCountry(i) {
                 rowsPageR.value = searchFR - searchIR
                 rowsTotalR.innerText = `${contact.length}`
                 rowIR.innerText = `${searchIR}`
-                rowFR.innerText = `${searchFR}` 
+                searchFR = parseInt(rowsPageR.value);
+                /* console.log(searchFR)
+                rowFR.innerText = `${searchFR}`  */
 
                 console.log(rowFR)
                 
@@ -909,7 +913,7 @@ function deleteCity(id) {
 function showContactsCity(i) {
     tablePagination.classList.remove('hidden')
    
-
+    rowsPageR.length = 4
     console.log(rowsPageR.value)
     searchFR = parseInt(rowsPageR.value);
     console.log(searchFR)
@@ -953,7 +957,7 @@ function showContactsCity(i) {
 
           
 
-            if (res.length != 0) {
+            if (res.length !== 0) {
                 for (let i = 0; i < contact.length; i++) {
 
                     const row = document.createElement('tr');
