@@ -83,7 +83,7 @@ async function infoUser(req, res, next) {
 
 //4. get users
 async function listUsers(req, res, next) {
-  const query = selectQuery("users", "user_id, name, lastname email, username, pass, repass, isAdmin");
+  const query = selectQuery("users", "user_id, name, lastname, email, username, pass, repass, isAdmin");
   const [users] = await sequelize.query(query, { raw: true });
   req.usersList = [users];
   next();

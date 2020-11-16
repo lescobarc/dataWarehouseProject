@@ -250,3 +250,21 @@ td{
     border-color: white;
     
 }
+.actionsSelectTable{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 27px -27px 27px;
+    
+    p:nth-child(1){
+        color: $borderBlue;
+        background-color: rgba(221, 223, 250, 0.9);
+        border-radius: 4px;
+    }
+    p:nth-child(2){
+        color: $bgPrimary;
+        i{
+            color: $bgPrimary;
+        }
+    }
+    
+}

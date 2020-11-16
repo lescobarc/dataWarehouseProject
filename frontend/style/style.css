@@ -285,6 +285,30 @@ td {
   border-color: white;
 }
 
+.actionsSelectTable {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 27px -27px 27px;
+}
+
+.actionsSelectTable p:nth-child(1) {
+  color: #0683F9;
+  background-color: rgba(221, 223, 250, 0.9);
+  border-radius: 4px;
+}
+
+.actionsSelectTable p:nth-child(2) {
+  color: #1D72C2;
+}
+
+.actionsSelectTable p:nth-child(2) i {
+  color: #1D72C2;
+}
+
 nav {
   height: 64px;
   width: 1360px;
@@ -325,7 +349,7 @@ nav #imgLogo {
 }
 
 .title {
-  height: 191.5px;
+  height: 140px;
   width: 1306px;
   padding: 0 30px;
 }
