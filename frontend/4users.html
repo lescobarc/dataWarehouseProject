@@ -73,9 +73,9 @@
                 <tr>
                     <th><input type="checkbox" onclick="selectAll()" id="checkSelect"></th>
                     <th>Nombre <i class="fas fa-arrows-alt-v" onclick="sortTable(0, 'str')"></i> </th>
-                    <!--  <th>Apellido <i class="fas fa-arrows-alt-v"></i></th> -->
-                    <th>Email <i class="fas fa-arrows-alt-v" onclick="sortTable(1, 'str')"></i></th>
-                    <th>Usuario <i class="fas fa-arrows-alt-v" onclick="sortTable(2, 'str')"></i></th>
+                    <th>Apellido <i class="fas fa-arrows-alt-v" onclick="sortTable(1, 'str')"></i></th> 
+                    <th>Email <i class="fas fa-arrows-alt-v" onclick="sortTable(2, 'str')"></i></th>
+                    <th>Usuario <i class="fas fa-arrows-alt-v" onclick="sortTable(3, 'str')"></i></th>
                     <th>Acciones </th>
                 </tr>
             </thead>
@@ -105,6 +105,10 @@
                 <div>
                     <label for="name"> Nombre <strong>*</strong></label>
                     <input type="text" id="nameUser">
+                </div>
+                <div>
+                    <label for="lastname"> Apellido <strong>*</strong></label>
+                    <input type="text" id="lastnameUser">
                 </div>
 
                 <div>
@@ -150,6 +154,10 @@
                 <div>
                     <label for="name"> Nombre <strong>*</strong></label>
                     <input type="text" id="nameUserUp">
+                </div>
+                <div>
+                    <label for="lastname"> Apellido <strong>*</strong></label>
+                    <input type="text" id="lastnameUserUp">
                 </div>
                 <div>
                     <label for="email"> Email <strong>*</strong></label>

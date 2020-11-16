@@ -41,19 +41,19 @@ async function existenceUser(req, res, next) {
 }
 
 async function findUsername(username) {
-  const query = selectQuery("users", "name, email, username, pass, repass, isAdmin", `username = '${username}'`);
+  const query = selectQuery("users", "name, lastname, email, username, pass, repass, isAdmin", `username = '${username}'`);
   const [dbUser] = await sequelize.query(query, { raw: true });
   const foundUser = dbUser[0];
   return foundUser;
 }
 
 async function addUser(req, res, next) {
-  const { name, email, username, pass, repass } = req.body;
+  const { name, lastname, email, username, pass, repass } = req.body;
   if (pass === repass) {
     console.log(req.body)
-    if (name && email && username && pass && repass) {
-      const query = insertQuery("users", "name, email, username, pass, repass",
-        [name, email, username, pass, repass]);
+    if (name && lastname && email && username && pass && repass) {
+      const query = insertQuery("users", "name, lastname email, username, pass, repass",
+        [name, lastname, email, username, pass, repass]);
       [user_id] = await sequelize.query(query, { raw: true });
       console.log(user_id)
       req.createdUserId = user_id;
@@ -74,7 +74,7 @@ async function addUser(req, res, next) {
 async function infoUser(req, res, next) {
   const token = req.headers.authorization.split(' ')[1];
   const payload = JWT.decode(token);
-  const query = selectQuery("users", "name, email, username, pass, repass, isAdmin", `userName = '${payload.username}'`);
+  const query = selectQuery("users", "name, lastname, email, username, pass, repass, isAdmin", `userName = '${payload.username}'`);
   const [dbUser] = await sequelize.query(query, { raw: true });
   const foundUser = dbUser[0];
   req.user = foundUser;
@@ -83,7 +83,7 @@ async function infoUser(req, res, next) {
 
 //4. get users
 async function listUsers(req, res, next) {
-  const query = selectQuery("users", "user_id, name, email, username, pass, repass, isAdmin");
+  const query = selectQuery("users", "user_id, name, lastname email, username, pass, repass, isAdmin");
   const [users] = await sequelize.query(query, { raw: true });
   req.usersList = [users];
   next();
@@ -93,7 +93,7 @@ async function listUsers(req, res, next) {
 // get info of UserUp
 async function infoUserUp(req, res, next) {
   let id = req.params.value;
- const query = selectQuery("users", "name, email, username, pass, repass, isAdmin", `user_id = '${id}'`)
+ const query = selectQuery("users", "name, lastname, email, username, pass, repass, isAdmin", `user_id = '${id}'`)
  console.log(query)
   const [dbUser] = await sequelize.query(query, { raw: true });
   const foundUser = dbUser[0];
@@ -104,7 +104,7 @@ async function infoUserUp(req, res, next) {
 
 //5. Update user 
 async function putUser(req, res, next) {
-  const { name, email, username } = req.body;
+  const { name, lastname, email, username } = req.body;
 
   let id = req.params.value;
   console.log(id)
@@ -112,12 +112,12 @@ async function putUser(req, res, next) {
   if (id) {
     const userToUpdate = await findUserById(id);
     console.log(userToUpdate)
-    if (name !== "" && email !== "") {
-      const query = updateQuery("users", `name = '${name}', email= '${email}', username = '${username}'`, `user_id = '${id}'`);
+    if ( name!== "" && lastname !== "" && email !== "") {
+      const query = updateQuery("users", `name = '${name}',lastname = '${lastname}', email= '${email}', username = '${username}'`, `user_id = '${id}'`);
       console.log(name)
       const [userPut] = await sequelize.query(query, { raw: true });
       console.log(userPut)
-      req.updatedUser = { name, email };
+      req.updatedUser = { name, lastname, email };
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
     }

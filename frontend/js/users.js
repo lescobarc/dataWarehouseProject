@@ -20,6 +20,7 @@ let deleteButtonDeleteUser = document.getElementById('deleteButtonDeleteUser')
 //Table Add User
 let table = document.querySelector('#usersTable tbody')
 let name = document.getElementById('nameUser');
+let lastname = document.getElementById('lastnameUser');
 
 let email = document.getElementById('emailUser');
 let username = document.getElementById('usernameUser');
@@ -64,6 +65,7 @@ function getUsers() {
                     row.innerHTML += `
                 <td>  <input type="checkbox" onclick="contar(this, ${i})" name="check"> </td>
                 <td>${user[i].name}</td>
+                <td>${user[i].lastname}</td>
                 <td>${user[i].email}</td>
                 <td>${user[i].username}</td>
                 <td id="actions">
@@ -105,7 +107,7 @@ createButton.addEventListener('click', () => {
     console.log('llamado al API');
     fetch('http://localhost:3000/user', {
         method: 'POST',
-        body: `{"name":"${name.value}","email":"${email.value}","username":"${username.value}","pass":"${pass.value}","repass":"${repass.value}"}`,
+        body: `{"name":"${name.value}", "lastname":"${lastname.value}","email":"${email.value}","username":"${username.value}","pass":"${pass.value}","repass":"${repass.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -192,6 +194,7 @@ function showInfoUserUp(id) {
             if (res) {
 
                 nameUp.value = `${res.name}`
+                lastnameUp.value = `${res.lastname}`
                 emailUp.value = `${res.email}`;
                 usernameUp.value = `${res.username}`;
                 
@@ -214,7 +217,7 @@ function updateUsers(id) {
     fetch(`http://localhost:3000/user/${id}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameUp.value}", "email":"${emailUp.value}", "username":"${usernameUp.value}"}`,
+        body: `{"name":"${nameUp.value}", "lastname":"${lastnameUp.value}", "email":"${emailUp.value}", "username":"${usernameUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
