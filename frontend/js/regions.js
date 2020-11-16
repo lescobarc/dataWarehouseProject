@@ -607,9 +607,17 @@ function deleteCountry(id) {
 
 //5. get contacts country_id
 function showContactsCountry(i) {
+    console.log(searchFR)
     searchFR = parseInt(rowsPageR.value);
-    searchIR = 1;
-    country_id = i.id;
+    rowFR.innerText = `${searchFR}`
+    searchIR = 0;
+
+    if (i !== 0) {
+        country_id = i.id;
+        localStorage.setItem("country_id", country_id);
+    }
+
+    country_id = localStorage.getItem("country_id")
     console.log(country_id);
 
 
@@ -636,6 +644,7 @@ function showContactsCountry(i) {
                 rowsPageR.value = searchFR - searchIR
                 rowsTotalR.innerText = `${contact.length}`
                 rowIR.innerText = `${searchIR}`
+                console.log(searchFR)
                 rowFR.innerText = `${searchFR}`
 
 
@@ -888,9 +897,18 @@ function deleteCity(id) {
 //5. get contacts country_id
 function showContactsCity(i) {
     searchFR = parseInt(rowsPageR.value);
-    searchIR = 1;
-    city_id = i.id;
+    rowFR.innerText = `${searchFR}`
+    searchIR = 0;
+    /*  city_id = i.id; */
     console.log(city_id);
+
+    if (i !== 0) {
+        region_id = i.id;
+        localStorage.setItem("region_id", region_id);
+    }
+
+    region_id = localStorage.getItem("region_id")
+    console.log(region_id);
     fetch(`http://localhost:3000/contacts/cities/${city_id}`, {
         method: 'GET',
         headers: {
@@ -914,7 +932,7 @@ function showContactsCity(i) {
             rowsPageR.value = searchFR - searchIR
             rowsTotalR.innerText = `${contact.length}`
             rowIR.innerText = `${searchIR}`
-            rowFR.innerText = `${searchFR}`
+
             if (res) {
                 for (let i = 0; i < contact.length; i++) {
 
