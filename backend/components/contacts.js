@@ -6,7 +6,7 @@ const { default: contentSecurityPolicy } = require("helmet/dist/middlewares/cont
 
 //1. get contacts
 async function listContacts(req, res, next) {
-  const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id `
+  const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.address, regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id `
   const [contacts] = await sequelize.query(query, { raw: true });
   req.contactsList = [contacts];
   next();
@@ -25,7 +25,7 @@ async function existenceContact(req, res, next) {
 }
 
 async function findContactName(email) {
-  const query = selectQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest", `email = '${email}'`);
+  const query = selectQuery("contacts", "name, lastname, email, address, region_id, country_id, city_id, company_id, position,  interest", `email = '${email}'`);
   const [dbContacts] = await sequelize.query(query, { raw: true });
   const foundContact = dbContacts[0];
   return foundContact;
@@ -34,10 +34,10 @@ async function findContactName(email) {
 
 
 async function addContact(req, res, next) {
-  const { name, lastname, email, region_id, country_id, city_id, company_id, position, interest, channel1, account1, preferences1, channel2, account2, preferences2 } = req.body;
-  if (name && lastname && position && email && company_id) {
-    const query = insertQuery("contacts", "name, lastname, email, region_id, country_id, city_id, company_id, position,  interest",
-      [name, lastname, email, region_id, country_id, city_id, company_id, position, interest]);
+  const { name, lastname, email, address, region_id, country_id, city_id, company_id, position, interest, channel1, account1, preferences1, channel2, account2, preferences2 } = req.body;
+  if (name && lastname && position && email && address && company_id) {
+    const query = insertQuery("contacts", "name, lastname, email, address, region_id, country_id, city_id, company_id, position,  interest",
+      [name, lastname, email, address, region_id, country_id, city_id, company_id, position, interest]);
     [contactId] = await sequelize.query(query, { raw: true });
     let contact_id = [contactId];
     if (account1 !== '') {
@@ -59,7 +59,7 @@ async function addContact(req, res, next) {
 // get info of contact
 async function infoContact(req, res, next) {
   let id = req.params.value;
- const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id`
+ const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.address, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id`
   const [dbContact] = await sequelize.query(query, { raw: true });
   const foundContact = dbContact[0];
   req.contact = foundContact;
@@ -69,7 +69,7 @@ async function infoContact(req, res, next) {
 //3. Update contact
 
 async function putContact(req, res, next) {
-  const { name, lastname, email, region_id, country_id, city_id, company_id, position, interest, channel1, account1, preferences1, channel2, account2, preferences2 } = req.body;
+  const { name, lastname, email, address, region_id, country_id, city_id, company_id, position, interest, channel1, account1, preferences1, channel2, account2, preferences2 } = req.body;
   let id = req.params.value;
   console.log(id)
   if (id) {
@@ -81,7 +81,7 @@ async function putContact(req, res, next) {
     console.log(contactChannelToUpdate)
     console.log(contactChannelToUpdate1)
     console.log(contactChannelToUpdate2)
-    const query = updateQuery("contacts", `name = '${name}', lastname = '${lastname}',  email= '${email}', region_id = '${region_id}', country_id = '${country_id}', city_id = '${city_id}', company_id = '${company_id}', position = '${position}',  interest = '${interest}'`, `contact_id = '${id}'`);
+    const query = updateQuery("contacts", `name = '${name}', lastname = '${lastname}',  email= '${email}',  address= '${address}', region_id = '${region_id}', country_id = '${country_id}', city_id = '${city_id}', company_id = '${company_id}', position = '${position}',  interest = '${interest}'`, `contact_id = '${id}'`);
     const [contactPut] = await sequelize.query(query, { raw: true });
  console.log('NOW')
  console.log(contactChannelToUpdate1)
@@ -106,7 +106,7 @@ async function putContact(req, res, next) {
       const query3 = insertQuery("contacts_channels", "contact_id, channel_id, account, preferences", [id, channel2, account2, preferences2]);
       [channelId2] = await sequelize.query(query3, { raw: true });
     }
-    req.updatedContact = { name, email, region_id, country_id, city_id, company_id, position, interest };
+    req.updatedContact = { name, lastname, email, address, region_id, country_id, city_id, company_id, position, interest };
     next();
   } else {
     res.status(404).json("Contact Not Found");

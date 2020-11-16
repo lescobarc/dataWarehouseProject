@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2020 a las 01:31:36
+-- Tiempo de generación: 16-11-2020 a las 04:52:40
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -123,6 +123,7 @@ CREATE TABLE `contacts` (
   `name` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
   `region_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   `city_id` int(11) NOT NULL,
@@ -135,17 +136,17 @@ CREATE TABLE `contacts` (
 -- Volcado de datos para la tabla `contacts`
 --
 
-INSERT INTO `contacts` (`contact_id`, `name`, `lastname`, `email`, `region_id`, `country_id`, `city_id`, `company_id`, `position`, `interest`) VALUES
-(1, 'Andrea', 'Aristizábal', 'andreaz@gmail.com', 4, 10, 19, 2, 'Developer', 100),
-(2, 'Camila', 'Diaz', 'camilad2@hotmail.com', 3, 9, 18, 7, 'Developer', 100),
-(3, 'Diego', 'Durango', 'diego7@gmail.com', 3, 8, 17, 4, 'Product', 75),
-(4, 'Ernesto', 'Fernández', 'ernestof@gmail.com', 2, 6, 14, 3, 'Product', 75),
-(5, 'Hector', 'González', 'hectorgo@yahoo.com', 1, 2, 7, 8, 'Product', 75),
-(6, 'Julia', 'Lopez', 'julialop@hotmail.com', 1, 4, 10, 10, 'Sales', 50),
-(7, 'Verónica', 'Penagos', 'vero5@gmail.com', 1, 1, 1, 9, 'UX Designer', 25),
-(8, 'Felipe', 'Perez', 'felipe@gmail.com', 2, 6, 13, 7, 'UX Designer', 25),
-(9, 'Lorena', 'Páez', 'lorepaez@gmail.com', 3, 9, 18, 1, 'Product', 25),
-(10, 'Valentina', 'Soto', 'valens@hotmail.com', 1, 3, 8, 6, 'Sales', 0);
+INSERT INTO `contacts` (`contact_id`, `name`, `lastname`, `email`, `address`, `region_id`, `country_id`, `city_id`, `company_id`, `position`, `interest`) VALUES
+(1, 'Andrea', 'Aristizábal', 'andreaz@gmail.com', 'cll 45 #67 -87', 4, 10, 19, 2, 'Developer', 100),
+(2, 'Camila', 'Diaz', 'camilad2@hotmail.com', 'cll 65 #54-98', 3, 9, 18, 7, 'Developer', 100),
+(3, 'Diego', 'Durango', 'diego7@gmail.com', 'cll 65 #40-60', 3, 8, 17, 4, 'Product', 75),
+(4, 'Ernesto', 'Fernández', 'ernestof@gmail.com', 'cll 98 #32-47', 2, 6, 14, 3, 'Product', 75),
+(5, 'Hector', 'González', 'hectorgo@yahoo.com', 'cll 21 #23-99', 1, 2, 7, 8, 'Product', 75),
+(6, 'Julia', 'Lopez', 'julialop@hotmail.com', 'cll 09 #09-89', 1, 4, 10, 10, 'Sales', 50),
+(7, 'Verónica', 'Penagos', 'vero5@gmail.com', 'cll 12 #12-12', 1, 1, 1, 9, 'UX Designer', 25),
+(8, 'Felipe', 'Perez', 'felipe@gmail.com', 'cll 78 #98-10', 2, 6, 13, 7, 'UX Designer', 25),
+(9, 'Lorena', 'Páez', 'lorepaez@gmail.com', 'cll 12 #77-88', 3, 9, 18, 1, 'Product', 25),
+(10, 'Valentina', 'Soto', 'valens@hotmail.com', 'cll 00 #89-34', 1, 3, 8, 6, 'Sales', 0);
 
 -- --------------------------------------------------------
 
