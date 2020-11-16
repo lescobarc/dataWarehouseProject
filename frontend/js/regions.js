@@ -278,6 +278,7 @@ let searchFR = parseInt(rowsPageR.value);
 let searchIR = 0;
 
 function showContactsRegion(i) {
+    tablePagination.classList.remove('hidden')
 
     if (i !== 0) {
         region_id = i.id;
@@ -297,7 +298,7 @@ function showContactsRegion(i) {
             bodyTableContacts.innerHTML = " ";
             console.log(res)
             let contact = res;
-            if (res) {
+            if (res.length != 0) {
 
 
                 //Pagination
@@ -332,10 +333,9 @@ function showContactsRegion(i) {
 
                 }
             } else {
-                res.json().then((data) => {
-                    console.log('Contacts not found');
-                    alert('Contacts not found');
-                });
+               
+                rowIR.innerText = `0`
+                rowFR.innerText = `0` 
             }
 
         })
@@ -607,7 +607,12 @@ function deleteCountry(id) {
 
 //5. get contacts country_id
 function showContactsCountry(i) {
+    tablePagination.classList.remove('hidden')
+    searchFR = 4
     console.log(searchFR)
+    console.log(rowsPageR)
+
+    
     searchFR = parseInt(rowsPageR.value);
     rowFR.innerText = `${searchFR}`
     searchIR = 0;
@@ -632,7 +637,7 @@ function showContactsCountry(i) {
             bodyTableContacts.innerHTML = " "
             console.log(res)
             let contact = res;
-            if (res) {
+            if (res.length = 0) {
                 //Pagination
                 rowsPageR.innerHTML = ""
                 for (let i = 1; i <= contact.length; i++) {
@@ -644,8 +649,11 @@ function showContactsCountry(i) {
                 rowsPageR.value = searchFR - searchIR
                 rowsTotalR.innerText = `${contact.length}`
                 rowIR.innerText = `${searchIR}`
-                console.log(searchFR)
-                rowFR.innerText = `${searchFR}`
+                rowFR.innerText = `${searchFR}` 
+
+                console.log(rowFR)
+                
+           
 
 
 
@@ -668,10 +676,12 @@ function showContactsCountry(i) {
                     bodyTableContacts.appendChild(row);
                 }
             } else {
-                res.json().then((data) => {
-                    console.log('Contacts not found');
-                    alert('Contacts not found');
-                });
+                
+                 
+                    rowIR.innerText = `0`
+                    rowFR.innerText = `0` 
+                    
+                
             }
 
         })
@@ -894,21 +904,28 @@ function deleteCity(id) {
 
 }
 
-//5. get contacts country_id
+//5. get contacts city_id
+
 function showContactsCity(i) {
+    tablePagination.classList.remove('hidden')
+   
+
+    console.log(rowsPageR.value)
     searchFR = parseInt(rowsPageR.value);
+    console.log(searchFR)
     rowFR.innerText = `${searchFR}`
+    
     searchIR = 0;
-    /*  city_id = i.id; */
-    console.log(city_id);
+ 
+   
 
     if (i !== 0) {
-        region_id = i.id;
-        localStorage.setItem("region_id", region_id);
+        city_id = i.id;
+        localStorage.setItem("city_id", city_id);
     }
 
-    region_id = localStorage.getItem("region_id")
-    console.log(region_id);
+    city_id = localStorage.getItem("city_id")
+    console.log(city_id);
     fetch(`http://localhost:3000/contacts/cities/${city_id}`, {
         method: 'GET',
         headers: {
@@ -932,8 +949,11 @@ function showContactsCity(i) {
             rowsPageR.value = searchFR - searchIR
             rowsTotalR.innerText = `${contact.length}`
             rowIR.innerText = `${searchIR}`
+            rowFR.innerText = `${searchFR}` 
 
-            if (res) {
+          
+
+            if (res.length != 0) {
                 for (let i = 0; i < contact.length; i++) {
 
                     const row = document.createElement('tr');
@@ -953,10 +973,9 @@ function showContactsCity(i) {
                     bodyTableContacts.appendChild(row);
                 }
             } else {
-                res.json().then((data) => {
-                    console.log('Contacts not found');
-                    alert('Contacts not found');
-                });
+               
+                rowIR.innerText = `0`
+                rowFR.innerText = `0` 
             }
 
         })
