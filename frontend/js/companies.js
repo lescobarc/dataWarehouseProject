@@ -302,10 +302,43 @@ function showUpdateCompany(i) {
     console.log(id)
     updateCompanySection.classList.toggle('hidden');
     companiesSection.classList.toggle('hidden');
+    showInfoCompany(id);
     createButtonUp.addEventListener('click', () => {
         console.log(id)
         updateUsers(id)
     });
+}
+function showInfoCompany(id) {
+    fetch(`http://localhost:3000/company/${id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+
+            if (res) {
+
+                nameCompanyUp.value = `${res.nameCompany}`
+                addressCompanyUp.value = `${res.address}`;
+                emailCompanyUp.value = `${res.email}`;
+                telCompanyUp.value = `${res.tel}`;
+                regionCompanyUp.innerHTML = ` <option label = ${res.nameRegion} value = ${res.region_id}>`;
+                countryCompanyUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
+                cityCompanyUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
+                
+                
+            } else {
+                res.json().then((data) => {
+                    console.log('company not found');
+                    alert('company not found');
+                });
+            }
+
+        })
+
 }
 function updateUsers(id) {
     console.log(id)

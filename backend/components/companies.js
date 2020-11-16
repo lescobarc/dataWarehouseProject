@@ -55,6 +55,15 @@ async function addCompany(req, res, next) {
   }
 }
 
+// get info of company
+async function infoCompany(req, res, next) {
+  let id = req.params.value;
+ const query = `SELECT companies.company_id, companies.nameCompany, companies.address, companies.email, companies.tel, companies.region_id, companies.country_id, companies.city_id, regions.nameRegion, countries.nameCountry, cities.nameCity FROM companies INNER JOIN regions ON companies.region_id = regions.region_id INNER JOIN countries ON companies.country_id= countries.country_id INNER JOIN cities ON companies.city_id = cities.city_id`
+  const [dbCompany] = await sequelize.query(query, { raw: true });
+  const foundCompany = dbCompany[0];
+  req.company = foundCompany;
+  next();
+}
 
 //3. Update company
 async function putCompany(req, res, next) {
@@ -105,4 +114,4 @@ async function deleteCompany(req, res, next) {
   }
 }
 
-module.exports = { findCompanyName, addCompany, existenceCompany, listCompanies, putCompany, deleteCompany };
+module.exports = { findCompanyName, addCompany, existenceCompany, listCompanies, infoCompany, putCompany,  deleteCompany };

@@ -5,7 +5,7 @@ app.use(express.json());
 
 const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
-const { addCompany, existenceCompany, listCompanies, putCompany, deleteCompany } = require('./components/companies');
+const { addCompany, existenceCompany, listCompanies, putCompany, infoCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact, infoContact,  addContact, putContact, deleteContact, listChannels} = require('./components/contacts');
 const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, listContactsRegion_id, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, listContactsCountry_id, existenceCity, addCity, putCity, deleteCity, listContactsCity_id} = require('./components/regions');
 
@@ -124,6 +124,16 @@ app.put('/company/:company_id', validateToken,  putCompany, (req, res) => {
     res.status(500).json("Internal Server Error");
   }
 })
+
+//. get info of company
+app.get("/company/:value", validateToken, infoCompany, (req, res) => {
+  try {
+    const { company } = req;
+    res.status(200).json(company);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
 
 //4. delete company
 app.delete('/company/:company_id', validateToken,  deleteCompany,  (req,res)=>{
