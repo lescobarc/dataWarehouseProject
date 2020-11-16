@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 
 const { validateAdmin, validateToken, } = require('./components/auth');
-const { addUser, infoUser, validateCredentials, existenceUser, listUsers, putUser, deleteUser } = require('./components/users');
+const { addUser, infoUser, validateCredentials, existenceUser, listUsers, infoUserUp, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, infoCompany, deleteCompany } = require('./components/companies');
 const { listContacts, existenceContact, infoContact,  addContact, putContact, deleteContact, listChannels} = require('./components/contacts');
 const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, listContactsRegion_id, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, listContactsCountry_id, existenceCity, addCity, putCity, deleteCity, listContactsCity_id} = require('./components/regions');
@@ -65,6 +65,16 @@ app.get("/users", validateToken, validateAdmin, listUsers, (req, res) => {
   try {
     const { usersList } = req;
     res.status(200).json(usersList);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
+
+//. get info of user
+app.get("/user/:value", validateToken, infoUserUp, (req, res) => {
+  try {
+    const { user } = req;
+    res.status(200).json(user);
   } catch (err) {
     res.status(404).json("Not Found");
   }

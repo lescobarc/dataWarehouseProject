@@ -171,12 +171,42 @@ function showUpdateUser(i) {
     console.log(id)
     updateUserSection.classList.toggle('hidden');
     usersSection.classList.toggle('hidden');
+    showInfoUserUp(id);
     createButtonUp.addEventListener('click', () => {
         console.log(id)
         updateUsers(id)
     });
 }
 
+function showInfoUserUp(id) {
+    fetch(`http://localhost:3000/user/${id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+
+            if (res) {
+
+                nameUp.value = `${res.name}`
+                emailUp.value = `${res.email}`;
+                usernameUp.value = `${res.username}`;
+                
+                
+                
+            } else {
+                res.json().then((data) => {
+                    console.log('user not found');
+                    alert('user not found');
+                });
+            }
+
+        })
+
+}
 
 function updateUsers(id) {
     console.log(id)

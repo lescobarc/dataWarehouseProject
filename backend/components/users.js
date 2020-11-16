@@ -90,6 +90,18 @@ async function listUsers(req, res, next) {
 }
 
 
+// get info of UserUp
+async function infoUserUp(req, res, next) {
+  let id = req.params.value;
+ const query = selectQuery("users", "name, email, username, pass, repass, isAdmin", `user_id = '${id}'`)
+ console.log(query)
+  const [dbUser] = await sequelize.query(query, { raw: true });
+  const foundUser = dbUser[0];
+  req.user = foundUser;
+  next();
+}
+
+
 //5. Update user 
 async function putUser(req, res, next) {
   const { name, email, username } = req.body;
@@ -142,7 +154,7 @@ async function deleteUser(req, res, next) {
 
 
 
-module.exports = { findUsername, addUser, putUser, validateCredentials, existenceUser, infoUser, listUsers, deleteUser };
+module.exports = { findUsername, addUser, infoUser, putUser, validateCredentials, existenceUser, infoUserUp, listUsers, deleteUser };
 
 
 
