@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2020 a las 04:52:40
+-- Tiempo de generación: 16-11-2020 a las 05:13:35
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -220,6 +220,7 @@ INSERT INTO `regions` (`region_id`, `nameRegion`) VALUES
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `pass` varchar(50) NOT NULL,
@@ -231,17 +232,17 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `pass`, `repass`, `isAdmin`) VALUES
-(1, 'admin', 'admin@hotmail.com', 'admin', '1234', '1234', 1),
-(2, 'Carlos Bermúdez', 'carlosb@hotmail.com', 'carlosb', '4567', '4567', 1),
-(3, 'Liliana Henao', 'lilih@hotmail.com', 'lilih', '6789', '6789', 0),
-(4, 'María Toro', 'mariat8@gmail.com', 'mari', '1234', '1234', 0),
-(5, 'Luisa Ocampo', 'luisao4@yahoo.com', 'luisaoc', '5432', '5432', 0),
-(6, 'Nicolás', 'Romanov', 'nicor', '4569', '4569', 0),
-(7, 'Pedro Parker', 'pedro13@hotmail.com', 'peter', '789', '789', 0),
-(8, 'Valeria Zapata', 'valeri@gmail.com', 'vale5', '1234', '1234', 0),
-(9, 'Laura Salazar', 'lauras@yahoo.com', 'lauras', '546', '546', 0),
-(10, 'Tomás Velez', 'tomas@hotmail.com', 'tomy', '456', '456', 0);
+INSERT INTO `users` (`user_id`, `name`, `lastname`, `email`, `username`, `pass`, `repass`, `isAdmin`) VALUES
+(1, 'admin', 'admin', 'admin@hotmail.com', 'admin', '1234', '1234', 1),
+(2, 'Carlos', ' Bermúdez', 'carlosb@hotmail.com', 'carlosb', '4567', '4567', 1),
+(3, 'Liliana ', 'Henao', 'lilih@hotmail.com', 'lilih', '6789', '6789', 0),
+(4, 'María ', 'Toro', 'mariat8@gmail.com', 'mari', '1234', '1234', 0),
+(5, 'Luisa ', 'Ocampo', 'luisao4@yahoo.com', 'luisaoc', '5432', '5432', 0),
+(6, 'Nicolás', 'Romanov', 'nicolas@gmail.com', 'nicor', '4569', '4569', 0),
+(7, 'Pedro ', 'Parker', 'pedro13@hotmail.com', 'peter', '789', '789', 0),
+(8, 'Valeria ', 'Zapata', 'valeri@gmail.com', 'vale5', '1234', '1234', 0),
+(9, 'Laura ', 'Salazar', 'lauras@yahoo.com', 'lauras', '546', '546', 0),
+(10, 'Tomás', ' Velez', 'tomas@hotmail.com', 'tomy', '456', '456', 0);
 
 --
 -- Índices para tablas volcadas
