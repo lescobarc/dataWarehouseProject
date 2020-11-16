@@ -745,8 +745,10 @@ nav #imgLogo {
   font-size: 1.5em;
 }
 
-.mainCityRegion .buttonRegion {
+.mainCityRegion #addButtonRegion {
   margin-top: 27px;
+  margin-right: 0;
+  padding-right: 0;
 }
 
 #loginUser {
