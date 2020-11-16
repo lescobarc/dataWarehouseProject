@@ -67,7 +67,7 @@
         <p id="totalCheck"> </p>
         <p id="deleteCheck" onclick="selectDelete()" class="hidden"> Eliminar usuarios </p>
         
-        <table id="usersTable">
+        <table id="usersTable" class="table">
             <thead>
                 <tr>
                     <th><input type="checkbox" onclick="selectAll()" id="checkSelect"></th>
@@ -82,12 +82,12 @@
         </table>
         <div id="tablePagination">
             <div>
-                <p >Filas por página <select type="number" id="rowsPage" > 
+                <p >Filas por página  <select type="number" id="rowsPage" > 
                     <option value="5" > </option>
-                </select> </span><i class="fas fa-angle-down"></i></p>
+                </select> </span></p>
             </div>
             <div>
-                <p> <span id="rowI"></span>-<span id="rowF"></span> de <span id="rowsTotal"></span> filas
+                <p><em id="rowI"></em>-<em id="rowF"></em>de<em id="rowsTotal"></em> filas
                     <i class="fas fa-angle-left" id="arrowLeft"></i>
                     <i class="fas fa-angle-right" id="arrowRigth"></i></p>
             </div>

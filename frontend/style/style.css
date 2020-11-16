@@ -115,8 +115,6 @@ td {
 }
 
 #companiesSection table, #usersSection table, #citySection table {
-  width: 1200px;
-  margin: 0 3%;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -379,7 +377,6 @@ nav #imgLogo {
 
 .table {
   width: 1310px;
-  height: 624px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   margin: 27px;
 }
@@ -394,7 +391,7 @@ nav #imgLogo {
 
 .table th, .table td {
   text-align: left;
-  width: 13%;
+  width: 10%;
   padding: 1%;
 }
 
