@@ -63,7 +63,7 @@ function getUsers() {
                     row.setAttribute('class', 'arrow');
                     row.setAttribute('id', `arrow${i}`);
                     row.innerHTML += `
-                <td>  <input type="checkbox" onclick="contar(this, ${i})" name="check"> </td>
+                <td>  <input type="checkbox" onclick="contar(this, ${i})" name="check" id=${user[i].user_id}> </td>
                 <td>${user[i].name}</td>
                 <td>${user[i].lastname}</td>
                 <td>${user[i].email}</td>
@@ -336,4 +336,23 @@ function sortTable(n, type) {
 //Pagination
 function searchFetch (searchI, searchF){
     getUsers(searchI, searchF)
+}
+
+//Select Delete
+
+function selectDelete() {
+    let elements = document.getElementsByName("check");
+    for (i = 0; i < elements.length; i++) {
+        let id = elements[i].id
+        if (elements[i].checked) {
+            fetch(`http://localhost:3000/user/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                }
+            }) 
+        }
+    }
+    location.reload()
 }
