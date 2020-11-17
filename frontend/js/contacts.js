@@ -865,24 +865,17 @@ function searchFetch(searchI, searchF) {
 }
 
 //Select Delete
-cancelButtonDeleteContact.addEventListener('click', () => {
-    deleteContactsSection.classList.toggle('hidden');
-    contactsSection.classList.remove('hidden');
-});
+
 
 function showDeleteContactSelect() {
- 
     deleteContactsSection.classList.toggle('hidden')
-
     deleteButtonDeleteContact.addEventListener('click', () => {
-     
        selectDelete()
     });
 }
 
  async function selectDelete() {
     let elements = document.getElementsByName("check");
-
     for (i = 0; i < elements.length; i++) {
         let id = elements[i].id
         if (elements[i].checked) {

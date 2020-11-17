@@ -295,17 +295,17 @@ td {
   margin: 0 27px -27px 27px;
 }
 
-.actionsSelectTable p:nth-child(1) {
+.actionsSelectTable #totalCheck {
   color: #0683F9;
   background-color: rgba(221, 223, 250, 0.9);
   border-radius: 4px;
 }
 
-.actionsSelectTable p:nth-child(2) {
+.actionsSelectTable #deleteCheck {
   color: #1D72C2;
 }
 
-.actionsSelectTable p:nth-child(2) i {
+.actionsSelectTable #deleteCheck i {
   color: #1D72C2;
 }
 

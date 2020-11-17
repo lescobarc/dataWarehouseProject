@@ -76,7 +76,7 @@
 
         <div class="actionsSelectTable">
             <p id="totalCheck"></p>
-            <p id="deleteCheck" onclick="selectDelete()" class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar compañías </p>
+           <div onclick="showDeleteCompanySelect()"> <p id="deleteCheck" onclick="" class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar compañías </p></div>
             </div>
         <table id="companiesTable" class="table">
             <thead>
@@ -228,7 +228,7 @@
     <section id="deleteCompaniesSection" class="hidden deleteSection">
         <div class="container">
             <img src="style/img/deleteContact.png" alt="Delete Companies">
-            <p>¿Seguro que deseas eliminar esta compañía?</p>
+            <p>¿Seguro deseas eliminar las compañías seleccionadas?</p>
             <div>
                 <button class='buttonLarge cancelSecondary' id="cancelButtonDeleteCompany"> Cancelar </button>
                 <button class='buttonLarge deleteButton' id="deleteButtonDeleteCompany"> Eliminar </button>

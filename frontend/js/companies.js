@@ -599,6 +599,19 @@ function searchFetch (searchI, searchF){
 
 //Select Delete
 
+
+function showDeleteCompanySelect() {
+  
+    
+    deleteCompaniesSection.classList.toggle('hidden')
+
+    deleteButtonDeleteCompany.addEventListener('click', () => {
+        
+        selectDelete()
+    });
+}
+
+
 async function selectDelete() {
     let elements = document.getElementsByName("check");
     console.log(elements)

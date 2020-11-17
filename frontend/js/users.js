@@ -340,6 +340,16 @@ function searchFetch (searchI, searchF){
 
 //Select Delete
 
+function showDeleteUser() {
+  
+    deleteUsersSection.classList.toggle('hidden')
+
+    deleteButtonDeleteUser.addEventListener('click', () => {
+       
+        selectDelete()
+    });
+}
+
 async function selectDelete() {
     let elements = document.getElementsByName("check");
     for (i = 0; i < elements.length; i++) {

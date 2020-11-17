@@ -67,7 +67,7 @@
     <section id="usersSection">
         <div class="actionsSelectTable">
             <p id="totalCheck"></p>
-            <p id="deleteCheck" onclick="selectDelete()" class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar usuarios </p>
+           <div onclick ="showDeleteUser()"> <p id="deleteCheck" onclick="" class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar usuarios </p></div>
             </div>
         
         <table id="usersTable" class="table">
@@ -183,7 +183,7 @@
     <section id="deleteUsersSection" class="hidden deleteSection">
         <div class="container">
             <img src="style/img/deleteContact.png" alt="Delete Contacts">
-            <p>¿Seguro deseas eliminar este usuario?</p>
+            <p>¿Seguro deseas eliminar los usuarios seleccionados?</p>
             <div>
                 <button class='buttonLarge cancelSecondary' id="cancelButtonDeleteUser"> Cancelar </button>
                 <button class='buttonLarge deleteButton' id="deleteButtonDeleteUser"> Eliminar </button>
