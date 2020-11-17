@@ -456,11 +456,8 @@ function showUpdateContact(i) {
         updateContacts(id);
     });
     cancelButtonUp.addEventListener('click', () => {
-     
         console.log(i)
         showDeleteContact(i);
-        updateContactSection.classList.add('hidden');
-        contactsSection.classList.remove('hidden');
     });
 
 }

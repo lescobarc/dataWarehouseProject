@@ -307,6 +307,10 @@ function showUpdateCompany(i) {
         console.log(id)
         updateUsers(id)
     });
+    cancelButtonUp.addEventListener('click', () => {
+        console.log(i)
+        showDeleteCompany(i);
+    });
 }
 function showInfoCompany(id) {
     fetch(`http://localhost:3000/company/${id}`, {
@@ -381,10 +385,7 @@ function updateUsers(id) {
 
 }
 
-cancelButtonUp.addEventListener('click', () => {
-    updateCompanySection.classList.add('hidden');
-    companiesSection.classList.remove('hidden');
-});
+
 
 //Select Region
 regionCompanyUp.addEventListener('click', () => {

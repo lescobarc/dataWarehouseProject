@@ -178,6 +178,10 @@ function showUpdateUser(i) {
         console.log(id)
         updateUsers(id)
     });
+    cancelButtonUp.addEventListener('click', () => {
+        console.log(i)
+        showDeleteUser(i);
+    });
 }
 
 function showInfoUserUp(id) {
@@ -252,11 +256,6 @@ function updateUsers(id) {
 
 }
 
-cancelButtonUp.addEventListener('click', () => {
-    updateUserSection.classList.add('hidden');
-    usersSection.classList.remove('hidden');
-});
-
 //6. Delete User
 
 cancelButtonDeleteUser.addEventListener('click', () => {
@@ -269,6 +268,7 @@ function showDeleteUser(i) {
     let id = i.id
     console.log(id)
     deleteUsersSection.classList.toggle('hidden')
+    
 
     deleteButtonDeleteUser.addEventListener('click', () => {
         console.log(id)
@@ -340,12 +340,9 @@ function searchFetch (searchI, searchF){
 
 //Select Delete
 
-function showDeleteUser() {
-  
+function showDeleteUserSelect() {
     deleteUsersSection.classList.toggle('hidden')
-
     deleteButtonDeleteUser.addEventListener('click', () => {
-       
         selectDelete()
     });
 }
