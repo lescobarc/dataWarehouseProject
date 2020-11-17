@@ -340,12 +340,12 @@ function searchFetch (searchI, searchF){
 
 //Select Delete
 
-function selectDelete() {
+async function selectDelete() {
     let elements = document.getElementsByName("check");
     for (i = 0; i < elements.length; i++) {
         let id = elements[i].id
         if (elements[i].checked) {
-            fetch(`http://localhost:3000/user/${id}`, {
+           await fetch(`http://localhost:3000/user/${id}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",

@@ -865,13 +865,29 @@ function searchFetch(searchI, searchF) {
 }
 
 //Select Delete
+cancelButtonDeleteContact.addEventListener('click', () => {
+    deleteContactsSection.classList.toggle('hidden');
+    contactsSection.classList.remove('hidden');
+});
 
-function selectDelete() {
+function showDeleteContactSelect() {
+ 
+    deleteContactsSection.classList.toggle('hidden')
+
+    deleteButtonDeleteContact.addEventListener('click', () => {
+     
+       selectDelete()
+    });
+}
+
+ async function selectDelete() {
     let elements = document.getElementsByName("check");
+
     for (i = 0; i < elements.length; i++) {
         let id = elements[i].id
         if (elements[i].checked) {
-            fetch(`http://localhost:3000/contact/${id}`, {
+           
+           await  fetch(`http://localhost:3000/contact/${id}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
@@ -880,7 +896,7 @@ function selectDelete() {
             }) 
         }
     }
-    location.reload()
+  location.reload() 
 }
 
 

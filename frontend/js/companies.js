@@ -599,12 +599,17 @@ function searchFetch (searchI, searchF){
 
 //Select Delete
 
-function selectDelete() {
+async function selectDelete() {
     let elements = document.getElementsByName("check");
+    console.log(elements)
     for (i = 0; i < elements.length; i++) {
         let id = elements[i].id
+        console.log(id)
+        console.log(elements[i].checked)
         if (elements[i].checked) {
-            fetch(`http://localhost:3000/company/${id}`, {
+            console.log(`eliminado ${id}`)
+           await fetch(`http://localhost:3000/company/${id}`, {
+                
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
@@ -613,7 +618,9 @@ function selectDelete() {
             }) 
         }
     }
-    location.reload()
+   
+   
+    location.reload() 
 }
 
 
