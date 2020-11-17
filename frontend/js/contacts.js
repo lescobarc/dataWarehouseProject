@@ -455,6 +455,14 @@ function showUpdateContact(i) {
         console.log(id);
         updateContacts(id);
     });
+    cancelButtonUp.addEventListener('click', () => {
+     
+        console.log(i)
+        showDeleteContact(i);
+        updateContactSection.classList.add('hidden');
+        contactsSection.classList.remove('hidden');
+    });
+
 }
 function showInfoContact(id) {
     fetch(`http://localhost:3000/contact/${id}`, {
@@ -511,6 +519,7 @@ function updateContacts(id) {
     console.log(regionContactSelectValueUp[0])
     const channelContactSelectValue2Up = channelContact2Up.value.split(" ");
     const channelId2Up = parseInt(channelContactSelectValue2Up[0]);
+   
 
     fetch(`http://localhost:3000/contact/${id}`, {
 
@@ -547,10 +556,7 @@ function updateContacts(id) {
     contactsSection.classList.remove('hidden');
 }
 
-cancelButtonUp.addEventListener('click', () => {
-    updateContactSection.classList.add('hidden');
-    contactsSection.classList.remove('hidden');
-});
+ 
 
 
 //Select Region
@@ -815,7 +821,7 @@ async function deleteContact(id) {
     deleteContactsSection.classList.add('hidden');
     contactsSection.classList.remove('hidden');
 
-    /*    location.reload() */
+     location.reload() 
 
 }
 

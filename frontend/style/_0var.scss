@@ -279,3 +279,8 @@ td{
     color: white;
     background-color: $bgGreen;
 }
+.deleteUpdateButton{
+    color: $bgRed;
+    font-weight: bold;
+    border: none !important;
+}

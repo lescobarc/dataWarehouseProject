@@ -321,6 +321,12 @@ td {
   background-color: #429C41;
 }
 
+.deleteUpdateButton {
+  color: #DE0028;
+  font-weight: bold;
+  border: none !important;
+}
+
 nav {
   height: 64px;
   width: 1360px;
