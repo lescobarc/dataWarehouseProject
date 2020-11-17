@@ -136,7 +136,7 @@ function selectAll() {
 }
 
 
-function selectDelete() {
+/* function selectDelete() {
     let elements = document.getElementsByName("check");
     let arrow = document.getElementsByClassName('arrow')
     for (i = 0; i < elements.length; i++) {
@@ -146,7 +146,7 @@ function selectDelete() {
     checkSelect.checked = false
     textCheck.innerText = ""
     deleteCheck.classList.add('hidden')
-}
+} */
 
 
 //Pagination
@@ -197,3 +197,8 @@ arrowLeft.addEventListener('click', () => {
         searchFetch(parseInt(searchF), parseInt(searchI))
     }
 })
+
+
+
+
+

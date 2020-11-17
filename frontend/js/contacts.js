@@ -74,7 +74,7 @@ function getContacts() {
             let contact = res[0];
             if (res) {
 
-               
+
 
                 //Create Table Contacts
                 tableBody.innerHTML = ""
@@ -84,7 +84,7 @@ function getContacts() {
                     row.setAttribute('class', 'arrow');
                     row.setAttribute('id', `arrow${i}`);
                     row.innerHTML += `
-                <td>  <input type="checkbox" class="checkbox" onclick='contar(this,  ${i})' name="check" > </td>
+                <td>  <input type="checkbox" class="checkbox" onclick='contar(this,  ${i})' id=${contact[i].contact_id} name="check" > </td>
                 <td>${contact[i].name} ${contact[i].lastname} <br> <span> ${contact[i].email} </span> </td>
                 <td> ${contact[i].nameCountry} <br><span> ${contact[i].nameRegion}</span> </td>
                 <td>${contact[i].nameCompany}</td>
@@ -102,19 +102,19 @@ function getContacts() {
             `;
                     table.appendChild(row);
 
-                     //Pagination
-                rowsPage.innerHTML = ""
-                for (let i = 1; i <= contact.length; i++) {
-                    console.log(contact.length)
-                    const optionPag = document.createElement('option');
-                    optionPag.innerText = `${i}`
-                    rowsPage.appendChild(optionPag)
-                }
-                rowsPage.value = searchF - searchI
-                rowsTotal.innerText = `${contact.length}`
+                    //Pagination
+                    rowsPage.innerHTML = ""
+                    for (let i = 1; i <= contact.length; i++) {
+                        /*  console.log(contact.length) */
+                        const optionPag = document.createElement('option');
+                        optionPag.innerText = `${i}`
+                        rowsPage.appendChild(optionPag)
+                    }
+                    rowsPage.value = searchF - searchI
+                    rowsTotal.innerText = `${contact.length}`
                     rowI.innerText = `${searchI}`
                     rowF.innerText = `${searchF}`
-                    
+
                 }
 
             } else {
@@ -815,7 +815,7 @@ async function deleteContact(id) {
     deleteContactsSection.classList.add('hidden');
     contactsSection.classList.remove('hidden');
 
-    location.reload()
+    /*    location.reload() */
 
 }
 
@@ -860,6 +860,28 @@ function sortTable(n, type) {
 }
 
 //Pagination
-function searchFetch (searchI, searchF){
+function searchFetch(searchI, searchF) {
     getContacts(searchI, searchF)
 }
+
+//Select Delete
+
+function selectDelete() {
+    let elements = document.getElementsByName("check");
+    for (i = 0; i < elements.length; i++) {
+        let id = elements[i].id
+        if (elements[i].checked) {
+            fetch(`http://localhost:3000/contact/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                }
+            }) 
+        }
+    }
+    location.reload()
+}
+
+
+
