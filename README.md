@@ -29,9 +29,9 @@ Install and configure [XAMMP](https://www.apachefriends.org/es/index.html) .
 ## 4. Create Database
 - Open XAMPP and start Apache Web Server and MySQL Database in port `3306`.
 - Open phpMyAdmin.
-- Modify in the file `.env` (Folder: Backend):  `dbUser`,  `password` with your local configuration.
+- Modify in the file `.env` (Folder: backend):  `dbUser`,  `password` with your local configuration.
 - Create database: `datawarehouse`.
-- Import script: `datawarehouse.sql` (Folder: Backend) to create schema and parameters of database. 
+- Import script: `datawarehouse.sql` (Folder: backend) to create schema and parameters of database. 
 
 ## 5. Install Dependencies
 In terminal (IDE) execute:
