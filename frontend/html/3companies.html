@@ -17,8 +17,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-
-
 <header>
     <nav>
         <a href="" > <img src="../style/img/logo.png" id="imgLogo" alt="logo"> </a>
@@ -33,7 +31,6 @@
 </header>
 
 <body>
-
     <section  class="title">
         <h1>Compañías</h1>
         <div  class="container">
@@ -51,10 +48,6 @@
                         <option value="select"> Exportar seleccionados </option>
                         <option value="allFilter"> Todos los filtrados </option>
                     </select> 
-
-                <!-- <div id="exportButton"> <button id="exportContacts" class="buttonSecondary"> Exportar Contactos <i
-                            class="fas fa-caret-down"></i> </button></div> -->
-
                 <button id="addButton" class="buttonPrimary createButton">Agregar Compañía</button> 
                 
             </div>
@@ -62,18 +55,6 @@
     </section>
     
     <section id="companiesSection">
-        
-         
-        <!-- <div> <h1>Compañías</h1> <button class="buttonPrimary buttonLarge" id="addButton">Agregar Compañía</button></div>
-
-        <div id="divSearch">
-            <input type="text" name="contact" id="searchInput" class="searchInput">
-            <span id="iconFilter" class="hidden"><i class="fas fa-times-circle"></i></span>
-            <button id="iconSearch"><i class="fas fa-search fa-2x"></i></button>
-        </div>
-        <p class="hidden" id="searchInfo"></p> -->
-
-
         <div class="actionsSelectTable">
             <p id="totalCheck"></p>
            <div onclick="showDeleteCompanySelect()"> <p id="deleteCheck" onclick="" class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar compañías </p></div>
@@ -93,10 +74,7 @@
                 </tr>
             </thead>
             <tbody class="arrowHover" id="tableBody"> </tbody>
-                
         </table>
-
-
         <div id="tablePagination">
             <div>
                 <p >Filas por página  <select type="number" id="rowsPage" > 
@@ -162,19 +140,14 @@
                 <div id="buttonsCompany" class="buttonsActions">
                     <button id="cancelButton"> Cancelar</button>
                     <button class="addButton" id="createButton" >Guardar Compañía</button>
-                    
                 </div>
-
         </div>
-            
-
     </section>
 
     <!--  update Company  -->
     <section id="updateCompanySection" class="newSection hidden">
         <div class="container">
             <h1>Actualizar Compañía</h1>
-            
                 <div id="principalInfoCompany" class="principalInfo">
                     <img src="../style/img/addPhoto.png" alt="Photo">
                     <div>
@@ -193,7 +166,6 @@
                         <label for="tel" >Teléfono<strong>*</strong></label>
                         <input type="text" id="telCompanyUp">
                     </div>
-
                 </div>
                 <div id="secondInfoCompany" class="secondInfo">
                     <div>
@@ -216,7 +188,6 @@
                     </div>
                    
                 </div>
-
                 <div id="buttonsCompany" class="buttonsActions">
                     <button id="cancelButtonUp" class="deleteUpdateButton"> Eliminar Compañía</button>
                     <button class="addButton" id="createButtonUp">Actualizar Compañía</button>
@@ -237,13 +208,9 @@
     </section>
 
 
-
-
-
-
-    
     <script src="../js/companies.js"></script>
     <script src="../js/index.js"></script>
+    
 </body>  
 </html>
         

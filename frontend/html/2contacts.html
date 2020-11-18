@@ -17,15 +17,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-
-
 <header>
     <nav>
-       <a href="" > <img src="../style/img/logo.png" id="imgLogo" alt="logo"> </a>
+        <a href=""> <img src="../style/img/logo.png" id="imgLogo" alt="logo"> </a>
         <ul>
             <li><a href="2contacts.html">Contactos</a></li>
             <li><a href="3companies.html">Compañías</a></li>
-            <li id="usersHeader" class=""><a href="4users.html" >Usuarios</a></li>
+            <li id="usersHeader" class=""><a href="4users.html">Usuarios</a></li>
             <li><a href="5city.html">Región/Ciudad</a></li>
             <li><a href="1login.html">Login</a></li>
         </ul>
@@ -36,59 +34,50 @@
     <section id="contacts" class="title">
         <h1>Contactos</h1>
         <div id="contactsContainer" class="container">
-            <div id="contactsSearch"class="search">
+            <div id="contactsSearch" class="search">
                 <input type="text" name="contact" id="searchInput" class="searchInput">
                 <span id="iconFilter" class="hidden iconFilter"><i class="fas fa-times-circle"></i></span>
                 <button id="iconSearch" class="iconSearch"><i class="fas fa-search fa-2x"></i></button>
                 <p class="hidden" id="searchInfo" class="searchInfo"></p>
             </div>
-
             <div id="contactsButtons" class="titleButtons">
                 <button id="iconImport" class="iconImport" disabled><i class="fas fa-upload fa-2x"></i></button>
-                 <select name="exportContacts" id="exportButton" class="buttonSecondary exportButton" disabled>
-                        <option label="Exportar Contactos"> </option>
-                        <!-- <option value="selectContacts"> Exportar seleccionados </option>
-                        <option value="allFilterContacts"> Todos los filtrados </option> -->
-                    </select> 
-
-                <!-- <div id="exportButton"> <button id="exportContacts" class="buttonSecondary"> Exportar Contactos <i
-                            class="fas fa-caret-down"></i> </button></div> -->
-
-                <button id="createButton" class="buttonPrimary createButton">Agregar Contacto</button> 
-                
+                <select name="exportContacts" id="exportButton" class="buttonSecondary exportButton" disabled>
+                    <option label="Exportar Contactos"> </option>
+                </select>
+                <button id="createButton" class="buttonPrimary createButton">Agregar Contacto</button>
             </div>
         </div>
     </section>
 
-    <section id="contactsSection"> 
+    <section id="contactsSection">
         <div class="actionsSelectTable">
-        <p id="totalCheck"></p>
-       <div onclick="showDeleteContactSelect()" > <p id="deleteCheck"  class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar contactos </p></div>
+            <p id="totalCheck"></p>
+            <div onclick="showDeleteContactSelect()">
+                <p id="deleteCheck" class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar contactos </p>
+            </div>
         </div>
-        <div class="table" >
+        <div class="table">
             <table id="contactsTable">
                 <thead>
                     <tr>
                         <th><input type="checkbox" name="contactSelect" onclick="selectAll()" id="checkSelect"></th>
                         <th>Contacto <i class="fas fa-arrows-alt-v" onclick="sortTable(0, 'str')"></i> </th>
-                        <th>País/Región <i class="fas fa-arrows-alt-v" onclick="sortTable(1, 'str')" ></i></th>
+                        <th>País/Región <i class="fas fa-arrows-alt-v" onclick="sortTable(1, 'str')"></i></th>
                         <th>Compañía <i class="fas fa-arrows-alt-v" onclick="sortTable(2, 'str')"></i></th>
                         <th>Cargo <i class="fas fa-arrows-alt-v" onclick="sortTable(3, 'str')"></i></th>
                         <th>Interés <i class="fas fa-arrows-alt-v" onclick="sortTable(4, 'str')"></i></th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="arrowHover" id="tableBody">
-                    
-                    
-                </tbody>
+                <tbody class="arrowHover" id="tableBody"> </tbody>
             </table>
         </div>
         <div id="tablePagination">
             <div>
-                <p >Filas por página  <select type="number" id="rowsPage" > 
-                    <option value="5" > </option>
-                </select> </span></p>
+                <p>Filas por página <select type="number" id="rowsPage">
+                        <option value="5"> </option>
+                    </select> </span></p>
             </div>
             <div>
                 <p><em id="rowI"></em>-<em id="rowF"></em>de<em id="rowsTotal"></em> filas
@@ -98,85 +87,64 @@
         </div>
     </section>
 
-   
-    <!--  Export Contacts Button  -->
-    <!-- <section id="exportContactsOptions" class=" hidden dropDown">
-        <p>Exportar seleccionados </p>
-        <p>Todos los filtrados</p>
-    </section> -->
-
-    <!--  Import Contacts  -->
-
-    <section id="importContactsSection" class="hidden">
-        <div id="importContactsContainer" class="container" >
-            <img src="../style/img/cloud.png" alt="Import Contacts">
-            <p>Selecciona el archivo de tu ordenador para importar tus contactos.</p>
-            <div>
-                <button class='buttonLarge buttonPrimary' id="cancelButtonImport"> Cancelar </button>
-                <button class='buttonLarge buttonSecondary'> Importar </button>
-            </div>
-        </div>
-    </section>
-
 
     <!--  New Contact  -->
     <section id="createContactSection" class="hidden newSection">
         <div class="container">
             <h1>Nuevo Contacto</h1>
-            
-                <div id="principalInfoContact" class="principalInfo">
-                    <img src="../style/img/addPhoto.png" alt="Photo">
-                    <div>
-                        <label for="Nombre"> Nombre<strong>*</strong></label>
-                        <input type="text" id="nameContact">
-                    </div>
-                    <div>
-                        <label for="Nombre">Apellido<strong>*</strong></label>
-                        <input type="text" id="lastnameContact">
-                    </div>
-                    <div>
-                        <label for="Nombre">Cargo<strong>*</strong></label>
-                        <input type="text" id="positionContact">
-                    </div>
-                    <div>
-                        <label for="Nombre">Email<strong>*</strong></label>
-                        <input type="text" id="emailContact">
-                    </div>
-                    <div>
-                        <label for="Nombre">Compañia<strong>*</strong></label>
-                        <select name="company" id="companyContact">
-                            <option label="Seleccionar compañía"></option>
-                        </select>
-                    </div>
 
+            <div id="principalInfoContact" class="principalInfo">
+                <img src="../style/img/addPhoto.png" alt="Photo">
+                <div>
+                    <label for="Nombre"> Nombre<strong>*</strong></label>
+                    <input type="text" id="nameContact">
                 </div>
-                <div id="secondInfoContact" class="secondInfo">
-                    <div>
-                        <label for="region"> Región <strong>*</strong> </label>
-                        <select name="contactRegion" id="regionContact">
-                            <option label="Seleccionar región"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="country"> País <strong>*</strong> </label>
-                        <select name="contactCountry" id="countryContact" class="inputDisabled" disabled>
-                            <option label="Seleccionar país"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="city"> Ciudad <strong>*</strong> </label>
-                        <select name="contactCity" id="cityContact" class="inputDisabled" disabled>
-                            <option label="Seleccionar ciudad"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="addres"> Dirección <strong>*</strong></label>
-                        <input type="text" id="addressContact" placeholder="Ingresa una dirección" class="inputDisabled">
-                    </div>
-                    <div >
-                        <label for="interest">Interés <strong>*</strong></label>
-                        <div id="divInterestContact" class="divInterest">
-                       
+                <div>
+                    <label for="Nombre">Apellido<strong>*</strong></label>
+                    <input type="text" id="lastnameContact">
+                </div>
+                <div>
+                    <label for="Nombre">Cargo<strong>*</strong></label>
+                    <input type="text" id="positionContact">
+                </div>
+                <div>
+                    <label for="Nombre">Email<strong>*</strong></label>
+                    <input type="text" id="emailContact">
+                </div>
+                <div>
+                    <label for="Nombre">Compañia<strong>*</strong></label>
+                    <select name="company" id="companyContact">
+                        <option label="Seleccionar compañía"></option>
+                    </select>
+                </div>
+            </div>
+            <div id="secondInfoContact" class="secondInfo">
+                <div>
+                    <label for="region"> Región <strong>*</strong> </label>
+                    <select name="contactRegion" id="regionContact">
+                        <option label="Seleccionar región"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="country"> País <strong>*</strong> </label>
+                    <select name="contactCountry" id="countryContact" class="inputDisabled" disabled>
+                        <option label="Seleccionar país"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="city"> Ciudad <strong>*</strong> </label>
+                    <select name="contactCity" id="cityContact" class="inputDisabled" disabled>
+                        <option label="Seleccionar ciudad"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="addres"> Dirección <strong>*</strong></label>
+                    <input type="text" id="addressContact" placeholder="Ingresa una dirección" class="inputDisabled">
+                </div>
+                <div>
+                    <label for="interest">Interés <strong>*</strong></label>
+                    <div id="divInterestContact" class="divInterest">
+
                         <select name="interest" id="interestContact">
                             <option value="0">0%</option>
                             <option value="25">25%</option>
@@ -184,60 +152,59 @@
                             <option value="75">75%</option>
                             <option value="100">100%</option>
                         </select>
-                        </div>
                     </div>
-                    <div>
-                        <label for="contactChannel">Canal de contacto</label>
-                        <select name="contactChannel" id="channelContact">
-                            <option label="Seleccionar canal"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="userAccount">Cuenta de usuario</label>
-                        <input type="text" id="accountContact" placeholder="@ejemplo" class="inputDisabled">
-                    </div>
-                    <div>
-                        <label for="preferences">Preferencias</label>
-                        <select name="contactChannel" id="preferencesContact" class="inputDisabled">
-                            <option label="Sin Preferencia" value="Sin Preferencia"></option>
-                            <option label="Canal Favorito" value="Canal Favorito"></option>
-                            <option label="No Molestar" value="No Molestar"></option>
-                        </select>
-                    </div>
-
-                    <div id="buttonAddChannel" class="buttonAddChannel">
-                        <button class="buttonLarge plusChannel" id="plusChannel" ><i class="fas fa-plus"></i> Agregar Canal</button>
-                    </div>
-
-
-                      <!-- Add Channel -->
-                      
-                      <div id="channel2" class="hidden">
-                        <label for="contactChannel">Canal de contacto</label>
-                        <select name="contactChannel" id="channelContact2">
-                            <option label="Seleccionar canal"></option>
-                        </select>
-                    </div>
-                    <div id="account2" class="hidden">
-                        <label for="userAccount">Cuenta de usuario</label>
-                        <input type="text" id="accountContact2" placeholder="@ejemplo" class="inputDisabled">
-                    </div>
-                    <div id="preferences2" class="hidden">
-                        <label for="preferences">Preferencias</label>
-                        <select name="contactChannel" id="preferencesContact2" class="inputDisabled">
-                            <option label="Sin Preferencia" value="Sin Preferencia"></option>
-                            <option label="Canal Favorito" value="Canal Favorito"></option>
-                            <option label="No Molestar" value="No Molestar"></option>
-                        </select>
-                    </div>
-
-                
                 </div>
-                <div id="buttonsContact" class="buttonsActions buttonsContact">
-                    <button id="cancelButton"> Cancelar</button>
-                    <button id ="addButton" class="addButton">Guardar Contacto</button>
-                    
+                <div>
+                    <label for="contactChannel">Canal de contacto</label>
+                    <select name="contactChannel" id="channelContact">
+                        <option label="Seleccionar canal"></option>
+                    </select>
                 </div>
+                <div>
+                    <label for="userAccount">Cuenta de usuario</label>
+                    <input type="text" id="accountContact" placeholder="@ejemplo" class="inputDisabled">
+                </div>
+                <div>
+                    <label for="preferences">Preferencias</label>
+                    <select name="contactChannel" id="preferencesContact" class="inputDisabled">
+                        <option label="Sin Preferencia" value="Sin Preferencia"></option>
+                        <option label="Canal Favorito" value="Canal Favorito"></option>
+                        <option label="No Molestar" value="No Molestar"></option>
+                    </select>
+                </div>
+
+                <div id="buttonAddChannel" class="buttonAddChannel">
+                    <button class="buttonLarge plusChannel" id="plusChannel"><i class="fas fa-plus"></i> Agregar
+                        Canal</button>
+                </div>
+
+
+                <!-- Add Channel -->
+
+                <div id="channel2" class="hidden">
+                    <label for="contactChannel">Canal de contacto</label>
+                    <select name="contactChannel" id="channelContact2">
+                        <option label="Seleccionar canal"></option>
+                    </select>
+                </div>
+                <div id="account2" class="hidden">
+                    <label for="userAccount">Cuenta de usuario</label>
+                    <input type="text" id="accountContact2" placeholder="@ejemplo" class="inputDisabled">
+                </div>
+                <div id="preferences2" class="hidden">
+                    <label for="preferences">Preferencias</label>
+                    <select name="contactChannel" id="preferencesContact2" class="inputDisabled">
+                        <option label="Sin Preferencia" value="Sin Preferencia"></option>
+                        <option label="Canal Favorito" value="Canal Favorito"></option>
+                        <option label="No Molestar" value="No Molestar"></option>
+                    </select>
+                </div>
+            </div>
+            <div id="buttonsContact" class="buttonsActions buttonsContact">
+                <button id="cancelButton"> Cancelar</button>
+                <button id="addButton" class="addButton">Guardar Contacto</button>
+
+            </div>
         </div>
     </section>
 
@@ -246,60 +213,60 @@
     <section id="updateContactSection" class="hidden newSection">
         <div class="container">
             <h1>Actualizar Contacto</h1>
-            
-                <div id="principalInfoContactUp" class="principalInfo">
-                    <img src="../style/img/addPhoto.png" alt="Photo">
-                    <div>
-                        <label for="Nombre"> Nombre<strong>*</strong></label>
-                        <input type="text" id="nameContactUp" >
-                    </div>
-                    <div>
-                        <label for="Nombre">Apellido<strong>*</strong></label>
-                        <input type="text" id="lastnameContactUp">
-                    </div>
-                    <div>
-                        <label for="Nombre">Cargo<strong>*</strong></label>
-                        <input type="text" id="positionContactUp">
-                    </div>
-                    <div>
-                        <label for="Nombre">Email<strong>*</strong></label>
-                        <input type="text" id="emailContactUp">
-                    </div>
-                    <div>
-                        <label for="Nombre">Compañia<strong>*</strong></label>
-                        <select name="company" id="companyContactUp">
-                            <option label="Seleccionar compañía"></option>
-                        </select>
-                    </div>
 
+            <div id="principalInfoContactUp" class="principalInfo">
+                <img src="../style/img/addPhoto.png" alt="Photo">
+                <div>
+                    <label for="Nombre"> Nombre<strong>*</strong></label>
+                    <input type="text" id="nameContactUp">
                 </div>
-                <div id="secondInfoContactUp" class="secondInfo">
-                    <div>
-                        <label for="region"> Región <strong>*</strong></label>
-                        <select name="contactRegion" id="regionContactUp">
-                            <option label="Seleccionar región"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="country"> País <strong>*</strong></label>
-                        <select name="contactCountry" id="countryContactUp" class="inputDisabled" disabled>
-                            <option label="Seleccionar país"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="city"> Ciudad <strong>*</strong></label>
-                        <select name="contactCity" id="cityContactUp" class="inputDisabled" disabled>
-                            <option label="Seleccionar ciudad"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="addres"> Dirección <strong>*</strong></label>
-                        <input type="text" id="addressContactUp" placeholder="Ingresa una dirección" class="inputDisabled">
-                    </div>
-                    <div >
-                        <label for="interest">Interés <strong>*</strong></label>
-                        <div id="divInterestContactUp" class="divInterest">
-                       
+                <div>
+                    <label for="Nombre">Apellido<strong>*</strong></label>
+                    <input type="text" id="lastnameContactUp">
+                </div>
+                <div>
+                    <label for="Nombre">Cargo<strong>*</strong></label>
+                    <input type="text" id="positionContactUp">
+                </div>
+                <div>
+                    <label for="Nombre">Email<strong>*</strong></label>
+                    <input type="text" id="emailContactUp">
+                </div>
+                <div>
+                    <label for="Nombre">Compañia<strong>*</strong></label>
+                    <select name="company" id="companyContactUp">
+                        <option label="Seleccionar compañía"></option>
+                    </select>
+                </div>
+
+            </div>
+            <div id="secondInfoContactUp" class="secondInfo">
+                <div>
+                    <label for="region"> Región <strong>*</strong></label>
+                    <select name="contactRegion" id="regionContactUp">
+                        <option label="Seleccionar región"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="country"> País <strong>*</strong></label>
+                    <select name="contactCountry" id="countryContactUp" class="inputDisabled" disabled>
+                        <option label="Seleccionar país"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="city"> Ciudad <strong>*</strong></label>
+                    <select name="contactCity" id="cityContactUp" class="inputDisabled" disabled>
+                        <option label="Seleccionar ciudad"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="addres"> Dirección <strong>*</strong></label>
+                    <input type="text" id="addressContactUp" placeholder="Ingresa una dirección" class="inputDisabled">
+                </div>
+                <div>
+                    <label for="interest">Interés <strong>*</strong></label>
+                    <div id="divInterestContactUp" class="divInterest">
+
                         <select name="interest" id="interestContactUp" class="interest">
                             <option value="0">0%</option>
                             <option value="25">25%</option>
@@ -307,65 +274,65 @@
                             <option value="75">75%</option>
                             <option value="100">100%</option>
                         </select>
-                        </div>
                     </div>
-                    <div>
-                        <label for="contactChannel">Canal de contacto</label>
-                        <select name="contactChannel" id="channelContactUp">
-                            <option label="Seleccionar canal"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="userAccount">Cuenta de usuario</label>
-                        <input type="text" id="accountContactUp" placeholder="@ejemplo" class="inputDisabled">
-                    </div>
-                    <div>
-                        <label for="preferences">Preferencias</label>
-                        <select name="contactChannel" id="preferencesContactUp" class="inputDisabled">
-                            <option label="Sin Preferencia" value="Sin Preferencia"></option>
-                            <option label="Canal Favorito" value="Canal Favorito"></option>
-                            <option label="No Molestar" value="No Molestar"></option>
-                        </select>
-                    </div>
-
-                    <div id="buttonAddChannelUp" class="buttonAddChannel">
-                        <button class="buttonLarge plusChannel" id="plusChannelUp" ><i class="fas fa-plus"></i> Agregar Canal</button>
-                    </div>
-
-
-                      <!-- Add Channel -->
-                      
-                      <div id="channel2Up" class="hidden">
-                        <label for="contactChannel">Canal de contacto</label>
-                        <select name="contactChannel" id="channelContact2Up">
-                            <option label="Seleccionar canal"></option>
-                        </select>
-                    </div>
-                    <div id="account2Up" class="hidden">
-                        <label for="userAccount">Cuenta de usuario</label>
-                        <input type="text" id="accountContact2Up" placeholder="@ejemplo" class="inputDisabled">
-                    </div>
-                    <div id="preferences2Up" class="hidden">
-                        <label for="preferences">Preferencias</label>
-                        <select name="contactChannel" id="preferencesContact2Up" class="inputDisabled">
-                            <option label="Sin Preferencia" value="Sin Preferencia"></option>
-                            <option label="Canal Favorito" value="Canal Favorito"></option>
-                            <option label="No Molestar" value="No Molestar"></option>
-                        </select>
-                    </div>
-
-                
                 </div>
-                <div id="buttonsContactUp" class="buttonsActions buttonsContact">
-                    <button id="cancelButtonUp" class="deleteUpdateButton"> Eliminar Contacto</button>
-                    <button id ="addButtonUp" class="addButton">Actualizar Contacto</button>
-                    
+                <div>
+                    <label for="contactChannel">Canal de contacto</label>
+                    <select name="contactChannel" id="channelContactUp">
+                        <option label="Seleccionar canal"></option>
+                    </select>
                 </div>
+                <div>
+                    <label for="userAccount">Cuenta de usuario</label>
+                    <input type="text" id="accountContactUp" placeholder="@ejemplo" class="inputDisabled">
+                </div>
+                <div>
+                    <label for="preferences">Preferencias</label>
+                    <select name="contactChannel" id="preferencesContactUp" class="inputDisabled">
+                        <option label="Sin Preferencia" value="Sin Preferencia"></option>
+                        <option label="Canal Favorito" value="Canal Favorito"></option>
+                        <option label="No Molestar" value="No Molestar"></option>
+                    </select>
+                </div>
+
+                <div id="buttonAddChannelUp" class="buttonAddChannel">
+                    <button class="buttonLarge plusChannel" id="plusChannelUp"><i class="fas fa-plus"></i> Agregar
+                        Canal</button>
+                </div>
+
+
+                <!-- Add Channel -->
+                <div id="channel2Up" class="hidden">
+                    <label for="contactChannel">Canal de contacto</label>
+                    <select name="contactChannel" id="channelContact2Up">
+                        <option label="Seleccionar canal"></option>
+                    </select>
+                </div>
+                <div id="account2Up" class="hidden">
+                    <label for="userAccount">Cuenta de usuario</label>
+                    <input type="text" id="accountContact2Up" placeholder="@ejemplo" class="inputDisabled">
+                </div>
+                <div id="preferences2Up" class="hidden">
+                    <label for="preferences">Preferencias</label>
+                    <select name="contactChannel" id="preferencesContact2Up" class="inputDisabled">
+                        <option label="Sin Preferencia" value="Sin Preferencia"></option>
+                        <option label="Canal Favorito" value="Canal Favorito"></option>
+                        <option label="No Molestar" value="No Molestar"></option>
+                    </select>
+                </div>
+
+
+            </div>
+            <div id="buttonsContactUp" class="buttonsActions buttonsContact">
+                <button id="cancelButtonUp" class="deleteUpdateButton"> Eliminar Contacto</button>
+                <button id="addButtonUp" class="addButton">Actualizar Contacto</button>
+
+            </div>
         </div>
     </section>
 
-      <!-- Delete Contact  -->
-      <section id="deleteContactsSection" class="hidden deleteSection">
+    <!-- Delete Contact  -->
+    <section id="deleteContactsSection" class="hidden deleteSection">
         <div class="container">
             <img src="../style/img/deleteContact.png" alt="Delete Contacts">
             <p>¿Seguro deseas eliminar los contactos seleccionados?</p>
@@ -376,18 +343,10 @@
         </div>
     </section>
 
-    
-    
 
 
-    
     <script src="../js/contacts.js"></script>
     <script src="../js/index.js"></script>
+
 </body>
-
-
-
-
-
-
 </html>
