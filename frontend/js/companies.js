@@ -36,8 +36,6 @@ let cancelButtonDeleteCompany = document.getElementById('cancelButtonDeleteCompa
 let deleteButtonDeleteCompany = document.getElementById('deleteButtonDeleteCompany')
 
 
-
-
 //1. get companies
 function getCompanies() {
     fetch('http://localhost:3000/companies', {
@@ -48,10 +46,6 @@ function getCompanies() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-
-            
-            console.log('este')
-            console.log(res)
             let company = res;
             if (res) {
                 tableBody.innerHTML = ""
@@ -73,40 +67,32 @@ function getCompanies() {
                     <i class="fas fa-ellipsis-h iconPoints"></i>
                     <i class="fas fa-trash" id=${company[i].company_id} onclick = "showDeleteCompany(this)" ></i>
                     <i class="fas fa-pencil-alt" id=${company[i].company_id} onclick = "showUpdateCompany(this)"></i>
-                </td>
-            `;
+                </td>`;
                     table.appendChild(row);
 
                     //Pagination
-            rowsPage.innerHTML = ""
-            for (let i = 1; i <= company.length; i++) {
-                console.log(company.length)
-                const optionPag = document.createElement('option');
-                optionPag.innerText = `${i}`
-                rowsPage.appendChild(optionPag)
-            }
-            rowsPage.value = searchF - searchI
-            rowsTotal.innerText = `${company.length}`
+                    rowsPage.innerHTML = ""
+                    for (let i = 1; i <= company.length; i++) {
+                        console.log(company.length)
+                        const optionPag = document.createElement('option');
+                        optionPag.innerText = `${i}`
+                        rowsPage.appendChild(optionPag)
+                    }
+                    rowsPage.value = searchF - searchI
+                    rowsTotal.innerText = `${company.length}`
                     rowI.innerText = `${searchI}`
                     rowF.innerText = `${searchF}`
-                    
                 }
             } else {
-                res.json().then((data) => {
-                    console.log('Companies not found');
-                    alert('Companies not found');
-                });
+                console.log('Companies not found');
+                alert('Companies not found');
             }
-
         })
 }
 getCompanies();
 
 //2. Post Companies
-
 createButton.addEventListener('click', () => {
-    console.log(nameCompany.value)
-    console.log('llamado al API');
     fetch('http://localhost:3000/company', {
         method: 'POST',
         body: `{"nameCompany":"${nameCompany.value}","address":"${addressCompany.value}","email":"${emailCompany.value}", "tel":"${telCompany.value}", "region_id":"${regionCompany.value}","country_id":"${countryCompany.value}","city_id":"${cityCompany.value}"}`,
@@ -114,7 +100,6 @@ createButton.addEventListener('click', () => {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-
     }).then((res) => {
         console.log(res);
         if (res.status == 200) {
@@ -123,29 +108,21 @@ createButton.addEventListener('click', () => {
                 alert('Created');
             });
             location.reload()
-        }
-        else if (res.status == 400) {
+        } else if (res.status == 400) {
             console.log(res);
             res.json().then((data) => {
                 console.log(data);
                 alert('Missing Arguments');
             });
-        } else if (res.status == 403) {
+        } else if (res.status == 405) {
             res.json().then((data) => {
                 console.log(data);
-                alert('Forbidden: No Permission To Access');
+                alert('Company Exist');
             });
-        }
-        else if (res.status == 405) {
+        } else if (res.status == 404) {
             res.json().then((data) => {
                 console.log(data);
-                alert('Username Exist');
-            });
-        }
-        else if (res.status == 406) {
-            res.json().then((data) => {
-                console.log(data);
-                alert('Verify: Password and Corfirmation Password');
+                alert('Company Not Found');
             });
         }
     })
@@ -181,7 +158,6 @@ regionCompany.addEventListener('click', () => {
             if (res && validateSearchRegion.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
-                    /* console.log(res.users[i].name)  */
                     const row = document.createElement('option');
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.setAttribute('class', `rowRegion`)
@@ -192,7 +168,7 @@ regionCompany.addEventListener('click', () => {
                     regionCompany.appendChild(row);
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Regions Not Found');
             }
 
 
@@ -243,6 +219,8 @@ function getCountries() {
                         console.log(liCountry)
                         countryCompany.appendChild(liCountry);
                     }
+                } else {
+                    console.log('Countries Not Found');
                 }
             })
         for (let i = cityCompany.options.length; i >= 0; i--) {
@@ -285,9 +263,8 @@ function getCities() {
                         cityCompany.appendChild(liCity);
                     }
                 } else {
-                    console.log('Search Realized');
+                    console.log('Cities Not Found');
                 }
-
             })
     }
     )
@@ -333,15 +310,10 @@ function showInfoCompany(id) {
                 regionCompanyUp.innerHTML = ` <option label = ${res.nameRegion} value = ${res.region_id}>`;
                 countryCompanyUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
                 cityCompanyUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
-                
-                
             } else {
-                res.json().then((data) => {
-                    console.log('company not found');
-                    alert('company not found');
-                });
+                    console.log('Company Not Found');
+                    alert('Company Not Found');
             }
-
         })
 
 }
@@ -349,7 +321,6 @@ function updateUsers(id) {
     console.log(id)
 
     fetch(`http://localhost:3000/company/${id}`, {
-
         method: 'PUT',
         body: `{"nameCompany":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
         headers: {
@@ -363,7 +334,7 @@ function updateUsers(id) {
                 console.log(data);
                 alert('Updated');
             });
-            location.reload() 
+            location.reload()
         }
         else if (res.status == 400) {
             res.json().then((data) => {
@@ -385,8 +356,6 @@ function updateUsers(id) {
 
 
 }
-
-
 
 //Select Region
 regionCompanyUp.addEventListener('click', () => {
@@ -414,7 +383,7 @@ regionCompanyUp.addEventListener('click', () => {
                     regionCompanyUp.appendChild(rowUp);
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Region Not Found');
             }
 
 
@@ -464,6 +433,8 @@ function getCountriesUp() {
                         console.log(liCountryUp)
                         countryCompanyUp.appendChild(liCountryUp);
                     }
+                }else {
+                    console.log('Country Not Found');
                 }
             })
         for (let i = cityCompanyUp.options.length; i >= 0; i--) {
@@ -504,9 +475,8 @@ function getCitiesUp() {
                         cityCompanyUp.appendChild(liCityUp);
                     }
                 } else {
-                    console.log('Search Realized');
+                    console.log('City Not Found');
                 }
-
             })
     }
     )
@@ -514,7 +484,6 @@ function getCitiesUp() {
 }
 
 //6. Delete Company
-
 cancelButtonDeleteCompany.addEventListener('click', () => {
     deleteCompaniesSection.classList.toggle('hidden');
     companiesSection.classList.remove('hidden');
@@ -525,7 +494,6 @@ function showDeleteCompany(i) {
     let id = i.id
     console.log(id)
     deleteCompaniesSection.classList.toggle('hidden')
-
     deleteButtonDeleteCompany.addEventListener('click', () => {
         console.log(id)
         deleteCompany(id)
@@ -541,20 +509,29 @@ function deleteCompany(id) {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
+    }).then((res) => {
+        if (res.status == 200) {
+            res.json().then((data) => {
+                alert('Deleted');
+            });
+            location.reload()
+        }else if (res.status == 404) {
+            res.json().then((data) => {
+                alert('Company Not Found');
+            });
+        }
+        deleteUsersSection.classList.add('hidden');
+        usersSection.classList.remove('hidden');
+        location.reload()
     })
-
 
     deleteCompaniesSection.classList.add('hidden');
     companiesSection.classList.remove('hidden');
-
-    location.reload()
-
 }
 
 
 
 //Sort Table
-
 function sortTable(n, type) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("companiesTable");
@@ -595,20 +572,14 @@ function sortTable(n, type) {
 
 
 //Pagination
-function searchFetch (searchI, searchF){
+function searchFetch(searchI, searchF) {
     getCompanies(searchI, searchF)
 }
 
 //Select Delete
-
-
 function showDeleteCompanySelect() {
-  
-    
     deleteCompaniesSection.classList.toggle('hidden')
-
     deleteButtonDeleteCompany.addEventListener('click', () => {
-        
         selectDelete()
     });
 }
@@ -623,19 +594,30 @@ async function selectDelete() {
         console.log(elements[i].checked)
         if (elements[i].checked) {
             console.log(`eliminado ${id}`)
-           await fetch(`http://localhost:3000/company/${id}`, {
-                
+            await fetch(`http://localhost:3000/company/${id}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`
                 }
-            }) 
+            }).then((res) => {
+                if (res.status == 200) {
+                    res.json().then((data) => {
+                        alert('Deleted');
+                    });
+                    location.reload()
+                }else if (res.status == 404) {
+                    res.json().then((data) => {
+                        alert('Company Not Found');
+                    });
+                }
+                
+            })
         }
     }
-   
-   
-    location.reload() 
+
+
+    location.reload()
 }
 
 

@@ -3,7 +3,7 @@ const { JWT, signature } = require("./auth");
 const { deleteQuery, insertQuery, joinQuery, selectQuery, updateQuery, useQuery } = require("../database/sequelize/commons");
 
 
-//1. get companies
+//Get companies
 async function listCompanies(req, res, next) {
   const company_id = req.params.company_id;
   const query = `SELECT companies.company_id, companies.nameCompany, companies.address, companies.email, companies.tel, regions.nameRegion, countries.nameCountry, cities.nameCity FROM companies INNER JOIN regions ON companies.region_id = regions.region_id INNER JOIN countries ON companies.country_id= countries.country_id INNER JOIN cities ON companies.city_id = cities.city_id`
@@ -14,7 +14,7 @@ async function listCompanies(req, res, next) {
 }
 
 
-//2. post company
+//Post company
 async function existenceCompany(req, res, next) {
   const { nameCompany } = req.body;
   console.log(req.body)
@@ -32,8 +32,6 @@ async function findCompanyName(nameCompany) {
   const foundCompany = dbCompanies[0];
   return foundCompany;
 }
-
-
 
 async function addCompany(req, res, next) {
   const { nameCompany, address, email, tel, region_id, country_id, city_id } = req.body;
@@ -65,7 +63,7 @@ async function infoCompany(req, res, next) {
   next();
 }
 
-//3. Update company
+//Update company
 async function putCompany(req, res, next) {
   const { nameCompany, address, email, tel, region_id, country_id, city_id } = req.body;
   console.log(req.body)
@@ -86,7 +84,7 @@ async function putCompany(req, res, next) {
     }
     next();
   } else {
-    res.status(404).json("User Not Found");
+    res.status(404).json("Company Not Found");
   }
 }
 
@@ -98,7 +96,7 @@ async function findCompanyById(id) {
   return foundCompany;
 }
 
-//6.delete company
+//Delete company
 async function deleteCompany(req, res, next) {
   let id = req.params.company_id;
   console.log(id)
