@@ -73,7 +73,6 @@ function getCompanies() {
                     //Pagination
                     rowsPage.innerHTML = ""
                     for (let i = 1; i <= company.length; i++) {
-                        console.log(company.length)
                         const optionPag = document.createElement('option');
                         optionPag.innerText = `${i}`
                         rowsPage.appendChild(optionPag)
@@ -101,27 +100,21 @@ createButton.addEventListener('click', () => {
             'Authorization': `Bearer ${token}`
         }
     }).then((res) => {
-        console.log(res);
         if (res.status == 200) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Created');
             });
             location.reload()
         } else if (res.status == 400) {
-            console.log(res);
             res.json().then((data) => {
-                console.log(data);
                 alert('Missing Arguments');
             });
         } else if (res.status == 405) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Company Exist');
             });
         } else if (res.status == 404) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Company Not Found');
             });
         }
@@ -153,18 +146,14 @@ regionCompany.addEventListener('click', () => {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-            console.log(res)
             let validateSearchRegion = document.getElementsByClassName(`rowRegion`);
             if (res && validateSearchRegion.length == 0) {
                 for (let i = 0; i < res.length; i++) {
-                    console.log(res)
                     const row = document.createElement('option');
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.setAttribute('class', `rowRegion`)
                     row.innerHTML += `
                   <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
-                    console.log(row)
-                    console.log(regionCompany)
                     regionCompany.appendChild(row);
                 }
             } else {
@@ -174,7 +163,6 @@ regionCompany.addEventListener('click', () => {
 
         })
 
-    console.log('Search Realized');
     for (let i = countryCompany.options.length; i >= 0; i--) {
         countryCompany.remove(i);
     }
@@ -190,11 +178,9 @@ regionCompany.addEventListener('click', () => {
 //Select Countries
 function getCountries() {
     let validateSearchCountry = document.getElementsByClassName(`liCountry`);
-    console.log(validateSearchCountry)
     countryCompany.disabled = false
     countryCompany.addEventListener('click', () => {
         const regionCompanySelectValue = regionCompany.value.split(" ");
-        console.log(regionCompanySelectValue)
         const region_idSelect = regionCompanySelectValue[0];
 
         fetch(`http://localhost:3000/countries/${region_idSelect}`, {
@@ -205,18 +191,13 @@ function getCountries() {
             }
         }).then(respuesta => respuesta.json())
             .then(res => {
-                console.log(res)
-                console.log(validateSearchCountry.length)
                 if (res && validateSearchCountry.length == 0) {
                     for (let i = 0; i < res.length; i++) {
-                        console.log(res)
-                        console.log(res[i].country_id)
                         const liCountry = document.createElement('option');
                         liCountry.setAttribute('id', `liCountry${res[i].country_id}`)
                         liCountry.setAttribute('class', `liCountry`)
                         liCountry.innerHTML += `
                             <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
-                        console.log(liCountry)
                         countryCompany.appendChild(liCountry);
                     }
                 } else {
@@ -235,13 +216,10 @@ function getCountries() {
 //Select Cities
 function getCities() {
     let validateSearchCity = document.getElementsByClassName(`liCity`);
-    console.log(validateSearchCity)
     cityCompany.disabled = false
     cityCompany.addEventListener('click', () => {
         const countryCompanySelectValue = countryCompany.value.split(" ");
-        console.log(countryCompanySelectValue)
         const country_idSelect = countryCompanySelectValue[0];
-
         fetch(`http://localhost:3000/cities/${country_idSelect}`, {
             method: 'GET',
             headers: {
@@ -250,16 +228,12 @@ function getCities() {
             }
         }).then(respuesta => respuesta.json())
             .then(res => {
-                console.log(res)
                 if (res && validateSearchCity.length == 0) {
                     for (let i = 0; i < res.length; i++) {
-                        console.log(res)
-                        console.log(validateSearchCity)
                         let liCity = document.createElement('option');
                         liCity.setAttribute('id', `liCity${res[i].city_id}`)
                         liCity.setAttribute('class', `liCity`)
                         liCity.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
-                        console.log(liCity)
                         cityCompany.appendChild(liCity);
                     }
                 } else {
@@ -274,23 +248,18 @@ function getCities() {
 // 3. Put companies
 
 function showUpdateCompany(i) {
-    console.log(i)
     let id = i.id
-    console.log(id)
     updateCompanySection.classList.toggle('hidden');
     companiesSection.classList.toggle('hidden');
     showInfoCompany(id);
     createButtonUp.addEventListener('click', () => {
-        console.log(id)
-        updateUsers(id)
+        updateCompanies(id)
     });
     cancelButtonUp.addEventListener('click', () => {
-        console.log(i)
         showDeleteCompany(i);
     });
 }
 function showInfoCompany(id) {
-    console.log(nameCompanyUp)
     fetch(`http://localhost:3000/company/${id}`, {
         method: 'GET',
         headers: {
@@ -299,10 +268,7 @@ function showInfoCompany(id) {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-            console.log(res)
-
             if (res) {
-
                 nameCompanyUp.value = `${res.nameCompany}`
                 addressCompanyUp.value = `${res.address}`;
                 emailCompanyUp.value = `${res.email}`;
@@ -317,9 +283,7 @@ function showInfoCompany(id) {
         })
 
 }
-function updateUsers(id) {
-    console.log(id)
-
+function updateCompanies(id) {
     fetch(`http://localhost:3000/company/${id}`, {
         method: 'PUT',
         body: `{"nameCompany":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
@@ -328,7 +292,6 @@ function updateUsers(id) {
             'Authorization': `Bearer ${token}`
         }
     }).then((res) => {
-        console.log(res)
         if (res.status == 200) {
             res.json().then((data) => {
                 console.log(data);
@@ -338,13 +301,11 @@ function updateUsers(id) {
         }
         else if (res.status == 400) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Missing Arguments');
             });
         }
         else if (res.status == 404) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Company Not Found');
             });
         }
@@ -367,19 +328,14 @@ regionCompanyUp.addEventListener('click', () => {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-            console.log(res)
             let validateSearchRegionUp = document.getElementsByClassName(`rowRegionUp`);
             if (res && validateSearchRegionUp.length == 0) {
                 for (let i = 0; i < res.length; i++) {
-                    console.log(res)
-                    /* console.log(res.users[i].name)  */
                     const rowUp = document.createElement('option');
                     rowUp.setAttribute('id', `rowRegion${res[i].region_id}`)
                     rowUp.setAttribute('class', `rowRegionUp`)
                     rowUp.innerHTML += `
                   <span class="caret"  id ="${res[i].region_id}" value="${res[i].region_id}"> ${res[i].region_id} ${res[i].nameRegion} </span>  `;
-                    console.log(rowUp)
-                    console.log(regionCompanyUp)
                     regionCompanyUp.appendChild(rowUp);
                 }
             } else {
@@ -389,7 +345,6 @@ regionCompanyUp.addEventListener('click', () => {
 
         })
 
-    console.log('Search Realized');
     for (let i = countryCompanyUp.options.length; i >= 0; i--) {
         countryCompanyUp.remove(i);
     }
@@ -404,13 +359,10 @@ regionCompanyUp.addEventListener('click', () => {
 //Select Countries
 function getCountriesUp() {
     let validateSearchCountryUp = document.getElementsByClassName(`liCountryUp`);
-    console.log(validateSearchCountryUp)
     countryCompanyUp.disabled = false
     countryCompanyUp.addEventListener('click', () => {
         const regionCompanySelectValueUp = regionCompanyUp.value.split(" ");
-        console.log(regionCompanySelectValueUp)
         const region_idSelectUp = regionCompanySelectValueUp[0];
-
         fetch(`http://localhost:3000/countries/${region_idSelectUp}`, {
             method: 'GET',
             headers: {
@@ -419,18 +371,13 @@ function getCountriesUp() {
             }
         }).then(respuesta => respuesta.json())
             .then(res => {
-                console.log(res)
-                console.log(validateSearchCountryUp.length)
                 if (res && validateSearchCountryUp.length == 0) {
                     for (let i = 0; i < res.length; i++) {
-                        console.log(res)
-                        console.log(res[i].country_id)
                         const liCountryUp = document.createElement('option');
                         liCountryUp.setAttribute('id', `liCountry${res[i].country_id}`)
                         liCountryUp.setAttribute('class', `liCountryUp`)
                         liCountryUp.innerHTML += `
                             <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
-                        console.log(liCountryUp)
                         countryCompanyUp.appendChild(liCountryUp);
                     }
                 }else {
@@ -447,13 +394,10 @@ function getCountriesUp() {
 //Select Cities
 function getCitiesUp() {
     let validateSearchCityUp = document.getElementsByClassName(`liCityUp`);
-    console.log(validateSearchCityUp)
     cityCompanyUp.disabled = false
     cityCompanyUp.addEventListener('click', () => {
         const countryCompanySelectValueUp = countryCompanyUp.value.split(" ");
-        console.log(countryCompanySelectValueUp)
         const country_idSelectUp = countryCompanySelectValueUp[0];
-
         fetch(`http://localhost:3000/cities/${country_idSelectUp}`, {
             method: 'GET',
             headers: {
@@ -462,16 +406,12 @@ function getCitiesUp() {
             }
         }).then(respuesta => respuesta.json())
             .then(res => {
-                console.log(res)
                 if (res && validateSearchCityUp.length == 0) {
                     for (let i = 0; i < res.length; i++) {
-                        console.log(res)
-                        console.log(validateSearchCityUp)
                         let liCityUp = document.createElement('option');
                         liCityUp.setAttribute('id', `liCity${res[i].city_id}`)
                         liCityUp.setAttribute('class', `liCityUp`)
                         liCityUp.innerHTML += ` <span class="">  ${res[i].city_id} ${res[i].nameCity} </span> `;
-                        console.log(liCityUp)
                         cityCompanyUp.appendChild(liCityUp);
                     }
                 } else {
@@ -490,19 +430,15 @@ cancelButtonDeleteCompany.addEventListener('click', () => {
 });
 
 function showDeleteCompany(i) {
-    console.log(i)
     let id = i.id
-    console.log(id)
     deleteCompaniesSection.classList.toggle('hidden')
     deleteButtonDeleteCompany.addEventListener('click', () => {
-        console.log(id)
         deleteCompany(id)
     });
 }
 
 
 function deleteCompany(id) {
-    console.log(id)
     fetch(`http://localhost:3000/company/${id}`, {
         method: 'DELETE',
         headers: {
@@ -520,15 +456,13 @@ function deleteCompany(id) {
                 alert('Company Not Found');
             });
         }
-        deleteUsersSection.classList.add('hidden');
-        usersSection.classList.remove('hidden');
+        
         location.reload()
     })
 
     deleteCompaniesSection.classList.add('hidden');
     companiesSection.classList.remove('hidden');
 }
-
 
 
 //Sort Table
@@ -584,16 +518,11 @@ function showDeleteCompanySelect() {
     });
 }
 
-
 async function selectDelete() {
     let elements = document.getElementsByName("check");
-    console.log(elements)
     for (i = 0; i < elements.length; i++) {
         let id = elements[i].id
-        console.log(id)
-        console.log(elements[i].checked)
         if (elements[i].checked) {
-            console.log(`eliminado ${id}`)
             await fetch(`http://localhost:3000/company/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -615,7 +544,6 @@ async function selectDelete() {
             })
         }
     }
-
 
     location.reload()
 }
