@@ -52,9 +52,8 @@ Message in terminal (IDE):
 Connection Database.'
 
 ## 8. Start Frontend
-- Open with Live Server file `1login.html` (Folder: frontend/html) on Port: 5500.
+- Open file `1login.html` (Folder: frontend/html) with Live Server on Port: 5500.
 - Enter Username and Password registered in database. 
-
 
 ## 9. Website:
 Browse the website where you can do CRUD operations in the sections of Contacts, Companies, Users (Administrative access) and Region/Country/City.
