@@ -34,12 +34,7 @@ let lastnameUp = document.getElementById('lastnameUserUp');
 let emailUp = document.getElementById('emailUserUp');
 let usernameUp = document.getElementById('usernameUserUp');
 
-
-
-
-
-
-//4. get users
+//Get users
 function getUsers() {
     fetch('http://localhost:3000/users', {
         method: 'GET',
@@ -49,15 +44,10 @@ function getUsers() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-
-            
-            console.log('este')
-            console.log(res)
             let user = res[0];
             if (res) {
                 tableBody.innerHTML = ""
                 for (let i = searchI; i < searchF; i++) {
-
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact');
                     row.setAttribute('class', 'arrow');
@@ -72,39 +62,32 @@ function getUsers() {
                     <i class="fas fa-ellipsis-h iconPoints"></i>
                     <i class="fas fa-trash" id=${user[i].user_id} onclick = "showDeleteUser(this)" ></i>
                     <i class="fas fa-pencil-alt" id=${user[i].user_id} onclick = "showUpdateUser(this)"></i>
-                </td>
-            `;
+                </td>`;
                     table.appendChild(row);
 
                     //Pagination
-            rowsPage.innerHTML = ""
-            for (let i = 1; i <= user.length; i++) {
-                console.log(user.length)
-                const optionPag = document.createElement('option');
-                optionPag.innerText = `${i}`
-                rowsPage.appendChild(optionPag)
-            }
-            rowsPage.value = searchF - searchI
-            rowsTotal.innerText = `${user.length}`
+                    rowsPage.innerHTML = ""
+                    for (let i = 1; i <= user.length; i++) {
+                        const optionPag = document.createElement('option');
+                        optionPag.innerText = `${i}`
+                        rowsPage.appendChild(optionPag)
+                    }
+                    rowsPage.value = searchF - searchI
+                    rowsTotal.innerText = `${user.length}`
                     rowI.innerText = `${searchI}`
                     rowF.innerText = `${searchF}`
-                    
                 }
             } else {
-                res.json().then((data) => {
-                    console.log('Users not found');
-                    alert('Users not found');
-                });
+                console.log('Users not found');
+                alert('Users not found');
             }
-
-        })/* .catch(res=>{res.json().then(data=>alert(data.msg))}); */
+        })
 }
 getUsers();
 
-//2. Post User
+//Post User
 
 createButton.addEventListener('click', () => {
-    console.log('llamado al API');
     fetch('http://localhost:3000/user', {
         method: 'POST',
         body: `{"name":"${name.value}", "lastname":"${lastname.value}","email":"${email.value}","username":"${username.value}","pass":"${pass.value}","repass":"${repass.value}"}`,
@@ -114,36 +97,29 @@ createButton.addEventListener('click', () => {
         }
 
     }).then((res) => {
-        console.log(res);
         if (res.status == 200) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Created');
             });
             location.reload()
         }
         else if (res.status == 400) {
-            console.log(res);
             res.json().then((data) => {
-                console.log(data);
                 alert('Missing Arguments');
             });
         } else if (res.status == 403) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Forbidden: No Permission To Access');
             });
         }
         else if (res.status == 405) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Username Exist');
             });
         }
         else if (res.status == 406) {
             res.json().then((data) => {
-                console.log(data);
-                alert('Verify: Password and Corfirmation Password');
+                alert('Different Password and Corfirmation Password');
             });
         }
     })
@@ -164,22 +140,17 @@ cancelButton.addEventListener('click', () => {
 });
 
 
-
 // 5. Put user
 
 function showUpdateUser(i) {
-    console.log(i)
     let id = i.id
-    console.log(id)
     updateUserSection.classList.toggle('hidden');
     usersSection.classList.toggle('hidden');
     showInfoUserUp(id);
     createButtonUp.addEventListener('click', () => {
-        console.log(id)
         updateUsers(id)
     });
     cancelButtonUp.addEventListener('click', () => {
-        console.log(i)
         showDeleteUser(i);
     });
 }
@@ -193,17 +164,11 @@ function showInfoUserUp(id) {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-            console.log(res)
-
             if (res) {
-
                 nameUp.value = `${res.name}`
                 lastnameUp.value = `${res.lastname}`
                 emailUp.value = `${res.email}`;
                 usernameUp.value = `${res.username}`;
-                
-                
-                
             } else {
                 res.json().then((data) => {
                     console.log('user not found');
@@ -216,10 +181,7 @@ function showInfoUserUp(id) {
 }
 
 function updateUsers(id) {
-    console.log(id)
-
     fetch(`http://localhost:3000/user/${id}`, {
-
         method: 'PUT',
         body: `{"name":"${nameUp.value}", "lastname":"${lastnameUp.value}", "email":"${emailUp.value}", "username":"${usernameUp.value}"}`,
         headers: {
@@ -227,23 +189,19 @@ function updateUsers(id) {
             'Authorization': `Bearer ${token}`
         }
     }).then((res) => {
-        console.log(res)
         if (res.status == 200) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Updated');
             });
             location.reload()
         }
         else if (res.status == 400) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Missing Arguments');
             });
         }
         else if (res.status == 404) {
             res.json().then((data) => {
-                console.log(data);
                 alert('User Not Found');
             });
         }
@@ -256,7 +214,7 @@ function updateUsers(id) {
 
 }
 
-//6. Delete User
+//Delete User
 
 cancelButtonDeleteUser.addEventListener('click', () => {
     deleteUsersSection.classList.toggle('hidden');
@@ -264,35 +222,42 @@ cancelButtonDeleteUser.addEventListener('click', () => {
 });
 
 function showDeleteUser(i) {
-    console.log(i)
     let id = i.id
-    console.log(id)
     deleteUsersSection.classList.toggle('hidden')
-    
+
 
     deleteButtonDeleteUser.addEventListener('click', () => {
-        console.log(id)
         deleteUser(id)
     });
 }
 
 
 function deleteUser(id) {
-    console.log(id)
     fetch(`http://localhost:3000/user/${id}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
+    }).then((res) => {
+        if (res.status == 200) {
+            res.json().then((data) => {
+                alert('Deleted');
+            });
+            location.reload()
+        }else if (res.status == 404) {
+            res.json().then((data) => {
+                alert('User Not Found');
+            });
+        }
+
+        deleteUsersSection.classList.add('hidden');
+        usersSection.classList.remove('hidden');
+
+        location.reload()
     })
-
-    deleteUsersSection.classList.add('hidden');
-    usersSection.classList.remove('hidden');
-
-    location.reload()
-
 }
+
 
 //Sort Table
 
@@ -334,12 +299,11 @@ function sortTable(n, type) {
 }
 
 //Pagination
-function searchFetch (searchI, searchF){
+function searchFetch(searchI, searchF) {
     getUsers(searchI, searchF)
 }
 
 //Select Delete
-
 function showDeleteUserSelect() {
     deleteUsersSection.classList.toggle('hidden')
     deleteButtonDeleteUser.addEventListener('click', () => {
@@ -352,13 +316,13 @@ async function selectDelete() {
     for (i = 0; i < elements.length; i++) {
         let id = elements[i].id
         if (elements[i].checked) {
-           await fetch(`http://localhost:3000/user/${id}`, {
+            await fetch(`http://localhost:3000/user/${id}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`
                 }
-            }) 
+            })
         }
     }
     location.reload()

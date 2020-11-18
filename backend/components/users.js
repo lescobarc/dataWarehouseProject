@@ -6,7 +6,6 @@ const { insertQuery, selectQuery, updateQuery, deleteQuery } = require("../datab
 //1. post user login token
 async function validateCredentials(req, res, next) {
   const { username, password } = req.body;
-  console.log(req.body)
   if (username, password) {
     const registeredUser = await findUsername(username);
     if (registeredUser) {
@@ -30,8 +29,6 @@ async function validateCredentials(req, res, next) {
 //2. post user
 async function existenceUser(req, res, next) {
   const { username } = req.body;
-  console.log(req.body)
-  console.log(username)
   const dbUsers = await findUsername(username);
   if (!dbUsers) {
     next();
@@ -50,14 +47,11 @@ async function findUsername(username) {
 async function addUser(req, res, next) {
   const { name, lastname, email, username, pass, repass } = req.body;
   if (pass === repass) {
-    console.log(req.body)
     if (name && lastname && email && username && pass && repass) {
-      const query = insertQuery("users", "name, lastname email, username, pass, repass",
+      const query = insertQuery("users", "name, lastname, email, username, pass, repass",
         [name, lastname, email, username, pass, repass]);
       [user_id] = await sequelize.query(query, { raw: true });
-      console.log(user_id)
       req.createdUserId = user_id;
-      console.log(user_id)
       next();
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
@@ -94,7 +88,6 @@ async function listUsers(req, res, next) {
 async function infoUserUp(req, res, next) {
   let id = req.params.value;
  const query = selectQuery("users", "name, lastname, email, username, pass, repass, isAdmin", `user_id = '${id}'`)
- console.log(query)
   const [dbUser] = await sequelize.query(query, { raw: true });
   const foundUser = dbUser[0];
   req.user = foundUser;
@@ -105,18 +98,12 @@ async function infoUserUp(req, res, next) {
 //5. Update user 
 async function putUser(req, res, next) {
   const { name, lastname, email, username } = req.body;
-
   let id = req.params.value;
-  console.log(id)
-
   if (id) {
     const userToUpdate = await findUserById(id);
-    console.log(userToUpdate)
     if ( name!== "" && lastname !== "" && email !== "") {
       const query = updateQuery("users", `name = '${name}',lastname = '${lastname}', email= '${email}', username = '${username}'`, `user_id = '${id}'`);
-      console.log(name)
       const [userPut] = await sequelize.query(query, { raw: true });
-      console.log(userPut)
       req.updatedUser = { name, lastname, email };
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
@@ -131,7 +118,6 @@ async function findUserById(id) {
   const query = selectQuery("users", "*", `user_id = '${id}'`);
   const [dbUser] = await sequelize.query(query, { raw: true });
   const foundUser = dbUser[0];
-  console.log(foundUser)
   return foundUser;
 }
 
@@ -139,7 +125,6 @@ async function findUserById(id) {
 //6.delete user
 async function deleteUser(req, res, next) {
   let id = req.params.value;
-  console.log(id)
   const findUser = await findUserById(id);
   if (findUser) {
     const query = deleteQuery("users", `user_id = ${id}`);
@@ -150,8 +135,6 @@ async function deleteUser(req, res, next) {
     res.status(404).json("User Not Found");
   }
 }
-
-
 
 
 module.exports = { findUsername, addUser, infoUser, putUser, validateCredentials, existenceUser, infoUserUp, listUsers, deleteUser };
