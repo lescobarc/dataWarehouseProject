@@ -1,0 +1,25 @@
+#companiesSection, #usersSection, #citySection{
+    display: flex;
+    flex-direction: column;
+    div{
+        h1{
+            float: left;
+        }
+        #addButton{
+            position: absolute;
+           top: 160px;
+         right: 60px; 
+         height: 41px;
+         width: 172px;
+        }
+    }
+    table{
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        .iconPoints{
+            padding-left: 8%;
+        }
+        tr{
+            height: 70px;
+        }
+    }
+}

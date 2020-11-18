@@ -88,197 +88,6 @@ td {
   padding: 8px;
 }
 
-#companiesSection, #usersSection, #citySection {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-#companiesSection div, #usersSection div, #citySection div {
-  /* width: 1306px; */
-}
-
-#companiesSection div h1, #usersSection div h1, #citySection div h1 {
-  float: left;
-}
-
-#companiesSection div #addButton, #usersSection div #addButton, #citySection div #addButton {
-  position: absolute;
-  top: 160px;
-  right: 60px;
-  height: 41px;
-  width: 172px;
-}
-
-#companiesSection table, #usersSection table, #citySection table {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-#companiesSection table .iconPoints, #usersSection table .iconPoints, #citySection table .iconPoints {
-  padding-left: 8%;
-}
-
-#companiesSection table tr, #usersSection table tr, #citySection table tr {
-  height: 70px;
-}
-
-#importContactsSection, .deleteSection {
-  position: fixed;
-  padding: 0;
-  margin: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.897);
-}
-
-#importContactsSection .container, .deleteSection .container {
-  background: #FFFFFF;
-  border-radius: 4px;
-  width: 339px;
-  height: 303px;
-  position: relative;
-  top: 25%;
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  text-align: center;
-  padding: 2%;
-  color: gray;
-  font-size: 14pt;
-}
-
-#importContactsSection .container img, .deleteSection .container img {
-  width: 105px;
-  height: 105px;
-  margin-left: 35%;
-}
-
-#importContactsSection .container .deleteButton, .deleteSection .container .deleteButton {
-  background: #e72323;
-  color: white;
-  border: none;
-}
-
-.newSection {
-  position: fixed;
-  padding: 0;
-  margin: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.897);
-}
-
-.newSection .container {
-  width: 1215px;
-  height: 577px;
-  border-radius: 4px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #1D72C2), color-stop(25%, white), to(white));
-  background: linear-gradient(to bottom, #1D72C2 25%, white 25%, white 100%);
-  position: absolute;
-  margin: 3% 6%;
-}
-
-.newSection .container h1 {
-  color: white;
-  margin: 2%;
-  padding-top: 2%;
-}
-
-.newSection .container input, .newSection .container select, .newSection .container button {
-  width: 190px;
-  height: 36px;
-  border: 1px solid #CCCCCC;
-  border-radius: 4px;
-}
-
-.newSection .principalInfo {
-  width: 1172px;
-  height: 131px;
-  border: 3px solid #0683F9;
-  margin: auto;
-  border-radius: 6.5px;
-  background: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.newSection .principalInfo img {
-  width: 85px;
-  height: 84px;
-  border-radius: 100%;
-  border: 3px solid #0683F9;
-  margin: 10px;
-}
-
-.newSection .secondInfo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin: 45px 20px;
-}
-
-.newSection .secondInfo div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin: 20px;
-}
-
-.newSection .secondInfo .divInterest {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  margin: 0;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.newSection .secondInfo .divInterest select {
-  width: 70px;
-  margin-left: 10%;
-  padding-left: 2%;
-}
-
-.newSection .secondInfo .buttonAddChannel {
-  padding-top: 18px;
-}
-
-.newSection .buttonsActions {
-  text-align: end;
-  margin: 0 2%;
-}
-
-.noCheck {
-  pointer-events: none;
-}
-
 #rowsPage, #rowsPageR {
   font-size: 12pt;
   color: gray;
@@ -325,6 +134,10 @@ td {
   color: #DE0028;
   font-weight: bold;
   border: none !important;
+}
+
+.noCheck {
+  pointer-events: none;
 }
 
 nav {
@@ -564,6 +377,155 @@ nav #imgLogo {
           justify-content: space-between;
 }
 
+#importContactsSection, .deleteSection {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.897);
+}
+
+#importContactsSection .container, .deleteSection .container {
+  background: #FFFFFF;
+  border-radius: 4px;
+  width: 339px;
+  height: 303px;
+  position: relative;
+  top: 25%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: center;
+  padding: 2%;
+  color: gray;
+  font-size: 14pt;
+}
+
+#importContactsSection .container img, .deleteSection .container img {
+  width: 105px;
+  height: 105px;
+  margin-left: 35%;
+}
+
+#importContactsSection .container .deleteButton, .deleteSection .container .deleteButton {
+  background: #e72323;
+  color: white;
+  border: none;
+}
+
+.newSection {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.897);
+}
+
+.newSection .container {
+  width: 1215px;
+  height: 577px;
+  border-radius: 4px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(25%, #1D72C2), color-stop(25%, white), to(white));
+  background: linear-gradient(to bottom, #1D72C2 25%, white 25%, white 100%);
+  position: absolute;
+  margin: 3% 6%;
+}
+
+.newSection .container h1 {
+  color: white;
+  margin: 2%;
+  padding-top: 2%;
+}
+
+.newSection .container input, .newSection .container select, .newSection .container button {
+  width: 190px;
+  height: 36px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+}
+
+.newSection .principalInfo {
+  width: 1172px;
+  height: 131px;
+  border: 3px solid #0683F9;
+  margin: auto;
+  border-radius: 6.5px;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.newSection .principalInfo img {
+  width: 85px;
+  height: 84px;
+  border-radius: 100%;
+  border: 3px solid #0683F9;
+  margin: 10px;
+}
+
+.newSection .secondInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 45px 20px;
+}
+
+.newSection .secondInfo div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 20px;
+}
+
+.newSection .secondInfo .divInterest {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.newSection .secondInfo .divInterest select {
+  width: 70px;
+  margin-left: 10%;
+  padding-left: 2%;
+}
+
+.newSection .secondInfo .buttonAddChannel {
+  padding-top: 18px;
+}
+
+.newSection .buttonsActions {
+  text-align: end;
+  margin: 0 2%;
+}
+
 .dropDown {
   border: 1px solid #CCCCCC;
   border-radius: 2px;
@@ -679,6 +641,40 @@ nav #imgLogo {
   bottom: 10px;
 }
 
+#companiesSection, #usersSection, #citySection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#companiesSection div h1, #usersSection div h1, #citySection div h1 {
+  float: left;
+}
+
+#companiesSection div #addButton, #usersSection div #addButton, #citySection div #addButton {
+  position: absolute;
+  top: 160px;
+  right: 60px;
+  height: 41px;
+  width: 172px;
+}
+
+#companiesSection table, #usersSection table, #citySection table {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#companiesSection table .iconPoints, #usersSection table .iconPoints, #citySection table .iconPoints {
+  padding-left: 8%;
+}
+
+#companiesSection table tr, #usersSection table tr, #citySection table tr {
+  height: 70px;
+}
+
 #updateUserSection .container {
   height: 320px;
   margin: 8% 6%;
@@ -692,17 +688,14 @@ nav #imgLogo {
   margin: 1%;
 }
 
-/* Style the caret/arrow */
 .caret {
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  /* Prevent text selection */
 }
 
-/* Create the caret/arrow with a unicode, and style it */
 .caret::before {
   content: "\25B6";
   color: #1D72C2;

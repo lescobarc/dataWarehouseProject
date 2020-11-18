@@ -102,148 +102,6 @@ td{
     padding: 8px;
 }
 
-
-#companiesSection, #usersSection, #citySection{
-    display: flex;
-    flex-direction: column;
-    
-    div{
-        /* width: 1306px; */
-        
-        h1{
-            float: left;
-        }
-        #addButton{
-            position: absolute;
-           top: 160px;
-         right: 60px; 
-         height: 41px;
-         width: 172px;
-        }
-    }
-    table{
-      
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        .iconPoints{
-            padding-left: 8%;
-        }
-        tr{
-            height: 70px;
-        }
-    }
-
-    
-} 
-
-
- 
- 
-#importContactsSection, .deleteSection{
-    @include sectionExtend;
-    .container{
-       background: $bgWhite;
-       border-radius: 4px;
-       width: 339px;
-       height: 303px;
-       position: relative;
-        top: 25%;
-       margin: auto;
-       display: flex;
-       flex-direction: column;
-       justify-content: space-around;
-        text-align: center;
-        padding: 2%;
-        color: gray;
-        font-size: 14pt;
-        img{
-            width: 105px;
-            height: 105px;
-            margin-left: 35%;
-        };
-        .deleteButton{
-            background: rgb(231, 35, 35);
-            color: white;
-            border: none;
-        }
-
- }
-}
-
-.newSection{
-    @include sectionExtend;
-      .container{
-          width:1215px;
-          height: 577px;
-          border-radius: 4px;
-          background: linear-gradient(to bottom, $bgPrimary 25%,white 25%,white 100%);
-          position: absolute;       
-          margin: 3% 6%;
-          h1{
-          color: white;
-          margin: 2%;
-          padding-top: 2%;
-          }
-          input, select, button{
-              width: 190px;
-              height: 36px;
-              border: 1px solid #CCCCCC;
-              border-radius: 4px;
-          }
-      }
-      .principalInfo{
-          width: 1172px ;
-          height: 131px;
-          border: 3px  solid  $borderBlue;
-          margin: auto;
-          border-radius: 6.5px;
-          background: white;
-          display: flex;
-          align-items: center;
-          img{
-              width: 85px;
-              height: 84px;
-              border-radius: 100%;
-              border: 3px solid $borderBlue;
-              margin: 10px;
-          }
-      }
-      .secondInfo{
-      display: flex;
-      flex-wrap: wrap;
-      margin: 45px 20px;
-      div{
-          display: flex;
-          flex-direction: column;
-          margin: 20px;
-      }
-      .divInterest{
-       
-          flex-direction: row;
-          margin: 0;
-          align-items: center;
-         
-          select{
-              width:70px ;
-              margin-left: 10%;
-              padding-left: 2%;
-          }
-      
-      }
-      .buttonAddChannel{
-          padding-top: 18px;
-      }
-  
-      }
-      .buttonsActions{
-          text-align: end;
-          margin: 0 2%;
-      }
-  }
-
-  .noCheck { 
-      pointer-events: none; 
-} 
-
 #rowsPage, #rowsPageR{
     font-size: 12pt;
     color: gray;
@@ -274,7 +132,6 @@ td{
     background-color: #E8E8E8;
         border-radius: 4px;
 }
-
 .addButton{
     color: white;
     background-color: $bgGreen;
@@ -284,3 +141,6 @@ td{
     font-weight: bold;
     border: none !important;
 }
+.noCheck { 
+    pointer-events: none; 
+} 

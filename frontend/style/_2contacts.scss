@@ -11,7 +11,6 @@
 }
 
 #contactsFilter{
-   
  table{
     margin: auto;
     input{
@@ -38,7 +37,6 @@
 #filterApplied{
     border: none;
     box-shadow: none;
-    
     div{
         display: flex;
         background-color: $bgGray;
@@ -85,8 +83,6 @@
     width: 171px;
     left: 975px;
     display: block;
-    
-    
     p{
         margin-left: 3%;
         color: $bgPrimary;

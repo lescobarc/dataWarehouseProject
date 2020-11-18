@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2020 a las 20:25:29
+-- Tiempo de generación: 18-11-2020 a las 21:19:48
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -153,14 +153,7 @@ INSERT INTO `contacts` (`contact_id`, `name`, `lastname`, `email`, `address`, `r
 (16, 'Luisa', 'Linares', 'luisalin@hotmail.com', 'cll 77 #67 -87', 1, 2, 6, 6, 'Sales', 100),
 (17, 'Camilo', 'Alarcón', 'camialarc@gmail.com', 'cll 80 #56-91', 1, 3, 8, 7, 'Developer', 25),
 (18, 'Mateo', 'Arango', 'mateoar@gmail.com', 'cll 67 #11-77', 1, 3, 9, 8, 'UX Designer', 25),
-(19, 'Tatiana', 'Henao', 'tatianah@yahoo.com', 'cll 15 #61-96', 1, 4, 10, 8, 'Sales', 100),
-(20, 'Kelly', 'Toro', 'kellyt@hotmail.com', 'cll 10 #10-78', 2, 6, 13, 9, 'Developer', 75),
-(21, 'Michelle', 'Peláez', 'michellep@gmail.com', 'cll 65 #94 -87', 2, 6, 14, 1, 'Sales', 50),
-(22, 'Sebastian', 'Perez', 'sebasp4@hotmail.com', 'cll 10 #10-99', 2, 7, 15, 2, 'Developer', 100),
-(23, 'Jacobo', 'Páez', 'jacob67@gmail.com', 'cll 43 #76-99', 3, 8, 16, 4, 'Product', 50),
-(24, 'Carlos', 'Restrepo', 'carlosr78@gmaill.com', 'cll 67 #10-88', 3, 9, 18, 7, 'Sales', 75),
-(25, 'Natalia', 'Sanchez', 'natys@gmail.com', 'cll 35 #67 -87', 4, 10, 19, 8, 'UX Designer', 25),
-(26, 'Bruna', 'Cohelo', 'brunac@hotmail.com', 'cll 95 #47 -87', 1, 4, 11, 5, 'Product', 0);
+(19, 'Tatiana', 'Henao', 'tatianah@yahoo.com', 'cll 15 #61-96', 1, 4, 10, 8, 'Sales', 100);
 
 -- --------------------------------------------------------
 
@@ -200,10 +193,7 @@ INSERT INTO `contacts_channels` (`contact_channel_id`, `contact_id`, `channel_id
 (17, 16, 1, 'luisa09', 'No Molestar'),
 (18, 17, 1, 'cami98', 'Sin Preferencia'),
 (19, 18, 2, 'mate54', 'Canal Favorito'),
-(20, 19, 2, 'tati00', 'No Molestar'),
-(21, 20, 1, 'kelly66', 'Canal Favorito'),
-(22, 23, 2, 'jacob6', 'Sin Preferencia'),
-(23, 26, 1, 'brunac', 'No Molestar');
+(20, 19, 2, 'tati00', 'No Molestar');
 
 -- --------------------------------------------------------
 
@@ -379,7 +369,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT de la tabla `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `contacts_channels`

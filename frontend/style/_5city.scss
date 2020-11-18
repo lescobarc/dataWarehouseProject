@@ -1,12 +1,10 @@
 
-  /* Style the caret/arrow */
-  .caret {
+.caret {
     cursor: pointer;
-    user-select: none; /* Prevent text selection */
+    user-select: none; 
   }
   
-  /* Create the caret/arrow with a unicode, and style it */
-  .caret::before {
+.caret::before {
     content: "\25B6";
     color: $bgPrimary;
     display: inline-block;
@@ -14,9 +12,7 @@
   }
   
 
-
-
-  #citySection {
+#citySection {
     table{
       width: 550px;
     margin: 1%;
@@ -53,17 +49,13 @@
       }
       h4:hover .fas, p:hover .fas, h2:hover .fas{
         display: inline;
-       
-       padding: 1%; 
+        padding: 1%; 
         border: 2px $bgGray solid;
-        
       }
-     
+    
       h2:hover .buttonSecondary, h4:hover .buttonTerciary{
         display: inline;
       }
-
-      
   }
  
  .secondSections{
@@ -81,8 +73,7 @@
   
 }
 
-
- .mainCityRegion{
+.mainCityRegion{
    margin:4% 1%;
    display: flex;
    #divTableContacts{
@@ -105,8 +96,7 @@
   
  }
 
-
- .sectionContactsRegions{
+.sectionContactsRegions{
   border: 1px solid rgba(0, 0, 0, 0.1);
   width: 750px;
   height: auto;
