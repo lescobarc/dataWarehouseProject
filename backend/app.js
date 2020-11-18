@@ -29,6 +29,21 @@ app.listen(3000, () => {
 
 
 //USERS
+//0. Users Header
+app.get('/usersHeader', validateToken, validateAdmin, (req, res)=>{
+  try {
+    const { isAdmin } = req;
+    console.log(isAdmin)
+    if(isAdmin == "1"){
+      res.status(200).json(` ${isAdmin}` );
+    }else if(isAdmin == "0"){
+      res.status(202).json(` ${isAdmin}` );
+    }
+  } catch (err) {
+    res.status(500).json("Internal Server Error");
+  }
+})
+
 //1.  post user login: token
 app.post("/user/login", validateCredentials, (req, res) => {
   try {

@@ -18,9 +18,11 @@ async function validateAdmin(req, res, next) {
     const payload = JWT.decode(token);
     if(payload.isAdmin === 1){
       console.log('Authorized: Admin');
+      req.isAdmin = payload.isAdmin;
       next();
   }else{
-      res.status(403).json('Forbidden: No Permission To Access')
+    req.isAdmin = payload.isAdmin;
+      next();
   }
   }
   

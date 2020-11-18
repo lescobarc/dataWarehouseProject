@@ -32,8 +32,7 @@ let searchInput = document.getElementById('searchInput');
 let iconSearch = document.getElementById('iconSearch');
 let iconFilter = document.getElementById('iconFilter');
 let searchInfo = document.getElementById('searchInfo');
-function doSearch()
-{
+function doSearch() {
     const searchText = searchInput.value.toLowerCase();
     let total = 0;
     // Recorremos todas las filas con contenido de la tabla
@@ -63,29 +62,30 @@ function doSearch()
         }
     }
     // mostramos las coincidencias
-    const lastTR=table.rows[table.rows.length-1];
-    const td=lastTR.querySelector("td");
+    const lastTR = table.rows[table.rows.length - 1];
+    const td = lastTR.querySelector("td");
     lastTR.classList.remove("hide");
     if (searchText == "") {
         lastTR.classList.add("hide");
-    }else if (total) {
+    } else if (total) {
         searchInfo.classList.remove('hidden')
-        searchInfo.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"")} 
-    else{
+        searchInfo.innerHTML = "Se ha encontrado " + total + " coincidencia" + ((total > 1) ? "s" : "")
+    }
+    else {
         console.log('No se han encontrado coincidencias')
-        searchInfo.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"")
+        searchInfo.innerHTML = "Se ha encontrado " + total + " coincidencia" + ((total > 1) ? "s" : "")
         searchInfo.classList.remove('hidden')
         iconFilter.classList.remove('hidden')
     }
 }
 
-iconSearch.addEventListener('click', () =>{
+iconSearch.addEventListener('click', () => {
     doSearch();
 })
 
-iconFilter.addEventListener('click', () =>{
+iconFilter.addEventListener('click', () => {
     location.reload()
-}) 
+})
 
 //Checkbox
 let textCheck = document.getElementById('totalCheck');
@@ -108,7 +108,7 @@ function contar(i, id) {
     for (x = 0; x < elements.length; x++) {
         if (elements[x].type == "checkbox" && elements[x].checked) {
             cont += 1;
-            
+
         }
     }
     textCheck.innerText = `${cont} seleccionados`
@@ -163,7 +163,7 @@ arrowRigth.addEventListener('click', () => {
     let validate = parseInt(searchF) + parseInt(rowsPage.value);
     console.log(validate)
     console.log(rowsPage.length)
-    if (validate <= rowsPage.length){
+    if (validate <= rowsPage.length) {
         searchI = parseInt(searchI) + parseInt(rowsPage.value)
         searchF = parseInt(searchF) + parseInt(rowsPage.value)
         console.log(searchI)
@@ -178,7 +178,7 @@ arrowLeft.addEventListener('click', () => {
     validate = searchI - parseInt(rowsPage.value)
     if (validate >= 0) {
         searchI = searchI - parseInt(rowsPage.value)
-        searchF =  searchF - parseInt(rowsPage.value)
+        searchF = searchF - parseInt(rowsPage.value)
         console.log(searchI)
         console.log(searchF)
         searchFetch(parseInt(searchF), parseInt(searchI))
@@ -186,6 +186,26 @@ arrowLeft.addEventListener('click', () => {
 })
 
 
+//users header
+function usersHeader() {
+    fetch('http://localhost:3000/usersHeader', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            console.log(res)
+            if (res == 1) {
+                document.getElementById('usersHeader').classList.remove('hidden')
+
+            } else if (res == 0) {
+                document.getElementById('usersHeader').classList.add('hidden')
+            }
+        })
+}
+usersHeader();
 
 
 
