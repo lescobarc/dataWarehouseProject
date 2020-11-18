@@ -216,7 +216,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxhdXJhZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYwMzgyOTM2NiwiZXhwIjoxNjAzODM2NTY2fQ.wEigd49n0DjqNs4me3PON3X_t9wO-Q5UtOw6TvttsjU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA0Njk5NjA5LCJleHAiOjE2MDQ3MDY4MDl9.lpdUmLCuwK4hv8J1qgq5e8WIIoXI1AVgSSTy7ylG7oQ",
 									"type": "string"
 								}
 							]
@@ -238,14 +238,14 @@
 					"response": []
 				},
 				{
-					"name": "2. get companies",
+					"name": "2. post companies",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZlcmEiLCJpc0FkbWluIjowLCJpYXQiOjE2MDQzNzMzMzUsImV4cCI6MTYwNDM4MDUzNX0.1cbqTvqn5QGw6r5_hmSOKEofEUwzekkkv8zZ2_DfB88",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA0NzE1Mzk5LCJleHAiOjE2MDQ3MjI1OTl9.U1AnKtYLSWztaStEAF1ShNoERbGzz7KDAfjw0QlFi30",
 									"type": "string"
 								}
 							]
@@ -254,7 +254,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n\"name\": \"tt\",\r\n\"email\": \"tt\",\r\n\"address\": \"tt\",\r\n\"tel\": 145454,\r\n\"region_id\": 1,\r\n\"country_id\": 1,\r\n\"city_id\": 1\r\n\r\n}",
+							"raw": "{\r\n    \r\n\"name\": \"ttss\",\r\n\"email\": \"tt\",\r\n\"address\": \"tt\",\r\n\"tel\": 145454,\r\n\"region_id\": 9,\r\n\"country_id\": 44,\r\n\"city_id\": 12\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -387,7 +387,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZlcmEiLCJpc0FkbWluIjowLCJpYXQiOjE2MDQ0MjgwODUsImV4cCI6MTYwNDQzNTI4NX0.nhcC7JfxoqOe8l3-G5hAgqQLj9SMo3jJ0vVT0hUzmRo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA0OTY3NzI4LCJleHAiOjE2MDQ5NzQ5Mjh9.0FMFbra_lAwFWjDktXDP7XC7oXZJsyUhH8grDPzw_cY",
 									"type": "string"
 								}
 							]
@@ -396,7 +396,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n          \r\n            \"name\": \"Andres h\",\r\n            \"email\": \"andrep@hotmail.com\",\r\n            \"region_id\": 1,\r\n            \"country_id\": 1,\r\n            \"city_id\": 1,\r\n            \"company_id\": 2, \r\n            \"position\": \"ux\",\r\n            \"channel\": \"st\",\r\n            \"interest\": 100\r\n            \r\n        }",
+							"raw": "{\r\n          \r\n            \"name\": \"Ah\",\r\n            \"lastname\": \"hrnao\",\r\n            \"email\": \"andrep@hotmail.com\",\r\n            \"region_id\": 2,\r\n            \"country_id\": 46,\r\n            \"city_id\": 18,\r\n            \"company_id\": 21, \r\n            \"position\": \"ux\",\r\n            \"interest\": 100,\r\n            \"channel_id\": 1,\r\n            \"account\": \"@nuevo\",\r\n            \"preferences\": \"sin\"\r\n             \r\n            \r\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -580,7 +580,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA0NDMyODEwLCJleHAiOjE2MDQ0NDAwMTB9.IsuXsNb3J1AjWbpwjgv1HC3XfsYjPuf1F8tDhnal5TY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA1Mjk3MTk3LCJleHAiOjE2MDUzMDQzOTd9.pcf-mM9sz_qiphiifx7xfQgBTJkTf4XbDAZ1H4EvGiE",
 									"type": "string"
 								}
 							]
@@ -600,22 +600,16 @@
 						}
 					},
 					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Countries",
-			"item": [
+				},
 				{
-					"name": "1.countries list",
+					"name": "get contacts region_id",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA0NDMyODEwLCJleHAiOjE2MDQ0NDAwMTB9.IsuXsNb3J1AjWbpwjgv1HC3XfsYjPuf1F8tDhnal5TY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA1Mjk3MTk3LCJleHAiOjE2MDUzMDQzOTd9.pcf-mM9sz_qiphiifx7xfQgBTJkTf4XbDAZ1H4EvGiE",
 									"type": "string"
 								}
 							]
@@ -623,19 +617,27 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/countries",
+							"raw": "http://localhost:3000/contacts/regions/15",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"countries"
+								"contacts",
+								"regions",
+								"15"
 							]
 						}
 					},
 					"response": []
-				},
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Countries",
+			"item": [
 				{
 					"name": "2. post country",
 					"request": {
@@ -669,6 +671,36 @@
 							"port": "3000",
 							"path": [
 								"country",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.countries list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA0NzA0NjA0LCJleHAiOjE2MDQ3MTE4MDR9.BpDsPUhbj3W_qy0HWJ6W_AHOXBZuWeseHZ6iXfvkmcs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/countries/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"countries",
 								"1"
 							]
 						}
@@ -743,6 +775,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get contacts country_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/contacts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contacts",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -758,7 +810,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA0NDMyODEwLCJleHAiOjE2MDQ0NDAwMTB9.IsuXsNb3J1AjWbpwjgv1HC3XfsYjPuf1F8tDhnal5TY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6MSwiaWF0IjoxNjA0NzA0NjA0LCJleHAiOjE2MDQ3MTE4MDR9.BpDsPUhbj3W_qy0HWJ6W_AHOXBZuWeseHZ6iXfvkmcs",
 									"type": "string"
 								}
 							]
@@ -766,14 +818,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cities",
+							"raw": "http://localhost:3000/cities/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"cities"
+								"cities",
+								"1"
 							]
 						}
 					},
