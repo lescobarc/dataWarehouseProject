@@ -113,11 +113,7 @@ createButton.addEventListener('click', () => {
             res.json().then((data) => {
                 alert('Company Exist');
             });
-        } else if (res.status == 404) {
-            res.json().then((data) => {
-                alert('Company Not Found');
-            });
-        }
+        } 
     })
 
 });
@@ -278,7 +274,6 @@ function showInfoCompany(id) {
                 cityCompanyUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
             } else {
                     console.log('Company Not Found');
-                    alert('Company Not Found');
             }
         })
 

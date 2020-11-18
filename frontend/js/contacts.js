@@ -60,11 +60,7 @@ let deleteButtonDeleteContact = document.getElementById('deleteButtonDeleteConta
 
 
 //1. get contacts
-
-
 function getContacts() {
-
-
     fetch('http://localhost:3000/contacts', {
         method: 'GET',
         headers: {
@@ -75,8 +71,6 @@ function getContacts() {
         .then(res => {
             let contact = res[0];
             if (res) {
-
-
 
                 //Create Table Contacts
                 tableBody.innerHTML = ""
@@ -100,14 +94,13 @@ function getContacts() {
                     <i class="fas fa-ellipsis-h iconPoints"></i>
                     <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>
                     <i class="fas fa-pencil-alt" id=${contact[i].contact_id} onclick = "showUpdateContact(this)"></i>
-                </td>
-            `;
+                </td> `;
+           
                     table.appendChild(row);
 
                     //Pagination
                     rowsPage.innerHTML = ""
                     for (let i = 1; i <= contact.length; i++) {
-                        /*  console.log(contact.length) */
                         const optionPag = document.createElement('option');
                         optionPag.innerText = `${i}`
                         rowsPage.appendChild(optionPag)
@@ -116,20 +109,13 @@ function getContacts() {
                     rowsTotal.innerText = `${contact.length}`
                     rowI.innerText = `${searchI}`
                     rowF.innerText = `${searchF}`
-
                 }
 
             } else {
-                res.json().then((data) => {
                     console.log('Contacts not found');
                     alert('Contacts not found');
-                });
             }
-
         })
-
-
-
 }
 getContacts();
 
@@ -137,7 +123,6 @@ getContacts();
 
 
 //2. Post Contacts
-
 addButton.addEventListener('click', () => {
     const companyContactSelectValue = companyContact.value.split(" ");
     const companyId = parseInt(companyContactSelectValue[0]);
@@ -177,22 +162,10 @@ addButton.addEventListener('click', () => {
                 console.log(data);
                 alert('Missing Arguments');
             });
-        } else if (res.status == 403) {
+        } else if (res.status == 405) {
             res.json().then((data) => {
                 console.log(data);
-                alert('Forbidden: No Permission To Access');
-            });
-        }
-        else if (res.status == 405) {
-            res.json().then((data) => {
-                console.log(data);
-                alert('Contact Exist');
-            });
-        }
-        else if (res.status == 406) {
-            res.json().then((data) => {
-                console.log(data);
-                alert('Verify: Password and Corfirmation Password');
+                alert('Email Contact Exist');
             });
         }
     })
@@ -228,7 +201,6 @@ regionContact.addEventListener('click', () => {
             if (res && validateSearchRegion.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
-                    /* console.log(res.users[i].name)  */
                     let row = document.createElement('option');
                     row.setAttribute('id', `rowRegion${res[i].region_id}`)
                     row.setAttribute('class', `rowRegion`)
@@ -241,13 +213,11 @@ regionContact.addEventListener('click', () => {
                     console.log(regionContact.value)
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Regions Not Found');
             }
 
 
         })
-
-    console.log('Search Realized');
     for (let i = countryContact.options.length; i >= 0; i--) {
         countryContact.remove(i);
     }
@@ -291,6 +261,8 @@ function getCountries() {
                         console.log(liCountry)
                         countryContact.appendChild(liCountry);
                     }
+                }else {
+                    console.log('Countries Not Found');
                 }
             })
         for (let i = cityContact.options.length; i >= 0; i--) {
@@ -331,13 +303,11 @@ function getCities() {
                         cityContact.appendChild(liCity);
                     }
                 } else {
-                    console.log('Search Realized');
+                    console.log('Cities Not Found');
                 }
-
             })
     }
     )
-
 }
 
 //Select Channel
@@ -366,7 +336,7 @@ channelContact.addEventListener('click', () => {
                     channelContact.appendChild(row);
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Channels Not Found');
             }
         })
 }
@@ -398,7 +368,7 @@ companyContact.addEventListener('click', () => {
                     companyContact.appendChild(row);
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Companies Not Found');
             }
         })
 }
@@ -406,7 +376,6 @@ companyContact.addEventListener('click', () => {
 
 //Add channel
 buttonAddChannel.addEventListener('click', () => {
-
     document.getElementById('channel2').classList.remove('hidden');
     document.getElementById('account2').classList.remove('hidden');
     document.getElementById('preferences2').classList.remove('hidden');
@@ -438,14 +407,13 @@ channelContact2.addEventListener('click', () => {
                     channelContact2.appendChild(row);
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Channels Not Found');
             }
         })
 }
 )
 
 // 3. Put contacts
-
 function showUpdateContact(i) {
     console.log(i)
     let id = i.id
@@ -476,12 +444,10 @@ function showInfoContact(id) {
             console.log(res)
             console.log(res.name)
             if (res) {
-
                 nameContactUp.value = `${res.name}`;
                 lastnameContactUp.value = `${res.lastname}`;
                 positionContactUp.value = `${res.position}`;
                 emailContactUp.value = `${res.email}`;
-
                 nameCompanyContactUp.innerHTML = ` <option label = ${res.position} value = ${res.company_id}>`;
                 regionContactUp.innerHTML = ` <option label = ${res.nameRegion} value = ${res.region_id}>`;
                 countryContactUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
@@ -494,10 +460,7 @@ function showInfoContact(id) {
                             <option value="75">75%</option>
                             <option value="100">100%</option>`;
             } else {
-                res.json().then((data) => {
-                    console.log('Contacts not found');
-                    alert('Contacts not found');
-                });
+                    console.log('Contact not found');
             }
 
         })
@@ -520,9 +483,7 @@ function updateContacts(id) {
     const channelContactSelectValue2Up = channelContact2Up.value.split(" ");
     const channelId2Up = parseInt(channelContactSelectValue2Up[0]);
    
-
     fetch(`http://localhost:3000/contact/${id}`, {
-
         method: 'PUT',
         body: `{"name":"${nameContactUp.value}", "lastname":"${lastnameContactUp.value}", "email":"${emailContactUp.value}", "address":"${addressContactUp.value}", "position":"${positionContactUp.value}", "company_id":"${companyIdUp}", "region_id":"${regionIdUp}","country_id":"${countryIdUp}","city_id":"${cityIdUp}", "interest":"${interestContactUp.value}", "channel1": "${channelIdUp}", "channel2": "${channelId2Up}", "account1":"${accountContactUp.value}", "account2":"${accountContact2Up.value}", "preferences1":"${preferencesContactUp.value}", "preferences2":"${preferencesContact2Up.value}"} `,
         headers: {
@@ -586,13 +547,12 @@ regionContactUp.addEventListener('click', () => {
                     console.log(regionContactUp.value)
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Regions Not Found');
             }
 
 
         })
 
-    console.log('Search Realized');
     for (let i = countryContactUp.options.length; i >= 0; i--) {
         countryContactUp.remove(i);
     }
@@ -635,6 +595,8 @@ function getCountriesUp() {
                         console.log(liCountryUp)
                         countryContactUp.appendChild(liCountryUp);
                     }
+                }else {
+                    console.log('Countries Not Found');
                 }
             })
         for (let i = cityContactUp.options.length; i >= 0; i--) {
@@ -675,7 +637,7 @@ function getCitiesUp() {
                         cityContactUp.appendChild(liCityUp);
                     }
                 } else {
-                    console.log('Search Realized');
+                    console.log('Cities Not Found');
                 }
 
             })
@@ -696,7 +658,6 @@ channelContactUp.addEventListener('click', () => {
         .then(res => {
             console.log(res)
             let validateSearchChannelUp = document.getElementsByClassName(`rowChannelUp`);
-
             if (res && validateSearchChannelUp.length == 0) {
                 for (let i = 0; i < res.length; i++) {
                     console.log(res)
@@ -710,7 +671,7 @@ channelContactUp.addEventListener('click', () => {
                     channelContactUp.appendChild(rowUp);
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Channels Not Found');
             }
         })
 }
@@ -742,7 +703,7 @@ companyContactUp.addEventListener('click', () => {
                     companyContactUp.appendChild(rowUp);
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Companies Not Found');
             }
         })
 }
@@ -750,7 +711,6 @@ companyContactUp.addEventListener('click', () => {
 
 //Add channel
 buttonAddChannelUp.addEventListener('click', () => {
-
     document.getElementById('channel2Up').classList.remove('hidden');
     document.getElementById('account2Up').classList.remove('hidden');
     document.getElementById('preferences2Up').classList.remove('hidden');
@@ -782,7 +742,7 @@ channelContact2Up.addEventListener('click', () => {
                     channelContact2Up.appendChild(rowUp);
                 }
             } else {
-                console.log('Search Realized');
+                console.log('Channels Not Found');
             }
         })
 }
@@ -814,20 +774,28 @@ async function deleteContact(id) {
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
-        }
-    })
-
-
+        }}).then((res) => {
+            if (res.status == 200) {
+                res.json().then((data) => {
+                    alert('Deleted');
+                });
+                location.reload()
+            }else if (res.status == 404) {
+                res.json().then((data) => {
+                    alert('Contact Not Found');
+                });
+            }
+            location.reload()
+        })
+    
     deleteContactsSection.classList.add('hidden');
     contactsSection.classList.remove('hidden');
-
-     location.reload() 
+    location.reload() 
 
 }
 
 
 //Sort Table
-
 function sortTable(n, type) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("contactsTable");
@@ -871,8 +839,6 @@ function searchFetch(searchI, searchF) {
 }
 
 //Select Delete
-
-
 function showDeleteContactSelect() {
     deleteContactsSection.classList.toggle('hidden')
     deleteButtonDeleteContact.addEventListener('click', () => {
@@ -885,17 +851,28 @@ function showDeleteContactSelect() {
     for (i = 0; i < elements.length; i++) {
         let id = elements[i].id
         if (elements[i].checked) {
-           
            await  fetch(`http://localhost:3000/contact/${id}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`
                 }
-            }) 
+            }).then((res) => {
+                if (res.status == 200) {
+                    res.json().then((data) => {
+                        alert('Deleted');
+                    });
+                    location.reload()
+                }else if (res.status == 404) {
+                    res.json().then((data) => {
+                        alert('Contact Not Found');
+                    });
+                }
+            })
         }
     }
-  location.reload() 
+
+    location.reload()
 }
 
 

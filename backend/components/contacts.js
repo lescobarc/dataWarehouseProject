@@ -20,7 +20,7 @@ async function existenceContact(req, res, next) {
   if (!dbContacts) {
     next();
   } else {
-    res.status(405).json("Contact Email exist");
+    res.status(405).json("Email Contact exist");
   }
 }
 
