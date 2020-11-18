@@ -225,26 +225,10 @@ function deleteRegion(id) {
     })
 }
 
-//5. get contacts region_id
-//Pagination
-let rowsPageR = document.getElementById("rowsPageR");
-let rowsOfPageR = document.getElementById("rowsOfPageR");
-let rowsTotalR = document.getElementById("rowsTotalR");
-let arrowLeftR = document.getElementById('arrowLeftR');
-let arrowRigthR = document.getElementById('arrowRigthR');
-let rowIR = document.getElementById('rowIR');
-let rowFR = document.getElementById('rowFR')
-let searchFR = parseInt(rowsPageR.value);
-let searchIR = 0;
 
+//5. get contacts region_id
 function showContactsRegion(i) {
-    tablePagination.classList.remove('hidden')
-    rowsPageR.length = 4
-    if (i !== 0) {
-        region_id = i.id;
-        localStorage.setItem("region_id", region_id);
-    }
-    region_id = localStorage.getItem("region_id")
+    region_id = i.id;
     fetch(`http://localhost:3000/contacts/regions/${region_id}`, {
         method: 'GET',
         headers: {
@@ -255,18 +239,8 @@ function showContactsRegion(i) {
         .then(res => {
             bodyTableContacts.innerHTML = " ";
             let contact = res;
-            if (res.length != 0) {
-                rowsPageR.innerHTML = ""
-                for (let i = 1; i <= contact.length; i++) {
-                    const optionPag = document.createElement('option');
-                    optionPag.innerText = `${i}`
-                    rowsPageR.appendChild(optionPag)
-                }
-                rowsPageR.value = searchFR - searchIR
-                rowsTotalR.innerText = `${contact.length}`
-                rowIR.innerText = `${searchIR}`
-                rowFR.innerText = `${searchFR}`
-                for (let i = searchIR; i < searchFR; i++) {
+            if (res) {
+                for (let i = 0; i < contact.length; i++) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
                     row.innerHTML += `
@@ -278,45 +252,17 @@ function showContactsRegion(i) {
                 <div class="progressBar">
                                 <div class="progressBar${contact[i].interest}"></div>
                 </div>
-                </td>`;
+                </td>
+            `;
                     bodyTableContacts.appendChild(row);
                 }
             } else {
-                rowIR.innerText = `0`
-                rowFR.innerText = `0`
+                console.log('Contacts Not Found');
             }
+
         })
+
 }
-
-//Pagination
-function searchFetch(searchI, searchF) {
-    showContactsRegion(searchI, searchF)
-}
-
-rowsPageR.addEventListener('change', () => {
-    searchFR = rowsPageR.value;
-    searchIR = 0;
-    searchFetch(searchIR, searchFR)
-    rowsPageR.selected
-})
-
-arrowRigthR.addEventListener('click', () => {
-    let validate = parseInt(searchFR) + parseInt(rowsPageR.value);
-    if (validate <= rowsPageR.length) {
-        searchIR = parseInt(searchIR) + parseInt(rowsPageR.value);
-        searchFR = parseInt(searchFR) + parseInt(rowsPageR.value);
-        searchFetch(parseInt(searchFR), parseInt(searchIR));
-    }
-})
-
-arrowLeftR.addEventListener('click', () => {
-    validate = searchIR - parseInt(rowsPageR.value)
-    if (validate >= 0) {
-        searchIR = searchIR - parseInt(rowsPageR.value);
-        searchFR = searchF - parseInt(rowsPageR.value);
-        searchFetch(parseInt(searchFR), parseInt(searchIR));
-    }
-})
 
 
 //COUNTRIES
@@ -494,17 +440,7 @@ function deleteCountry(id) {
 
 //5. get contacts country_id
 function showContactsCountry(i) {
-    tablePagination.classList.remove('hidden');
-    rowsPageR.length = 4;
-    searchFR = rowsPageR.length;
-    searchFR = parseInt(rowsPageR.value);
-    rowFR.innerText = `${searchFR}`;
-    searchIR = 0;
-    if (i !== 0) {
-        country_id = i.id;
-        localStorage.setItem("country_id", country_id);
-    }
-    country_id = localStorage.getItem("country_id")
+    country_id = i.id;
     fetch(`http://localhost:3000/contacts/countries/${country_id}`, {
         method: 'GET',
         headers: {
@@ -515,21 +451,7 @@ function showContactsCountry(i) {
         .then(res => {
             bodyTableContacts.innerHTML = " "
             let contact = res;
-            if (res.length != 0) {
-
-                //Pagination
-                rowsPageR.innerHTML = ""
-                for (let i = 1; i <= contact.length; i++) {
-                    const optionPag = document.createElement('option');
-                    optionPag.innerText = `${i}`
-                    rowsPageR.appendChild(optionPag)
-                }
-                rowsPageR.value = searchFR - searchIR
-                rowsTotalR.innerText = `${contact.length}`
-                rowIR.innerText = `${searchIR}`
-                searchFR = parseInt(rowsPageR.value);
-
-
+            if (res) {
                 for (let i = 0; i < contact.length; i++) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
@@ -542,15 +464,16 @@ function showContactsCountry(i) {
                 <div class="progressBar">
                                 <div class="progressBar${contact[i].interest}"></div>
                 </div>
-                </td> `;
+                </td>
+            `;
                     bodyTableContacts.appendChild(row);
                 }
             } else {
-                rowIR.innerText = `0`
-                rowFR.innerText = `0`
+                console.log('Contacts Not Found');
             }
         })
 }
+
 
 
 //CITIES
@@ -558,39 +481,39 @@ function showContactsCountry(i) {
 //1. get cities
 function getCities(i) {
     country_id = i.id
-         fetch(`http://localhost:3000/cities/${country_id}`, {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(respuesta => respuesta.json())
-            .then(res => {
-                let validateSearchCity = document.getElementById(`sectionCities${country_id}`);
-                if (res && validateSearchCity == null) {
-                    const ulCity = document.createElement('ul');
-                    ulCity.setAttribute('id', `sectionCities${country_id}`)
-                    ulCity.setAttribute('class', '')
-                    sectionCities.appendChild(ulCity)
-                    for (let i = 0; i < res.length; i++) {
-                        const liCity = document.createElement('li');
-                        liCity.setAttribute('id', `liCity${res[i].city_id}`)
-                        liCity.innerHTML += `
+    fetch(`http://localhost:3000/cities/${country_id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            let validateSearchCity = document.getElementById(`sectionCities${country_id}`);
+            if (res && validateSearchCity == null) {
+                const ulCity = document.createElement('ul');
+                ulCity.setAttribute('id', `sectionCities${country_id}`)
+                ulCity.setAttribute('class', '')
+                sectionCities.appendChild(ulCity)
+                for (let i = 0; i < res.length; i++) {
+                    const liCity = document.createElement('li');
+                    liCity.setAttribute('id', `liCity${res[i].city_id}`)
+                    liCity.innerHTML += `
                   <p>  <span class=""> ${res[i].nameCity} </span>
                      <i class="fas fa-trash" id= "${res[i].city_id}" onclick = "showDeleteCity(this)"> </i>
                      <i class="fas fa-pencil-alt" id= "${res[i].city_id}" onclick = "showUpdateCity(this) "></i>
                      <i class="fas fa-id-card-alt" id= "${res[i].city_id}" onclick = "showContactsCity(this)"></i> <p>`;
-                        document.getElementById(`liCountry${country_id}`).appendChild(liCity);
-                    }
-                } else {
-                    console.log('Cities not found');
-                    for (let i = 0; i < res.length; i++) {
-                        rowDelete = document.getElementById(`liCity${res[i].city_id}`);
-                        rowDelete.classList.toggle('hidden');
-                    }
+                    document.getElementById(`liCountry${country_id}`).appendChild(liCity);
                 }
+            } else {
+                console.log('Cities not found');
+                for (let i = 0; i < res.length; i++) {
+                    rowDelete = document.getElementById(`liCity${res[i].city_id}`);
+                    rowDelete.classList.toggle('hidden');
+                }
+            }
 
-            })
+        })
 };
 
 //2. post city
@@ -626,7 +549,7 @@ function createCity(id) {
                 alert('Created');
             });
             location.reload()
-        }else if (res.status == 400) {
+        } else if (res.status == 400) {
             res.json().then((data) => {
                 alert('Missing Arguments');
             });
@@ -727,19 +650,8 @@ function deleteCity(id) {
 }
 
 //5. get contacts city_id
-
 function showContactsCity(i) {
-    tablePagination.classList.remove('hidden')
-    rowsPageR.length = 4
-    searchFR = parseInt(rowsPageR.value);
-    rowFR.innerText = `${searchFR}`
-    searchIR = 0;
-
-    if (i !== 0) {
-        city_id = i.id;
-        localStorage.setItem("city_id", city_id);
-    }
-    city_id = localStorage.getItem("city_id")
+    city_id = i.id;
     fetch(`http://localhost:3000/contacts/cities/${city_id}`, {
         method: 'GET',
         headers: {
@@ -750,22 +662,7 @@ function showContactsCity(i) {
         .then(res => {
             bodyTableContacts.innerHTML = " "
             let contact = res;
-
-            //Pagination
-            rowsPageR.innerHTML = ""
-            for (let i = 1; i <= contact.length; i++) {
-                const optionPag = document.createElement('option');
-                optionPag.innerText = `${i}`
-                rowsPageR.appendChild(optionPag)
-            }
-            rowsPageR.value = searchFR - searchIR
-            rowsTotalR.innerText = `${contact.length}`
-            rowIR.innerText = `${searchIR}`
-            rowFR.innerText = `${searchFR}`
-
-
-
-            if (res.length !== 0) {
+            if (res) {
                 for (let i = 0; i < contact.length; i++) {
                     const row = document.createElement('tr');
                     row.setAttribute('class', 'arrowContact')
@@ -778,12 +675,11 @@ function showContactsCity(i) {
                 <div class="progressBar">
                                 <div class="progressBar${contact[i].interest}"></div>
                 </div>
-                </td>`;
+                </td> `;
                     bodyTableContacts.appendChild(row);
                 }
             } else {
-                rowIR.innerText = `0`
-                rowFR.innerText = `0`
+                console.log('Contacts Not Found');
             }
         })
 }
