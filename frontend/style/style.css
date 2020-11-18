@@ -713,6 +713,7 @@ nav #imgLogo {
 #citySection table {
   width: 550px;
   margin: 1%;
+  margin-bottom: 0;
 }
 
 #citySection button {
@@ -774,7 +775,7 @@ nav #imgLogo {
 }
 
 .mainCityRegion {
-  margin: 3% 2%;
+  margin: 4% 1%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -803,7 +804,7 @@ nav #imgLogo {
 .sectionContactsRegions {
   border: 1px solid rgba(0, 0, 0, 0.1);
   width: 750px;
-  height: 500px;
+  height: auto;
   margin-left: 30px;
 }
 

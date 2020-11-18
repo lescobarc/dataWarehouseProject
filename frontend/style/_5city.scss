@@ -20,6 +20,8 @@
     table{
       width: 550px;
     margin: 1%;
+    margin-bottom: 0;
+
     }
       button{
           float: right;
@@ -81,7 +83,7 @@
 
 
  .mainCityRegion{
-   margin:3% 2%;
+   margin:4% 1%;
    display: flex;
    #divTableContacts{
      height: auto;
@@ -107,6 +109,7 @@
  .sectionContactsRegions{
   border: 1px solid rgba(0, 0, 0, 0.1);
   width: 750px;
-  height: 500px;
+  height: auto;
   margin-left: 30px;
+ 
  }
