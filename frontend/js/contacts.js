@@ -15,6 +15,7 @@ let cancelButton = document.getElementById('cancelButton');
 let addButton = document.getElementById('addButton');
 let nameContact = document.getElementById('nameContact');
 let lastnameContact = document.getElementById('lastnameContact');
+let addressContact = document.getElementById('addressContact');
 let nameCompanyContact = document.getElementById('companyContact');
 let regionContact = document.getElementById('regionContact');
 let countryContact = document.getElementById('countryContact');
@@ -36,6 +37,7 @@ let createButtonUp = document.getElementById('createButtonUp');
 let cancelButtonUp = document.getElementById('cancelButtonUp');
 let addButtonUp = document.getElementById('addButtonUp');
 let nameContactUp = document.getElementById('nameContactUp');
+let addressContactUp = document.getElementById('addressContactUp');
 let lastnameContactUp = document.getElementById('lastnameContactUp');
 let nameCompanyContactUp = document.getElementById('companyContactUp');
 let regionContactUp = document.getElementById('regionContactUp');
@@ -154,7 +156,7 @@ addButton.addEventListener('click', () => {
 
     fetch('http://localhost:3000/contact', {
         method: 'POST',
-        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}","position":"${positionContact.value}", "company_id":"${companyId}", "region_id":"${regionId}","country_id":"${countryId}","city_id":"${cityId}", "interest":"${interestContact.value}", "channel1": "${channelId}", "channel2": "${channelId2}", "account1":"${accountContact.value}", "account2":"${accountContact2.value}", "preferences1":"${preferencesContact.value}", "preferences2":"${preferencesContact2.value}"} `,
+        body: `{"name":"${nameContact.value}", "lastname":"${lastnameContact.value}", "email":"${emailContact.value}", "address":"${addressContact.value}", "position":"${positionContact.value}", "company_id":"${companyId}", "region_id":"${regionId}","country_id":"${countryId}","city_id":"${cityId}", "interest":"${interestContact.value}", "channel1": "${channelId}", "channel2": "${channelId2}", "account1":"${accountContact.value}", "account2":"${accountContact2.value}", "preferences1":"${preferencesContact.value}", "preferences2":"${preferencesContact2.value}"} `,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -462,6 +464,7 @@ function showUpdateContact(i) {
 
 }
 function showInfoContact(id) {
+    console.log(id)
     fetch(`http://localhost:3000/contact/${id}`, {
         method: 'GET',
         headers: {
@@ -471,7 +474,7 @@ function showInfoContact(id) {
     }).then(respuesta => respuesta.json())
         .then(res => {
             console.log(res)
-
+            console.log(res.name)
             if (res) {
 
                 nameContactUp.value = `${res.name}`;
@@ -521,7 +524,7 @@ function updateContacts(id) {
     fetch(`http://localhost:3000/contact/${id}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameContactUp.value}", "lastname":"${lastnameContactUp.value}", "email":"${emailContactUp.value}","position":"${positionContactUp.value}", "company_id":"${companyIdUp}", "region_id":"${regionIdUp}","country_id":"${countryIdUp}","city_id":"${cityIdUp}", "interest":"${interestContactUp.value}", "channel1": "${channelIdUp}", "channel2": "${channelId2Up}", "account1":"${accountContactUp.value}", "account2":"${accountContact2Up.value}", "preferences1":"${preferencesContactUp.value}", "preferences2":"${preferencesContact2Up.value}"} `,
+        body: `{"name":"${nameContactUp.value}", "lastname":"${lastnameContactUp.value}", "email":"${emailContactUp.value}", "address":"${addressContactUp.value}", "position":"${positionContactUp.value}", "company_id":"${companyIdUp}", "region_id":"${regionIdUp}","country_id":"${countryIdUp}","city_id":"${cityIdUp}", "interest":"${interestContactUp.value}", "channel1": "${channelIdUp}", "channel2": "${channelId2Up}", "account1":"${accountContactUp.value}", "account2":"${accountContact2Up.value}", "preferences1":"${preferencesContactUp.value}", "preferences2":"${preferencesContact2Up.value}"} `,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`

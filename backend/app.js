@@ -197,6 +197,7 @@ app.post("/contact", validateToken, existenceContact,  addContact, (req, res) =>
 app.get("/contact/:value", validateToken, infoContact, (req, res) => {
   try {
     const { contact } = req;
+    console.log(contact)
     res.status(200).json(contact);
   } catch (err) {
     res.status(404).json("Not Found");

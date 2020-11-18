@@ -59,9 +59,10 @@ async function addContact(req, res, next) {
 // get info of contact
 async function infoContact(req, res, next) {
   let id = req.params.value;
- const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.address, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id`
+ const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.address, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id where contacts.contact_id =${id} `
   const [dbContact] = await sequelize.query(query, { raw: true });
   const foundContact = dbContact[0];
+  console.log(foundContact)
   req.contact = foundContact;
   next();
 }
