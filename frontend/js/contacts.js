@@ -95,7 +95,7 @@ function getContacts() {
                     <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>
                     <i class="fas fa-pencil-alt" id=${contact[i].contact_id} onclick = "showUpdateContact(this)"></i>
                 </td> `;
-           
+
                     table.appendChild(row);
 
                     //Pagination
@@ -110,10 +110,9 @@ function getContacts() {
                     rowI.innerText = `${searchI}`
                     rowF.innerText = `${searchF}`
                 }
-
             } else {
-                    console.log('Contacts not found');
-                    alert('Contacts not found');
+                console.log('Contacts not found');
+                alert('Contacts not found');
             }
         })
 }
@@ -145,7 +144,6 @@ addButton.addEventListener('click', () => {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
         }
-
     }).then((res) => {
         if (res.status == 200) {
             res.json().then((data) => {
@@ -241,7 +239,7 @@ function getCountries() {
                             <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
                         countryContact.appendChild(liCountry);
                     }
-                }else {
+                } else {
                     console.log('Countries Not Found');
                 }
             })
@@ -362,8 +360,8 @@ channelContact2.addEventListener('click', () => {
                     row.setAttribute('class', `rowChannel2`)
                     row.innerHTML += `
                   <span class="caret"  id ="${res[i].channel_id}" value="${res[i].channel_id}"> ${res[i].channel_id} ${res[i].nameChannel} </span>  `;
-                   
-                  channelContact2.appendChild(row);
+
+                    channelContact2.appendChild(row);
                 }
             } else {
                 console.log('Channels Not Found');
@@ -412,7 +410,7 @@ function showInfoContact(id) {
                             <option value="75">75%</option>
                             <option value="100">100%</option>`;
             } else {
-                    console.log('Contact not found');
+                console.log('Contact not found');
             }
 
         })
@@ -432,7 +430,7 @@ function updateContacts(id) {
     const channelIdUp = parseInt(channelContactSelectValueUp[0]);
     const channelContactSelectValue2Up = channelContact2Up.value.split(" ");
     const channelId2Up = parseInt(channelContactSelectValue2Up[0]);
-   
+
     fetch(`http://localhost:3000/contact/${id}`, {
         method: 'PUT',
         body: `{"name":"${nameContactUp.value}", "lastname":"${lastnameContactUp.value}", "email":"${emailContactUp.value}", "address":"${addressContactUp.value}", "position":"${positionContactUp.value}", "company_id":"${companyIdUp}", "region_id":"${regionIdUp}","country_id":"${countryIdUp}","city_id":"${cityIdUp}", "interest":"${interestContactUp.value}", "channel1": "${channelIdUp}", "channel2": "${channelId2Up}", "account1":"${accountContactUp.value}", "account2":"${accountContact2Up.value}", "preferences1":"${preferencesContactUp.value}", "preferences2":"${preferencesContact2Up.value}"} `,
@@ -463,7 +461,7 @@ function updateContacts(id) {
     contactsSection.classList.remove('hidden');
 }
 
- 
+
 
 
 //Select Region
@@ -527,7 +525,7 @@ function getCountriesUp() {
                             <span class="caret" id ="${res[i].country_id}" value="${res[i].country_id}"> ${res[i].country_id} ${res[i].nameCountry}  </span> `;
                         countryContactUp.appendChild(liCountryUp);
                     }
-                }else {
+                } else {
                     console.log('Countries Not Found');
                 }
             })
@@ -683,23 +681,24 @@ async function deleteContact(id) {
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
-        }}).then((res) => {
-            if (res.status == 200) {
-                res.json().then((data) => {
-                    alert('Deleted');
-                });
-                location.reload()
-            }else if (res.status == 404) {
-                res.json().then((data) => {
-                    alert('Contact Not Found');
-                });
-            }
+        }
+    }).then((res) => {
+        if (res.status == 200) {
+            res.json().then((data) => {
+                alert('Deleted');
+            });
             location.reload()
-        })
-    
+        } else if (res.status == 404) {
+            res.json().then((data) => {
+                alert('Contact Not Found');
+            });
+        }
+        location.reload()
+    })
+
     deleteContactsSection.classList.add('hidden');
     contactsSection.classList.remove('hidden');
-    location.reload() 
+    location.reload()
 
 }
 
@@ -751,16 +750,16 @@ function searchFetch(searchI, searchF) {
 function showDeleteContactSelect() {
     deleteContactsSection.classList.toggle('hidden')
     deleteButtonDeleteContact.addEventListener('click', () => {
-       selectDelete()
+        selectDelete()
     });
 }
 
- async function selectDelete() {
+async function selectDelete() {
     let elements = document.getElementsByName("check");
     for (i = 0; i < elements.length; i++) {
         let id = elements[i].id
         if (elements[i].checked) {
-           await  fetch(`http://localhost:3000/contact/${id}`, {
+            await fetch(`http://localhost:3000/contact/${id}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
@@ -772,7 +771,7 @@ function showDeleteContactSelect() {
                         alert('Deleted');
                     });
                     location.reload()
-                }else if (res.status == 404) {
+                } else if (res.status == 404) {
                     res.json().then((data) => {
                         alert('Contact Not Found');
                     });

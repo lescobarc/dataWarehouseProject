@@ -15,7 +15,6 @@ async function listContacts(req, res, next) {
 //2. post contact
 async function existenceContact(req, res, next) {
   const { email } = req.body;
-  console.log(req.body)
   const dbContacts = await findContactName(email);
   if (!dbContacts) {
     next();
@@ -62,7 +61,6 @@ async function infoContact(req, res, next) {
  const query = `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.address, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id where contacts.contact_id =${id} `
   const [dbContact] = await sequelize.query(query, { raw: true });
   const foundContact = dbContact[0];
-  console.log(foundContact)
   req.contact = foundContact;
   next();
 }
@@ -72,28 +70,15 @@ async function infoContact(req, res, next) {
 async function putContact(req, res, next) {
   const { name, lastname, email, address, region_id, country_id, city_id, company_id, position, interest, channel1, account1, preferences1, channel2, account2, preferences2 } = req.body;
   let id = req.params.value;
-  console.log(id)
   if (id) {
     const contactToUpdate = await findContactById(id);
     const contactChannelToUpdate = await findContact_channel_idByContact_id(id);
     const contactChannelToUpdate1 = contactChannelToUpdate[0];
     const contactChannelToUpdate2 = contactChannelToUpdate[1];
-    console.log(contactToUpdate)
-    console.log(contactChannelToUpdate)
-    console.log(contactChannelToUpdate1)
-    console.log(contactChannelToUpdate2)
     const query = updateQuery("contacts", `name = '${name}', lastname = '${lastname}',  email= '${email}',  address= '${address}', region_id = '${region_id}', country_id = '${country_id}', city_id = '${city_id}', company_id = '${company_id}', position = '${position}',  interest = '${interest}'`, `contact_id = '${id}'`);
     const [contactPut] = await sequelize.query(query, { raw: true });
- console.log('NOW')
- console.log(contactChannelToUpdate1)
-    console.log(contactChannelToUpdate2)
-    console.log(channel1)
-    console.log(account1)
-
-
+ 
     if (contactChannelToUpdate1 !== undefined && !isNaN(channel1) && account1 !== " ") {
-      console.log(channel1)
-    console.log(account1)
       const query2 = updateQuery("contacts_channels", `channel_id = '${channel1}', account = '${account1}',  preferences= '${preferences1}'`, `contact_channel_id = '${contactChannelToUpdate1.contact_channel_id}' `);
       const [contactChannel1] = await sequelize.query(query2, { raw: true });
     }else if(account1 !== '' && channel1 !== NaN ){
@@ -118,19 +103,14 @@ async function findContactById(id) {
   const query = selectQuery("contacts", "*", `contact_id = '${id}'`);
   const [dbContacts] = await sequelize.query(query, { raw: true });
   const foundContact = dbContacts[0];
-  console.log(foundContact)
   return foundContact;
 }
 
 async function findContact_channel_idByContact_id(id) {
   const query = selectQuery("contacts_channels", "*", `contact_id = '${id}'`);
-  console.log(query)
   const [dbContacts] = await sequelize.query(query, { raw: true });
   const foundContactChannel1 = dbContacts[0];
   const foundContactChannel2 = dbContacts[1];
-  console.log(dbContacts)
-  console.log(foundContactChannel1)
-  console.log(foundContactChannel2)
   return dbContacts;
 }
 
@@ -138,7 +118,6 @@ async function findContact_channel_idByContact_id(id) {
 //6.delete contact
 async function deleteContact(req, res, next) {
   let id = req.params.contact_id;
-  console.log(id)
   const findContact = await findContactById(id);
   if (findContact) {
     const query = deleteQuery("contacts", `contact_id = ${id}`);
