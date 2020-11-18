@@ -8,7 +8,6 @@ async function listCompanies(req, res, next) {
   const company_id = req.params.company_id;
   const query = `SELECT companies.company_id, companies.nameCompany, companies.address, companies.email, companies.tel, regions.nameRegion, countries.nameCountry, cities.nameCity FROM companies INNER JOIN regions ON companies.region_id = regions.region_id INNER JOIN countries ON companies.country_id= countries.country_id INNER JOIN cities ON companies.city_id = cities.city_id`
   const [companies] = await sequelize.query(query, { raw: true });
-  console.log(query)
   req.companiesList = companies;
   next();
 }
@@ -17,7 +16,6 @@ async function listCompanies(req, res, next) {
 //Post company
 async function existenceCompany(req, res, next) {
   const { nameCompany } = req.body;
-  console.log(req.body)
   const dbCompanies = await findCompanyName(nameCompany);
   if (!dbCompanies) {
     next();
@@ -66,18 +64,12 @@ async function infoCompany(req, res, next) {
 //Update company
 async function putCompany(req, res, next) {
   const { nameCompany, address, email, tel, region_id, country_id, city_id } = req.body;
-  console.log(req.body)
   let id = req.params.company_id;
-  console.log(id)
-
   if (id) {
     const companyToUpdate = await findCompanyById(id);
-    console.log(companyToUpdate)
     if (nameCompany !== "" && address !== "" && email !== "" && tel !== "" && region_id !== "" && country_id !== "" && city_id !== "") {
       const query = updateQuery("companies", `nameCompany = '${nameCompany}', address = '${address}',  email= '${email}', tel = '${tel}', region_id = '${region_id}', country_id = '${country_id}', city_id = '${city_id}'`, `company_id = '${id}'`);
-      console.log(nameCompany)
       const [companyPut] = await sequelize.query(query, { raw: true });
-      console.log(companyPut)
       req.updatedCompany = { nameCompany, address, email, tel, region_id, country_id, city_id };
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
@@ -92,14 +84,12 @@ async function findCompanyById(id) {
   const query = selectQuery("companies", "*", `company_id = '${id}'`);
   const [dbCompanies] = await sequelize.query(query, { raw: true });
   const foundCompany = dbCompanies[0];
-  console.log(foundCompany)
   return foundCompany;
 }
 
 //Delete company
 async function deleteCompany(req, res, next) {
   let id = req.params.company_id;
-  console.log(id)
   const findCompany = await findCompanyById(id);
   if (findCompany) {
     const query = deleteQuery("companies", `company_id = ${id}`);
@@ -107,7 +97,7 @@ async function deleteCompany(req, res, next) {
     req.isDeleted = true;
     next();
   } else {
-    res.status(404).json("User Not Found");
+    res.status(404).json("Company Not Found");
   }
 }
 
