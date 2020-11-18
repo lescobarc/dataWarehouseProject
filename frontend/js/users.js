@@ -224,8 +224,6 @@ cancelButtonDeleteUser.addEventListener('click', () => {
 function showDeleteUser(i) {
     let id = i.id
     deleteUsersSection.classList.toggle('hidden')
-
-
     deleteButtonDeleteUser.addEventListener('click', () => {
         deleteUser(id)
     });
@@ -250,10 +248,8 @@ function deleteUser(id) {
                 alert('User Not Found');
             });
         }
-
         deleteUsersSection.classList.add('hidden');
         usersSection.classList.remove('hidden');
-
         location.reload()
     })
 }

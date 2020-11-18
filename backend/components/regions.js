@@ -82,6 +82,7 @@ async function findRegionById(id) {
   console.log(foundRegion)
   return foundRegion;
 }
+
 //4.delete region
 async function deleteRegion(req, res, next) {
   let id = req.params.region_id;
@@ -108,8 +109,6 @@ async function listContactsRegion_id(req, res, next) {
   req.contacts = contactsRegionId;
   next();
 }
-
-
 
 //COUNTRIES
 
