@@ -313,6 +313,7 @@ function showUpdateCompany(i) {
     });
 }
 function showInfoCompany(id) {
+    console.log(nameCompanyUp)
     fetch(`http://localhost:3000/company/${id}`, {
         method: 'GET',
         headers: {
@@ -350,7 +351,7 @@ function updateUsers(id) {
     fetch(`http://localhost:3000/company/${id}`, {
 
         method: 'PUT',
-        body: `{"name":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
+        body: `{"nameCompany":"${nameCompanyUp.value}","address":"${addressCompanyUp.value}","email":"${emailCompanyUp.value}", "tel":"${telCompanyUp.value}", "region_id":"${regionCompanyUp.value}","country_id":"${countryCompanyUp.value}","city_id":"${cityCompanyUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -362,7 +363,7 @@ function updateUsers(id) {
                 console.log(data);
                 alert('Updated');
             });
-            location.reload()
+            location.reload() 
         }
         else if (res.status == 400) {
             res.json().then((data) => {
