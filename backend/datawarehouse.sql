@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2020 a las 05:13:35
+-- Tiempo de generación: 18-11-2020 a las 20:25:29
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -37,10 +37,8 @@ CREATE TABLE `channels` (
 --
 
 INSERT INTO `channels` (`channel_id`, `nameChannel`) VALUES
-(1, 'Whatsapp'),
-(2, 'Instagram'),
-(3, 'Facebook'),
-(4, 'Linkedin');
+(1, 'Facebook'),
+(2, 'Instagram');
 
 -- --------------------------------------------------------
 
@@ -146,7 +144,23 @@ INSERT INTO `contacts` (`contact_id`, `name`, `lastname`, `email`, `address`, `r
 (7, 'Verónica', 'Penagos', 'vero5@gmail.com', 'cll 12 #12-12', 1, 1, 1, 9, 'UX Designer', 25),
 (8, 'Felipe', 'Perez', 'felipe@gmail.com', 'cll 78 #98-10', 2, 6, 13, 7, 'UX Designer', 25),
 (9, 'Lorena', 'Páez', 'lorepaez@gmail.com', 'cll 12 #77-88', 3, 9, 18, 1, 'Product', 25),
-(10, 'Valentina', 'Soto', 'valens@hotmail.com', 'cll 00 #89-34', 1, 3, 8, 6, 'Sales', 0);
+(10, 'Valentina', 'Soto', 'valens@hotmail.com', 'cll 00 #89-34', 1, 3, 8, 6, 'Sales', 0),
+(11, 'Catalia', 'Silva', 'catasv@gmail.com', 'cll 30 #67-89', 1, 1, 1, 1, 'Developer', 100),
+(12, 'Isabel', 'Restrepo', 'isares@hotmail.com', 'cll 66 #67 - 87', 1, 1, 2, 2, 'Sales', 75),
+(13, 'Pablo', 'Serna', 'pablos@yahoo.com', 'cll 10 #45-85', 1, 1, 3, 3, 'Sales', 50),
+(14, 'Manuel', 'Vélez', 'manuelv@gmail.com', 'cll 80 #67 -80', 1, 1, 4, 4, 'UX Designer', 25),
+(15, 'Lina', 'Polanía', 'linap@gmail.com', 'cll 70 #95-89', 1, 2, 5, 5, 'Developer', 0),
+(16, 'Luisa', 'Linares', 'luisalin@hotmail.com', 'cll 77 #67 -87', 1, 2, 6, 6, 'Sales', 100),
+(17, 'Camilo', 'Alarcón', 'camialarc@gmail.com', 'cll 80 #56-91', 1, 3, 8, 7, 'Developer', 25),
+(18, 'Mateo', 'Arango', 'mateoar@gmail.com', 'cll 67 #11-77', 1, 3, 9, 8, 'UX Designer', 25),
+(19, 'Tatiana', 'Henao', 'tatianah@yahoo.com', 'cll 15 #61-96', 1, 4, 10, 8, 'Sales', 100),
+(20, 'Kelly', 'Toro', 'kellyt@hotmail.com', 'cll 10 #10-78', 2, 6, 13, 9, 'Developer', 75),
+(21, 'Michelle', 'Peláez', 'michellep@gmail.com', 'cll 65 #94 -87', 2, 6, 14, 1, 'Sales', 50),
+(22, 'Sebastian', 'Perez', 'sebasp4@hotmail.com', 'cll 10 #10-99', 2, 7, 15, 2, 'Developer', 100),
+(23, 'Jacobo', 'Páez', 'jacob67@gmail.com', 'cll 43 #76-99', 3, 8, 16, 4, 'Product', 50),
+(24, 'Carlos', 'Restrepo', 'carlosr78@gmaill.com', 'cll 67 #10-88', 3, 9, 18, 7, 'Sales', 75),
+(25, 'Natalia', 'Sanchez', 'natys@gmail.com', 'cll 35 #67 -87', 4, 10, 19, 8, 'UX Designer', 25),
+(26, 'Bruna', 'Cohelo', 'brunac@hotmail.com', 'cll 95 #47 -87', 1, 4, 11, 5, 'Product', 0);
 
 -- --------------------------------------------------------
 
@@ -161,6 +175,35 @@ CREATE TABLE `contacts_channels` (
   `account` varchar(50) NOT NULL,
   `preferences` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `contacts_channels`
+--
+
+INSERT INTO `contacts_channels` (`contact_channel_id`, `contact_id`, `channel_id`, `account`, `preferences`) VALUES
+(1, 1, 1, 'andreaaristi', 'Sin Preferencia'),
+(2, 1, 2, 'andreaar', 'Canal Favorito'),
+(3, 2, 2, 'camid2', 'No Molestar'),
+(4, 3, 1, 'diegod5', 'Canal Favorito'),
+(5, 4, 1, 'enestofer', 'Sin Preferencia'),
+(6, 5, 1, 'hector32', 'Canal Favorito'),
+(7, 6, 1, 'julial', 'Sin Preferencia'),
+(8, 9, 1, 'lore78', 'No Molestar'),
+(9, 9, 2, 'lore43', 'Sin Preferencia'),
+(10, 10, 2, 'valen222', 'No Molestar'),
+(11, 7, 1, 'vero12', 'Canal Favorito'),
+(12, 12, 1, 'isabel3', 'Sin Preferencia'),
+(13, 13, 2, 'pablo9', 'Canal Favorito'),
+(14, 14, 1, 'manuel2', 'No Molestar'),
+(15, 15, 2, 'lina76', 'Canal Favorito'),
+(16, 9, 1, 'lore4', 'Sin Preferencia'),
+(17, 16, 1, 'luisa09', 'No Molestar'),
+(18, 17, 1, 'cami98', 'Sin Preferencia'),
+(19, 18, 2, 'mate54', 'Canal Favorito'),
+(20, 19, 2, 'tati00', 'No Molestar'),
+(21, 20, 1, 'kelly66', 'Canal Favorito'),
+(22, 23, 2, 'jacob6', 'Sin Preferencia'),
+(23, 26, 1, 'brunac', 'No Molestar');
 
 -- --------------------------------------------------------
 
@@ -318,7 +361,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `channels`
 --
 ALTER TABLE `channels`
-  MODIFY `channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cities`
@@ -336,13 +379,13 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT de la tabla `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `contacts_channels`
 --
 ALTER TABLE `contacts_channels`
-  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `countries`
