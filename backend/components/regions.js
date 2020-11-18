@@ -16,8 +16,6 @@ async function listRegions(req, res, next) {
 //2. post region
 async function existenceRegion(req, res, next) {
   const { nameRegion } = req.body;
-  console.log(req.body)
-  console.log(req.body.nameRegion)
   const dbRegions = await findRegion(nameRegion);
   if (!dbRegions) {
     next();
@@ -28,7 +26,6 @@ async function existenceRegion(req, res, next) {
 
 
 async function findRegion(nameRegion) {
-  console.log(nameRegion)
   const query = selectQuery("regions", "nameRegion", `nameRegion = '${nameRegion}'`);
   const [dbRegions] = await sequelize.query(query, { raw: true });
   const foundRegion = dbRegions[0];
@@ -37,13 +34,10 @@ async function findRegion(nameRegion) {
 
 async function addRegion(req, res, next) {
   const { nameRegion } = req.body;
-  console.log(req.body)
   if (nameRegion) {
     const query = insertQuery("regions", "nameRegion", [nameRegion]);
     [region_id] = await sequelize.query(query, { raw: true });
-    console.log(region_id)
     req.createdRegionId = region_id;
-    console.log(region_id)
     next();
   } else {
     res.status(400).json("Bad Request: Missing Arguments");
@@ -53,18 +47,12 @@ async function addRegion(req, res, next) {
 //3. Update Region
 async function putRegion(req, res, next) {
   const { nameRegion } = req.body;
-  console.log(nameRegion)
   let id = req.params.region_id;
-  console.log(id)
-
   if (id) {
     const regionToUpdate = await findRegionById(id);
-    console.log(regionToUpdate)
     if (nameRegion !== "") {
       const query = updateQuery("regions", `nameRegion = '${nameRegion}'`, `region_id = '${id}'`);
-      console.log(nameRegion)
       const [regionPut] = await sequelize.query(query, { raw: true });
-      console.log(regionPut)
       req.updatedRegion = { nameRegion };
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
@@ -79,14 +67,12 @@ async function findRegionById(id) {
   const query = selectQuery("regions", "*", `region_id = '${id}'`);
   const [dbRegion] = await sequelize.query(query, { raw: true });
   const foundRegion = dbRegion[0];
-  console.log(foundRegion)
   return foundRegion;
 }
 
 //4.delete region
 async function deleteRegion(req, res, next) {
   let id = req.params.region_id;
-  console.log(id)
   const findRegion = await findRegionById(id);
   if (findRegion) {
     const query = deleteQuery("regions", `region_id = ${id}`);
@@ -101,11 +87,8 @@ async function deleteRegion(req, res, next) {
 //5. contacts region_id
 async function listContactsRegion_id(req, res, next) {
   let id = req.params.region_id;
-  console.log(id)
   const query =  `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id WHERE regions.region_id =${id} `
-  console.log(query)
   const [contactsRegionId] = await sequelize.query(query, { raw: true });
-  console.log(query)
   req.contacts = contactsRegionId;
   next();
 }
@@ -125,7 +108,6 @@ async function listCountriesByRegion(req, res, next) {
 async function existenceCountry(req, res, next) {
   const { nameCountry } = req.body;
   const region_id = req.params.region_id;
-  console.log(req.body)
   const dbCountries = await findCountry(nameCountry);
   if (!dbCountries) {
     next();
@@ -135,7 +117,6 @@ async function existenceCountry(req, res, next) {
 }
 
 async function findCountry(nameCountry) {
-  console.log(nameCountry)
   const query = selectQuery("countries", "nameCountry, region_id", `nameCountry = '${nameCountry}'`);
   const [dbCountries] = await sequelize.query(query, { raw: true });
   const foundCountry = dbCountries[0];
@@ -149,9 +130,7 @@ async function addCountry(req, res, next) {
     const query = insertQuery("countries", "nameCountry, region_id",
       [nameCountry, region_id]);
     [country_id] = await sequelize.query(query, { raw: true });
-    console.log(country_id)
     req.createdCountryId = country_id;
-    console.log(country_id)
     next();
   } else {
     res.status(400).json("Bad Request: Missing Arguments");
@@ -162,18 +141,13 @@ async function addCountry(req, res, next) {
 //3. Update country
 async function putCountry(req, res, next) {
   const { nameCountry } = req.body;
-  console.log(nameCountry)
   let id = req.params.country_id;
-  console.log(id)
 
   if (id) {
     const countryToUpdate = await findCountryById(id);
-    console.log(countryToUpdate)
     if (nameCountry !== "") {
       const query = updateQuery("countries", `nameCountry = '${nameCountry}'`, `country_id = '${id}'`);
-      console.log(nameCountry)
       const [countryPut] = await sequelize.query(query, { raw: true });
-      console.log(countryPut)
       req.updatedCountry = { nameCountry };
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
@@ -188,14 +162,12 @@ async function findCountryById(id) {
   const query = selectQuery("countries", "*", `country_id = '${id}'`);
   const [dbCountry] = await sequelize.query(query, { raw: true });
   const foundCountry = dbCountry[0];
-  console.log(foundCountry)
   return foundCountry;
 }
 
 //4.delete country
 async function deleteCountry(req, res, next) {
   let id = req.params.country_id;
-  console.log(id)
   const findCountry = await findCountryById(id);
   if (findCountry) {
     const query = deleteQuery("countries", `country_id = ${id}`);
@@ -210,11 +182,8 @@ async function deleteCountry(req, res, next) {
 //5. contacts country_id
 async function listContactsCountry_id(req, res, next) {
   let id = req.params.country_id;
-  console.log(id)
   const query =  `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id WHERE countries.country_id =${id} `
-  console.log(query)
   const [contactsCountryId] = await sequelize.query(query, { raw: true });
-  console.log(query)
   req.contacts = contactsCountryId;
   next();
 }
@@ -234,10 +203,6 @@ async function listCitiesByCountry(req, res, next) {
 async function existenceCity(req, res, next) {
   const { nameCity } = req.body;
   const country_id = req.params.country_id;
-  console.log(nameCity);
-  console.log(country_id)
-
-  console.log(req.body)
   const dbCities = await findCity(nameCity);
   if (!dbCities) {
     next();
@@ -248,26 +213,20 @@ async function existenceCity(req, res, next) {
 
 
 async function findCity(nameCity) {
-  console.log(nameCity)
   const query = selectQuery("cities", "nameCity, country_id", `nameCity = '${nameCity}'`);
   const [dbCities] = await sequelize.query(query, { raw: true });
   const foundCity = dbCities[0];
-  console.log(foundCity)
   return foundCity;
 }
 
 async function addCity(req, res, next) {
   const { nameCity } = req.body;
   const country_id = req.params.country_id;
-  console.log(nameCity);
-  console.log(country_id)
   if (nameCity !== "" && country_id !== "") {
     const query = insertQuery("cities", "nameCity, country_id",
       [nameCity, country_id]);
     [city_id] = await sequelize.query(query, { raw: true });
-    console.log(city_id)
     req.createdCityId = city_id;
-    console.log(city_id)
     next();
   } else {
     res.status(400).json("Bad Request: Missing Arguments");
@@ -278,18 +237,12 @@ async function addCity(req, res, next) {
 //3. Update city
 async function putCity(req, res, next) {
   const { nameCity } = req.body;
-  console.log(nameCity)
   let id = req.params.city_id;
-  console.log(id)
-
   if (id) {
     const cityToUpdate = await findCityById(id);
-    console.log(cityToUpdate)
     if (nameCity !== "") {
       const query = updateQuery("cities", `nameCity = '${nameCity}'`, `city_id = '${id}'`);
-      console.log(nameCity)
       const [cityPut] = await sequelize.query(query, { raw: true });
-      console.log(cityPut)
       req.updatedCity = { nameCity };
     } else {
       res.status(400).json("Bad Request: Missing Arguments");
@@ -304,14 +257,12 @@ async function findCityById(id) {
   const query = selectQuery("cities", "*", `city_id = '${id}'`);
   const [dbCity] = await sequelize.query(query, { raw: true });
   const foundCity = dbCity[0];
-  console.log(foundCity)
   return foundCity;
 }
 
 //4.delete city
 async function deleteCity(req, res, next) {
   let id = req.params.city_id;
-  console.log(id)
   const findCity = await findCityById(id);
   if (findCity) {
     const query = deleteQuery("cities", `city_id = ${id}`);
@@ -326,11 +277,8 @@ async function deleteCity(req, res, next) {
 //5. contacts city_id
 async function listContactsCity_id(req, res, next) {
   let id = req.params.city_id;
-  console.log(id)
   const query =  `SELECT contacts.contact_id, contacts.name, contacts.lastname, contacts.email, contacts.company_id, contacts.region_id, contacts.country_id, contacts.city_id,  regions.nameRegion, countries.nameCountry, cities.nameCity, companies.nameCompany, contacts.position,  contacts.interest FROM contacts INNER JOIN regions ON contacts.region_id = regions.region_id INNER JOIN countries ON contacts.country_id= countries.country_id INNER JOIN cities ON contacts.city_id = cities.city_id INNER JOIN companies ON contacts.company_id = companies.company_id WHERE cities.city_id =${id} `
-  console.log(query)
   const [contactsCityId] = await sequelize.query(query, { raw: true });
-  console.log(query)
   req.contacts = contactsCityId;
   next();
 }
