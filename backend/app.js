@@ -85,7 +85,7 @@ app.get("/users", validateToken, validateAdmin, listUsers, (req, res) => {
   }
 });
 
-//. get info of user
+//5. get info of user
 app.get("/user/:value", validateToken, infoUserUp, (req, res) => {
   try {
     const { user } = req;
@@ -95,7 +95,7 @@ app.get("/user/:value", validateToken, infoUserUp, (req, res) => {
   }
 });
 
-//5. update user
+//6. update user
 app.put('/user/:value', validateToken,  putUser, (req, res) => {
   try {
     const { updatedUser } = req;
@@ -105,7 +105,7 @@ app.put('/user/:value', validateToken,  putUser, (req, res) => {
   }
 })
 
-//6. delete user
+//7. delete user
 app.delete('/user/:value', validateToken,  deleteUser,  (req,res)=>{
   try{
     const { isDeleted } = req;
@@ -150,7 +150,7 @@ app.put('/company/:company_id', validateToken,  putCompany, (req, res) => {
   }
 })
 
-//. get info of company
+//4. get info of company
 app.get("/company/:value", validateToken, infoCompany, (req, res) => {
   try {
     const { company } = req;
@@ -160,7 +160,7 @@ app.get("/company/:value", validateToken, infoCompany, (req, res) => {
   }
 });
 
-//4. delete company
+//5. delete company
 app.delete('/company/:company_id', validateToken,  deleteCompany,  (req,res)=>{
   try{
     const { isDeleted } = req;
@@ -193,7 +193,8 @@ app.post("/contact", validateToken, existenceContact,  addContact, (req, res) =>
     res.status(500).json("Internal Server Error");
   }
 });
-//. get info of contact
+
+//3. get info of contact
 app.get("/contact/:value", validateToken, infoContact, (req, res) => {
   try {
     const { contact } = req;
@@ -204,7 +205,7 @@ app.get("/contact/:value", validateToken, infoContact, (req, res) => {
   }
 });
 
-//3. update contact
+//4. update contact
 app.put('/contact/:value', validateToken,  putContact, (req, res) => {
   try {
     const { updatedContact} = req;
@@ -214,7 +215,7 @@ app.put('/contact/:value', validateToken,  putContact, (req, res) => {
   }
 })
 
-//4. delete contact
+//5. delete contact
 app.delete('/contact/:contact_id', validateToken,  deleteContact,  (req,res)=>{
   try{
     const { isDeleted } = req;
@@ -279,6 +280,7 @@ app.get("/contacts/regions/:region_id", validateToken, listContactsRegion_id, (r
     res.status(404).json("Not Found");
   }
 });
+
 //COUNTRIES
 
 //1. get countries
@@ -300,6 +302,7 @@ app.post("/country/:region_id", validateToken, existenceCountry,  addCountry, (r
     res.status(500).json("Internal Server Error");
   }
 });
+
 //3. update country
 app.put("/country/:country_id", validateToken,  putCountry, (req, res) => {
   try {
@@ -309,6 +312,7 @@ app.put("/country/:country_id", validateToken,  putCountry, (req, res) => {
     res.status(500).json("Internal Server Error");
   }
 })
+
 //4. delete country
 app.delete('/country/:country_id', validateToken,  deleteCountry,  (req,res)=>{
   try{
@@ -318,6 +322,7 @@ app.delete('/country/:country_id', validateToken,  deleteCountry,  (req,res)=>{
     res.status(500).json("Internal Server Error");
   }
 }); 
+
 //5. contacts country_id
 app.get("/contacts/countries/:country_id", validateToken, listContactsCountry_id, (req, res) => {
   try {

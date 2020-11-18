@@ -1,4 +1,4 @@
-const mongoose = require('./database/mongoose/config');
+/* const mongoose = require('./database/mongoose/config');
 var cors = require('cors')
 const express = require('express');
 const app = express();
@@ -22,4 +22,4 @@ app.get('/users', (req, res) => {
         console.log(res)
     })
     res.status(200).json('Usuarios Encontrados')
-})
+}) */
