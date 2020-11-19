@@ -59,7 +59,7 @@ app.post("/user/login", validateCredentials, (req, res) => {
 app.post("/user", validateToken, validateAdmin, existenceUser, addUser, (req, res) => {
   try {
     const { createdUserId } = req;
-    res.status(200).json(`Created userId: ${createdUserId}` );
+    res.status(200).json(`Created` );
   } catch (err) {
     res.status(500).json("Internal Server Error");
   }
@@ -198,7 +198,6 @@ app.post("/contact", validateToken, existenceContact,  addContact, (req, res) =>
 app.get("/contact/:value", validateToken, infoContact, (req, res) => {
   try {
     const { contact } = req;
-    console.log(contact)
     res.status(200).json(contact);
   } catch (err) {
     res.status(404).json("Not Found");
@@ -272,9 +271,7 @@ app.delete('/region/:region_id', validateToken,  deleteRegion,  (req,res)=>{
 //5. contacts region_id
 app.get("/contacts/regions/:region_id", validateToken, listContactsRegion_id, (req, res) => {
   try {
-   console.log(req)
     const { contacts } = req;
-     console.log(contacts)
     res.status(200).json(contacts);
   } catch (err) {
     res.status(404).json("Not Found");
@@ -326,9 +323,7 @@ app.delete('/country/:country_id', validateToken,  deleteCountry,  (req,res)=>{
 //5. contacts country_id
 app.get("/contacts/countries/:country_id", validateToken, listContactsCountry_id, (req, res) => {
   try {
-   console.log(req)
     const { contacts } = req;
-     console.log(contacts)
     res.status(200).json(contacts);
   } catch (err) {
     res.status(404).json("Not Found");
@@ -380,9 +375,7 @@ app.delete('/city/:city_id', validateToken,  deleteCity,  (req,res)=>{
 //5. contacts city_id
 app.get("/contacts/cities/:city_id", validateToken, listContactsCity_id, (req, res) => {
   try {
-   console.log(req)
     const { contacts } = req;
-     console.log(contacts)
     res.status(200).json(contacts);
   } catch (err) {
     res.status(404).json("Not Found");
@@ -405,7 +398,6 @@ app.get("/channels", validateToken, listChannels, (req, res) => {
 app.get("/channels/:value", validateToken, infoContactChannel, (req, res) => {
   try {
     const { channelsContact } = req;
-    console.log(channelsContact)
     res.status(200).json(channelsContact);
   } catch (err) {
     res.status(404).json("Not Found");
@@ -417,7 +409,6 @@ app.get("/channels/:value", validateToken, infoContactChannel, (req, res) => {
 app.get("/contact/:value", validateToken, infoContact, (req, res) => {
   try {
     const { contact } = req;
-    console.log(contact)
     res.status(200).json(contact);
   } catch (err) {
     res.status(404).json("Not Found");
