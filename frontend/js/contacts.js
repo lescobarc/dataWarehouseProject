@@ -400,7 +400,7 @@ function showInfoContact(id) {
                 lastnameContactUp.value = `${res.lastname}`;
                 positionContactUp.value = `${res.position}`;
                 emailContactUp.value = `${res.email}`;
-                nameCompanyContactUp.innerHTML = ` <option label = ${res.position} value = ${res.company_id}>`;
+                nameCompanyContactUp.innerHTML = ` <option label = ${res.nameCompany} value = ${res.company_id}>`;
                 regionContactUp.innerHTML = ` <option label = ${res.nameRegion} value = ${res.region_id}>`;
                 countryContactUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
                 cityContactUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
@@ -671,11 +671,6 @@ accountContact.addEventListener('change', () =>{
     plusChannel.removeAttribute('disabled')
 })
 
-/* buttonAddChannelUp.addEventListener('click', () => {
-    document.getElementById('channel2Up').classList.remove('hidden');
-    document.getElementById('account2Up').classList.remove('hidden');
-    document.getElementById('preferences2Up').classList.remove('hidden');
-}) */
 
 channelContact2Up.addEventListener('click', () => {
     fetch('http://localhost:3000/channels', {
