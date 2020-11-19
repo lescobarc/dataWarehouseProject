@@ -669,13 +669,16 @@ accountContact.addEventListener('keypress', () =>{
     plusChannel.classList.add('buttonAddChannelActive');
     plusChannel.removeAttribute('disabled')
 })
+accountContact.addEventListener('change', () =>{
+    plusChannel.classList.add('buttonAddChannelActive');
+    plusChannel.removeAttribute('disabled')
+})
 
 /* buttonAddChannelUp.addEventListener('click', () => {
     document.getElementById('channel2Up').classList.remove('hidden');
     document.getElementById('account2Up').classList.remove('hidden');
     document.getElementById('preferences2Up').classList.remove('hidden');
 }) */
-
 
 channelContact2Up.addEventListener('click', () => {
     fetch('http://localhost:3000/channels', {
