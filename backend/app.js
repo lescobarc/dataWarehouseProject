@@ -182,8 +182,6 @@ app.get("/contacts", validateToken, listContacts, (req, res) => {
   }
 });
 
-
-
 //2 post contact
 app.post("/contact", validateToken, existenceContact,  addContact, (req, res) => {
   try {

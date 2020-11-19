@@ -26,24 +26,11 @@ function updateQuery(table, changes, conditions) {
   return query;
 }
 
-
 function deleteQuery(table, conditions) {
   const query = `DELETE FROM ${dbName}.${table} WHERE ${conditions}`;
   return query;
 }
 
-/*  function joinQuery(mainTable, columns, joiners, conditions) {
-  const fullJoiners = joiners
-    .map((element) => `JOIN ${dbName}.${element} `)
-    .toString()
-    .replace(/,/g, "");
-  const query =
-    `SELECT ${columns} FROM ${dbName}.${mainTable}` +
-    ` ${fullJoiners}` +
-    `${conditions ? `WHERE ${conditions}` : ""}`;
-  return query;
-}
- */
 function joinQuery(dbName1, column1, dbName2, column2, id, column3  ){
   const query = `SELECT ${dbName1}.${column1}, ${dbName1}.${column3} FROM ${dbName1} JOIN ${dbName2} ON ${dbName1}.${column2} = ${dbName2}.${column2} WHERE ${dbName2}.${column2} = ${id} ` 
  return query;
