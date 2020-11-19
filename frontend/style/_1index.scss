@@ -9,7 +9,7 @@ nav{
     ul{
         display: flex;
         li{
-            font-size: 16pt;
+            font-size: 12pt;
             padding: 15px;
             padding-bottom: 31px;
             list-style: none;
@@ -17,6 +17,7 @@ nav{
             &:hover{
                 border-bottom: 4px solid white;
                 cursor: pointer;
+                font-weight: bold;
             } 
         }
     }
@@ -26,6 +27,7 @@ nav{
         position: absolute;
         margin: 0.5% ;
     }
+    
 }
 
 .title{

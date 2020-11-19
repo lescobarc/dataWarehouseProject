@@ -140,6 +140,14 @@ td {
   pointer-events: none;
 }
 
+.buttonClose {
+  color: white;
+  z-index: 20;
+  position: relative;
+  top: 90px;
+  left: 1250px;
+}
+
 nav {
   height: 64px;
   width: 1360px;
@@ -160,7 +168,7 @@ nav ul {
 }
 
 nav ul li {
-  font-size: 16pt;
+  font-size: 12pt;
   padding: 15px;
   padding-bottom: 31px;
   list-style: none;
@@ -170,6 +178,7 @@ nav ul li {
 nav ul li:hover {
   border-bottom: 4px solid white;
   cursor: pointer;
+  font-weight: bold;
 }
 
 nav #imgLogo {
@@ -686,6 +695,10 @@ nav #imgLogo {
 
 #updateUserSection label {
   margin: 1%;
+}
+
+#updateUserSection #buttonClose2 {
+  top: 152px;
 }
 
 .caret {

@@ -196,7 +196,6 @@ function usersHeader() {
         }
     }).then(respuesta => respuesta.json())
         .then(res => {
-            console.log(res)
             if (res == 1) {
                 document.getElementById('usersHeader').classList.remove('hidden')
 
@@ -206,6 +205,17 @@ function usersHeader() {
         })
 }
 usersHeader();
+
+//Button Close
+
+let close1 = document.getElementById('buttonClose1');
+let close2 = document.getElementById('buttonClose2');
+close1.addEventListener('click', () =>{
+    location.reload()
+})
+close2.addEventListener('click', () =>{
+    location.reload()
+})
 
 
 
