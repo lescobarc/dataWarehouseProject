@@ -1,32 +1,4 @@
 
-
-// 2. Drop Down Filter
-/* let iconFilter = document.getElementById('iconFilter');
-let contactsFilter = document.getElementById('contactsFilter')
- iconFilter.addEventListener('click', ()=>{
-    contactsFilter.classList.toggle('hidden')
-});
- */
-
-//7. Export Contacts 
-/* let exportButton = document.getElementById('exportButton');
-let exportContactsOptions = document.getElementById('exportContactsOptions')
-exportButton.addEventListener('click', () => {
-    exportContactsOptions.classList.toggle('exportContactsOptions')
-}); */
-
-/* //8. Import Contacts
-let iconImport = document.getElementById('iconImport');
-let importContactsSection = document.getElementById('importContactsSection');
-iconImport.addEventListener('click', ()=>{
-    importContactsSection.classList.toggle('hidden');
-});
-
-let cancelButtonImport = document.getElementById('cancelButtonImport');
-cancelButtonImport.addEventListener('click', ()=>{
-    importContactsSection.classList.toggle('hidden')
-}); */
-
 //search
 let searchInput = document.getElementById('searchInput');
 let iconSearch = document.getElementById('iconSearch');
@@ -35,18 +7,14 @@ let searchInfo = document.getElementById('searchInfo');
 function doSearch() {
     const searchText = searchInput.value.toLowerCase();
     let total = 0;
-    // Recorremos todas las filas con contenido de la tabla
     for (let i = 0; i < table.rows.length; i++) {
-        // Si el td tiene la clase "noSearch" no se busca en su cntenido
         if (table.rows[i].classList.contains("noSearch")) {
             continue;
         }
         let found = false;
         const cellsOfRow = table.rows[i].getElementsByTagName('td');
-        // Recorremos todas las celdas
         for (let j = 0; j < cellsOfRow.length && !found; j++) {
             const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-            // Buscamos el texto en el contenido de la celda
             if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
                 found = true;
                 total++;
@@ -56,12 +24,9 @@ function doSearch() {
             table.rows[i].style.display = '';
             iconFilter.classList.remove('hidden')
         } else {
-            // si no ha encontrado ninguna coincidencia, esconde la
-            // fila de la tabla
             table.rows[i].style.display = 'none';
         }
     }
-    // mostramos las coincidencias
     const lastTR = table.rows[table.rows.length - 1];
     const td = lastTR.querySelector("td");
     lastTR.classList.remove("hide");
@@ -137,7 +102,6 @@ function selectAll() {
 
 
 //Pagination
-
 let rowsPage = document.getElementById("rowsPage");
 let rowsTotal = document.getElementById("rowsTotal");
 let arrowLeft = document.getElementById('arrowLeft');
@@ -146,7 +110,6 @@ let rowI = document.getElementById('rowI');
 let rowF = document.getElementById('rowF')
 let searchF = parseInt(rowsPage.value);
 let searchI = 0;
-
 
 rowsPage.addEventListener('change', () => {
     console.log('SI')
@@ -206,8 +169,8 @@ function usersHeader() {
 }
 usersHeader();
 
-//Button Close
 
+//Button Close
 let close1 = document.getElementById('buttonClose1');
 let close2 = document.getElementById('buttonClose2');
 close1.addEventListener('click', () =>{
