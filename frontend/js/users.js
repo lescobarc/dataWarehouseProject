@@ -175,6 +175,7 @@ function showInfoUserUp(id) {
                 lastnameUp.value = `${res.lastname}`
                 emailUp.value = `${res.email}`;
                 usernameUp.value = `${res.username}`;
+                isAdminUp.value = `${res.isAdmin}`;
             } else {
                 res.json().then((data) => {
                     console.log('Search Realized');

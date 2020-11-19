@@ -723,10 +723,6 @@ nav #imgLogo {
   margin: 1%;
 }
 
-#updateUserSection #buttonClose2 {
-  top: 152px;
-}
-
 .caret {
   cursor: pointer;
   -webkit-user-select: none;
