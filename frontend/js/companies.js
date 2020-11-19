@@ -83,8 +83,7 @@ function getCompanies() {
                     rowF.innerText = `${searchF}`
                 }
             } else {
-                console.log('Companies not found');
-                alert('Companies not found');
+                console.log('Search Realized');
             }
         })
 }

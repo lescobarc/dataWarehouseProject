@@ -87,8 +87,7 @@ function getRegions() {
                     table.appendChild(row);
                 }
             } else {
-                console.log('Regions not found');
-                alert('Regions not found');
+                console.log('Search Realized');
             }
         })
 }
@@ -257,7 +256,7 @@ function showContactsRegion(i) {
                     bodyTableContacts.appendChild(row);
                 }
             } else {
-                console.log('Contacts Not Found');
+                console.log('Search Realized');
             }
 
         })
@@ -296,7 +295,7 @@ function getCountries(i) {
                     document.getElementById(`rowRegion${region_id}`).appendChild(liCountry);
                 }
             } else {
-                console.log('Countries not found');
+                console.log('Search Realized');
                 for (let i = 0; i < res.length; i++) {
                     rowDelete = document.getElementById(`liCountry${res[i].country_id}`)
                     rowDelete.classList.toggle('hidden')
@@ -469,7 +468,7 @@ function showContactsCountry(i) {
                     bodyTableContacts.appendChild(row);
                 }
             } else {
-                console.log('Contacts Not Found');
+                console.log('Search Realized');
             }
         })
 }
@@ -506,7 +505,7 @@ function getCities(i) {
                     document.getElementById(`liCountry${country_id}`).appendChild(liCity);
                 }
             } else {
-                console.log('Cities not found');
+                console.log('Search Realized');
                 for (let i = 0; i < res.length; i++) {
                     rowDelete = document.getElementById(`liCity${res[i].city_id}`);
                     rowDelete.classList.toggle('hidden');
@@ -679,7 +678,7 @@ function showContactsCity(i) {
                     bodyTableContacts.appendChild(row);
                 }
             } else {
-                console.log('Contacts Not Found');
+                console.log('Search Realized');
             }
         })
 }

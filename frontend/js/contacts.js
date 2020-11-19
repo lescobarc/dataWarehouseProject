@@ -112,8 +112,8 @@ function getContacts() {
                     rowF.innerText = `${searchF}`
                 }
             } else {
-                console.log('Contacts not found');
-                alert('Contacts not found');
+                console.log('Search Realized');
+              
             }
         })
 }
@@ -412,7 +412,7 @@ function showInfoContact(id) {
                             <option value="75">75%</option>
                             <option value="100">100%</option>`;
             } else {
-                console.log('Contact not found');
+                console.log('Search Realized');
             }
 
         })
@@ -447,7 +447,7 @@ function showInfoChannels(id) {
                 }
                
             } else {
-                console.log('Contact not found');
+                console.log('Search Realized');
             }
 
         })
@@ -561,7 +561,8 @@ function getCountriesUp() {
                         countryContactUp.appendChild(liCountryUp);
                     }
                 } else {
-                    console.log('Search Realized');                }
+                    console.log('Search Realized');             
+                }
             })
         for (let i = cityContactUp.options.length; i >= 0; i--) {
             cityContactUp.remove(i);
@@ -594,7 +595,8 @@ function getCitiesUp() {
                         cityContactUp.appendChild(liCityUp);
                     }
                 } else {
-                    console.log('Search Realized');                }
+                    console.log('Search Realized');               
+                 }
 
             })
     }
@@ -652,7 +654,8 @@ companyContactUp.addEventListener('click', () => {
                     companyContactUp.appendChild(rowUp);
                 }
             } else {
-                console.log('Search Realized');            }
+                console.log('Search Realized');         
+               }
         })
 }
 )
@@ -695,7 +698,8 @@ channelContact2Up.addEventListener('click', () => {
                     channelContact2Up.appendChild(rowUp);
                 }
             } else {
-                console.log('Search Realized');            }
+                console.log('Search Realized');           
+             }
         })
 }
 )

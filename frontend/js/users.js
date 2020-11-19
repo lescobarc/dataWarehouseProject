@@ -78,8 +78,7 @@ function getUsers() {
                     rowF.innerText = `${searchF}`
                 }
             } else {
-                console.log('Users not found');
-                alert('Users not found');
+                console.log('Search Realized');
             }
         })
 }
@@ -171,8 +170,7 @@ function showInfoUserUp(id) {
                 usernameUp.value = `${res.username}`;
             } else {
                 res.json().then((data) => {
-                    console.log('user not found');
-                    alert('user not found');
+                    console.log('Search Realized');
                 });
             }
 
