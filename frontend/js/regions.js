@@ -682,3 +682,23 @@ function showContactsCity(i) {
             }
         })
 }
+
+//users header
+function usersHeader() {
+    fetch('http://localhost:3000/usersHeader', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            if (res == 1) {
+                document.getElementById('usersHeader').classList.remove('hidden')
+
+            } else if (res == 0) {
+                document.getElementById('usersHeader').classList.add('hidden')
+            }
+        })
+}
+usersHeader();
