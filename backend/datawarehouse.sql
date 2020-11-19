@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2020 a las 16:12:45
+-- Tiempo de generación: 19-11-2020 a las 19:37:32
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -159,7 +159,8 @@ INSERT INTO `contacts` (`contact_id`, `name`, `lastname`, `email`, `address`, `r
 (16, 'Luisa', 'Linares', 'luisalin@hotmail.com', 'cll 77 #67 -87', 1, 2, 6, 6, 'Sales', 100),
 (17, 'Camilo', 'Alarcón', 'camialarc@gmail.com', 'cll 80 #56-91', 1, 3, 8, 7, 'Developer', 25),
 (18, 'Mateo', 'Arango', 'mateoar@gmail.com', 'cll 67 #11-77', 1, 3, 9, 8, 'UX Designer', 25),
-(19, 'Tatiana', 'Henao', 'tatianah@yahoo.com', 'cll 15 #61-96', 1, 4, 10, 8, 'Sales', 100);
+(19, 'Tatiana', 'Henao', 'tatianah@yahoo.com', 'cll 15 #61-96', 1, 4, 10, 8, 'Sales', 100),
+(20, 'Angélica', 'Bernal', 'angelicab@hotmail.com', 'cll 80 #67-74', 2, 7, 15, 6, 'Sales', 50);
 
 -- --------------------------------------------------------
 
@@ -217,7 +218,9 @@ INSERT INTO `contacts_channels` (`contact_channel_id`, `contact_id`, `channel_id
 (35, 18, 1, 'mateoarango3', 'No Molestar'),
 (36, 18, 2, 'mateoarg', 'Canal Favorito'),
 (37, 19, 1, 'tatihenao76', 'No Molestar'),
-(38, 19, 2, 'tatiana78965', 'No Molestar');
+(38, 19, 2, 'tatiana78965', 'No Molestar'),
+(39, 20, 1, 'angelica20', 'Sin Preferencia'),
+(40, 20, 2, 'agelicab', 'No Molestar');
 
 -- --------------------------------------------------------
 
@@ -394,13 +397,13 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT de la tabla `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `contacts_channels`
 --
 ALTER TABLE `contacts_channels`
-  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `countries`
