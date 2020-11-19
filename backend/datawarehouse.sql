@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2020 a las 21:19:48
+-- Tiempo de generación: 19-11-2020 a las 16:12:45
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -75,7 +75,13 @@ INSERT INTO `cities` (`city_id`, `nameCity`, `country_id`) VALUES
 (16, 'Madrid', 8),
 (17, 'Barcelona', 8),
 (18, 'París', 9),
-(19, 'Hong Kong', 10);
+(19, 'Hong Kong', 10),
+(20, 'Santiago de Chile', 5),
+(21, 'Toronto', 7),
+(22, 'Lyon', 9),
+(23, 'Wuhan', 10),
+(24, 'Tokio', 11),
+(25, 'Yokohama', 11);
 
 -- --------------------------------------------------------
 
@@ -175,25 +181,43 @@ CREATE TABLE `contacts_channels` (
 
 INSERT INTO `contacts_channels` (`contact_channel_id`, `contact_id`, `channel_id`, `account`, `preferences`) VALUES
 (1, 1, 1, 'andreaaristi', 'Sin Preferencia'),
-(2, 1, 2, 'andreaar', 'Canal Favorito'),
-(3, 2, 2, 'camid2', 'No Molestar'),
-(4, 3, 1, 'diegod5', 'Canal Favorito'),
-(5, 4, 1, 'enestofer', 'Sin Preferencia'),
-(6, 5, 1, 'hector32', 'Canal Favorito'),
-(7, 6, 1, 'julial', 'Sin Preferencia'),
-(8, 9, 1, 'lore78', 'No Molestar'),
-(9, 9, 2, 'lore43', 'Sin Preferencia'),
-(10, 10, 2, 'valen222', 'No Molestar'),
-(11, 7, 1, 'vero12', 'Canal Favorito'),
-(12, 12, 1, 'isabel3', 'Sin Preferencia'),
-(13, 13, 2, 'pablo9', 'Canal Favorito'),
-(14, 14, 1, 'manuel2', 'No Molestar'),
-(15, 15, 2, 'lina76', 'Canal Favorito'),
-(16, 9, 1, 'lore4', 'Sin Preferencia'),
-(17, 16, 1, 'luisa09', 'No Molestar'),
-(18, 17, 1, 'cami98', 'Sin Preferencia'),
-(19, 18, 2, 'mate54', 'Canal Favorito'),
-(20, 19, 2, 'tati00', 'No Molestar');
+(2, 1, 2, 'andrea1', 'Canal Favorito'),
+(3, 2, 1, 'camidiaz', 'No Molestar'),
+(4, 2, 2, 'camidi2', 'Canal Favorito'),
+(5, 3, 1, 'diegodurango', 'Sin Preferencia'),
+(6, 3, 2, 'diego2', 'No Molestar'),
+(7, 4, 1, 'ernesto3', 'No Molestar'),
+(8, 4, 2, 'ernestofer', 'Sin Preferencia'),
+(9, 5, 1, 'hector5', 'Canal Favorito'),
+(10, 5, 2, 'hectorgonzalez', 'Sin Preferencia'),
+(11, 6, 1, 'julialopez', 'No Molestar'),
+(12, 6, 2, 'julialopez99', 'Canal Favorito'),
+(13, 7, 1, 'veropen', 'No Molestar'),
+(14, 7, 2, 'veronica77', 'Canal Favorito'),
+(15, 8, 1, 'felipeperez', 'No Molestar'),
+(16, 8, 2, 'felipe54', 'Canal Favorito'),
+(17, 9, 1, 'lorenapaez3', 'No Molestar'),
+(18, 9, 2, 'lorena43', 'Sin Preferencia'),
+(19, 10, 1, 'valensoto', 'Sin Preferencia'),
+(20, 10, 2, 'valensoto66', 'No Molestar'),
+(21, 11, 1, 'catasilva', 'Canal Favorito'),
+(22, 11, 2, 'catasilva62', 'No Molestar'),
+(23, 12, 1, 'isarestrepo4', 'Sin Preferencia'),
+(24, 12, 2, 'isabelr78', 'No Molestar'),
+(25, 13, 1, 'pabloserna12', 'Sin Preferencia'),
+(26, 13, 2, 'pablos456', 'No Molestar'),
+(27, 14, 1, 'manuelvelez4', 'Canal Favorito'),
+(28, 14, 2, 'manuelv987', 'No Molestar'),
+(29, 15, 1, 'linapolania00', 'Sin Preferencia'),
+(30, 15, 2, 'linapp98', 'No Molestar'),
+(31, 16, 1, 'luisalinares3', 'No Molestar'),
+(32, 16, 2, 'luisalin98', 'Sin Preferencia'),
+(33, 17, 1, 'camialarcon2', 'No Molestar'),
+(34, 17, 2, 'camilo44', 'Sin Preferencia'),
+(35, 18, 1, 'mateoarango3', 'No Molestar'),
+(36, 18, 2, 'mateoarg', 'Canal Favorito'),
+(37, 19, 1, 'tatihenao76', 'No Molestar'),
+(38, 19, 2, 'tatiana78965', 'No Molestar');
 
 -- --------------------------------------------------------
 
@@ -221,7 +245,8 @@ INSERT INTO `countries` (`country_id`, `nameCountry`, `region_id`) VALUES
 (7, 'Canadá', 2),
 (8, 'España', 3),
 (9, 'Francia', 3),
-(10, 'China', 4);
+(10, 'China', 4),
+(11, 'Japón', 4);
 
 -- --------------------------------------------------------
 
@@ -357,7 +382,7 @@ ALTER TABLE `channels`
 -- AUTO_INCREMENT de la tabla `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `companies`
@@ -375,13 +400,13 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT de la tabla `contacts_channels`
 --
 ALTER TABLE `contacts_channels`
-  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `contact_channel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `regions`
