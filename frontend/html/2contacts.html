@@ -17,6 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
+<body>
+
+
 <header>
     <nav>
         <a href=""> <img src="../style/img/logo.png" id="imgLogo" alt="logo"> </a>
@@ -30,7 +33,7 @@
     </nav>
 </header>
 
-<body>
+
     <section id="contacts" class="title">
         <h1>Contactos</h1>
         <div id="contactsContainer" class="container">
@@ -38,7 +41,7 @@
                 <input type="text" name="contact" id="searchInput" class="searchInput">
                 <span id="iconFilter" class="hidden iconFilter"><i class="fas fa-times-circle"></i></span>
                 <button id="iconSearch" class="iconSearch"><i class="fas fa-search fa-2x"></i></button>
-                <p class="hidden" id="searchInfo" class="searchInfo"></p>
+                <p class="hidden searchInfo" id="searchInfo"></p>
             </div>
             <div id="contactsButtons" class="titleButtons">
                 <button id="iconImport" class="iconImport" disabled><i class="fas fa-upload fa-2x"></i></button>
@@ -54,7 +57,7 @@
         <div class="actionsSelectTable">
             <p id="totalCheck"></p>
             <div onclick="showDeleteContactSelect()">
-                <p id="deleteCheck" class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar contactos </p>
+                <p id="deleteCheck" class="hidden"> <i class="fas fa-trash" ></i> Eliminar contactos </p>
             </div>
         </div>
         <div class="table">
@@ -75,9 +78,9 @@
         </div>
         <div id="tablePagination">
             <div>
-                <p>Filas por página <select type="number" id="rowsPage">
-                        <option value="5"> </option>
-                    </select> </span></p>
+                <p>Filas por página <select  id="rowsPage">
+                        <option label="5" value="5"> </option>
+                    </select> </p>
             </div>
             <div>
                 <p><em id="rowI"></em>-<em id="rowF"></em>de<em id="rowsTotal"></em> filas
@@ -98,23 +101,23 @@
             <div id="principalInfoContact" class="principalInfo">
                 <img src="../style/img/addPhoto.png" alt="Photo">
                 <div>
-                    <label for="Nombre"> Nombre<strong>*</strong></label>
+                    <label> Nombre<strong>*</strong></label>
                     <input type="text" id="nameContact">
                 </div>
                 <div>
-                    <label for="Nombre">Apellido<strong>*</strong></label>
+                    <label>Apellido<strong>*</strong></label>
                     <input type="text" id="lastnameContact">
                 </div>
                 <div>
-                    <label for="Nombre">Cargo<strong>*</strong></label>
+                    <label >Cargo<strong>*</strong></label>
                     <input type="text" id="positionContact">
                 </div>
                 <div>
-                    <label for="Nombre">Email<strong>*</strong></label>
+                    <label>Email<strong>*</strong></label>
                     <input type="text" id="emailContact">
                 </div>
                 <div>
-                    <label for="Nombre">Compañia<strong>*</strong></label>
+                    <label>Compañia<strong>*</strong></label>
                     <select name="company" id="companyContact">
                         <option label="Seleccionar compañía"></option>
                     </select>
@@ -122,29 +125,29 @@
             </div>
             <div id="secondInfoContact" class="secondInfo">
                 <div>
-                    <label for="region"> Región <strong>*</strong> </label>
+                    <label > Región <strong>*</strong> </label>
                     <select name="contactRegion" id="regionContact">
                         <option label="Seleccionar región"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="country"> País <strong>*</strong> </label>
+                    <label > País <strong>*</strong> </label>
                     <select name="contactCountry" id="countryContact" class="inputDisabled" disabled>
                         <option label="Seleccionar país"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="city"> Ciudad <strong>*</strong> </label>
+                    <label > Ciudad <strong>*</strong> </label>
                     <select name="contactCity" id="cityContact" class="inputDisabled" disabled>
                         <option label="Seleccionar ciudad"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="addres"> Dirección <strong>*</strong></label>
+                    <label > Dirección <strong>*</strong></label>
                     <input type="text" id="addressContact" placeholder="Ingresa una dirección" class="inputDisabled">
                 </div>
                 <div>
-                    <label for="interest">Interés <strong>*</strong></label>
+                    <label >Interés <strong>*</strong></label>
                     <div id="divInterestContact" class="divInterest">
 
                         <select name="interest" id="interestContact">
@@ -157,17 +160,17 @@
                     </div>
                 </div>
                 <div>
-                    <label for="contactChannel">Canal de contacto</label>
+                    <label>Canal de contacto</label>
                     <select name="contactChannel" id="channelContact">
                         <option label="Seleccionar canal"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="userAccount">Cuenta de usuario</label>
+                    <label>Cuenta de usuario</label>
                     <input type="text" id="accountContact" placeholder="@ejemplo" class="inputDisabled">
                 </div>
                 <div>
-                    <label for="preferences">Preferencias</label>
+                    <label>Preferencias</label>
                     <select name="contactChannel" id="preferencesContact" class="inputDisabled">
                         <option label="Sin Preferencia" value="Sin Preferencia"></option>
                         <option label="Canal Favorito" value="Canal Favorito"></option>
@@ -175,7 +178,8 @@
                     </select>
                 </div>
                 <div id="buttonAddChannel" class="buttonAddChannel">
-                    <button class="buttonLarge plusChannel" id="plusChannel" disabled><i class="fas fa-plus"></i> Agregar
+                    <button class="buttonLarge plusChannel" id="plusChannel" disabled><i class="fas fa-plus"></i>
+                        Agregar
                         Canal</button>
                 </div>
 
@@ -183,17 +187,17 @@
                 <!-- Add Channel -->
 
                 <div id="channel2" class="hidden">
-                    <label for="contactChannel">Canal de contacto</label>
+                    <label>Canal de contacto</label>
                     <select name="contactChannel" id="channelContact2">
                         <option label="Seleccionar canal"></option>
                     </select>
                 </div>
                 <div id="account2" class="hidden">
-                    <label for="userAccount">Cuenta de usuario</label>
+                    <label>Cuenta de usuario</label>
                     <input type="text" id="accountContact2" placeholder="@ejemplo" class="inputDisabled">
                 </div>
                 <div id="preferences2" class="hidden">
-                    <label for="preferences">Preferencias</label>
+                    <label>Preferencias</label>
                     <select name="contactChannel" id="preferencesContact2" class="inputDisabled">
                         <option label="Sin Preferencia" value="Sin Preferencia"></option>
                         <option label="Canal Favorito" value="Canal Favorito"></option>
@@ -219,23 +223,23 @@
             <div id="principalInfoContactUp" class="principalInfo">
                 <img src="../style/img/addPhoto.png" alt="Photo">
                 <div>
-                    <label for="Nombre"> Nombre<strong>*</strong></label>
+                    <label> Nombre<strong>*</strong></label>
                     <input type="text" id="nameContactUp">
                 </div>
                 <div>
-                    <label for="Nombre">Apellido<strong>*</strong></label>
+                    <label>Apellido<strong>*</strong></label>
                     <input type="text" id="lastnameContactUp">
                 </div>
                 <div>
-                    <label for="Nombre">Cargo<strong>*</strong></label>
+                    <label>Cargo<strong>*</strong></label>
                     <input type="text" id="positionContactUp">
                 </div>
                 <div>
-                    <label for="Nombre">Email<strong>*</strong></label>
+                    <label>Email<strong>*</strong></label>
                     <input type="text" id="emailContactUp">
                 </div>
                 <div>
-                    <label for="Nombre">Compañia<strong>*</strong></label>
+                    <label>Compañia<strong>*</strong></label>
                     <select name="company" id="companyContactUp">
                         <option label="Seleccionar compañía"></option>
                     </select>
@@ -244,29 +248,29 @@
             </div>
             <div id="secondInfoContactUp" class="secondInfo">
                 <div>
-                    <label for="region"> Región <strong>*</strong></label>
+                    <label> Región <strong>*</strong></label>
                     <select name="contactRegion" id="regionContactUp">
                         <option label="Seleccionar región"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="country"> País <strong>*</strong></label>
+                    <label> País <strong>*</strong></label>
                     <select name="contactCountry" id="countryContactUp" class="inputDisabled" disabled>
                         <option label="Seleccionar país"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="city"> Ciudad <strong>*</strong></label>
+                    <label> Ciudad <strong>*</strong></label>
                     <select name="contactCity" id="cityContactUp" class="inputDisabled" disabled>
                         <option label="Seleccionar ciudad"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="addres"> Dirección <strong>*</strong></label>
+                    <label> Dirección <strong>*</strong></label>
                     <input type="text" id="addressContactUp" placeholder="Ingresa una dirección" class="inputDisabled">
                 </div>
                 <div>
-                    <label for="interest">Interés <strong>*</strong></label>
+                    <label>Interés <strong>*</strong></label>
                     <div id="divInterestContactUp" class="divInterest">
 
                         <select name="interest" id="interestContactUp" class="interest">
@@ -282,17 +286,17 @@
                 <section id="channelContactUpSection">
                     <div class="containerRow">
                         <div>
-                            <label for="contactChannel">Canal de contacto</label>
+                            <label>Canal de contacto</label>
                             <select name="contactChannel" id="channelContactUp">
                                 <option label="Seleccionar canal"></option>
                             </select>
                         </div>
                         <div>
-                            <label for="userAccount">Cuenta de usuario</label>
+                            <label>Cuenta de usuario</label>
                             <input type="text" id="accountContactUp" placeholder="@ejemplo" class="inputDisabled">
                         </div>
                         <div>
-                            <label for="preferences">Preferencias</label>
+                            <label>Preferencias</label>
                             <select name="contactChannel" id="preferencesContactUp" class="inputDisabled">
                                 <option label="Sin Preferencia" value="Sin Preferencia"></option>
                                 <option label="Canal Favorito" value="Canal Favorito"></option>
@@ -307,17 +311,17 @@
                     <!-- Add Channel -->
                     <div class="containerRow">
                         <div id="channel2Up" class="">
-                            <label for="contactChannel">Canal de contacto</label>
+                            <label>Canal de contacto</label>
                             <select name="contactChannel" id="channelContact2Up">
                                 <option label="Seleccionar canal"></option>
                             </select>
                         </div>
                         <div id="account2Up" class="">
-                            <label for="userAccount">Cuenta de usuario</label>
+                            <label>Cuenta de usuario</label>
                             <input type="text" id="accountContact2Up" placeholder="@ejemplo" class="inputDisabled">
                         </div>
                         <div id="preferences2Up" class="">
-                            <label for="preferences">Preferencias</label>
+                            <label>Preferencias</label>
                             <select name="contactChannel" id="preferencesContact2Up" class="inputDisabled">
                                 <option label="Sin Preferencia" value="Sin Preferencia"></option>
                                 <option label="Canal Favorito" value="Canal Favorito"></option>
