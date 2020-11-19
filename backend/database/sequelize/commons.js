@@ -36,7 +36,6 @@ function joinQuery(dbName1, column1, dbName2, column2, id, column3  ){
  return query;
 }
 
-/* SELECT countries.name FROM countries JOIN regions ON countries.region_id = regions.region_id */
 
 
 
