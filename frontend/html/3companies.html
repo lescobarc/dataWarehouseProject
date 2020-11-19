@@ -17,52 +17,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<header>
-    <nav>
-        <a href="" > <img src="../style/img/logo.png" id="imgLogo" alt="logo"> </a>
-        <ul>
-            <li><a href="2contacts.html">Contactos</a></li>
-            <li><a href="3companies.html">Compañías</a></li>
-            <li id="usersHeader" class="hidden" ><a href="4users.html">Usuarios</a></li>
-            <li><a href="5city.html">Región/Ciudad</a></li>
-            <li><a href="1login.html">Login</a></li>
-        </ul>
-    </nav>
-</header>
-
 <body>
-    <section  class="title">
+
+    <header>
+        <nav>
+            <a href=""> <img src="../style/img/logo.png" id="imgLogo" alt="logo"> </a>
+            <ul>
+                <li><a href="2contacts.html">Contactos</a></li>
+                <li><a href="3companies.html">Compañías</a></li>
+                <li id="usersHeader" class="hidden"><a href="4users.html">Usuarios</a></li>
+                <li><a href="5city.html">Región/Ciudad</a></li>
+                <li><a href="1login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section class="title">
         <h1>Compañías</h1>
-        <div  class="container">
+        <div class="container">
             <div class="search">
                 <input type="text" id="searchInput" class="searchInput">
                 <span id="iconFilter" class="hidden iconFilter"><i class="fas fa-times-circle"></i></span>
                 <button id="iconSearch" class="iconSearch"><i class="fas fa-search fa-2x"></i></button>
-                <p class="hidden" id="searchInfo" class="searchInfo"></p>
+                <p class="hidden searchInfo" id="searchInfo" ></p>
             </div>
 
             <div class="titleButtons">
                 <button id="iconImport" class="iconImport" disabled><i class="fas fa-upload fa-2x"></i></button>
-                 <select id="exportButton" class="buttonSecondary exportButton" disabled>
-                        <option label="Exportar Compañías" > </option>
-                        <option value="select"> Exportar seleccionados </option>
-                        <option value="allFilter"> Todos los filtrados </option>
-                    </select> 
-                <button id="addButton" class="buttonPrimary createButton">Agregar Compañía</button> 
-                
+                <select id="exportButton" class="buttonSecondary exportButton" disabled>
+                    <option label="Exportar Compañías"> </option>
+                    <option value="select"> Exportar seleccionados </option>
+                    <option value="allFilter"> Todos los filtrados </option>
+                </select>
+                <button id="addButton" class="buttonPrimary createButton">Agregar Compañía</button>
+
             </div>
         </div>
     </section>
-    
+
     <section id="companiesSection">
         <div class="actionsSelectTable">
             <p id="totalCheck"></p>
-           <div onclick="showDeleteCompanySelect()"> <p id="deleteCheck" onclick="" class="hidden"> <i class="fas fa-trash" id=""></i> Eliminar compañías </p></div>
+            <div onclick="showDeleteCompanySelect()">
+                <p id="deleteCheck" onclick="" class="hidden"> <i class="fas fa-trash"></i> Eliminar compañías
+                </p>
             </div>
+        </div>
         <table id="companiesTable" class="table">
             <thead>
                 <tr>
-                    <th><input type="checkbox" name="companySelect"  onclick="selectAll()" id="checkSelect"></th>
+                    <th><input type="checkbox" name="companySelect" onclick="selectAll()" id="checkSelect"></th>
                     <th>Nombre <i class="fas fa-arrows-alt-v" onclick="sortTable(0, 'str')"></i> </th>
                     <th>Dirección <i class="fas fa-arrows-alt-v" onclick="sortTable(1, 'str')"></i></th>
                     <th>Email <i class="fas fa-arrows-alt-v" onclick="sortTable(2, 'str')"></i></th>
@@ -77,9 +82,9 @@
         </table>
         <div id="tablePagination">
             <div>
-                <p >Filas por página  <select type="number" id="rowsPage" > 
-                    <option value="5" > </option>
-                </select> </span></p>
+                <p>Filas por página <select  id="rowsPage">
+                        <option label="5" value="5"> </option>
+                    </select> </p>
             </div>
             <div>
                 <p><em id="rowI"></em>-<em id="rowF"></em>de<em id="rowsTotal"></em> filas
@@ -87,61 +92,61 @@
                     <i class="fas fa-angle-right" id="arrowRigth"></i></p>
             </div>
         </div>
-        </div>
+        
 
     </section>
 
-     <!--  New Company  -->
-     <section id="createCompanySection" class="newSection hidden">
+    <!--  New Company  -->
+    <section id="createCompanySection" class="newSection hidden">
         <i class="fas fa-times fa-2x buttonClose" id="buttonClose1"></i>
         <div class="container">
             <h1>Nueva Compañía</h1>
-            
-                <div id="principalInfoCompany" class="principalInfo">
-                    <img src="../style/img/addPhoto.png" alt="Photo">
-                    <div>
-                        <label for="name" > Nombre<strong>*</strong></label>
-                        <input type="text" id="nameCompany">
-                    </div>
-                    <div>
-                        <label for="address" >Dirección<strong>*</strong></label>
-                        <input type="text" id="addressCompany">
-                    </div>
-                    <div>
-                        <label for="email" >Email<strong>*</strong></label>
-                        <input type="text" id="emailCompany">
-                    </div>
-                    <div>
-                        <label for="tel" >Teléfono<strong>*</strong></label>
-                        <input type="text" id="telCompany">
-                    </div>
 
+            <div id="principalInfoCompany" class="principalInfo">
+                <img src="../style/img/addPhoto.png" alt="Photo">
+                <div>
+                    <label for="nameCompany"> Nombre<strong>*</strong></label>
+                    <input type="text" id="nameCompany">
                 </div>
-                <div id="secondInfoCompany" class="secondInfo">
-                    <div>
-                        <label for="region"> Región <strong>*</strong> </label>
-                        <select name="companyRegion" id="regionCompany">
-                            <option label="Seleccionar región"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="country"> País <strong>*</strong> </label>
-                        <select name="companyCountry" id="countryCompany"  disabled>
-                            <option label="Seleccionar país"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="city"> Ciudad <strong>*</strong> </label>
-                        <select name="contactCity" id="cityCompany"  disabled>
-                            <option label="Seleccionar ciudad"></option>
-                        </select>
-                    </div>
-                   
+                <div>
+                    <label for="addressCompany">Dirección<strong>*</strong></label>
+                    <input type="text" id="addressCompany">
                 </div>
-                <div id="buttonsCompany" class="buttonsActions">
-                    <button id="cancelButton"> Cancelar</button>
-                    <button class="addButton" id="createButton" >Guardar Compañía</button>
+                <div>
+                    <label for="emailCompany">Email<strong>*</strong></label>
+                    <input type="text" id="emailCompany">
                 </div>
+                <div>
+                    <label for="telCompany">Teléfono<strong>*</strong></label>
+                    <input type="text" id="telCompany">
+                </div>
+
+            </div>
+            <div id="secondInfoCompany" class="secondInfo">
+                <div>
+                    <label for="regionCompany"> Región <strong>*</strong> </label>
+                    <select name="companyRegion" id="regionCompany">
+                        <option label="Seleccionar región"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="countryCompany"> País <strong>*</strong> </label>
+                    <select name="companyCountry" id="countryCompany" disabled>
+                        <option label="Seleccionar país"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cityCompany"> Ciudad <strong>*</strong> </label>
+                    <select name="contactCity" id="cityCompany" disabled>
+                        <option label="Seleccionar ciudad"></option>
+                    </select>
+                </div>
+
+            </div>
+            <div id="buttonsCompany" class="buttonsActions">
+                <button id="cancelButton"> Cancelar</button>
+                <button class="addButton" id="createButton">Guardar Compañía</button>
+            </div>
         </div>
     </section>
 
@@ -150,50 +155,50 @@
         <i class="fas fa-times fa-2x buttonClose" id="buttonClose2"></i>
         <div class="container">
             <h1>Actualizar Compañía</h1>
-                <div id="principalInfoCompany" class="principalInfo">
-                    <img src="../style/img/addPhoto.png" alt="Photo">
-                    <div>
-                        <label for="name" > Nombre<strong>*</strong></label>
-                        <input type="text" id="nameCompanyUp">
-                    </div>
-                    <div>
-                        <label for="address" >Dirección<strong>*</strong></label>
-                        <input type="text" id="addressCompanyUp">
-                    </div>
-                    <div>
-                        <label for="email" >Email<strong>*</strong></label>
-                        <input type="text" id="emailCompanyUp">
-                    </div>
-                    <div>
-                        <label for="tel" >Teléfono<strong>*</strong></label>
-                        <input type="text" id="telCompanyUp">
-                    </div>
+            <div id="principalInfoCompanyUp" class="principalInfo">
+                <img src="../style/img/addPhoto.png" alt="Photo">
+                <div>
+                    <label for="nameCompanyUp"> Nombre<strong>*</strong></label>
+                    <input type="text" id="nameCompanyUp">
                 </div>
-                <div id="secondInfoCompany" class="secondInfo">
-                    <div>
-                        <label for="region"> Región <strong>*</strong> </label>
-                        <select name="companyRegion" id="regionCompanyUp">
-                            <option label="Seleccionar región"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="country"> País <strong>*</strong> </label>
-                        <select name="companyCountry" id="countryCompanyUp"  disabled>
-                            <option label="Seleccionar país"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="city"> Ciudad <strong>*</strong> </label>
-                        <select name="contactCity" id="cityCompanyUp"  disabled>
-                            <option label="Seleccionar ciudad"></option>
-                        </select>
-                    </div>
-                   
+                <div>
+                    <label for="addressCompanyUp">Dirección<strong>*</strong></label>
+                    <input type="text" id="addressCompanyUp">
                 </div>
-                <div id="buttonsCompany" class="buttonsActions">
-                    <button id="cancelButtonUp" class="deleteUpdateButton"> Eliminar Compañía</button>
-                    <button class="addButton" id="createButtonUp">Actualizar Compañía</button>
+                <div>
+                    <label for="emailCompanyUp">Email<strong>*</strong></label>
+                    <input type="text" id="emailCompanyUp">
                 </div>
+                <div>
+                    <label for="telCompanyUp">Teléfono<strong>*</strong></label>
+                    <input type="text" id="telCompanyUp">
+                </div>
+            </div>
+            <div id="secondInfoCompanyUp" class="secondInfo">
+                <div>
+                    <label for="regionCompanyUp"> Región <strong>*</strong> </label>
+                    <select name="companyRegion" id="regionCompanyUp">
+                        <option label="Seleccionar región"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="countryCompanyUp"> País <strong>*</strong> </label>
+                    <select name="companyCountry" id="countryCompanyUp" disabled>
+                        <option label="Seleccionar país"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cityCompanyUp"> Ciudad <strong>*</strong> </label>
+                    <select name="contactCity" id="cityCompanyUp" disabled>
+                        <option label="Seleccionar ciudad"></option>
+                    </select>
+                </div>
+
+            </div>
+            <div id="buttonsCompanyUp" class="buttonsActions">
+                <button id="cancelButtonUp" class="deleteUpdateButton"> Eliminar Compañía</button>
+                <button class="addButton" id="createButtonUp">Actualizar Compañía</button>
+            </div>
         </div>
     </section>
 
@@ -212,7 +217,7 @@
 
     <script src="../js/companies.js"></script>
     <script src="../js/index.js"></script>
-    
-</body>  
+
+</body>
+
 </html>
-        

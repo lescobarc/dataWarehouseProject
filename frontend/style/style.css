@@ -749,7 +749,7 @@ nav #imgLogo {
 }
 
 #citySection li {
-  margin: 3%;
+  margin: 3% 3% 6% 3%;
 }
 
 #citySection i {
@@ -834,6 +834,14 @@ nav #imgLogo {
   width: 750px;
   height: auto;
   margin-left: 30px;
+}
+
+#citySection table tr {
+  height: 0px;
+}
+
+#citySection table tr td {
+  padding: 0px;
 }
 
 #loginUser {

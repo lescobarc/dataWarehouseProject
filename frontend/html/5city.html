@@ -18,6 +18,8 @@
 
 </head>
 
+<body>
+
 <header>
     <nav>
         <a href=""> <img src="../style/img/logo.png" id="imgLogo" alt="logo"> </a>
@@ -31,7 +33,7 @@
     </nav>
 </header>
 
-<body>
+
     <!--  MAIN SECTION -->
     <section class="mainCityRegion">
         <section id="citySection">
@@ -44,8 +46,8 @@
 
             <table id="regionsTable">
                 <tbody>
-                    <div id="countries"> </div>
-                    <div id="cities"> </div>
+                    <tr id="countries"> <td></td> </tr>
+                    <tr id="cities"><td></td> </tr>
                 </tbody>
             </table>
         </section>
@@ -127,9 +129,9 @@
             </div>
                 <div id="tablePagination" class="hidden">
                     <div>
-                        <p>Filas por página <select type="number" id="rowsPageR">
-                                <option value="4"> </option>
-                            </select> </span></p>
+                        <p>Filas por página <select  id="rowsPageR">
+                                <option label="4" value="4"> </option>
+                            </select> </p>
                     </div>
                     <div>
                         <p> <em id="rowIR"></em>-<em id="rowFR"></em> de <em id="rowsTotalR"></em> filas
@@ -149,7 +151,7 @@
             <div class="principalInfo">
                 <img src="../style/img/addPhoto.png" alt="Photo">
                 <div>
-                    <label for="name"> </label>
+                    <label for="nameRegionUp"> </label>
                     <input type="text" id="nameRegionUp" placeholder="Región">
                 </div>
             </div>
@@ -168,7 +170,7 @@
             <div class="principalInfo">
                 <img src="../style/img/addPhoto.png" alt="Photo">
                 <div>
-                    <label for="name"> </label>
+                    <label for="nameCountryUp"> </label>
                     <input type="text" id="nameCountryUp" placeholder="País">
                 </div>
             </div>
@@ -188,7 +190,7 @@
                 <img src="../style/img/addPhoto.png" alt="Photo">
 
                 <div>
-                    <label for="name"> </label>
+                    <label for="nameCityUp"> </label>
                     <input type="text" id="nameCityUp" placeholder="Ciudad">
                 </div>
             </div>
