@@ -68,10 +68,8 @@ async function infoContact(req, res, next) {
 // get info channels of contact
 async function infoContactChannel(req, res, next) {
   let id = req.params.value;
-  console.log(id)
  const query = `SELECT contacts_channels.channel_id, contacts_channels.account, contacts_channels.preferences, channels.nameChannel FROM contacts_channels INNER JOIN channels ON contacts_channels.channel_id = channels.channel_id WHERE contacts_channels.contact_id =${id} `
   const [dbChannels] = await sequelize.query(query, { raw: true });
-  console.log(dbChannels)
   const foundChannels = dbChannels;
   req.channelsContact = foundChannels;
   next();
