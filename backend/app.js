@@ -6,7 +6,7 @@ app.use(express.json());
 const { validateAdmin, validateToken, } = require('./components/auth');
 const { addUser, infoUser, validateCredentials, existenceUser, listUsers, infoUserUp, putUser, deleteUser } = require('./components/users');
 const { addCompany, existenceCompany, listCompanies, putCompany, infoCompany, deleteCompany } = require('./components/companies');
-const { listContacts, existenceContact, infoContact,  addContact, putContact, deleteContact, listChannels} = require('./components/contacts');
+const { listContacts, existenceContact, infoContact,  addContact, putContact, deleteContact, listChannels, infoContactChannel} = require('./components/contacts');
 const { listRegions, existenceRegion,  addRegion, putRegion, deleteRegion, listCountriesByRegion, listContactsRegion_id, existenceCountry,  addCountry, putCountry, listCitiesByCountry, deleteCountry, listContactsCountry_id, existenceCity, addCity, putCity, deleteCity, listContactsCity_id} = require('./components/regions');
 
 //cors: permite solicitar recursos restringidos
@@ -396,6 +396,29 @@ app.get("/channels", validateToken, listChannels, (req, res) => {
   try {
     const { channelsList } = req;
     res.status(200).json(channelsList);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
+
+//2. get info channels contact
+app.get("/channels/:value", validateToken, infoContactChannel, (req, res) => {
+  try {
+    const { channelsContact } = req;
+    console.log(channelsContact)
+    res.status(200).json(channelsContact);
+  } catch (err) {
+    res.status(404).json("Not Found");
+  }
+});
+
+
+//3. get info of contact
+app.get("/contact/:value", validateToken, infoContact, (req, res) => {
+  try {
+    const { contact } = req;
+    console.log(contact)
+    res.status(200).json(contact);
   } catch (err) {
     res.status(404).json("Not Found");
   }

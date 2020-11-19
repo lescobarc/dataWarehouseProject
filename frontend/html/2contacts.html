@@ -90,9 +90,9 @@
 
     <!--  New Contact  -->
     <section id="createContactSection" class="hidden newSection">
-       <i class="fas fa-times fa-2x buttonClose" id="buttonClose1"></i>
+        <i class="fas fa-times fa-2x buttonClose" id="buttonClose1"></i>
         <div class="container">
-           
+
             <h1>Nuevo Contacto</h1>
 
             <div id="principalInfoContact" class="principalInfo">
@@ -175,8 +175,13 @@
                     </select>
                 </div>
 
+                <!-- <div>
+                    <i class="fas fa-trash" id=${contact[i].contact_id} onclick = "showDeleteContact(this)" ></i>
+                    <i class="fas fa-pencil-alt" id=${contact[i].contact_id} onclick = "showUpdateContact(this)"></i>
+                </div>> -->
+
                 <div id="buttonAddChannel" class="buttonAddChannel">
-                    <button class="buttonLarge plusChannel" id="plusChannel"><i class="fas fa-plus"></i> Agregar
+                    <button class="buttonLarge plusChannel" id="plusChannel" disabled><i class="fas fa-plus"></i> Agregar
                         Canal</button>
                 </div>
 
@@ -279,51 +284,58 @@
                         </select>
                     </div>
                 </div>
-                <div>
-                    <label for="contactChannel">Canal de contacto</label>
-                    <select name="contactChannel" id="channelContactUp">
-                        <option label="Seleccionar canal"></option>
-                    </select>
-                </div>
-                <div>
-                    <label for="userAccount">Cuenta de usuario</label>
-                    <input type="text" id="accountContactUp" placeholder="@ejemplo" class="inputDisabled">
-                </div>
-                <div>
-                    <label for="preferences">Preferencias</label>
-                    <select name="contactChannel" id="preferencesContactUp" class="inputDisabled">
-                        <option label="Sin Preferencia" value="Sin Preferencia"></option>
-                        <option label="Canal Favorito" value="Canal Favorito"></option>
-                        <option label="No Molestar" value="No Molestar"></option>
-                    </select>
-                </div>
 
-                <div id="buttonAddChannelUp" class="buttonAddChannel">
+                <section id="channelContactUpSection">
+                    <div class="containerRow">
+                        <div>
+                            <label for="contactChannel">Canal de contacto</label>
+                            <select name="contactChannel" id="channelContactUp">
+                                <option label="Seleccionar canal"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="userAccount">Cuenta de usuario</label>
+                            <input type="text" id="accountContactUp" placeholder="@ejemplo" class="inputDisabled">
+                        </div>
+                        <div>
+                            <label for="preferences">Preferencias</label>
+                            <select name="contactChannel" id="preferencesContactUp" class="inputDisabled">
+                                <option label="Sin Preferencia" value="Sin Preferencia"></option>
+                                <option label="Canal Favorito" value="Canal Favorito"></option>
+                                <option label="No Molestar" value="No Molestar"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--   <div id="buttonAddChannelUp" class="buttonAddChannel">
                     <button class="buttonLarge plusChannel" id="plusChannelUp"><i class="fas fa-plus"></i> Agregar
                         Canal</button>
-                </div>
+                </div> -->
 
 
-                <!-- Add Channel -->
-                <div id="channel2Up" class="hidden">
-                    <label for="contactChannel">Canal de contacto</label>
-                    <select name="contactChannel" id="channelContact2Up">
-                        <option label="Seleccionar canal"></option>
-                    </select>
-                </div>
-                <div id="account2Up" class="hidden">
-                    <label for="userAccount">Cuenta de usuario</label>
-                    <input type="text" id="accountContact2Up" placeholder="@ejemplo" class="inputDisabled">
-                </div>
-                <div id="preferences2Up" class="hidden">
-                    <label for="preferences">Preferencias</label>
-                    <select name="contactChannel" id="preferencesContact2Up" class="inputDisabled">
-                        <option label="Sin Preferencia" value="Sin Preferencia"></option>
-                        <option label="Canal Favorito" value="Canal Favorito"></option>
-                        <option label="No Molestar" value="No Molestar"></option>
-                    </select>
-                </div>
+                    <!-- Add Channel -->
+                    <div class="containerRow">
+                        <div id="channel2Up" class="">
+                            <label for="contactChannel">Canal de contacto</label>
+                            <select name="contactChannel" id="channelContact2Up">
+                                <option label="Seleccionar canal"></option>
+                            </select>
+                        </div>
+                        <div id="account2Up" class="">
+                            <label for="userAccount">Cuenta de usuario</label>
+                            <input type="text" id="accountContact2Up" placeholder="@ejemplo" class="inputDisabled">
+                        </div>
+                        <div id="preferences2Up" class="">
+                            <label for="preferences">Preferencias</label>
+                            <select name="contactChannel" id="preferencesContact2Up" class="inputDisabled">
+                                <option label="Sin Preferencia" value="Sin Preferencia"></option>
+                                <option label="Canal Favorito" value="Canal Favorito"></option>
+                                <option label="No Molestar" value="No Molestar"></option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
             </div>
+
             <div id="buttonsContactUp" class="buttonsActions buttonsContact">
                 <button id="cancelButtonUp" class="deleteUpdateButton"> Eliminar Contacto</button>
                 <button id="addButtonUp" class="addButton">Actualizar Contacto</button>
@@ -350,4 +362,5 @@
     <script src="../js/index.js"></script>
 
 </body>
+
 </html>

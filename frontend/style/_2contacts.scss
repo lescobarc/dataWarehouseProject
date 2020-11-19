@@ -90,8 +90,19 @@
     } 
 }
 
-.plusChannel{
-margin-left: 70px;
+#plusChannel{
+margin-left: 5px;
+margin-right: 100px;
+border-radius: 1px;
+width: 130px;
+height: 40px;
+}
+.buttonAddChannelActive{
+    background-color: $bgPrimary;
+    color: white;
+    i{
+        color: white;
+    }
 }
 
 .buttonsContact{
@@ -100,6 +111,13 @@ margin-left: 70px;
     bottom: 10px
 }
 
-
+#channelContactUpSection{
+    display: flex;
+    flex-direction: column;
+    .containerRow{
+        flex-direction: row;
+        margin: 0;
+    }
+}
 
     

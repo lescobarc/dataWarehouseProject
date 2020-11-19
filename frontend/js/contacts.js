@@ -31,6 +31,7 @@ let preferencesContact2 = document.getElementById('preferencesContact2');
 let buttonAddChannel = document.getElementById('buttonAddChannel');
 
 
+
 //update
 let updateContactsSection = document.getElementById('updateContactsSection');
 let createButtonUp = document.getElementById('createButtonUp');
@@ -376,6 +377,7 @@ function showUpdateContact(i) {
     updateContactSection.classList.toggle('hidden');
     contactsSection.classList.toggle('hidden');
     showInfoContact(id);
+    showInfoChannels(id)
     addButtonUp.addEventListener('click', () => {
         updateContacts(id);
     });
@@ -409,6 +411,44 @@ function showInfoContact(id) {
                             <option value="50">50%</option>
                             <option value="75">75%</option>
                             <option value="100">100%</option>`;
+            } else {
+                console.log('Contact not found');
+            }
+
+        })
+
+}
+
+function showInfoChannels(id) {
+    console.log(id)
+  fetch(`http://localhost:3000/channels/${id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(respuesta => respuesta.json())
+        .then(res => {
+            if (res) {
+                console.log(res)
+                console.log(res[0].nameChannel)
+
+                if(res.length == 1 ){
+                channelContactUp.innerHTML = ` <option label = ${res[0].nameChannel} value = ${res[0].channel_id}>`; 
+                accountContactUp.value = `${res[0].account}`;
+                preferencesContactUp.value = `${res[0].preferences}`;
+                }else if(res.length == 2){
+                    channelContactUp.innerHTML = ` <option label = ${res[0].nameChannel} value = ${res[0].channel_id}>`; 
+                accountContactUp.value = `${res[0].account}`;
+                preferencesContactUp.value = `${res[0].preferences}`;
+                    channelContact2Up.innerHTML = ` <option label = ${res[1].nameChannel} value = ${res[1].channel_id}>`; 
+                accountContact2Up.value = `${res[1].account}`;
+                preferencesContact2Up.value = `${res[1].preferences}`;
+
+                }else{
+                    "Contact don´t have channels"
+                }
+               
             } else {
                 console.log('Contact not found');
             }
@@ -487,8 +527,6 @@ regionContactUp.addEventListener('click', () => {
             } else {
                 console.log('Regions Not Found');
             }
-
-
         })
 
     for (let i = countryContactUp.options.length; i >= 0; i--) {
@@ -591,7 +629,7 @@ channelContactUp.addEventListener('click', () => {
                     channelContactUp.appendChild(rowUp);
                 }
             } else {
-                console.log('Channels Not Found');
+                console.log('Search Realized');
             }
         })
 }
@@ -626,11 +664,17 @@ companyContactUp.addEventListener('click', () => {
 )
 
 //Add channel
-buttonAddChannelUp.addEventListener('click', () => {
+
+accountContact.addEventListener('keypress', () =>{
+    plusChannel.classList.add('buttonAddChannelActive');
+    plusChannel.removeAttribute('disabled')
+})
+
+/* buttonAddChannelUp.addEventListener('click', () => {
     document.getElementById('channel2Up').classList.remove('hidden');
     document.getElementById('account2Up').classList.remove('hidden');
     document.getElementById('preferences2Up').classList.remove('hidden');
-})
+}) */
 
 
 channelContact2Up.addEventListener('click', () => {

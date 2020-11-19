@@ -65,6 +65,18 @@ async function infoContact(req, res, next) {
   next();
 }
 
+// get info channels of contact
+async function infoContactChannel(req, res, next) {
+  let id = req.params.value;
+  console.log(id)
+ const query = `SELECT contacts_channels.channel_id, contacts_channels.account, contacts_channels.preferences, channels.nameChannel FROM contacts_channels INNER JOIN channels ON contacts_channels.channel_id = channels.channel_id WHERE contacts_channels.contact_id =${id} `
+  const [dbChannels] = await sequelize.query(query, { raw: true });
+  console.log(dbChannels)
+  const foundChannels = dbChannels;
+  req.channelsContact = foundChannels;
+  next();
+}
+
 //3. Update contact
 
 async function putContact(req, res, next) {
@@ -142,4 +154,5 @@ async function listChannels(req, res, next) {
 
 
 
-module.exports = { listContacts, existenceContact, infoContact, addContact, putContact, deleteContact, listChannels };
+
+module.exports = { listContacts, existenceContact, infoContact, addContact, putContact, deleteContact, listChannels, infoContactChannel };
