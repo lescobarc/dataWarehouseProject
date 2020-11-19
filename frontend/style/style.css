@@ -749,11 +749,11 @@ nav #imgLogo {
 }
 
 #citySection li {
-  margin: 3% 3% 6% 3%;
+  margin: 3%;
 }
 
 #citySection i {
-  margin-left: 2%;
+  margin-left: 0%;
 }
 
 #citySection .buttonRegion {
@@ -765,7 +765,7 @@ nav #imgLogo {
   background: #E8E8E8;
   color: #000000;
   display: none;
-  margin: auto;
+  margin: -1% 0% 0% 0.5%;
 }
 
 #citySection .buttonTerciary {
