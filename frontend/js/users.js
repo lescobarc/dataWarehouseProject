@@ -7,6 +7,7 @@ let cancelButton = document.getElementById('cancelButton');
 let addButton = document.getElementById('addButton');
 let createUserSection = document.getElementById('createUser');
 let usersSection = document.getElementById('usersSection');
+
 //update
 let updateUserSection = document.getElementById('updateUserSection');
 let cancelButtonUp = document.getElementById('cancelButtonUp');
@@ -21,7 +22,6 @@ let deleteButtonDeleteUser = document.getElementById('deleteButtonDeleteUser')
 let table = document.querySelector('#usersTable tbody')
 let name = document.getElementById('nameUser');
 let lastname = document.getElementById('lastnameUser');
-
 let email = document.getElementById('emailUser');
 let username = document.getElementById('usernameUser');
 let pass = document.getElementById('passUser');
@@ -33,6 +33,7 @@ let nameUp = document.getElementById('nameUserUp');
 let lastnameUp = document.getElementById('lastnameUserUp');
 let emailUp = document.getElementById('emailUserUp');
 let usernameUp = document.getElementById('usernameUserUp');
+let isAdminUp = document.getElementById('isAdminUp');
 
 //Get users
 function getUsers() {
@@ -52,12 +53,18 @@ function getUsers() {
                     row.setAttribute('class', 'arrowContact');
                     row.setAttribute('class', 'arrow');
                     row.setAttribute('id', `arrow${i}`);
+                    if(user[i].isAdmin==1){
+                        var profile = "Si"
+                    }else if((user[i].isAdmin==0)){
+                        var profile = "No"
+                    }
                     row.innerHTML += `
                 <td>  <input type="checkbox" onclick="contar(this, ${i})" name="check" id=${user[i].user_id}> </td>
                 <td>${user[i].name}</td>
                 <td>${user[i].lastname}</td>
                 <td>${user[i].email}</td>
                 <td>${user[i].username}</td>
+                <td>${profile}</td>
                 <td id="actions">
                     <i class="fas fa-ellipsis-h iconPoints"></i>
                     <i class="fas fa-trash" id=${user[i].user_id} onclick = "showDeleteUser(this)" ></i>
@@ -89,7 +96,7 @@ getUsers();
 createButton.addEventListener('click', () => {
     fetch('http://localhost:3000/user', {
         method: 'POST',
-        body: `{"name":"${name.value}", "lastname":"${lastname.value}","email":"${email.value}","username":"${username.value}","pass":"${pass.value}","repass":"${repass.value}"}`,
+        body: `{"name":"${name.value}", "lastname":"${lastname.value}","email":"${email.value}","username":"${username.value}", "isAdmin":"${isAdmin.value}", "pass":"${pass.value}","repass":"${repass.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`
@@ -181,7 +188,7 @@ function showInfoUserUp(id) {
 function updateUsers(id) {
     fetch(`http://localhost:3000/user/${id}`, {
         method: 'PUT',
-        body: `{"name":"${nameUp.value}", "lastname":"${lastnameUp.value}", "email":"${emailUp.value}", "username":"${usernameUp.value}"}`,
+        body: `{"name":"${nameUp.value}", "lastname":"${lastnameUp.value}", "email":"${emailUp.value}", "username":"${usernameUp.value}", "isAdmin":"${isAdminUp.value}"}`,
         headers: {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${token}`

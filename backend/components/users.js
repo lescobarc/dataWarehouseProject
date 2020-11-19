@@ -45,11 +45,11 @@ async function findUsername(username) {
 }
 
 async function addUser(req, res, next) {
-  const { name, lastname, email, username, pass, repass } = req.body;
+  const { name, lastname, email, username, pass, repass, isAdmin } = req.body;
   if (pass === repass) {
     if (name && lastname && email && username && pass && repass) {
-      const query = insertQuery("users", "name, lastname, email, username, pass, repass",
-        [name, lastname, email, username, pass, repass]);
+      const query = insertQuery("users", "name, lastname, email, username, pass, repass, isAdmin",
+        [name, lastname, email, username,  pass, repass, isAdmin]);
       [user_id] = await sequelize.query(query, { raw: true });
       req.createdUserId = user_id;
       next();
@@ -97,12 +97,12 @@ async function infoUserUp(req, res, next) {
 
 //5. Update user 
 async function putUser(req, res, next) {
-  const { name, lastname, email, username } = req.body;
+  const { name, lastname, email, username, isAdmin } = req.body;
   let id = req.params.value;
   if (id) {
     const userToUpdate = await findUserById(id);
     if ( name!== "" && lastname !== "" && email !== "") {
-      const query = updateQuery("users", `name = '${name}',lastname = '${lastname}', email= '${email}', username = '${username}'`, `user_id = '${id}'`);
+      const query = updateQuery("users", `name = '${name}',lastname = '${lastname}', email= '${email}', username = '${username}', isAdmin = '${isAdmin}'`, `user_id = '${id}'`);
       const [userPut] = await sequelize.query(query, { raw: true });
       req.updatedUser = { name, lastname, email };
     } else {

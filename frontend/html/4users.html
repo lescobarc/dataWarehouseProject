@@ -67,6 +67,7 @@
                     <th>Apellido <i class="fas fa-arrows-alt-v" onclick="sortTable(1, 'str')"></i></th> 
                     <th>Email <i class="fas fa-arrows-alt-v" onclick="sortTable(2, 'str')"></i></th>
                     <th>Usuario <i class="fas fa-arrows-alt-v" onclick="sortTable(3, 'str')"></i></th>
+                    <th>Administrador <i class="fas fa-arrows-alt-v" onclick="sortTable(4, 'str')"></i></th>
                     <th>Acciones </th>
                 </tr>
             </thead>
@@ -115,6 +116,13 @@
 
             <div  class="secondInfo">
                 <div>
+                    <label for="profileUser">Administrador  <strong>*</strong></label>
+                    <select name="isAdmin" id="isAdmin">
+                        <option label="Si" value="1"></option>
+                        <option label="No" value="0"></option>
+                    </select>
+                </div>
+                <div>
                     <label for="pass"> Contraseña <strong>*</strong></label>
                     <input type="text" id="passUser">
                 </div>
@@ -158,6 +166,15 @@
                 <div>
                     <label for="username"> Usuario <strong>*</strong></label>
                     <input type="text" id="usernameUserUp">
+                </div>
+            </div>
+            <div  class="secondInfo">
+                <div>
+                    <label for="profileUser">Administrador  <strong>*</strong></label>
+                    <select name="isAdmin" id="isAdminUp">
+                        <option label="Si" value="1"></option>
+                        <option label="No" value="0"></option>
+                    </select>
                 </div>
             </div>
             <div class="buttonsActions">
