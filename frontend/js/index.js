@@ -37,7 +37,6 @@ function doSearch() {
         searchInfo.innerHTML = "Se ha encontrado " + total + " coincidencia" + ((total > 1) ? "s" : "")
     }
     else {
-        console.log('No se han encontrado coincidencias')
         searchInfo.innerHTML = "Se ha encontrado " + total + " coincidencia" + ((total > 1) ? "s" : "")
         searchInfo.classList.remove('hidden')
         iconFilter.classList.remove('hidden')
@@ -61,14 +60,10 @@ let listSelect = [];
 
 
 function contar(i, id) {
-    console.log(i)
-    console.log(id)
     deleteCheck.classList.remove('hidden')
     let elements = document.getElementsByName("check");
     var cont = 0;
     let arrow = document.getElementById(`arrow${id}`);
-    console.log(arrow)
-    console.log(elements[id])
     arrow.classList.toggle('arrowSelect')
     for (x = 0; x < elements.length; x++) {
         if (elements[x].type == "checkbox" && elements[x].checked) {
@@ -112,38 +107,26 @@ let searchF = parseInt(rowsPage.value);
 let searchI = 0;
 
 rowsPage.addEventListener('change', () => {
-    console.log('SI')
     searchF = rowsPage.value;
     searchI = 0;
-    console.log(rowsPage.value)
     searchFetch(searchI, searchF)
     rowsPage.selected
 })
 
 arrowRigth.addEventListener('click', () => {
-    console.log(searchF)
-    console.log(searchI)
     let validate = parseInt(searchF) + parseInt(rowsPage.value);
-    console.log(validate)
-    console.log(rowsPage.length)
     if (validate <= rowsPage.length) {
         searchI = parseInt(searchI) + parseInt(rowsPage.value)
         searchF = parseInt(searchF) + parseInt(rowsPage.value)
-        console.log(searchI)
-        console.log(searchF)
         searchFetch(parseInt(searchF), parseInt(searchI))
     }
 })
 
 arrowLeft.addEventListener('click', () => {
-    console.log(searchF)
-    console.log(searchI)
     validate = searchI - parseInt(rowsPage.value)
     if (validate >= 0) {
         searchI = searchI - parseInt(rowsPage.value)
         searchF = searchF - parseInt(rowsPage.value)
-        console.log(searchI)
-        console.log(searchF)
         searchFetch(parseInt(searchF), parseInt(searchI))
     }
 })

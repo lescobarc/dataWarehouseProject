@@ -200,7 +200,7 @@ regionContact.addEventListener('click', () => {
                     regionContact.appendChild(row);
                 }
             } else {
-                console.log('Regions Not Found');
+                console.log('Search Realized');
             }
 
 
@@ -241,7 +241,7 @@ function getCountries() {
                         countryContact.appendChild(liCountry);
                     }
                 } else {
-                    console.log('Countries Not Found');
+                    console.log('Search Realized');
                 }
             })
         for (let i = cityContact.options.length; i >= 0; i--) {
@@ -275,7 +275,7 @@ function getCities() {
                         cityContact.appendChild(liCity);
                     }
                 } else {
-                    console.log('Cities Not Found');
+                    console.log('Search Realized');
                 }
             })
     }
@@ -303,7 +303,7 @@ channelContact.addEventListener('click', () => {
                     channelContact.appendChild(row);
                 }
             } else {
-                console.log('Channels Not Found');
+                console.log('Search Realized');
             }
         })
 }
@@ -330,7 +330,7 @@ companyContact.addEventListener('click', () => {
                     companyContact.appendChild(row);
                 }
             } else {
-                console.log('Companies Not Found');
+                console.log('Search Realized');
             }
         })
 }
@@ -365,7 +365,7 @@ channelContact2.addEventListener('click', () => {
                     channelContact2.appendChild(row);
                 }
             } else {
-                console.log('Channels Not Found');
+                console.log('Search Realized');
             }
         })
 }
@@ -430,9 +430,6 @@ function showInfoChannels(id) {
     }).then(respuesta => respuesta.json())
         .then(res => {
             if (res) {
-                console.log(res)
-                console.log(res[0].nameChannel)
-
                 if(res.length == 1 ){
                 channelContactUp.innerHTML = ` <option label = ${res[0].nameChannel} value = ${res[0].channel_id}>`; 
                 accountContactUp.value = `${res[0].account}`;
@@ -525,7 +522,7 @@ regionContactUp.addEventListener('click', () => {
                     regionContactUp.appendChild(row);
                 }
             } else {
-                console.log('Regions Not Found');
+                console.log('Search Realized');
             }
         })
 
@@ -564,8 +561,7 @@ function getCountriesUp() {
                         countryContactUp.appendChild(liCountryUp);
                     }
                 } else {
-                    console.log('Countries Not Found');
-                }
+                    console.log('Search Realized');                }
             })
         for (let i = cityContactUp.options.length; i >= 0; i--) {
             cityContactUp.remove(i);
@@ -598,8 +594,7 @@ function getCitiesUp() {
                         cityContactUp.appendChild(liCityUp);
                     }
                 } else {
-                    console.log('Cities Not Found');
-                }
+                    console.log('Search Realized');                }
 
             })
     }
@@ -657,8 +652,7 @@ companyContactUp.addEventListener('click', () => {
                     companyContactUp.appendChild(rowUp);
                 }
             } else {
-                console.log('Companies Not Found');
-            }
+                console.log('Search Realized');            }
         })
 }
 )
@@ -701,8 +695,7 @@ channelContact2Up.addEventListener('click', () => {
                     channelContact2Up.appendChild(rowUp);
                 }
             } else {
-                console.log('Channels Not Found');
-            }
+                console.log('Search Realized');            }
         })
 }
 )

@@ -153,7 +153,7 @@ regionCompany.addEventListener('click', () => {
                     regionCompany.appendChild(row);
                 }
             } else {
-                console.log('Regions Not Found');
+                console.log('Search Realized');
             }
 
 
@@ -197,7 +197,7 @@ function getCountries() {
                         countryCompany.appendChild(liCountry);
                     }
                 } else {
-                    console.log('Countries Not Found');
+                    console.log('Search Realized');
                 }
             })
         for (let i = cityCompany.options.length; i >= 0; i--) {
@@ -233,7 +233,7 @@ function getCities() {
                         cityCompany.appendChild(liCity);
                     }
                 } else {
-                    console.log('Cities Not Found');
+                    console.log('Search Realized');
                 }
             })
     }
@@ -273,7 +273,7 @@ function showInfoCompany(id) {
                 countryCompanyUp.innerHTML = ` <option label = ${res.nameCountry} value = ${res.country_id}>`;
                 cityCompanyUp.innerHTML = ` <option label = ${res.nameCity} value = ${res.city_id}>`;
             } else {
-                    console.log('Company Not Found');
+                console.log('Search Realized');
             }
         })
 
@@ -289,7 +289,6 @@ function updateCompanies(id) {
     }).then((res) => {
         if (res.status == 200) {
             res.json().then((data) => {
-                console.log(data);
                 alert('Updated');
             });
             location.reload()
@@ -334,7 +333,7 @@ regionCompanyUp.addEventListener('click', () => {
                     regionCompanyUp.appendChild(rowUp);
                 }
             } else {
-                console.log('Region Not Found');
+                console.log('Search Realized');
             }
 
 
@@ -376,7 +375,7 @@ function getCountriesUp() {
                         countryCompanyUp.appendChild(liCountryUp);
                     }
                 }else {
-                    console.log('Country Not Found');
+                    console.log('Search Realized');
                 }
             })
         for (let i = cityCompanyUp.options.length; i >= 0; i--) {
@@ -410,7 +409,7 @@ function getCitiesUp() {
                         cityCompanyUp.appendChild(liCityUp);
                     }
                 } else {
-                    console.log('City Not Found');
+                    console.log('Search Realized');
                 }
             })
     }
