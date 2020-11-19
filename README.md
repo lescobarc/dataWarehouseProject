@@ -34,12 +34,12 @@ Install and configure [XAMMP](https://www.apachefriends.org/es/index.html) .
 - Import script: `datawarehouse.sql` (Folder: backend) to create schema and parameters of database. 
 
 ## 5. Install Dependencies
-In terminal (IDE) execute:
+In terminal (IDE) execute in Backend Folder (cd backend):
 
 - npm install
 
 ## 6. Start Backend App 
-In terminal (IDE) run ONE of the these commands in Backend Folder (cd Backend):
+In terminal (IDE) run ONE of the these commands in Backend Folder:
 
 - node app.js  
 - npm start
